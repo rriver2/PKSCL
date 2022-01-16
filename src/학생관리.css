@@ -1,0 +1,105 @@
+.학생관리container {
+    background-color: var(--color-bright-spring);
+    width: 100%;
+    height: 100vh;
+}
+
+#nav-dropdown {
+    color: var(--color-spring);
+}
+
+.d-flex {
+    display: flex !important;
+    background-color: var(--color-white);
+    width: 400px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+.searchButton {
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    cursor: pointer
+}
+
+i{
+    color : var(--color-spring);
+}
+
+.tables {
+    display: flex;
+    justify-content: center;
+}
+
+.tableSet {
+    margin: 0 30px;
+    width: 500px;
+    text-align: center;
+}
+
+table{
+    margin: 0 30px;
+    width: 500px;
+}
+
+tr {
+    height: 50px;
+}
+
+th {
+    background-color: var(--color-brown);
+    color: var(--color-white);
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-tableEven);
+}
+
+tr:nth-child(odd) {
+    background-color: var(--color-tableOdd);
+}
+
+#checkBox:checked{
+    background-color: var(--color-brown);
+    border-color: var(--color-brown);
+}
+
+.전송버튼{
+    background-color: var(--color-spring);
+    border: none;
+    outline: none;
+    color: var(--color-white);
+    width: 60px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 15px; 
+    border-radius: 20px; 
+    margin-bottom: 10px;
+    margin-left: 10px;
+    transition: 0.5s;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagenation{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 30px;
+}
+
+.pagenationItem{
+    color: var(--color-brown);
+    margin: 4px;
+}
+
+i{
+    margin: 4px;
+}

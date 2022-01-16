@@ -1,0 +1,43 @@
+
+  .errorContainer{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    z-index: 19;
+    position: fixed;
+    flex-direction: row;
+    justify-content: center;
+    top: 25%;
+    left: 0;
+  }
+  .errorBox{
+    background-color: var( --color-bright-spring);
+    height: 350px;
+    width: 550px;
+    z-index: 20;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display: flex;
+    border-radius: 20px;
+  }
+  .errorBox i{
+    color: var(--color-spring);
+    font-size: 50px;
+    margin-right: 15px;
+  }
+  .errorBtn{
+    width: 150px;
+    background-color: var(--color-spring);
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: var(--color-white);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 15px 15px 0 15px;
+    cursor: pointer;
+    transition: 0.5s;
+  }

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import log from './img/log.svg';
-import { Nav } from 'react-bootstrap';
+import { Alert, Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import './AccessPage.css';
+
 
 function AccessPage() {
   // let [signType, setSignType] =useState("signIn");
@@ -72,7 +74,6 @@ function AccessPage() {
 
   return (
     <div className="container">
-
       <div className="left-panel">
         <div className="content">
           <button className="btn admin" id="sign-in-btn">

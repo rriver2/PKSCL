@@ -1,4 +1,6 @@
-function Alert(){
+import './AlertBox.css';
+
+function AlertBox(){
     return(
       <div className="errorContainer">
       <div className="errorBox">
@@ -15,4 +17,4 @@ function Alert(){
     
   }
   
-export default Alert;
+export default AlertBox;
