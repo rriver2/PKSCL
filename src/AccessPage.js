@@ -92,10 +92,10 @@ function AccessPage() {
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">
                   <Nav.Item>
-                    <Nav.Link eventKey="link-1" onClick={() => { setPosition("student") }}>학생</Nav.Link>
+                    <Nav.Link eventKey="link-1" onClick={() => { setPosition("student"); reset(); }}>학생</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president") }}>학생회장</Nav.Link>
+                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president");reset(); }}>학생회장</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </div>
@@ -161,10 +161,10 @@ function AccessPage() {
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">
                   <Nav.Item>
-                    <Nav.Link eventKey="link-1" onClick={() => { setPosition("student") }}>학생</Nav.Link>
+                    <Nav.Link eventKey="link-1" onClick={() => { setPosition("student"); reset(); }}>학생</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president") }}>학생회장</Nav.Link>
+                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president"); reset(); }}>학생회장</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </div>
