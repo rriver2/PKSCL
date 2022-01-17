@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import log from './img/log.svg';
-import { Alert, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './AccessPage.css';
-
 
 function AccessPage() {
   // let [signType, setSignType] =useState("signIn");
@@ -16,7 +15,7 @@ function AccessPage() {
   let [password, setPassword] = useState("");
   let [checkPassword, setCheckPassword] = useState("");
   let [email, setEmail] = useState("");
-  let [certFile, setCerFile] = useState("");
+  let [certFile, setCertFile] = useState("");
   let [phoneNumber, setPhoneNumber] = useState("");
   const history = useHistory();
 
@@ -27,7 +26,7 @@ function AccessPage() {
     setPassword("");
     setCheckPassword("");
     setEmail("");
-    setCerFile("");
+    setCertFile("");
   }
 
 
@@ -40,7 +39,7 @@ function AccessPage() {
     else {
       let payload = { "email": email, "password": password, "position": position };
       // debugger;
-      axios.post('https://pk-cog.url/login/' + position, payload)
+      axios.post('/login/' + position, payload)
         .then((result) => {
           console.log(payload);
         })
@@ -60,7 +59,7 @@ function AccessPage() {
     else {
       let payload = { "email": email, "stdID": stdID, "name": name };
       debugger;
-      axios.post('https://pk-cog.url/newpwd', payload)
+      axios.post('/newpwd', payload)
         .then((result) => {
           console.log(payload);
         })
@@ -74,6 +73,7 @@ function AccessPage() {
 
   return (
     <div className="container">
+
       <div className="left-panel">
         <div className="content">
           <button className="btn admin" id="sign-in-btn">
@@ -89,25 +89,25 @@ function AccessPage() {
       <Switch>
         <Route exact path="/signUp">
           <div className="right-panel">
-            <form className="userForm">
+            <form className="userForm" action={"/signup/" + position} method="post" encType="multipart/form-data" >
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">
                   <Nav.Item>
                     <Nav.Link eventKey="link-1" onClick={() => { setPosition("student"); reset(); }}>학생</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president");reset(); }}>학생회장</Nav.Link>
+                    <Nav.Link eventKey="link-2" onClick={() => { setPosition("president"); reset(); }}>학생회장</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </div>
 
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input onChange={(e) => { setStdID(e.target.value) }} value={stdID} type="text" maxLength="9" placeholder="학번" />
+                <input onChange={(e) => { setStdID(e.target.value) }} name="stdID" value={stdID} type="number" maxLength="9" placeholder="학번" />
               </div>
               <div className="input-field">
                 <i className="fas fa-key"></i>
-                <input onChange={(e) => { setPassword(e.target.value) }} value={password} type="password" placeholder="비밀번호" />
+                <input onChange={(e) => { setPassword(e.target.value) }} name="password" value={password} type="password" placeholder="비밀번호" />
               </div>
               <div className="input-field">
                 <i className="fas fa-key"></i>
@@ -115,18 +115,18 @@ function AccessPage() {
               </div>
               <div className="input-field">
                 <i className="fas fa-book-open"></i>
-                <input onChange={(e) => { setMajor(e.target.value) }} value={major} type="text" placeholder="학과" />
+                <input onChange={(e) => { setMajor(e.target.value) }} name="major" value={major} type="text" placeholder="학과" />
               </div>
               <div className="input-field">
                 <i className="fas fa-user"></i>
-                <input onChange={(e) => { setName(e.target.value) }} value={name} type="text" placeholder="이름" />
+                <input onChange={(e) => { setName(e.target.value) }} name="name" value={name} type="text" placeholder="이름" />
               </div>
               {
                 position === "president"
                   ?
                   (<div className="input-field">
                     <i className="fas fa-phone-alt"></i>
-                    <input onChange={(e) => { setPhoneNumber(e.target.value) }} value={phoneNumber} type="text" placeholder="전화번호" />
+                    <input onChange={(e) => { setPhoneNumber(e.target.value) }} name="phoneNumber" value={phoneNumber} type="text" placeholder="전화번호" />
                   </div>
                   )
                   :
@@ -136,24 +136,26 @@ function AccessPage() {
 
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
-                <input onChange={(e) => { setEmail(e.target.value) }} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
+                <input onChange={(e) => { setEmail(e.target.value) }} name="email" value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
                 <button>인증</button>
               </div>
-              <div className="input-field">
-                <i class="fas fa-user-graduate"></i>
-                {/* <input type="text" placeholder="학생증" />
-                <button type>파일첨부</button> */}
-                <label htmlFor="profile-upload" />
-                <input className='temp' type="file" accept="image/*" onChange={certFile} />
+              <div className="input-field filebox">
+                <i className="fas fa-user-graduate"></i>
+                <input className='uploadName' placeholder='학생증을 첨부해주세요' value={certFile} readOnly />
+                <label htmlFor="file">찾기</label>
+                <input type="file" id='file' accept='image/*' onChange={(e) => { setCertFile(e.target.value.split('/').pop().split('\\').pop()) }} />
               </div>
+
+
               <div className="submitbox" >
-                <button type="submit" value="Login" className="SignInBtn">회원가입</button>
+                <button type="submit" className="SignInBtn">회원가입</button>
               </div>
             </form>
             <div className='moveSignPage'>
               <button onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button onClick={() => { reset(); history.push('/'); }}>로그인</button>
             </div>
           </div>
+
         </Route>
 
         <Route exact path="/">
@@ -223,9 +225,6 @@ function AccessPage() {
 
   )
 }
-
-
-
 
 
 

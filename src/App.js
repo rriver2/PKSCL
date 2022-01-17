@@ -3,20 +3,19 @@
 import './App.css';
 import { useState } from 'react';
 import AccessPage from './AccessPage';
-import 학생관리 from './학생관리';
+import ManagementPage from './ManagementPage';
+import MainPage from './MainPage';
 
 
 function App() {
 
   return (
     <div>
-      {/* <AccessPage></AccessPage> */}
+      <AccessPage></AccessPage>
 
-      <학생관리></학생관리>
+      {/* <ManagementPage></ManagementPage> */}
 
-
-
-
+      {/* <MainPage></MainPage> */}
 
     </div>
   );

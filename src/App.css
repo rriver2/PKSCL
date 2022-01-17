@@ -13,14 +13,13 @@
     --color-tableOdd: rgb(251,250,250);
     /* spring */
     --color-spring: #c89034;
-    --color-bright-spring: rgb(228,210,182);
+    --color-bright-spring: rgb(247,235,217);
     /* summer */
     --color-summer: #578e5a;
     /* fall */
     --color-fall: #9b4346;
     /* winter */
     --color-winter: #597082;
-
   /* annimation */
   --animation-duration: 300ms;
 }
@@ -31,7 +30,7 @@ body{
   width: 100%;
   height: 100%;
   margin: 0;
-  overflow: hidden; 
+  overflow: scroll; 
 }
 
 button:hover{
