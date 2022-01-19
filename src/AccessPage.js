@@ -103,7 +103,7 @@ function AccessPage() {
 
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input onChange={(e) => { setStdID(e.target.value) }} name="stdID" value={stdID} type="number" maxLength="9" placeholder="학번" />
+                <input required onChange={(e) => { setStdID(e.target.value) }} name="stdID" value={stdID} type="number" maxLength="9" placeholder="학번" />
               </div>
               <div className="input-field">
                 <i className="fas fa-key"></i>
@@ -171,7 +171,7 @@ function AccessPage() {
                   </Nav.Item>
                 </Nav>
               </div>
-              <div className="input-field">
+              <div className="input-field" style={{marginTop:"45px"}}>
                 <i className="fas fa-envelope"></i>
                 <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>

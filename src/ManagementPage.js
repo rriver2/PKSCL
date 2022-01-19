@@ -1,7 +1,43 @@
+import { useState } from 'react';
 import { Navbar, Container, Form, FormControl,NavDropdown,Pagination} from 'react-bootstrap';
 import './ManagementPage.css';
 
 function ManagementPage(){
+
+    let [waiting,setWaiting] = useState([{  
+        "studentID" : "1111111111",
+         "name" : "대기1"
+        } ,
+      { 
+         "studentID" : "222222222",
+         "name" : "대기2"
+      },
+      {
+         "studentID" : "333333333",
+         "name" : "대기3"
+      }]);
+    let [refusal,setRefusal] = useState({});
+    let [approval,setApproval] = useState([{  
+        "studentID" : "111111111",
+         "name" : "승인1"
+      } ,
+      { 
+         "studentID" : "222222222",
+         "name" : "승인2"
+      },
+      {
+         "studentID" : "222222222",
+         "name" : "승인3"
+      },
+      {
+        "studentID" : "222222222",
+        "name" : "승인4"
+     },
+     {
+        "studentID" : "222222222",
+        "name" : "승인5"
+     }]);
+
     return(
         <div className="ManagementPageContainer">
             <Navbar expand="lg" style={{padding: "30px 0"}}>
@@ -34,26 +70,17 @@ function ManagementPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
+                            {
+                                waiting.map((student,i)=>{
+                                    return(
+                                        <tr key={i}>
+                                            <td>{student.studentID}</td>
+                                            <td>{student.name}</td>
+                                            <td><Form.Check aria-label="option 1" id = "checkBox" /></td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                     <div className = "pagenation">
@@ -79,16 +106,17 @@ function ManagementPage(){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
-                            <tr>
-                                <td>202013245</td>
-                                <td>이가은</td>
-                                <td> <Form.Check aria-label="option 1" id = "checkBox"/></td>
-                            </tr>
+                        {
+                                approval.map((student,i)=>{
+                                    return(
+                                        <tr key={i}>
+                                            <td>{student.studentID}</td>
+                                            <td>{student.name}</td>
+                                            <td><Form.Check aria-label="option 1" id = "checkBox"/></td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                     <div className = "pagenation">

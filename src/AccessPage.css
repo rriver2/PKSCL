@@ -59,8 +59,8 @@
 
 #nav {
   width: 100%;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
+  border-top-left-radius: 27px;
+  border-top-right-radius: 27px;
   background-color: var(--color-bright-gray);
 }
 
@@ -69,14 +69,20 @@
 #nav .nav-tabs,
 #nav .nav-fill,
 #nav a.nav-link.active,
+#nav .nav-link.active,
 #nav .nav-link {
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  border-color: none;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border: none;
 }
 
 #nav .nav-link {
   color: var(--color-dark-gray);
+}
+
+#nav .nav-tabs, 
+#nav .nav-lin{
+  border: none;
 }
 
 .input-field {
@@ -85,12 +91,10 @@
   background-color: var(--color-bright-gray);
   margin: 15px 0 0 0;
   height: 55px;
-  border-radius: 55px;
+  border-radius: 30px;
   padding: 0 0.4rem;
   position: relative;
-
 }
-
 .input-field i {
   text-align: center;
   line-height: 55px;
@@ -99,6 +103,7 @@
   font-size: 1.1rem;
   padding: 0 20px;
 }
+
 
 .input-field input {
   background: none;

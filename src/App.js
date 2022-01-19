@@ -11,11 +11,11 @@ function App() {
 
   return (
     <div>
-      <AccessPage></AccessPage>
+      {/* <AccessPage></AccessPage> */}
 
       {/* <ManagementPage></ManagementPage> */}
 
-      {/* <MainPage></MainPage> */}
+      <MainPage></MainPage>
 
     </div>
   );
