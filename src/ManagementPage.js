@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navbar, Container} from 'react-bootstrap';
 import './ManagementPage.css';
 import axios from 'axios';
@@ -18,42 +18,117 @@ function ManagementPage(){
         {
             "stdID" : "a33333333",
             "name" : "이름3"
+        },
+        {  
+            "stdID" : "a111111111",
+            "name" : "이름1"
+        } ,
+        { 
+            "stdID" : "a22222222",
+            "name" : "이름2"
+        },
+        {
+            "stdID" : "a33333333",
+            "name" : "이름3"
+        },
+        {  
+            "stdID" : "a111111111",
+            "name" : "이름1"
+        } ,
+        { 
+            "stdID" : "a22222222",
+            "name" : "이름2"
+        },
+        {
+            "stdID" : "a33333333",
+            "name" : "이름3"
+        },
+        {  
+            "stdID" : "a111111111",
+            "name" : "이름1"
+        } ,
+        { 
+            "stdID" : "a22222222",
+            "name" : "이름2"
+        },
+        {
+            "stdID" : "a33333333",
+            "name" : "이름3"
         }
     ]);
 
     const [refusal,setRefusal] = useState([]);
     const [approval,setApproval] = useState([{  
         "stdID" : "b11111111",
-         "name" : "name1"
+         "name" : "1이름"
       } ,
       { 
          "stdID" : "b22222222",
-         "name" : "name2"
+         "name" : "2이름"
       },
       {
          "stdID" : "b33333333",
-         "name" : "name3"
+         "name" : "3이름"
       },
       {
         "stdID" : "b44444444",
-        "name" : "name4"
+        "name" : "4이름"
      },
      {
         "stdID" : "b5555555",
-        "name" : "name5"
+        "name" : "5이름"
+     },
+    {  
+        "stdID" : "b11111111",
+         "name" : "1이름"
+      } ,
+      { 
+         "stdID" : "b22222222",
+         "name" : "2이름"
+      },
+      {
+         "stdID" : "b33333333",
+         "name" : "3이름"
+      },
+      {
+        "stdID" : "b44444444",
+        "name" : "4이름"
+     },
+     {
+        "stdID" : "b5555555",
+        "name" : "5이름"
+     },
+    {  
+        "stdID" : "b11111111",
+         "name" : "1이름"
+      } ,
+      { 
+         "stdID" : "b22222222",
+         "name" : "2이름"
+      },
+      {
+         "stdID" : "b33333333",
+         "name" : "3이름"
+      },
+      {
+        "stdID" : "b44444444",
+        "name" : "4이름"
+     },
+     {
+        "stdID" : "b5555555",
+        "name" : "5이름"
      }]);
-
      const [leftTable, setLeftTable] = useState([...waiting]);
      const [rightTable, setRightTable] = useState([...approval]);
 
      const [leftCheckedList, setLeftCheckedList] = useState([]);
      const [rightCheckedList, setRightCheckedList] = useState([]);
 
-     const changeHandler = (checked, id, setPlace, place) => {
+     const changeHandler = (checked, studentInfo, setCheckedList, checkedList) => {
        if (checked) {
-        setPlace([...place, id]);
+        setCheckedList([...checkedList, studentInfo]);
        } else {
-         setPlace(place.filter((e) => e !== id));
+        setCheckedList(checkedList.filter((e) => e !== studentInfo));
        }
        console.log(checked)
      };
@@ -61,25 +136,42 @@ function ManagementPage(){
     const [searchStudent, setSearchStudent] = useState("");
     const [searchButton, setSearchButton] = useState("search");
 
+
     function postStudent(studentStatus){
         let payload;
         if(studentStatus === "approval" || studentStatus === "refusal" ){
             payload = leftCheckedList;
-        }else{
+        }else if(studentStatus === "delegating" || studentStatus === "waiting" ){
             payload = rightCheckedList;
+        }else{
+            alert("error!");
         }
         axios.post('/student-list/' + studentStatus, payload)
         .then((payload) => {
-          console.log("payload"+payload);
+          setWaiting([...payload.data.studentPresidentList.waiting]);
+          setRefusal([...payload.data.studentPresidentList.refusal]);
+            setApproval([...payload.data.studentPresidentList.approval]);
         })
         .catch((error) => {
           alert("학생 전송에 실패했습니다 :)")
-
         });
     }
 
+    useEffect(() => {
+
+    axios.get('/student-list')
+      .then((payload) => {
+        setWaiting([...payload.data.studentPresidentList.waiting]);
+        setRefusal([...payload.data.studentPresidentList.refusal]);
+        setApproval([...payload.data.studentPresidentList.approval]);
+      })
+      .catch((error) => {
+        alert("학과리스트를 불러올 수 없습니다.");
+      })
+    }, []);
+  
+
     return(
-        
         <div className="ManagementPageContainer">
             <Navbar expand="lg" style={{padding: "30px 0"}}>
                 <Container fluid style={{justifyContent: "center", backgroundColor: "none"}}>
@@ -100,7 +192,6 @@ function ManagementPage(){
                             if( searchButton === "x"){
                                 setSearchStudent("");
                                 setSearchButton("search");
-                                console.log(leftTable);
                                 setLeftTable([...waiting]);
                                 setRightTable([...approval]);
                             }else{
@@ -108,13 +199,10 @@ function ManagementPage(){
                                     alert("검색명을 입력해주세요 :)");
                                 }else{
                                     setSearchButton("x");
-
-                                    console.log(":"+e.target.value);
                             
                                     let left = waiting.filter((item) => (item.name.includes(searchStudent)||item.stdID.includes(searchStudent)));
                                     let right = approval.filter((item) => (item.name.includes(searchStudent)||item.stdID.includes(searchStudent)));
-        
-                                    console.log(left);
+
                                     setLeftTable(left);
                                     setRightTable(right);
                                 }
@@ -136,13 +224,12 @@ function ManagementPage(){
                 <div className='tableSet'>
                     <div className= "buttons">
                         <button className='submitButton' onClick={()=>{
-                                console.log("승인")
-                                setLeftCheckedList([]);
-                                if(leftCheckedList.length > 0){
-                                    postStudent("approval");
-                                }else{
+                                if(leftCheckedList.length === 0){
                                     alert("승인할 학생을 1명 이상 선택하세요 :)")
+                                }else{
+                                    postStudent("approval");
                                 }
+                                setLeftCheckedList([]);
                             }}>승인</button> 
                         <button className='submitButton' onClick={()=>{
                                 console.log("거절")
@@ -154,46 +241,54 @@ function ManagementPage(){
                                 }
                             }}>거절</button>
                     </div>
-                    <table>
+                    <table >
                         <thead>
-                            <tr>
-                                <th colSpan={"3"}>승인대기</th>
+                            <tr >
+                                <th colSpan={"3"} style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}>승인대기</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                             {
                                 leftTable.length === 0
                                 ?   <tr>
-                                        <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
+                                        <td colSpan={"3"} style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>승인대기 학생이 없습니다.</td>
                                     </tr>
                                 :leftTable.map((student,i)=>{
                                     return(
-                                        <tr key={i}>
-                                            <td>{student.stdID}</td>
+                                        i === leftTable.length -1
+                                        ?(
+                                            <tr key={i}>
+                                            <td style={{borderBottomLeftRadius:"20px"}}>{student.stdID}</td>
                                             <td>{student.name}</td>
-                                            <td><input 
+                                            <td style={{borderBottomRightRadius:"20px"}}><input 
                                                     id= {student}
                                                     type="checkbox" 
                                                     onChange={(e)=>{
-                                                    changeHandler(e.currentTarget.checked, student ,setLeftCheckedList,leftCheckedList)
+                                                    changeHandler(e.target.checked, student ,setLeftCheckedList,leftCheckedList)
                                                     }}
                                                     checked={leftCheckedList.includes(student) ? true : false}
                                             /></td>
                                         </tr>
+                                        )
+                                        :(
+                                            <tr key={i}>
+                                            <td >{student.stdID}</td>
+                                            <td>{student.name}</td>
+                                            <td ><input 
+                                                    id= {student}
+                                                    type="checkbox" 
+                                                    onChange={(e)=>{
+                                                    changeHandler(e.target.checked, student ,setLeftCheckedList,leftCheckedList)
+                                                    }}
+                                                    checked={leftCheckedList.includes(student) ? true : false}
+                                            /></td>
+                                        </tr>
+                                        )
                                     )
                                 })
                             }
                         </tbody>
                     </table>
-                    <div className = "pagenation">
-                        <button><i className="fas fa-chevron-left"></i></button>
-                            <button className= "pagenationItem">{2}</button>
-                            <button className= "pagenationItem">{3}</button>
-                            <button className= "pagenationItem" style={{color : "black"}}>{4}</button>
-                            <button className= "pagenationItem">{5}</button>
-                            <button className= "pagenationItem">{6}</button>
-                        <button><i className="fas fa-chevron-right"></i></button>
-                    </div>
                 </div>
 
                 <div className='tableSet'>
@@ -217,18 +312,34 @@ function ManagementPage(){
                      <table>
                         <thead>
                             <tr>
-                                <th colSpan={"3"}>승인완료</th>
+                                <th colSpan={"3"} style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}>승인완료</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                         {
-                            leftTable.length === 0
+                            rightTable.length === 0
                                 ?   <tr>
                                         <td colSpan={"3"}>승인완료 학생이 없습니다.</td>
                                     </tr>
                                 :rightTable.map((student,i)=>{
                                     return(
+                                        i === rightTable.length -1
+                                        ?(
                                         <tr key={i}>
+                                            <td style={{borderBottomLeftRadius:"20px"}}>{student.stdID}</td>
+                                            <td>{student.name}</td>
+                                            <td style={{borderBottomRightRadius:"20px"}}><input 
+                                                    id= {student}
+                                                    type="checkbox" 
+                                                    onChange={(e)=>{
+                                                    changeHandler(e.currentTarget.checked, student ,setRightCheckedList,rightCheckedList)
+                                                    }}
+                                                    checked={rightCheckedList.includes(student) ? true : false}
+                                            /></td>
+                                        </tr>
+                                        )
+                                        :(
+                                            <tr key={i}>
                                             <td>{student.stdID}</td>
                                             <td>{student.name}</td>
                                             <td><input 
@@ -240,20 +351,12 @@ function ManagementPage(){
                                                     checked={rightCheckedList.includes(student) ? true : false}
                                             /></td>
                                         </tr>
+                                        )
                                     )
                                 })
                             }
                         </tbody>
                     </table>
-                    <div className = "pagenation">
-                        <button><i className="fas fa-chevron-left"></i></button>
-                            <button className= "pagenationItem">{4}</button>
-                            <button className= "pagenationItem">{5}</button>
-                            <button className= "pagenationItem" style={{color : "black"}}>{6}</button>
-                            <button className= "pagenationItem">{7}</button>
-                            <button className= "pagenationItem">{8}</button>
-                        <button><i className="fas fa-chevron-right"></i></button>
-                    </div>
                 </div>
             </div>
         </div>

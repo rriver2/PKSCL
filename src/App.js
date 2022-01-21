@@ -37,23 +37,27 @@ function loadmonth() {
         }
     }
     function defineColor(quarter){
-        quarter = "quarter2"
+        quarter = "quarter4"
         if(quarter === "quarter1"){
             document.documentElement.style.setProperty("--color-quarter", "#c89034");
             document.documentElement.style.setProperty("--color-quarterCircle", "linear-gradient(0deg, rgba(200, 144, 52, 1) 0%, rgba(213, 178, 121, 1) 67%");
             document.documentElement.style.setProperty("--color-leftPanel", "rgb(242 227 215)");
+            document.documentElement.style.setProperty("--color-card", "rgb(255 245 237)");
         }else if(quarter === "quarter2"){
             document.documentElement.style.setProperty("--color-quarter", "#578e5a");
             document.documentElement.style.setProperty("--color-quarterCircle","linear-gradient(0deg, rgba(87,142,90,1) 0%, rgba(126,199,130,1) 67%)");
             document.documentElement.style.setProperty("--color-leftPanel", "#cedbcf");
+            document.documentElement.style.setProperty("--color-card", "#dee7df");
         }else if(quarter === "quarter3"){
             document.documentElement.style.setProperty("--color-quarter", "#9b4346");
             document.documentElement.style.setProperty("--color-quarterCircle","linear-gradient(0deg, rgba(155,67,70,1) 0%, rgba(231,140,145,1) 67%)");
-            document.documentElement.style.setProperty("--color-leftPanel", "#f1e2e2");
+            document.documentElement.style.setProperty("--color-leftPanel", "#e6bdbd");
+            document.documentElement.style.setProperty("--color-card", "#f3dddd");
         }else if(quarter === "quarter4"){
             document.documentElement.style.setProperty("--color-quarter", "#597082");
             document.documentElement.style.setProperty("--color-quarterCircle","linear-gradient(0deg, rgba(89,112,130,1) 0%, rgba(145,186,217,1) 67%)");
             document.documentElement.style.setProperty("--color-leftPanel", "#d0dbe5");
+            document.documentElement.style.setProperty("--color-card", "#e6f1fb");
         }
     }
 

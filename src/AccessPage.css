@@ -128,7 +128,7 @@
 
 .SignInBtn {
     width: 150px;
-    background-color: var(--quarterColor);
+    background-color: var(--color-quarter);
     border: none;
     outline: none;
     height: 49px;
