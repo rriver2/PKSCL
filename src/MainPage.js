@@ -46,7 +46,7 @@ function MainPage(){
                 </div>
                 <div className="quarterData">
                     <h2 className="quarterTotalAmount">
-                        2분기 총금액 : 267475원
+                        2분기 총 금액 : 267475원
                     </h2>
                     <div className="eventCard">
                        <div className="cardContent">

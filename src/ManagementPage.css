@@ -9,18 +9,28 @@
 }
 
 .searchBar {
+    height: 40px;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    background-color: var(--color-white);
+    margin-left: 20px;
+}
+
+.searchBar input {
     border: none;
     width: 300px;
     caret-color: black;
 }
 
-.searchBar:focus {
+.searchBar input:focus {
     outline-color: var(--color-leftPanel);
     caret-color: black;
     background-color: none;
 }
 
-.searchBar[type=text]:-ms-clear {
+.searchBar input[type=text]:-ms-clear {
     display: none;
 }
 

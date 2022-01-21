@@ -6,7 +6,7 @@
 
 .leftPanel {
     width: 30%;
-    height: 100vh;
+    height: 100%;
     background-color: var(--color-leftPanel);
     display: flex;
     flex-direction: row;
@@ -14,6 +14,8 @@
     padding: 0;
     position: fixed;
     left: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .majorCard {
@@ -31,6 +33,7 @@
     align-items: center;
     padding: 10px;
     padding-top: 20px;
+    border-radius: 20px;
 }
 
 .presidentCard img {
@@ -44,13 +47,14 @@
     margin-top: 20px;
     padding: 10px;
     background-color: var(--color-white);
+    border-radius: 20px;
 }
 
 .quarter {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .quarter img:hover {

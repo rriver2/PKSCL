@@ -40,20 +40,12 @@ function AccessPage() {
   }, [phoneNumber]);
 
   useEffect(() => {
-    if (email.length === 1) {
+    if (email.length === 1) { //첫글자 입력시
       setEmail(email + "@pukyong.ac.kr");
-    } else if (email.length > 1) {
+    } else if (email.length > 1) { //커서 자동이동
       let input = document.getElementById('inputEmail');
       input.focus();
       input.setSelectionRange(email.length - 14, email.length - 14);
-
-    }
-
-    if (email.includes("@")) setAtIsContains(true);
-    else setAtIsContains(false);
-
-    if (email[email.length - 1] === "@" && atIsContain === false) {
-      setEmail(email + "pukyong.ac.kr")
     }
   }, [email]);
 
@@ -102,10 +94,10 @@ function AccessPage() {
         .then((payload) => {
           console.log(payload);
           if (payload.data.position === "student") {
-            history.push('/main/' + payload.data.major); // 수정 필요
+            history.push('/main/' + payload.data.sclData.studentPresident.major); // 수정 필요
           }
           else if (payload.data.position === "president") {
-            history.push('/manage/' + payload.data.major); // 수정 필요
+            history.push('/manage/' + payload.data.sclData.studentPresident.major); // 수정 필요
           }
 
         })
@@ -161,7 +153,7 @@ function AccessPage() {
   function changeIsCorrect(i, type) {
     var temp = [...isCorrect];
     temp[i] = type;
-    setIsCorrect(temp);
+    setIsCorrect(isCorrect => temp);
   };
 
 
@@ -295,7 +287,7 @@ function AccessPage() {
 
               }
 
-               <div className="input-field">
+              <div className="input-field">
                 <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--quarterColor)" } : null}></i>
                 {
                   resendEmail === 0
@@ -305,7 +297,8 @@ function AccessPage() {
                           onChange={(e) => {
                             setEmail(e.target.value);
                             const emailType = e.target.value.substring(e.target.value.indexOf("@"));
-                            console.log(emailType);
+
+                            console.log(e.target.value.indexOf('@'));
                             if (e.target.value.indexOf('@') === 0) {
                               setEmailTypeState(false);
                             } else if (emailType === "@pukyong.ac.kr") {
@@ -418,19 +411,57 @@ function AccessPage() {
               <div >비밀번호를 찾고자 하는 아이디의 정보를 입력해 주세요.</div>
 
               <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
+                <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <input id="inputEmail" onChange={(e) => {
+                  setEmail(e.target.value);
+                  const emailType = e.target.value.substring(e.target.value.indexOf("@"));
+                  // console.log(emailType);
+                  console.log(e.target.value);
+                  if (e.target.value.indexOf('@') === 0) {
+                    setEmailTypeState(emailTypeState => false);
+                    changeIsCorrect(5, false);
+                    console.log("case 1");
+                  } else if (emailType === "@pukyong.ac.kr") {
+                    setEmailTypeState(emailTypeState => true);
+                    changeIsCorrect(5, true);
+                    console.log("case 2");
+                  } else {
+                    setEmailTypeState(emailTypeState => false);
+                    changeIsCorrect(5, false);
+                    console.log("case 3");
+                  }
+                }} name="email" value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>
               <div className="input-field">
-                <i className="fas fa-lock"></i>
-                <input onChange={(e) => { setStdID(e.target.value) }} value={stdID} type="text" maxLength="9" placeholder="학번" />
+                <i className="fas fa-lock" style={isCorrect[0] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <input onChange={(e) => {
+                  setStdID(e.target.value.replace(/[^0-9]/g, ''));
+                  if (e.target.value.length === 9) {
+                    changeIsCorrect(0, true);
+                  } else {
+                    changeIsCorrect(0, false);
+                  }
+
+                }
+                } value={stdID} type="text" maxLength="9" placeholder="학번" />
               </div>
-              <div className="input-field">
-                <i className="fas fa-user"></i>
-                <input onChange={(e) => { setName(e.target.value) }} value={name} type="text" placeholder="이름" />
+              <div className="input-field" >
+                <i className="fas fa-user" style={isCorrect[4] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <input onChange={(e) => {
+                  setName(e.target.value)
+                  if (e.target.value === "") {
+                    changeIsCorrect(4, false);
+                  } else {
+                    changeIsCorrect(4, true);
+                  }
+                }
+                } value={name} type="text" placeholder="이름" />
               </div>
               <div className="submitbox" >
-                <button onClick={() => { findPassword() }} type="button" className="SignInBtn">확인</button>
+                <button onClick={() => {
+                  if (isCorrect[5] === true && isCorrect[0] === true && isCorrect[4] === true) findPassword()
+                  else alert("올바른 입력 값을 입력해주세요 :(")
+                }} type="button" className="SignInBtn">확인</button>
               </div>
             </form>
             <div className='moveSignPage'>
