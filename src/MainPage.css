@@ -5,7 +5,7 @@
     justify-content: flex-end;
 }
 .leftPanel{
-    width: 500px;
+    width: 30%;
     height: 100vh;
     background-color: var(--color-bright-spring);
     display: flex;
@@ -75,7 +75,7 @@
 }
 
 .rightPanel{
-    width: 800px;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;

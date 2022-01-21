@@ -95,6 +95,7 @@
   padding: 0 0.4rem;
   position: relative;
 }
+
 .input-field i {
   text-align: center;
   line-height: 55px;
@@ -113,14 +114,6 @@
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--color-dark-gray);
-  width: 80%;
-}
-
-.input-field input[placeholder="학교 이메일 @pukyong.ac.kr"] {
-  width: 70%;
-}
-
-.input-field input[placeholder="학생증"] {
   width: 70%;
 }
 
@@ -171,7 +164,8 @@
   color: #999999;
 }
 
-.filebox label {
+.filebox label,
+.input-field label {
   background-color: var(--color-middle-gray);
   border: none;
   outline: none;
@@ -191,4 +185,12 @@
   padding: 0;
   overflow: hidden;
   border: 0;
+}
+
+div .checkbox-form{
+  display: flex;
+  position: relative;
+  align-items: baseline;
+  left: 20px;
+  border-radius: 0.25em;
 }
