@@ -92,11 +92,9 @@ i {
 
 .tableSet tbody {
     display: block;
-    overflow: auto;
+    overflow-y: auto;
     height: 400px;
 }
-
-
 
 .tableSet tr {
     height: 50px;

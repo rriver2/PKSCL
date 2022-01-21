@@ -90,7 +90,7 @@ function AccessPage() {
     setEmail("");
     setCertFile("");
     setIsCorrect([false, false, false, false, false, false, false, false]);
-
+    
   };
 
 
@@ -209,7 +209,7 @@ function AccessPage() {
               }
 
               <div className="input-field">
-                <i className="fas fa-lock" style={isCorrect[0] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-lock" style={isCorrect[0] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   setStdID(e.target.value.replace(/[^0-9]/g, ''));
                   if (e.target.value.length === 9) {
@@ -222,7 +222,7 @@ function AccessPage() {
                 } name="stdID" value={stdID} maxLength="9" placeholder="학번" type="text" />
               </div>
               <div className="input-field">
-                <i className="fas fa-key" style={isCorrect[1] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-key" style={isCorrect[1] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   console.log(e.target.value);
                   setPassword(e.target.value);
@@ -235,7 +235,7 @@ function AccessPage() {
                 }} name="password" value={password} type="password" placeholder="비밀번호" />
               </div>
               <div className="input-field">
-                <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   setCheckPassword(e.target.value)
                   if (password !== e.target.value || password === "") {
@@ -247,7 +247,7 @@ function AccessPage() {
                 } name="checkPassword" value={checkPassword} type="password" placeholder="비밀번호 재확인" />
               </div>
               <div className="input-field" style={{ fontSize: "80%" }}>
-                <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <label htmlFor="majorList"></label>
                 <input type="text" list="majorList-options" name="major" placeholder="학과를 입력하세요." value={major}
                   onChange={(e) => {
@@ -268,7 +268,7 @@ function AccessPage() {
                 </datalist>
               </div>
               <div className="input-field">
-                <i className="fas fa-user" style={isCorrect[4] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-user" style={isCorrect[4] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   setName(e.target.value)
                   if (e.target.value === "") {
@@ -283,7 +283,7 @@ function AccessPage() {
                 position === "president"
                   ?
                   (<div className="input-field">
-                    <i className="fas fa-phone-alt" style={isCorrect[5] === true ? { color: "var(--quarterColor)" } : null}></i>
+                    <i className="fas fa-phone-alt" style={isCorrect[5] === true ? { color: "var(--color-quarter)" } : null}></i>
                     <input onChange={(e) => {
                       setPhoneNumber(e.target.value)
                       if (e.target.value.length !== 13) {
@@ -301,7 +301,7 @@ function AccessPage() {
               }
 
               <div className="input-field">
-                <i className="fas fa-envelope" style={isCorrect[6] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-envelope" style={isCorrect[6] === true ? { color: "var(--color-quarter)" } : null}></i>
                 {
                   resendEmail === 0
                     ? (
@@ -341,7 +341,7 @@ function AccessPage() {
               </div>
 
               <div className="input-field filebox">
-                <i className="fas fa-user-graduate" style={isCorrect[7] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-user-graduate" style={isCorrect[7] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input className='uploadName' placeholder='학생증을 첨부해주세요' value={certFile} readOnly />
                 <label htmlFor="certFile">찾기</label>
                 <input type="file" id='certFile' name="certFile" accept='image/*'
@@ -424,7 +424,7 @@ function AccessPage() {
               <div >비밀번호를 찾고자 하는 아이디의 정보를 입력해 주세요.</div>
 
               <div className="input-field">
-                <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input id="inputEmail" onChange={(e) => {
                   setEmail(e.target.value);
                   const emailType = e.target.value.substring(e.target.value.indexOf("@"));
@@ -446,7 +446,7 @@ function AccessPage() {
                 }} name="email" value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>
               <div className="input-field">
-                <i className="fas fa-lock" style={isCorrect[0] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-lock" style={isCorrect[0] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   setStdID(e.target.value.replace(/[^0-9]/g, ''));
                   if (e.target.value.length === 9) {
@@ -459,7 +459,7 @@ function AccessPage() {
                 } value={stdID} type="text" maxLength="9" placeholder="학번" />
               </div>
               <div className="input-field" >
-                <i className="fas fa-user" style={isCorrect[4] === true ? { color: "var(--quarterColor)" } : null}></i>
+                <i className="fas fa-user" style={isCorrect[4] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <input onChange={(e) => {
                   setName(e.target.value)
                   if (e.target.value === "") {

@@ -315,7 +315,7 @@ function ManagementPage(){
                                 <th colSpan={"3"} style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}>승인완료</th>
                             </tr>
                         </thead>
-                        <tbody style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
+                        <tbody className = "tableList" style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                         {
                             rightTable.length === 0
                                 ?   <tr>

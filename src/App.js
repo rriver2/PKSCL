@@ -37,7 +37,6 @@ function loadmonth() {
         }
     }
     function defineColor(quarter){
-        quarter = "quarter4"
         if(quarter === "quarter1"){
             document.documentElement.style.setProperty("--color-quarter", "#c89034");
             document.documentElement.style.setProperty("--color-quarterCircle", "linear-gradient(0deg, rgba(200, 144, 52, 1) 0%, rgba(213, 178, 121, 1) 67%");
