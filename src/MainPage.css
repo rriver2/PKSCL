@@ -1,13 +1,13 @@
-
-.MainPageContainer{
+.MainPageContainer {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
-.leftPanel{
+
+.leftPanel {
     width: 30%;
     height: 100vh;
-    background-color: var(--color-bright-spring);
+    background-color: var(--color-leftPanel);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -15,7 +15,8 @@
     position: fixed;
     left: 0;
 }
-.majorCard{
+
+.majorCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +24,7 @@
     margin-left: 50px;
 }
 
-.presidentCard{
+.presidentCard {
     background-color: rgb(255 245 237);
     display: flex;
     flex-direction: column;
@@ -32,49 +33,50 @@
     padding-top: 20px;
 }
 
-.presidentCard img{
+.presidentCard img {
     height: 180px;
     width: 180px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
-.cogExplanation{
+.cogExplanation {
     margin-top: 20px;
     padding: 10px;
     background-color: var(--color-white);
 }
 
-.quarter{
+.quarter {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 10px;
 }
-.quarter img:hover{
+
+.quarter img:hover {
     transition: 0.5s;
     transform: scale(1.05);
 }
 
-.quarter img{
+.quarter img {
     padding: 0;
     height: 100px;
     width: 100px;
     margin: 20px 0;
 }
 
-.managementPageBar{
+.managementPageBar {
     display: flex;
     align-items: center;
     margin-right: 10px;
 }
 
-.managementPageBar:hover{
+.managementPageBar:hover {
     transition: 0.5s;
     transform: scale(1.5);
 }
 
-.rightPanel{
+.rightPanel {
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -82,46 +84,46 @@
     padding-right: 100px;
 }
 
-.nav{
-    top:0;
+.nav {
+    top: 0;
     width: 100%;
     justify-content: flex-end;
 }
 
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: flex-end;
 }
 
-.submitButton{
-    background-color: var(--color-spring);
+.submitButton {
+    background-color: var(--color-quarter);
     border: none;
     outline: none;
     color: var(--color-white);
     width: 100px;
     padding: 5px;
     cursor: pointer;
-    font-size: 12px; 
-    border-radius: 20px; 
+    font-size: 12px;
+    border-radius: 20px;
     margin: 15px 10px;
     transition: 0.5s;
 }
 
-.quarterData{
+.quarterData {
     margin-top: 30px;
     width: 700px;
 }
 
-.eventCard{
+.eventCard {
     margin-top: 20px;
     display: flex;
     height: 400px;
     box-shadow: 1px 1px 10px 0px gray;
 }
 
-.quarterTotalAmount{
-    color: var(--color-spring);
+.quarterTotalAmount {
+    color: var(--color-quarter);
 }
 
 .cardContent {
@@ -133,30 +135,32 @@
     align-items: flex-start;
 }
 
-.receiptContent{
+.receiptContent {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.cardContent h4, .cardContent h5{
-    color: var(--color-spring);
+.cardContent h4,
+.cardContent h5 {
+    color: var(--color-quarter);
 }
 
-.receiptContent table{
+.receiptContent table {
     margin: 10px 0;
     width: 400px;
     height: 240px;
 }
 
 .receiptTable thead {
-    display:block;
+    display: block;
 }
-.receiptTable tbody{
-    display:block;
-    overflow: auto; 
-    height:190px;
+
+.receiptTable tbody {
+    display: block;
+    overflow: auto;
+    height: 190px;
 }
 
 .receiptContent tr {
@@ -164,7 +168,7 @@
 }
 
 .receiptContent th {
-    background-color: var(--color-spring);
+    background-color: var(--color-quarter);
     color: var(--color-white);
     width: 100px;
 }
@@ -177,11 +181,11 @@
     background-color: var(--color-tableOdd);
 }
 
-.receiptContent td{
+.receiptContent td {
     width: 100px;
 }
 
-.cardImg img{
+.cardImg img {
     display: inline-block;
     margin-top: 20px;
     margin-right: 20px;
@@ -192,13 +196,13 @@
     border-radius: 5px;
 }
 
-.cardImg .pagenation{
+.cardImg .pagenation {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 10px;
 }
 
-.cardImg .pagenationItem{
+.cardImg .pagenationItem {
     color: var(--color-brown);
 }

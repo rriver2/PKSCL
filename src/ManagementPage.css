@@ -1,38 +1,41 @@
 .ManagementPageContainer {
-    background-color: var(--color-bright-spring);
+    background-color: var(--color-leftPanel);
     width: 100%;
     height: 100vh;
 }
 
 #nav-dropdown {
-    color: var(--color-spring);
+    color: var(--color-quarter);
 }
 
-.searchBar{
+.searchBar {
     border: none;
     width: 300px;
     caret-color: black;
 }
 
-.searchBar:focus{
-    outline-color: var(--color-bright-spring);
+.searchBar:focus {
+    outline-color: var(--color-leftPanel);
     caret-color: black;
     background-color: none;
-} 
+}
 
 .searchBar[type=text]:-ms-clear {
-    display:none;
+    display: none;
 }
 
 input::-ms-clear,
-input::-ms-reveal{
-	display:none;width:0;height:0;
+input::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
 }
+
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button,
 input::-webkit-search-results-button,
-input::-webkit-search-results-decoration{
-	display:none;
+input::-webkit-search-results-decoration {
+    display: none;
 }
 
 .d-flex {
@@ -53,8 +56,8 @@ input::-webkit-search-results-decoration{
     cursor: pointer
 }
 
-i{
-    color : var(--color-spring);
+i {
+    color: var(--color-quarter);
 }
 
 .tables {
@@ -68,7 +71,7 @@ i{
     text-align: center;
 }
 
-.tableSet table{
+.tableSet table {
     margin: 0 30px;
     width: 500px;
 }
@@ -78,7 +81,7 @@ i{
 }
 
 .tableSet th {
-    background-color: var(--color-spring);
+    background-color: var(--color-quarter);
     color: var(--color-white);
 }
 
@@ -90,43 +93,42 @@ i{
     background-color: var(--color-tableOdd);
 }
 
-#checkBox:checked{
-    background-color: var(--color-spring);
-    border-color: var(--color-spring);
+#checkBox:checked {
+    background-color: var(--color-quarter);
+    border-color: var(--color-quarter);
 }
 
-.submitButton{
-    background-color: var(--color-spring);
+.submitButton {
+    background-color: var(--color-quarter);
     border: none;
     outline: none;
     color: var(--color-white);
-    width: 60px;
     padding: 5px;
     cursor: pointer;
-    font-size: 15px; 
-    border-radius: 20px; 
+    font-size: 15px;
+    border-radius: 20px;
     margin-bottom: 10px;
     margin-left: 10px;
     transition: 0.5s;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: flex-end;
 }
 
-.tableSet .pagenation{
+.tableSet .pagenation {
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 20px 30px;
 }
 
-.tableSet .pagenationItem{
-    color: var(--color-spring);
+.tableSet .pagenationItem {
+    color: var(--color-quarter);
     margin: 4px;
 }
 
-i{
+i {
     margin: 4px;
 }

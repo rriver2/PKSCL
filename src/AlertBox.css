@@ -1,5 +1,4 @@
-
-  .errorContainer{
+.errorContainer {
     display: flex;
     height: 100%;
     width: 100%;
@@ -9,9 +8,10 @@
     justify-content: center;
     top: 25%;
     left: 0;
-  }
-  .errorBox{
-    background-color: var( --color-bright-spring);
+}
+
+.errorBox {
+    background-color: var(--color-yellow-background);
     height: 350px;
     width: 550px;
     z-index: 20;
@@ -21,16 +21,21 @@
     position: fixed;
     display: flex;
     border-radius: 20px;
-  }
-  .errorBox i{
-    color: var(--color-spring);
+}
+
+.errorBox i {
+    color: var(--color-quarter);
     font-size: 50px;
     margin-right: 15px;
-  }
-  input:required {outline : red;} 
-  .errorBtn{
+}
+
+input:required {
+    outline: red;
+}
+
+.errorBtn {
     width: 150px;
-    background-color: var(--color-spring);
+    background-color: var(--color-quarter);
     border: none;
     outline: none;
     height: 49px;
@@ -41,4 +46,4 @@
     margin: 15px 15px 0 15px;
     cursor: pointer;
     transition: 0.5s;
-  }
+}

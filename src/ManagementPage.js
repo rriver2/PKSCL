@@ -115,16 +115,6 @@ function ManagementPage(){
                                 
                             }
                         }}
-                            // var ob = [{
-                            //     name: 'john',
-                            //     surname: 'fox'
-                            //   }
-                            // ];
-                            // var searchText = 'fox';
-                            // var res = ob.filter((item)=>{
-                            //   return Object.keys(item).some((key)=>item[key].includes(searchText));
-                            // });
-                            // console.log(res);
                         
                             className='searchButton' type='button'>
                                 {
