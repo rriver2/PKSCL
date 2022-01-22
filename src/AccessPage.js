@@ -66,7 +66,8 @@ function AccessPage() {
     if (position === "president") {
       if (isCorrect.includes(false))
         setSignUpButtonState(false);
-    } else setSignUpButtonState(true);
+      else setSignUpButtonState(true);
+    }
 
     if (position === "student") {
       for (let i = 0; i < 8; i++) {
@@ -90,7 +91,8 @@ function AccessPage() {
     setEmail("");
     setCertFile("");
     setIsCorrect([false, false, false, false, false, false, false, false]);
-    
+    setResendEmail(0);
+
   };
 
 
@@ -249,7 +251,7 @@ function AccessPage() {
               <div className="input-field" style={{ fontSize: "80%" }}>
                 <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--color-quarter)" } : null}></i>
                 <label htmlFor="majorList"></label>
-                <input type="text" list="majorList-options" name="major" placeholder="학과를 입력하세요." value={major}
+                <input type="text" list="majorList-options" name="major" placeholder="학과를 입력하세요."
                   onChange={(e) => {
                     setMajor(e.target.value);
                     if (majorList.includes(e.target.value)) {
@@ -262,7 +264,13 @@ function AccessPage() {
                 <datalist id="majorList-options" >
                   {
                     majorList.map((major, i) => {
-                      return <option value={major} key={i}></option>
+                      return (
+                        <>
+                          <option value={i + 1} key={i} hidden></option>
+                          <option>{major}</option>
+                        </>
+                      )
+
                     })
                   }
                 </datalist>

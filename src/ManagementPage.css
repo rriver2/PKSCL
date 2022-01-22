@@ -90,11 +90,42 @@ i {
     display: block;
 }
 
-.tableSet tbody {
+.tableList {
     display: block;
     overflow-y: auto;
     height: 400px;
+    width: fit-content;
+    border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
+
+.tableList::-webkit-scrollbar {
+    width: 8px;
+}
+
+
+.tableList::-webkit-scrollbar-track-piece {
+    background-color: var(--color-tableOdd);
+    border-radius: 100px;
+    width: 10px;
+}
+
+.tableList::-webkit-scrollbar-thumb {
+    background-color: var(--color-quarter);
+    border-radius: 100px;
+}
+
+.tableList::-webkit-scrollbar-track-piece:end {
+    background-color: none;
+    margin-bottom: 20px;
+}
+
+.tableList {
+    scrollbar-color: var(--color-quarter);
+}
+
+
+
 
 .tableSet tr {
     height: 50px;
