@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Outfit:wght@600&display=swap');
+
+:root {
+    /* basic color*/
+    --color-white: #fff;
+    --color-bright-gray: #f0f0f0;
+    --color-dark-gray: #333;
+    --color-middle-gray: #acacac;
+    --color-brown: rgb(162, 108, 77);
+    /* table color*/
+    --color-tableEven: rgb(255, 255, 255);
+    --color-tableOdd: rgb(251, 250, 250);
+    /* annimation */
+    --animation-duration: 300ms;
+}
+
+
+body {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: scroll;
+}
+
+button:hover {
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+
+button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    cursor: pointer
+}

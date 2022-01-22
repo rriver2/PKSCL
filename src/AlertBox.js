@@ -1,4 +1,4 @@
-import './AlertBox.css';
+import './css/AlertBox.css';
 
 function AlertBox(){
     return(

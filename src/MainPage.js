@@ -5,7 +5,7 @@ import quarter3 from './img/quarter3.png';
 import quarter4 from './img/quarter4.png';
 import receipt from './img/receipt.png';
 
-import './MainPage.css';
+import './css/MainPage.css';
 
 function MainPage(){
 
