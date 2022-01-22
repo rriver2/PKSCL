@@ -4,7 +4,7 @@ import './css/ManagementPage.css';
 import axios from 'axios';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 
-function ManagementPage(){
+function ManagementPage(props){
     const history = useHistory();
     const [waiting,setWaiting] = useState([
         {  
@@ -150,7 +150,7 @@ function ManagementPage(){
         .then((payload) => {
           setWaiting([...payload.data.studentPresidentList.waiting]);
           setRefusal([...payload.data.studentPresidentList.refusal]);
-            setApproval([...payload.data.studentPresidentList.approval]);
+          setApproval([...payload.data.studentPresidentList.approval]);
         })
         .catch((error) => {
           alert("학생 전송에 실패했습니다 :)")
@@ -158,7 +158,6 @@ function ManagementPage(){
     }
 
     useEffect(() => {
-
     axios.get('/student-list')
       .then((payload) => {
         setWaiting([...payload.data.studentPresidentList.waiting]);

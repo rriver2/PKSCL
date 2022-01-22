@@ -14,21 +14,13 @@ function loadmonth() {
     }
     function selectseason() {
         switch (loadmonth()) {
-            case 0:
-            case 1:
-            case 2:
+            case 0:case 1:case 2:
             return "quarter1"
-            case 3:
-            case 4:
-            case 5:
+            case 3:case 4:case 5:
             return "quarter2"
-            case 6:
-            case 7:
-            case 8:
+            case 6:case 7:case 8:
             return "quarter3"
-            case 9:
-            case 10:
-            case 11:
+            case 9:case 10:case 11:
             return "quarter4"
             default:
             return "";
@@ -55,6 +47,10 @@ function loadmonth() {
 
 
 function App() {
+
+    const [loginPosition, setLoginPosition] = useState("student");
+    const [SCLData, setSCLData] = useState({});
+
     useEffect(()=>{
         let quarter = selectseason();
         defineColor(quarter);
@@ -64,7 +60,7 @@ function App() {
     <div>
       <Switch>
         <Route path='/manage/:major'>
-          <ManagementPage></ManagementPage>
+          <ManagementPage loginPosition={loginPosition}></ManagementPage>
         </Route>
 
         <Route path='/main/:major'>
@@ -72,7 +68,7 @@ function App() {
         </Route>
 
         <Route path='/' >
-          <AccessPage> </AccessPage>
+          <AccessPage setLoginPosition = {setLoginPosition} setSCLData={setSCLData}> </AccessPage>
         </Route>
 
       </Switch>

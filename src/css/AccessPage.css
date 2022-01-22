@@ -98,9 +98,16 @@
     padding: 0;
 }
 
+
 .accessTitle img {
     margin-right: 10px;
 }
+
+/* 추가 */
+summary {
+    cursor: pointer;
+}
+
 
 .input-field {
     max-width: 380px;
