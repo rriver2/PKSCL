@@ -229,3 +229,7 @@ div .checkbox-form {
     left: 20px;
     border-radius: 0.25em;
 }
+
+.input-field input[type=password] {
+    font-family: 'Malgun gothic', dotum, sans-serif;
+}

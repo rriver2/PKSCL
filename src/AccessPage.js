@@ -5,7 +5,6 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './css/AccessPage.css';
 import logo from './img/logo.png';
-import { propTypes } from 'react-bootstrap/esm/Image';
 
 function AccessPage(props) {
   // let [signType, setSignType] =useState("signIn");
@@ -26,13 +25,10 @@ function AccessPage(props) {
   const [signUpButtonState, setSignUpButtonState] = useState(false);
 
   //   추가
-  const [personalInformation, setpersonalInformation] = useState(false);
-  const [infoCheckedList,setInfoCheckedList] = useState([false,false,false]);
+  const [personalInformationButton, setPersonalInformationButton] = useState(false);
+  const [personalInformation, setPersonalInformation] = useState([false,false,false]);
 
   const history = useHistory();
-
-
-
 
   useEffect(() => {
     if (phoneNumber.length === 10) {
@@ -98,6 +94,11 @@ function AccessPage(props) {
     setCertFile("");
     setIsCorrect([false, false, false, false, false, false, false, false]);
     setResendEmail(0);
+    setPersonalInformationButton(false);
+    setPersonalInformation([false,false,false]);
+
+
+    document.querySelectorAll(".InfoCheckedList").forEach(function(v) { v.checked = false});
 
     if (document.getElementById("major") !== null) {
       document.getElementById("major").value = "";
@@ -121,10 +122,10 @@ function AccessPage(props) {
           props.setLoginPosition(payload.data.position);
           props.setSCLData(payload.data.sclData);
           if (payload.data.position === "student") {
-            history.push('/main/' + payload.data.sclData.studentPresident.major);
+            history.push('/main');
           }
           else if (payload.data.position === "president") {
-            history.push('/manage/' + payload.data.sclData.studentPresident.major);
+            history.push('/manage' );
           }
 
         })
@@ -183,12 +184,14 @@ function AccessPage(props) {
     setIsCorrect(isCorrect => temp);
   };
 
-//   추가
-  function ChangeInfoCheckedList(checkBoxIndex){
-        let InfoCheckedList = [...infoCheckedList];
-        InfoCheckedList[checkBoxIndex] = !infoCheckedList[checkBoxIndex];
-        setInfoCheckedList(InfoCheckedList);
-   }
+
+
+    function changePersonalInformation(index){
+        let PersonalInformation = [...personalInformation];
+        PersonalInformation[index] = !personalInformation[index];
+        setPersonalInformation([...PersonalInformation]);
+    };
+
 
   return (
     <div className="container">
@@ -228,19 +231,21 @@ function AccessPage(props) {
               }
   {/* 추가 */}
               {
-                  personalInformation === false
+                  personalInformationButton === false
                   ? (
                       <div style={{width: "350px"}}>
                       <div>환영합니다 :)
                         <br/>부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL와 이를 이용하는 온라인 장부를 이용할 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
                         <br/> PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
                       </div>
-                    <input style={{marginLeft: "16px",marginTop: "20px"}} type="checkbox"onChange={(e)=>{
-                              ChangeInfoCheckedList(0);}}></input>[필수] 부경대학교 재학생 또는 휴학생 입니다. 
+                    <input class= "InfoCheckedList" style={{marginLeft: "16px",marginTop: "20px"}} type="checkbox"
+                        onClick={()=>{changePersonalInformation(0)}}
+                    ></input>[필수] 부경대학교 재학생 또는 휴학생 입니다. 
                       <details>
 
-                          <summary><input id= "InfoCheckedList0" type="checkbox"  onChange={(e)=>{
-                              ChangeInfoCheckedList(1);}}></input>[필수] PKSCL 이용 약관 동의</summary>
+                          <summary><input class= "InfoCheckedList" type="checkbox" 
+                             onClick={()=>{changePersonalInformation(1)}}
+                          ></input>[필수] PKSCL 이용 약관 동의</summary>
                           <span>
                               <div style={{ backgroundColor:"var(--color-bright-gray)", margin : "10px 0 10px 0", height : "85px" , overflowY : "auto"}}>
                               <p/>1. 계약당사자의 의무
@@ -268,8 +273,9 @@ function AccessPage(props) {
                           </span>
                       </details>
                       <details >
-                          <summary><input type="checkbox" onChange={(e)=>{
-                              ChangeInfoCheckedList(2);}}></input>[필수] 개인정보 수집 및 이용 동의</summary>
+                          <summary><input class= "InfoCheckedList" type="checkbox" 
+                            onClick={()=>{changePersonalInformation(2)}}
+                          ></input>[필수] 개인정보 수집 및 이용 동의</summary>
                           <span>
                               <div style={{ backgroundColor:"var(--color-bright-gray)", margin : "10px 0 10px 0", height : "85px" , overflowY : "auto"}}>
                               <p/> 1. PKSCL 계정 이용계약
@@ -301,6 +307,7 @@ function AccessPage(props) {
                                     <br/>d) 개인정보 수집 및 이용 동의를 거부할 권리
                                     
                                     <br/>이용자는 개인정보의 수집 및 이용 동의를 거부할 권리가 있습니다. 하지만 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실 경우, 회원가입이 어려울 수 있습니다.
+                             
                              <p/> 2. 서비스 이용 계약 해지
                                     <br/>a) 사용자가 회원 탈퇴를 신청한 경우
 
@@ -313,9 +320,19 @@ function AccessPage(props) {
                     </span>
                       </details>
                       <div style={{display:"flex", justifyContent: "center", marginTop :"20px"}}>
-                      <button type="button" className="SignInBtn" onClick={()=>{if(!infoCheckedList.includes(false)){
-                          setpersonalInformation(true)
-                      }}}> 동의 </button>
+                      <button type="button" className="SignInBtn" onClick={()=>{
+                          function personInfomationAgreeNow(){
+                            console.log(personalInformation);
+                            if(personalInformation.includes(false)){
+                                alert("PKSCL 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요 :)");
+                                return false;
+                            }else return true;
+                          }
+
+                          if(personInfomationAgreeNow()){
+                            setPersonalInformationButton(true);
+                          }
+                      }}> 동의 </button>
                       </div>
                       </div>
                     )

@@ -122,7 +122,7 @@
 .eventCard {
     margin-top: 20px;
     display: flex;
-    height: 400px;
+    /* height: 400px; */
     box-shadow: 1px 1px 10px 0px gray;
 }
 

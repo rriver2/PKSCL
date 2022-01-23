@@ -33,7 +33,7 @@ function loadmonth() {
             document.documentElement.style.setProperty("--color-card", colorCard);
         }
     function defineColor(quarter){
-        quarter ="quarter4"
+        quarter ="quarter3"
         if(quarter === "quarter1"){
             setColorProperty("#c89034", "linear-gradient(0deg, rgba(200, 144, 52, 1) 0%, rgba(213, 178, 121, 1) 67%", "#f2e3d7", "#fff5ed");
         }else if(quarter === "quarter2"){
@@ -59,18 +59,17 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route path='/manage/:major'>
+        <Route path='/manage'>
           <ManagementPage loginPosition={loginPosition}></ManagementPage>
         </Route>
 
-        <Route path='/main/:major'>
-          <MainPage></MainPage>
+        <Route path='/main'>
+          <MainPage loginPosition={loginPosition}></MainPage>
         </Route>
 
         <Route path='/' >
           <AccessPage setLoginPosition = {setLoginPosition} setSCLData={setSCLData}> </AccessPage>
         </Route>
-
       </Switch>
 
 
