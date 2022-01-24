@@ -26,7 +26,7 @@ function AccessPage(props) {
   const [personalInformationButton, setPersonalInformationButton] = useState(false);
   const [personalInformation, setPersonalInformation] = useState([false, false, false]);
 
-  let logoImgPath = `./img/logo.png`
+  let logoImgPath = `./img/${props.todayQuarter}.png`
 
   const history = useHistory();
 
