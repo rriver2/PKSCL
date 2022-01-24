@@ -165,10 +165,10 @@ function AccessPage(props) {
       axios.post('/login/' + position, payload)
         .then((payload) => {
           props.setLoginPosition();
-          if (payload.data.position === "student") {
+          if (position === "student") {
             history.push('/main');
           }
-          else if (payload.data.position === "president") {
+          else if (position === "president") {
             history.push('/manage');
           }
 
@@ -241,7 +241,7 @@ function AccessPage(props) {
 
       <div className="left-panel">
         <div className="content">
-          <button type="button" onClick={() => { reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
+          <button type="button" style = {{boxShadow:"0 0 0 0 white", fontFamily: 'OTWelcomeBA'}} onClick={() => { reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
@@ -250,7 +250,7 @@ function AccessPage(props) {
       </div>
       <Switch>
         <Route exact path="/signUp">
-          <div className="right-panel" id="signup" style={{ marginTop: "20px", justifyContent: "flex-start" }}>
+          <div className="right-panel" id="signup" style={{ marginTop: "20px"}}>
             <form className="userForm" >
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">
@@ -536,7 +536,7 @@ function AccessPage(props) {
 
             </form>
             <div className='moveSignPage'>
-              <button onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button onClick={() => { reset(); history.push('/'); }}>로그인</button>
+              <button style = {{boxShadow:"0 0 0 0 white"}}onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/'); }}>로그인</button>
             </div>
           </div>
 
@@ -570,7 +570,7 @@ function AccessPage(props) {
               </div>
             </form>
             <div className='moveSignPage'>
-              <button onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button onClick={() => { reset(); history.push('/signUp'); }}>회원가입</button>
+              <button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/signUp'); }}>회원가입</button>
             </div>
           </div>
 
@@ -649,7 +649,7 @@ function AccessPage(props) {
               </div>
             </form>
             <div className='moveSignPage'>
-              <button onClick={() => { reset(); history.push('/') }}>로그인</button><button onClick={() => { reset(); history.push('/signUp') }}>회원가입</button>
+              <button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/') }}>로그인</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/signUp') }}>회원가입</button>
             </div>
           </div>
         </Route >

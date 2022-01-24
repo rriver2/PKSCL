@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Outfit:wght@600&display=swap');
+@font-face {
+    font-family: 'OTWelcomeBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
     /* basic color*/
@@ -16,7 +28,7 @@
 
 
 body {
-    font-family: 'Mochiy Pop P One', sans-serif;
+    font-family: "OTWelcomeRA";
     width: 100%;
     height: 100%;
     margin: 0;
@@ -34,4 +46,5 @@ button {
     box-shadow: none;
     border-radius: 0;
     cursor: pointer;
+    box-shadow: 1px 1px 5px 0px gray;
 }

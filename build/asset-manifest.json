@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b397b0c8.css",
+    "main.js": "/static/js/main.914a91d4.js",
+    "static/js/787.9aea4c1f.chunk.js": "/static/js/787.9aea4c1f.chunk.js",
+    "static/media/receipt.png": "/static/media/receipt.532781052b484e5e037c.png",
+    "static/media/majorlogo.png": "/static/media/majorlogo.ac6e029a29965a20990e.png",
+    "static/media/조약이4.png": "/static/media/조약이4.8649f8c6d6432ad7d320.png",
+    "static/media/조약이3.png": "/static/media/조약이3.203b6cf989f1b27d8f17.png",
+    "static/media/조약이1.png": "/static/media/조약이1.1f9f7699ec3e9999e488.png",
+    "static/media/조약이2.png": "/static/media/조약이2.5cdcab423996d41a6976.png",
+    "static/media/log.svg": "/static/media/log.4832f1c5cca57ce006b0fcb18dd93c64.svg",
+    "index.html": "/index.html",
+    "main.b397b0c8.css.map": "/static/css/main.b397b0c8.css.map",
+    "main.914a91d4.js.map": "/static/js/main.914a91d4.js.map",
+    "787.9aea4c1f.chunk.js.map": "/static/js/787.9aea4c1f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b397b0c8.css",
+    "static/js/main.914a91d4.js"
+  ]
+}

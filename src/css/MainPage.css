@@ -1,12 +1,13 @@
 .MainPageContainer {
+    font-family: "OTWelcomeRA";
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
 .leftPanel {
-    width: 30%;
-    height: 100%;
+    width: 35%;
+    height: 100vh;
     background-color: var(--color-leftPanel);
     display: flex;
     flex-direction: row;
@@ -59,18 +60,36 @@
     margin-left: 20px;
 }
 
-.quarter img:hover {
+.quarterButton div:hover,
+.quarterButton:hover {
     transition: 0.5s;
     transform: scale(1.05);
     cursor: pointer;
 }
 
-.quarter img {
+.quarterButton {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.quarterButton img {
     padding: 0;
     height: 100px;
     width: 100px;
-    margin: 40px 20px 0 10px;
     filter: drop-shadow(3px 5px 3px gray);
+}
+
+.quarterButton div {
+    z-index: 20;
+    padding: 5px 10px;
+    text-align: center;
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    color: white;
 }
 
 .fa-chevron-right {
@@ -92,8 +111,7 @@
     width: 70%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-right: 100px;
+    align-items: flex-end;
 }
 
 .nav {
@@ -122,9 +140,11 @@
     transition: 0.5s;
 }
 
+
 .quarterData {
     margin-top: 30px;
     width: 700px;
+    margin-right: 100px;
 }
 
 .eventTitle {
@@ -150,7 +170,6 @@
     border-radius: 49px;
     color: var(--color-quarter);
     margin: 0 0 15px 0;
-    z-index: 11;
 }
 
 .eventTitle div {

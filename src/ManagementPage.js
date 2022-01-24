@@ -8,115 +8,145 @@ function ManagementPage(props){
     const history = useHistory();
     const [waiting,setWaiting] = useState([
         {  
-            "stdID" : "a111111111",
-            "name" : "이름1"
-        } ,
-        { 
-            "stdID" : "a22222222",
-            "name" : "이름2"
-        },
-        {
-            "stdID" : "a33333333",
-            "name" : "이름3"
-        },
-        {  
-            "stdID" : "a111111111",
-            "name" : "이름1"
-        } ,
-        { 
-            "stdID" : "a22222222",
-            "name" : "이름2"
-        },
-        {
-            "stdID" : "a33333333",
-            "name" : "이름3"
-        },
-        {  
-            "stdID" : "a111111111",
-            "name" : "이름1"
-        } ,
-        { 
-            "stdID" : "a22222222",
-            "name" : "이름2"
-        },
-        {
-            "stdID" : "a33333333",
-            "name" : "이름3"
-        },
-        {  
-            "stdID" : "a111111111",
-            "name" : "이름1"
-        } ,
-        { 
-            "stdID" : "a22222222",
-            "name" : "이름2"
-        },
-        {
-            "stdID" : "a33333333",
-            "name" : "이름3"
-        }
+        "stdID": "11111",
+                "name": "이름",
+                "email": "1@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      } ,
+      { 
+         "stdID": "31321312",
+                "name": "이름",
+                "email": "2@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      },
+      {
+         "stdID": "123442",
+                "name": "이름",
+                "email": "3@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      },
+      {
+       "stdID": "32442423",
+                "name": "이름",
+                "email": "4@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+     },
+     {
+         "stdID": "123442",
+                "name": "이름",
+                "email": "5@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+     },
+    {  
+       "stdID": "123442",
+                "name": "이름",
+                "email": "6@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      } ,
+      { 
+         "stdID": "32423423",
+                "name": "이름",
+                "email": "7@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      },
+      {
+         "stdID": "123442",
+                "name": "이름",
+                "email": "8@gmail.com",
+                "studentImgPath": "20220121010016994.png"
+      }
     ]);
 
     const [refusal,setRefusal] = useState([]);
     const [approval,setApproval] = useState([{  
-        "stdID" : "b11111111",
-         "name" : "1이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "11@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       } ,
       { 
-         "stdID" : "b22222222",
-         "name" : "2이름"
+         "stdID": "32423423",
+                "name": "이름",
+                "email": "12@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-         "stdID" : "b33333333",
-         "name" : "3이름"
+         "stdID": "32423423",
+                "name": "이름",
+                "email": "13@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-        "stdID" : "b44444444",
-        "name" : "4이름"
+       "stdID": "123442",
+                "name": "이름",
+                "email": "14@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      },
      {
-        "stdID" : "b5555555",
-        "name" : "5이름"
+         "stdID": "123442",
+                "name": "이름",
+                "email": "15@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      },
     {  
-        "stdID" : "b11111111",
-         "name" : "1이름"
+       "stdID": "123442",
+                "name": "이름",
+                "email": "16@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       } ,
       { 
-         "stdID" : "b22222222",
-         "name" : "2이름"
+         "stdID": "123442",
+                "name": "이름",
+                "email": "17@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-         "stdID" : "b33333333",
-         "name" : "3이름"
+         "stdID": "123442",
+                "name": "이름",
+                "email": "18@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-        "stdID" : "b44444444",
-        "name" : "4이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "19@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      },
      {
-        "stdID" : "b5555555",
-        "name" : "5이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "20@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      },
     {  
-        "stdID" : "b11111111",
-         "name" : "1이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "21@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       } ,
       { 
-         "stdID" : "b22222222",
-         "name" : "2이름"
+         "stdID": "123442",
+                "name": "이름",
+                "email": "22@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-         "stdID" : "b33333333",
-         "name" : "3이름"
+         "stdID": "123442",
+                "name": "이름",
+                "email": "23@gmail.com",
+                "studentImgPath": "20220121010016994.png"
       },
       {
-        "stdID" : "b44444444",
-        "name" : "4이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "24@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      },
      {
-        "stdID" : "b5555555",
-        "name" : "5이름"
+        "stdID": "123442",
+                "name": "이름",
+                "email": "25@gmail.com",
+                "studentImgPath": "20220121010016994.png"
      }]);
      const [leftTable, setLeftTable] = useState([...waiting]);
      const [rightTable, setRightTable] = useState([...approval]);
@@ -140,28 +170,36 @@ function ManagementPage(props){
     function patchStudent(studentStatus){
         let payload;
         if(studentStatus === "approval" || studentStatus === "refusal" ){
-            payload = leftCheckedList;
+            payload = {
+            "studentStatus" : studentStatus,
+            "stdIDApproval" : leftCheckedList
+        };
         }else if(studentStatus === "delegating" || studentStatus === "waiting" ){
-            payload = rightCheckedList;
+            payload = {
+            "studentStatus" : studentStatus,
+            "stdIDApproval" : rightCheckedList
+        };
         }else{
             alert("error!");
         }
+
+
         if(props.loginPosition === "president"){
-            axios.patch('/student-list/', payload)
+            axios.patch('/student-list', payload)
             .then((payload) => {
-                setWaiting([...payload.data.studentPresidentList.waiting]);
-                setRefusal([...payload.data.studentPresidentList.refusal]);
-                setApproval([...payload.data.studentPresidentList.approval]);
+                setWaiting([...payload.data["studentPresidentList"]["waiting"]]);
+                setRefusal([...payload.data["studentPresidentList"]["refusal"]]);
+                setApproval([...payload.data["studentPresidentList"]["approval"]]);
             })
             .catch((error) => {
             alert("학생 전송에 실패했습니다 :)")
             });
         }else if(props.loginPosition === "admin"){
-            axios.patch('/student-president-list/', payload)
+            axios.patch('/president-list', payload)
             .then((payload) => {
-                setWaiting([...payload.data.studentPresidentList.waiting]);
-                setRefusal([...payload.data.studentPresidentList.refusal]);
-                setApproval([...payload.data.studentPresidentList.approval]);
+                setWaiting([...payload.data["studentPresidentList"]["waiting"]]);
+                setRefusal([...payload.data["studentPresidentList"]["refusal"]]);
+                setApproval([...payload.data["studentPresidentList"]["approval"]]);
             })
             .catch((error) => {
             alert("학생 전송에 실패했습니다 :)")
@@ -170,15 +208,27 @@ function ManagementPage(props){
     }
 
     useEffect(() => {
-    axios.get('/manage')
-      .then((payload) => {
-        setWaiting([...payload.data.studentPresidentList.waiting]);
-        setRefusal([...payload.data.studentPresidentList.refusal]);
-        setApproval([...payload.data.studentPresidentList.approval]);
-      })
-      .catch((error) => {
+        if(props.loginPosition === "president"){
+            axios.get('/student-list')
+            .then((payload) => {
+                setWaiting([...payload.data["studentPresidentList"]["waiting"]]);
+                setRefusal([...payload.data["studentPresidentList"]["refusal"]]);
+                setApproval([...payload.data["studentPresidentList"]["approval"]]);
+            })
+            .catch((error) => {
         alert("학과리스트를 불러올 수 없습니다.");
-      })
+            });
+        }else if(props.loginPosition === "admin"){
+            axios.get('/president-list')
+            .then((payload) => {
+                setWaiting([...payload.data["studentPresidentList"]["waiting"]]);
+                setRefusal([...payload.data["studentPresidentList"]["refusal"]]);
+                setApproval([...payload.data["studentPresidentList"]["approval"]]);
+            })
+            .catch((error) => {
+        alert("학과리스트를 불러올 수 없습니다.");
+            });
+        }
     }, []);
   
 
@@ -196,7 +246,7 @@ function ManagementPage(props){
                                 setLeftTable([...waiting]);
                                 setRightTable([...approval]);
                             }
-                        }} 
+                        } } 
                             name="q" value={searchStudent} type="search" placeholder="Search" ></input>
                             
                         <button onClick={(e) => {
@@ -266,6 +316,7 @@ function ManagementPage(props){
                                         <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
                                     </tr>
                                 :leftTable.map((student,i)=>{
+                                    console.log(student["email"])
                                     return(
                                             <tr key={i}>
                                             <td >{student.stdID}</td>
@@ -274,9 +325,9 @@ function ManagementPage(props){
                                                     id= {student}
                                                     type="checkbox" 
                                                     onChange={(e)=>{
-                                                    changeHandler(e.target.checked, student ,setLeftCheckedList,leftCheckedList)
+                                                    changeHandler(e.target.checked, student["email"] ,setLeftCheckedList,leftCheckedList)
                                                     }}
-                                                    checked={leftCheckedList.includes(student) ? true : false}
+                                                    checked={leftCheckedList.includes(student["email"]) ? true : false}
                                             /></td>
                                         </tr>
                                     )
