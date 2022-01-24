@@ -241,7 +241,7 @@ function AccessPage(props) {
 
       <div className="left-panel">
         <div className="content">
-          <button type="button" style = {{boxShadow:"0 0 0 0 white", fontFamily: 'OTWelcomeBA'}} onClick={() => { reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
+          <button type="button" style = {{boxShadow:"0 0 0 0 white", fontFamily: 'YUniverse-B'}} onClick={() => { reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
@@ -555,7 +555,7 @@ function AccessPage(props) {
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle"><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />PKSCL</h3>
+              <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />PKSCL</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
