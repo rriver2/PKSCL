@@ -90,13 +90,17 @@ i {
     display: block;
 }
 
+.tableRadius {
+    background-color: var(--color-tableOdd);
+    overflow: auto;
+}
+
 .tableList {
     display: block;
     overflow-y: auto;
-    height: 400px;
     width: fit-content;
-    border-bottom-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    max-height: 400px;
+    scrollbar-color: var(--color-quarter);
 }
 
 .tableList::-webkit-scrollbar {
@@ -119,12 +123,6 @@ i {
     background-color: none;
     margin-bottom: 20px;
 }
-
-.tableList {
-    scrollbar-color: var(--color-quarter);
-}
-
-
 
 
 .tableSet tr {

@@ -34,6 +34,7 @@
     padding: 10px;
     padding-top: 20px;
     border-radius: 20px;
+    box-shadow: 1px 1px 5px 0px gray;
 }
 
 .presidentCard img {
@@ -48,6 +49,7 @@
     padding: 10px;
     background-color: var(--color-white);
     border-radius: 20px;
+    box-shadow: 1px 1px 5px 0px gray;
 }
 
 .quarter {
@@ -60,13 +62,19 @@
 .quarter img:hover {
     transition: 0.5s;
     transform: scale(1.05);
+    cursor: pointer;
 }
 
 .quarter img {
     padding: 0;
     height: 100px;
     width: 100px;
-    margin: 20px 0;
+    margin: 40px 20px 0 10px;
+    filter: drop-shadow(3px 5px 3px gray);
+}
+
+.fa-chevron-right {
+    cursor: pointer;
 }
 
 .managementPageBar {
@@ -119,11 +127,43 @@
     width: 700px;
 }
 
-.eventCard {
-    margin-top: 20px;
+.eventTitle {
+    border-left: 9px solid var(--color-quarter);
     display: flex;
-    /* height: 400px; */
+    width: 650px;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+.eventTitle div,
+.eventTitle h4 {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.eventTitle button {
+    width: 120px;
+    background-color: var(--color-leftPanel);
+    border: none;
+    outline: none;
+    height: 35px;
+    border-radius: 49px;
+    color: var(--color-quarter);
+    margin: 0 0 15px 0;
+    z-index: 11;
+}
+
+.eventTitle div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.eventCard {
+    margin-top: 30px;
+    display: flex;
     box-shadow: 1px 1px 10px 0px gray;
+    margin-bottom: 60px;
 }
 
 .quarterTotalAmount {
@@ -139,7 +179,7 @@
     align-items: flex-start;
 }
 
-.receiptContent {
+#receiptContent {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -151,7 +191,17 @@
     color: var(--color-quarter);
 }
 
-.receiptContent table {
+.receiptTitle {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.receiptTitle div {
+    color: var(--color-quarter);
+}
+
+#receiptContent table {
     margin: 10px 0;
     width: 400px;
     height: 240px;
@@ -163,48 +213,78 @@
 
 .receiptTable tbody {
     display: block;
-    overflow: auto;
-    height: 190px;
+    overflow-y: auto;
+    height: 220px;
+    width: fit-content;
 }
 
-.receiptTable::-webkit-scrollbar-track {
-    background-color: grey;
+.receiptTable tbody::-webkit-scrollbar {
+    width: 8px;
 }
 
-.receiptContent tr {
+.receiptTable tbody::-webkit-scrollbar-track-piece {
+    background-color: var(--color-tableOdd);
+    border-radius: 100px;
+    width: 10px;
+}
+
+.receiptTable tbody::-webkit-scrollbar-thumb {
+    background-color: var(--color-quarter);
+    border-radius: 100px;
+}
+
+.receiptTable tbody::-webkit-scrollbar-track-piece:end {
+    background-color: none;
+    margin-bottom: 20px;
+}
+
+.receiptTable tr {
     height: 40px;
 }
 
-.receiptContent th {
+#receiptContent th {
     background-color: var(--color-quarter);
     color: var(--color-white);
     width: 100px;
 }
 
-.receiptContent tr:nth-child(even) {
+#receiptContent tr:nth-child(even) {
     background-color: var(--color-tableEven);
 }
 
-.receiptContent tr:nth-child(odd) {
+#receiptContent tr:nth-child(odd) {
     background-color: var(--color-tableOdd);
 }
 
-.receiptContent td {
+#receiptContent td {
     width: 100px;
 }
 
-.cardImg img {
+.receiptCard {
+    border-top: 2px solid var(--color-quarter);
+    padding-top: 10px;
+    display: flex;
+    margin: 0 0 30px 0;
+    padding: 30px 0 0 0;
+}
+
+.receiptResource {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.receiptCard img {
     display: inline-block;
-    margin-top: 20px;
-    margin-right: 20px;
     width: 220px;
     height: 330px;
     overflow: hidden;
     object-fit: cover;
     border-radius: 5px;
+    margin-left: 30px;
 }
 
-.cardImg .pagenation {
+/* .cardImg .pagenation {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -213,4 +293,4 @@
 
 .cardImg .pagenationItem {
     color: var(--color-quarter);
-}
+} */

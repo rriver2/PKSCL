@@ -1,9 +1,9 @@
 import majorlogo from './img/majorlogo.png';
-import quarter1 from './img/quarter1.png';
-import quarter2 from './img/quarter2.png';
-import quarter3 from './img/quarter3.png';
-import quarter4 from './img/quarter4.png';
-import receipt from './img/receipt.png';
+import quarter1 from './img/조약이1.png';
+import quarter2 from './img/조약이2.png';
+import quarter3 from './img/조약이3.png';
+import quarter4 from './img/조약이4.png';
+import receiptImg from './img/receipt.png';
 
 import './css/MainPage.css';
 import { useEffect, useState } from 'react';
@@ -18,11 +18,12 @@ function MainPage(props){
 	 "phoneNumber" : "01012345678",
 	 "email" : "PKSCL@pukyong.ac.kr"
       });
+
     const [quarterStatus,setQuarterStatus] = useState(
         {
             "quarter1": true,
             "quarter2": true,
-            "quarter3": false,
+            "quarter3": true,
             "quarter4": false
       }
     )
@@ -32,92 +33,137 @@ function MainPage(props){
   "openDate" : "2020/06/03",
   "eventList" : [
     {
-    "eventContext":"벚꽃축제",
+    "eventTitle":"1벚꽃축제",
+    "eventContext" : "행사 비고고고",
      "receiptList" : [
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "1부경마트",
+         "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
+              "context":"1진로",
               "price":"1000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
+              "context":"1참이슬",
               "price":"1000",
               "amount":"5"
             },
             {
-              "context":"양파",
+              "context":"1양파",
               "price":"1000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
+              "context":"1돼지고기",
+              "price":"1000",
+              "amount":"1"
+            },
+            {
+              "context":"1진로",
+              "price":"1000",
+              "amount":"4"
+            },
+            {
+              "context":"1참이슬",
+              "price":"1000",
+              "amount":"5"
+            },
+            {
+              "context":"1양파",
+              "price":"1000",
+              "amount":"4"
+            },
+             {
+              "context":"1돼지고기",
+              "price":"1000",
+              "amount":"1"
+            },
+            {
+              "context":"1진로",
+              "price":"1000",
+              "amount":"4"
+            },
+            {
+              "context":"1참이슬",
+              "price":"1000",
+              "amount":"5"
+            },
+            {
+              "context":"1양파",
+              "price":"1000",
+              "amount":"4"
+            },
+             {
+              "context":"1돼지고기",
               "price":"1000",
               "amount":"1"
             }
           ]
        },
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "1부경마트",
+         "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
+              "context":"1진로",
               "price":"1000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
+              "context":"1참이슬",
               "price":"1000",
               "amount":"5"
             },
             {
-              "context":"양파",
+              "context":"1양파",
               "price":"1000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
+              "context":"1돼지고기",
               "price":"1000",
               "amount":"1"
             }
           ]
        },
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "1부경마트",
+         "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
+              "context":"1진로",
               "price":"1000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
+              "context":"1참이슬",
               "price":"1000",
               "amount":"5"
             },
             {
-              "context":"양파",
+              "context":"1양파",
               "price":"1000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
+              "context":"1돼지고기",
               "price":"1000",
               "amount":"1"
             }
           ]
        },
        {
-          "receiptContext" : "사진인화이벤트재료구매",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "1사진인화이벤트재료구매",
+          "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
             {
-              "context":"필름",
+              "context":"1필름",
               "price":"1000",
               "amount":"5"
             }
@@ -126,24 +172,26 @@ function MainPage(props){
       ]
     },
     {
-      "eventContext":"중간고사응원",
+      "eventTitle":"1중간고사응원",
+    "eventContext" : "행사 비고고고",
       "receiptList" : [
         {
-          "receiptContext" : "카카오톡기프티콘",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "1카카오톡기프티콘",
+          "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
              {
-               "context":"폴라로이드(1등)",
+               "context":"1폴라로이드(1등)",
                "price":"1000",
                "amount":"1"
              },
              {
-               "context":"치킨(2등)",
+               "context":"1치킨(2등)",
                "price":"1000",
                "amount":"3"
              },
              {
-               "context":"베스킨라빈스(3등)",
+               "context":"1베스킨라빈스(3등)",
                "price":"1000",
                "amount":"4"
              }
@@ -151,24 +199,26 @@ function MainPage(props){
         }
       ]
     },{
-      "eventContext":"중간고사응원",
+       "eventTitle":"1중간고사응원입니당",
+    "eventContext" : "행사 비고고고",
       "receiptList" : [
         {
-          "receiptContext" : "카카오톡기프티콘",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "1카카오톡기프티콘",
+          "receiptImg" : "1이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
              {
-               "context":"폴라로이드(1등)",
+               "context":"1폴라로이드(1등)",
                "price":"1000",
                "amount":"1"
              },
              {
-               "context":"치킨(2등)",
+               "context":"1치킨(2등)",
                "price":"1000",
                "amount":"3"
              },
              {
-               "context":"베스킨라빈스(3등)",
+               "context":"1베스킨라빈스(3등)",
                "price":"1000",
                "amount":"4"
              }
@@ -182,40 +232,43 @@ function MainPage(props){
   "openDate" : "2분기 공개 일자",
   "eventList" : [
     {
-    "eventContext":"벚꽃축제",
+     "eventTitle":"2벚꽃축제",
+    "eventContext" : "행사 비고고고",
      "receiptList" : [
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "2부경마트",
+         "receiptImg" : "2이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
+              "context":"2진로",
               "price":"2000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
+              "context":"2참이슬",
               "price":"2000",
               "amount":"5"
             },
             {
-              "context":"양파",
+              "context":"2양파",
               "price":"2000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
+              "context":"2돼지고기",
               "price":"2000",
               "amount":"1"
             }
           ]
        },
        {
-          "receiptContext" : "사진인화이벤트재료구매",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "2사진인화이벤트재료구매",
+          "receiptImg" : "2이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
             {
-              "context":"필름",
+              "context":"2필름",
               "price":"2000",
               "amount":"5"
             }
@@ -224,24 +277,70 @@ function MainPage(props){
       ]
     },
     {
-      "eventContext":"중간고사응원",
+      "eventTitle":"2벚꽃축제",
+    "eventContext" : "행사 비고고고",
       "receiptList" : [
         {
-          "receiptContext" : "카카오톡기프티콘",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "2카카오톡기프티콘",
+          "receiptImg" : "2이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
              {
-               "context":"폴라로이드(1등)",
+               "context":"2폴라로이드(1등)",
                "price":"2000",
                "amount":"1"
              },
              {
-               "context":"치킨(2등)",
+               "context":"2치킨(2등)",
                "price":"2000",
                "amount":"3"
              },
              {
-               "context":"베스킨라빈스(3등)",
+               "context":"2베스킨라빈스(3등)",
+               "price":"2000",
+               "amount":"4"
+             }
+           ]
+        },
+        {
+          "receiptTitle" : "2카카오톡기프티콘",
+          "receiptImg" : "2이미지경로",
+         "receiptContext" : "영수증 비고고고",
+          "receiptContextList" : [
+             {
+               "context":"2폴라로이드(1등)",
+               "price":"2000",
+               "amount":"1"
+             },
+             {
+               "context":"2치킨(2등)",
+               "price":"2000",
+               "amount":"3"
+             },
+             {
+               "context":"2베스킨라빈스(3등)",
+               "price":"2000",
+               "amount":"4"
+             }
+           ]
+        },
+        {
+          "receiptTitle" : "2카카오톡기프티콘",
+          "receiptImg" : "2이미지경로",
+         "receiptContext" : "영수증 비고고고",
+          "receiptContextList" : [
+             {
+               "context":"2폴라로이드(1등)",
+               "price":"2000",
+               "amount":"1"
+             },
+             {
+               "context":"2치킨(2등)",
+               "price":"2000",
+               "amount":"3"
+             },
+             {
+               "context":"2베스킨라빈스(3등)",
                "price":"2000",
                "amount":"4"
              }
@@ -255,41 +354,44 @@ function MainPage(props){
   "openDate" : "3분기 공개 일자",
   "eventList" : [
     {
-    "eventContext":"벚꽃축제",
+      "eventTitle":"3벚꽃축제",
+    "eventContext" : "행사 비고고고",
      "receiptList" : [
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "3부경마트",
+         "receiptImg" : "3이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
-              "price":"3000",
+              "context":"3진로",
+              "price":"4000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
-              "price":"3000",
+              "context":"3참이슬",
+              "price":"4000",
               "amount":"5"
             },
             {
-              "context":"양파",
-              "price":"3000",
+              "context":"3양파",
+              "price":"4000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
-              "price":"3000",
+              "context":"3돼지고기",
+              "price":"4000",
               "amount":"1"
             }
           ]
        },
        {
-          "receiptContext" : "사진인화이벤트재료구매",
-          "receiptImg" : "이미지경로",
+          "receiptContext" : "3사진인화이벤트재료구매",
+          "receiptImg" : "3이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
             {
-              "context":"필름",
-              "price":"3000",
+              "context":"3필름",
+              "price":"4000",
               "amount":"5"
             }
           ]
@@ -297,26 +399,37 @@ function MainPage(props){
       ]
     },
     {
-      "eventContext":"중간고사응원",
+      "eventTitle":"3중간고사응원",
+    "eventContext" : "행사 비고고고",
       "receiptList" : [
         {
-          "receiptContext" : "카카오톡기프티콘",
-          "receiptImg" : "이미지경로",
+          "receiptContext" : "3카카오톡기프티콘",
+          "receiptImg" : "3이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
              {
-               "context":"폴라로이드(1등)",
-               "price":"3000",
+               "context":"3폴라로이드(1등)",
+               "price":"4000",
                "amount":"1"
              },
              {
-               "context":"치킨(2등)",
-               "price":"3000",
+               "context":"3치킨(2등)",
+               "price":"4000",
                "amount":"3"
              },
              {
-               "context":"베스킨라빈스(3등)",
-               "price":"3000",
+               "context":"3베스킨라빈스(3등)",
+               "price":"4000",
                "amount":"4"
+             },{
+               "context":"3폴라로이드(1등)",
+               "price":"4000",
+               "amount":"1"
+             },
+             {
+               "context":"3폴라로이드(1등)",
+               "price":"4000",
+               "amount":"1"
              }
            ]
         }
@@ -325,44 +438,47 @@ function MainPage(props){
   ]
                     },
                     "quarter4" : {
-  "openDate" : "4분기 공개 일자",
+  "openDate" : "3분기 공개 일자",
   "eventList" : [
     {
-    "eventContext":"벚꽃축제",
+      "eventTitle":"3벚꽃축제",
+    "eventContext" : "행사 비고고고",
      "receiptList" : [
        {
-         "receiptContext" : "부경마트",
-         "receiptImg" : "이미지경로",
+         "receiptTitle" : "3부경마트",
+         "receiptImg" : "3이미지경로",
+         "receiptContext" : "영수증 비고고고",
          "receiptContextList" : [
             {
-              "context":"진로",
-              "price":"4000",
+              "context":"3진로",
+              "price":"3000",
               "amount":"4"
             },
             {
-              "context":"참이슬",
-              "price":"4000",
+              "context":"3참이슬",
+              "price":"3000",
               "amount":"5"
             },
             {
-              "context":"양파",
-              "price":"4000",
+              "context":"3양파",
+              "price":"3000",
               "amount":"4"
             },
              {
-              "context":"돼지고기",
-              "price":"4000",
+              "context":"3돼지고기",
+              "price":"3000",
               "amount":"1"
             }
           ]
        },
        {
-          "receiptContext" : "사진인화이벤트재료구매",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "3사진인화이벤트재료구매",
+          "receiptImg" : "3이미지경로",
+         "receiptContext" : "영수증 비고고고",
           "receiptContextList" : [
             {
-              "context":"필름",
-              "price":"4000",
+              "context":"3필름",
+              "price":"3000",
               "amount":"5"
             }
           ]
@@ -370,25 +486,26 @@ function MainPage(props){
       ]
     },
     {
-      "eventContext":"중간고사응원",
+      "eventTitle":"3중간고사응원",
+    "eventContext" : "행사 비고고고",
       "receiptList" : [
         {
-          "receiptContext" : "카카오톡기프티콘",
-          "receiptImg" : "이미지경로",
+          "receiptTitle" : "3카카오톡기프티콘",
+          "receiptImg" : "3이미지경로",
           "receiptContextList" : [
              {
-               "context":"폴라로이드(1등)",
-               "price":"4000",
+               "context":"3폴라로이드(1등)",
+               "price":"3000",
                "amount":"1"
              },
              {
-               "context":"치킨(2등)",
-               "price":"4000",
+               "context":"3치킨(2등)",
+               "price":"3000",
                "amount":"3"
              },
              {
-               "context":"베스킨라빈스(3등)",
-               "price":"4000",
+               "context":"3베스킨라빈스(3등)",
+               "price":"3000",
                "amount":"4"
              }
            ]
@@ -400,35 +517,61 @@ function MainPage(props){
 
                 })
 
-    const [currentQuarter, setCurrentQuarter] = useState("quarter1");
+    const [currentQuarter, setCurrentQuarter] = useState(props.todayQuarter);
+   const [showAllReceiptButton, setShowAllReceiptButton] = useState([]);
+
+function resetShowAllReceiptButton(){
+    let resetArray = [];
+    for(let i = 0; i< quarter[currentQuarter]["eventList"].length; i++){
+        resetArray.push(true)
+    }
+    setShowAllReceiptButton(resetArray)
+}
+
+    
     useEffect(() => {
     // axios.get('/main')
     //   .then((payload) => {
-    //     setStudentPresident({...payload["studentPresident"]});
-    //     setQuarterStatus({...payload["quarterStatus"]});
-    //     setQuarter({...payload["quarter"]});
+        // setStudentPresident({...payload["sclData"]["studentPresident"]});
+        // setQuarterStatus({...payload["sclData"]["quarterStatus"]});
+        // setQuarter({...payload["sclData"]["quarter"]});
     //   })
     //   .catch((error) => {
     //     alert("학과 장부를 불러올 수 없습니다.");
     //   })
-    CalculateCurrentQuarterReceiptSumList(quarter[currentQuarter]["eventList"]);
+        reset();
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
+        reset();
+    }, [currentQuarter]);
+
+
+    function reset(){
+        console.log(quarter[currentQuarter]["eventList"])
         CalculateCurrentQuarterReceiptSumList(quarter[currentQuarter]["eventList"]);
-        defineColor(currentQuarter)
-    },[currentQuarter])
+        resetShowAllReceiptButton();
+    }
+
+    function showQuarter(quarter) {
+        if(quarterStatus[quarter]){
+            setCurrentQuarter(quarter);
+            defineColor(quarter)
+        }else{
+            alert("현재 공개된 장부가 아닙니다 :)")
+        }
+    }
 
 function pksclSubmitButton() {
-    let payload = {"sclData":{"studentPresident":{...studentPresident}},"quarterStatus":{...quarterStatus},"quarter":{...quarter}};
+    let payload = {"sclData":{"studentPresident":{...studentPresident},"quarterStatus":{...quarterStatus},"quarter":{...quarter}}};
     axios.post('/main', payload)
             .then((payload) => {
-                setStudentPresident({...payload["studentPresident"]});
-                setQuarterStatus({...payload["quarterStatus"]});
-                setQuarter({...payload["quarter"]});
+                setStudentPresident({...payload["sclData"]["studentPresident"]});
+                setQuarterStatus({...payload["sclData"]["quarterStatus"]});
+                setQuarter({...payload["sclData"]["quarter"]});
             })
             .catch((error) => {
-            alert("학생 전송에 실패했습니다 :)")
+                alert("학생 전송에 실패했습니다 :)")
             });
 }
 
@@ -459,6 +602,7 @@ function pksclSubmitButton() {
 
 function CalculateCurrentQuarterReceiptSumList(eventList) {
     let eventSum = [];
+    console.log(eventList)
         for(let i = 0 ; i< eventList.length;i++){
                 eventSum.push(sumEvent(eventList[i]["receiptList"]));
         }
@@ -509,10 +653,10 @@ function CalculateCurrentQuarterReceiptSumList(eventList) {
                     </div> 
                 </div>
                 <div className="quarter">
-                    <img src={quarter1} alt="quarter1" onClick={()=>{setCurrentQuarter("quarter1")}}/>
-                    <img src={quarter2} alt="quarter2" onClick={()=>{setCurrentQuarter("quarter2")}}/>
-                    <img src={quarter3} alt="quarter3" onClick={()=>{setCurrentQuarter("quarter3")}}/>
-                    <img src={quarter4} alt="quarter4" onClick={()=>{setCurrentQuarter("quarter4")}}/>
+                    <img src={quarter1} alt="quarter1" onClick={()=>{showQuarter("quarter1")}}/>
+                    <img src={quarter2} alt="quarter2" onClick={()=>{showQuarter("quarter2")}}/>
+                    <img src={quarter3} alt="quarter3" onClick={()=>{showQuarter("quarter3")}}/>
+                    <img src={quarter4} alt="quarter4" onClick={()=>{showQuarter("quarter4")}}/>
                 </div>
                 <div className="managementPageBar">
                     <i className="fas fa-chevron-right"></i>
@@ -539,18 +683,80 @@ function CalculateCurrentQuarterReceiptSumList(eventList) {
                         
                         quarter[currentQuarter]["eventList"].map((event,i)=>{
                             return (
-                                <div key = {i} className="eventCard">
-                                     <div className="cardContent">
-                                    <h4> {event["eventContext"]} </h4> 
-                                    
-                                    <div> 행사 총 금액 : {eventAmount[i]}</div>
-                                    <div className="receiptContent">
+                                <div className="eventCard">
+                                        <div className="cardContent">
+                                            <div className="eventTitle">
+                                                <div><h4 >{event["eventTitle"]} </h4>  <div> 행사 총 금액 : {eventAmount[i]}</div></div>
+                                                {
+                                                   event.receiptList.length === 1
+                                                   ? null
+                                                   :(
+                                                       showAllReceiptButton[i] === false
+                                                    ? (
+                                                        <button onClick={()=>{
+                                                            let array = [...showAllReceiptButton];
+                                                            array[i] = !showAllReceiptButton[i];
+                                                            setShowAllReceiptButton(array)
+                                                        }}>전체보기 취소</button>
+                                                    )
+                                                    : (
+                                                        <button onClick={()=>{
+                                                            let array = [...showAllReceiptButton];
+                                                            array[i] = !showAllReceiptButton[i];
+                                                            setShowAllReceiptButton(array)
+                                                        }}>전체보기</button>
+                                                    )
+                                                   ) 
+                                                    
+                                                }
+                                            </div>
+
                                         {
+                                            showAllReceiptButton[i] === true
+                                                ?(<div id="receiptContent" style={{height: "380px", overflowY: "hidden"}}>
+
+                                                    <div className="receiptCard">
+                                                        <div className="receiptResource">
+                                                    <div className="receiptTitle"><h5>{event["receiptList"][0]["receiptTitle"]}</h5>  <div>영수증 총 금액 : {sumReceipt(event["receiptList"][0]["receiptContextList"])}</div></div>
+                                                    
+                                                    <div>{event["receiptList"][0]["receiptContext"]}</div>
+                                                    
+                                                    <table className="receiptTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>품명</th>
+                                                                <th>단가</th>
+                                                                <th>수량</th>
+                                                                <th>가격</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {event["receiptList"][0]["receiptContextList"].map((item,k)=>{
+                                                                    return(<tr>
+                                                                    <td>{item["context"]}</td>
+                                                                    <td>{item["price"]}</td>
+                                                                    <td>{item["amount"]}</td>
+                                                                    <td>{sumItems(item["price"],item["amount"])}</td>
+                                                                </tr>)
+                                                            })
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                    <img src={receiptImg} alt="receipt" height={"150"} width={"100"}/>
+                                                    </div>
+                                                    
+                                                </div>)
+                                                :(<div id="receiptContent" >
+                                                    {
+
                                             event["receiptList"].map((receipt,j)=>{
                                                 return (
-                                                    <>
-                                                    <h5 key = {j}>{receipt["receiptContext"]}</h5>
-                                                    <div> 영수증 총 금액 : {sumReceipt(receipt["receiptContextList"])}</div>
+                                                    <div className="receiptCard">
+                                                        <div className="receiptResource">
+                                                    <div className="receiptTitle"><h5>{receipt["receiptTitle"]}</h5>  <div>영수증 총 금액 : {sumReceipt(receipt["receiptContextList"])}</div></div>
+                                                    
+                                                    <div>{receipt["receiptContext"]}</div>
                                                     
                                                     <table className="receiptTable">
                                                         <thead>
@@ -564,7 +770,7 @@ function CalculateCurrentQuarterReceiptSumList(eventList) {
                                                         <tbody>
                                                             {receipt["receiptContextList"].map((item,k)=>{
                                                                     return(<tr>
-                                                                    <td key = {k}>{item["context"]}</td>
+                                                                    <td>{item["context"]}</td>
                                                                     <td>{item["price"]}</td>
                                                                     <td>{item["amount"]}</td>
                                                                     <td>{sumItems(item["price"],item["amount"])}</td>
@@ -573,16 +779,23 @@ function CalculateCurrentQuarterReceiptSumList(eventList) {
                                                             }
                                                         </tbody>
                                                     </table>
-                                                    </>
+                                                    </div>
+                                                    <img src={receiptImg} alt="receipt" height={"150"} width={"100"}/>
+                                                    </div>
+                                                    
                                                 )
                                             })
+                                                    }
+                                                </div>)
+
                                         }
                                         
-                                    </div>
+                                    
                             </div>
                             <div className="cardImg">
-                                    <img src={receipt} alt="receipt" height={"150"} width={"10"}/>
-                                    <div className = "pagenation">
+
+                                    
+                                    {/* <div className = "pagenation">
                                         <button><i className="fas fa-chevron-left"></i></button>
                                             <button className= "pagenationItem">{4}</button>
                                             <button className= "pagenationItem">{5}</button>
@@ -590,7 +803,7 @@ function CalculateCurrentQuarterReceiptSumList(eventList) {
                                             <button className= "pagenationItem">{7}</button>
                                             <button className= "pagenationItem">{8}</button>
                                         <button><i className="fas fa-chevron-right"></i></button>
-                                    </div>
+                                    </div> */}
                             </div>
                             </div>
                             )

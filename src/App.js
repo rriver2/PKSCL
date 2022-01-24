@@ -1,5 +1,3 @@
-// import log from './img/log.svg';
-// import {Nav} from 'react-bootstrap';
 import './css/App.css';
 import { useEffect, useState } from 'react';
 import AccessPage from './AccessPage';
@@ -31,9 +29,9 @@ function loadmonth() {
             document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
             document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
             document.documentElement.style.setProperty("--color-card", colorCard);
-        }
+    }
+
     function defineColor(quarter){
-        quarter ="quarter3"
         if(quarter === "quarter1"){
             setColorProperty("#c89034", "linear-gradient(0deg, rgba(200, 144, 52, 1) 0%, rgba(213, 178, 121, 1) 67%", "#f2e3d7", "#fff5ed");
         }else if(quarter === "quarter2"){
@@ -49,7 +47,7 @@ function loadmonth() {
 function App() {
 
     const [loginPosition, setLoginPosition] = useState("student");
-    const [SCLData, setSCLData] = useState({});
+    const [todayQuarter, setTodatQuarter] = useState(selectseason);
 
     useEffect(()=>{
         let quarter = selectseason();
@@ -64,11 +62,11 @@ function App() {
         </Route>
 
         <Route path='/main'>
-          <MainPage loginPosition={loginPosition}></MainPage>
+          <MainPage loginPosition={loginPosition} todayQuarter={todayQuarter}></MainPage>
         </Route>
 
         <Route path='/' >
-          <AccessPage setLoginPosition = {setLoginPosition} setSCLData={setSCLData}> </AccessPage>
+          <AccessPage setLoginPosition = {setLoginPosition} todayQuarter={todayQuarter}> </AccessPage>
         </Route>
       </Switch>
 

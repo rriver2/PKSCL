@@ -258,30 +258,15 @@ function ManagementPage(props){
                                 <th colSpan={"3"} style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}>승인대기</th>
                             </tr>
                         </thead>
+                        <div className="tableRadius" style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                         <tbody className = "tableList" style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                             {
                                 leftTable.length === 0
                                 ?   <tr>
-                                        <td colSpan={"3"} style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>승인대기 학생이 없습니다.</td>
+                                        <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
                                     </tr>
                                 :leftTable.map((student,i)=>{
                                     return(
-                                        i === leftTable.length -1
-                                        ?(
-                                            <tr key={i}>
-                                            <td style={{borderBottomLeftRadius:"20px"}}>{student.stdID}</td>
-                                            <td>{student.name}</td>
-                                            <td style={{borderBottomRightRadius:"20px"}}><input 
-                                                    id= {student}
-                                                    type="checkbox" 
-                                                    onChange={(e)=>{
-                                                    changeHandler(e.target.checked, student ,setLeftCheckedList,leftCheckedList)
-                                                    }}
-                                                    checked={leftCheckedList.includes(student) ? true : false}
-                                            /></td>
-                                        </tr>
-                                        )
-                                        :(
                                             <tr key={i}>
                                             <td >{student.stdID}</td>
                                             <td>{student.name}</td>
@@ -294,11 +279,11 @@ function ManagementPage(props){
                                                     checked={leftCheckedList.includes(student) ? true : false}
                                             /></td>
                                         </tr>
-                                        )
                                     )
                                 })
                             }
                         </tbody>
+                            </div>
                     </table>
                 </div>
 
@@ -326,6 +311,7 @@ function ManagementPage(props){
                                 <th colSpan={"3"} style={{borderTopRightRadius:"20px", borderTopLeftRadius:"20px"}}>승인완료</th>
                             </tr>
                         </thead>
+                        <div className="tableRadius" style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                         <tbody className = "tableList" style={{borderBottomRightRadius:"20px", borderBottomLeftRadius:"20px"}}>
                         {
                             rightTable.length === 0
@@ -334,22 +320,6 @@ function ManagementPage(props){
                                     </tr>
                                 :rightTable.map((student,i)=>{
                                     return(
-                                        i === rightTable.length -1
-                                        ?(
-                                        <tr key={i}>
-                                            <td style={{borderBottomLeftRadius:"20px"}}>{student.stdID}</td>
-                                            <td>{student.name}</td>
-                                            <td style={{borderBottomRightRadius:"20px"}}><input 
-                                                    id= {student}
-                                                    type="checkbox" 
-                                                    onChange={(e)=>{
-                                                    changeHandler(e.currentTarget.checked, student ,setRightCheckedList,rightCheckedList)
-                                                    }}
-                                                    checked={rightCheckedList.includes(student) ? true : false}
-                                            /></td>
-                                        </tr>
-                                        )
-                                        :(
                                             <tr key={i}>
                                             <td>{student.stdID}</td>
                                             <td>{student.name}</td>
@@ -362,11 +332,12 @@ function ManagementPage(props){
                                                     checked={rightCheckedList.includes(student) ? true : false}
                                             /></td>
                                         </tr>
-                                        )
+                                        
                                     )
                                 })
                             }
                         </tbody>
+                        </div>
                     </table>
                 </div>
             </div>
