@@ -96,7 +96,6 @@ function AccessPage(props) {
     setPersonalInformationButton(false);
     setPersonalInformation([false, false, false]);
 
-
     document.querySelectorAll(".InfoCheckedList").forEach(function (v) { v.checked = false });
 
     if (document.getElementById("major") !== null) {
@@ -132,6 +131,7 @@ function AccessPage(props) {
           switch (payload.status) {
             case 200:
               if (window.confirm("회원가입에 성공하였습니다.")) {
+                reset();
                 history.push('/');
               }
               else {
@@ -161,18 +161,12 @@ function AccessPage(props) {
     }
     else {
       let payload = { "email": email, "password": password };
-      // debugger;
+      console.log("sdsd")
+      console.log(position)
       axios.post('/login/' + position, payload)
         .then((payload) => {
-          if (position === "student") {
-            props.setLoginPosition("student");
-            history.push('/main');
-          }
-          else if (position === "president") {
-            props.setLoginPosition("president");
-            history.push('/manage');
-          }
-
+          props.setLoginPosition(position);
+          history.push('/main');
         })
         .catch((error) => {
           alert("로그인에 실패했습니다 :)")
@@ -199,7 +193,6 @@ function AccessPage(props) {
           else {
             history.push('/newpwd');
           }
-
         })
         .catch((error) => {
           console.log(error);
@@ -242,16 +235,17 @@ function AccessPage(props) {
 
       <div className="left-panel">
         <div className="content">
-          <button type="button" style = {{boxShadow:"0 0 0 0 white", fontFamily: 'YUniverse-B'}} onClick={() => { reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
+          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
         </div>
         <img src={log} className="image" alt="" />
+        <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }} style={{ height: "10px", width: "20px", backgroundColor: "red" }}></button>
       </div>
       <Switch>
         <Route exact path="/signUp">
-          <div className="right-panel" id="signup" style={{ marginTop: "20px"}}>
+          <div className="right-panel" id="signup" style={{ marginTop: "20px" }}>
             <form className="userForm" >
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">
@@ -275,9 +269,9 @@ function AccessPage(props) {
                   ? (
                     <div style={{ width: "350px" }}>
                       <div>환영합니다 :)
-                        <br />부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL와 이를 이용하는 온라인 장부를 이용할 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다. 
+                        <br />부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL와 이를 이용하는 온라인 장부를 이용할 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
                         <br /> PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
-                    </div>
+                      </div>
                       <input class="InfoCheckedList" style={{ marginLeft: "16px", marginTop: "20px" }} type="checkbox"
                         onClick={() => { changePersonalInformation(0) }}
                       ></input>[필수] 부경대학교 재학생 또는 휴학생 입니다.
@@ -290,7 +284,7 @@ function AccessPage(props) {
                           <div style={{ backgroundColor: "var(--color-bright-gray)", margin: "10px 0 10px 0", height: "85px", overflowY: "auto" }}>
                             <p />1. 계약당사자의 의무
 
-                            <br />PKSCL은 여러분이 PKSCL 서비스를 투명하고 편리하게 이용할 수 있도록 최선을 다하고 있습니다. 다만, 여러분이 PKSCL 서비스를 보다 안전하게 이용하고 PKSCL 서비스에서 여러분과 타인의 권리가 서로 존중되고 보호받으려면 여러분의 도움과 협조가 필요합니다. 여러분의 안전한 서비스 이용과 권리 보호를 위해 부득이 아래와 같은 경우 여러분의 장부 관리 및 열람 권한이 제한될 수 있으므로, 다음 사항들을 확인하고 준수를 요청 드립니다. 
+                            <br />PKSCL은 여러분이 PKSCL 서비스를 투명하고 편리하게 이용할 수 있도록 최선을 다하고 있습니다. 다만, 여러분이 PKSCL 서비스를 보다 안전하게 이용하고 PKSCL 서비스에서 여러분과 타인의 권리가 서로 존중되고 보호받으려면 여러분의 도움과 협조가 필요합니다. 여러분의 안전한 서비스 이용과 권리 보호를 위해 부득이 아래와 같은 경우 여러분의 장부 관리 및 열람 권한이 제한될 수 있으므로, 다음 사항들을 확인하고 준수를 요청 드립니다.
 
                             <br />1 - a. 회원 가입 시 이름, 이메일, 학번, 학과 등의 정보를 허위로 기재하면 안 되고 회원 계정에 등록된 정보는 항상 정확한 최신 정보가 유지될 수 있도록 관리해 해야합니다. 또한 자신의 계정을 다른 사람에게 판매, 양도, 대여 또는 담보로 제공하거나 다른 사람에게 그 사용을 허락해서는 안 됩니다. 아울러 자신의 계정이 아닌 타인의 계정을 무단으로 사용해서는 안 됩니다.
 
@@ -309,7 +303,7 @@ function AccessPage(props) {
                             <p />3. 인증 서비스
 
                             <br />PKSCL는 회원가입 시 사용자가 부경대의 학생임을 증명하기 위해서 사용자가 기입한 학교 이메일로 1차 인증 절차를 거칩니다. 이후 학생과 학생회장의 신분을 확인하는 2차 인증 절차를 위해서는 ‘이름, 학과, 학번, 학생증’ 등의 정보를 추가적으로 필요로 합니다. 일반 학생이 회원가입을 한 경우에는 회원가입시 제출한 학생증, 학번, 이름을 토대로 해당 학생의 학과 학생회장이 해당 학과의 학생임을 확인한 후에 학생은  학과의 장부를 확인할 수 있습니다. 아울러 학생회장으로 회원가입을 한 경우에는 PKSCL 챗봇을 통해 학생회장임을 증명하는 서류를 추가적으로 제출한 후에 학생회장으로 온라인 학과 장부를 관리할 수 있습니다.
-                            </div>
+                          </div>
                         </span>
                       </details>
                       <details >
@@ -358,7 +352,7 @@ function AccessPage(props) {
                             <br />2 - b) 위 약관들에 어긋나는 행동을 보일 경우
 
                             <br />사용자가 관련 법령, 본 약관, 계정 및 서비스 운영정책 등을 준수하지 않을 경우, PKSCL은 사용자의 관련 행위 내용을 확인할 수 있으며, 그 확인 결과에 따라 PKSCL 서비스 이용에 대한 주의를 당부하거나, 더 이상 PKSCL 서비스 이용계약의 온전한 유지를 기대하기 어려운 경우엔 부득이 사용자에게 계정 탈퇴를 고지할 수 있습니다. 이 경우에는 PKSCL의 계약당사자 의무를 이행하지 않은 것으로 판단이 된 경우이기 때문에 이에 대한 문제는 본인에게 있음을 미리 말씀드립니다.
-                            </div>
+                          </div>
                         </span>
                       </details>
                       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
@@ -539,7 +533,7 @@ function AccessPage(props) {
 
             </form>
             <div className='moveSignPage'>
-              <button style = {{boxShadow:"0 0 0 0 white"}}onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/'); }}>로그인</button>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/'); }}>로그인</button>
             </div>
           </div>
 
@@ -573,7 +567,7 @@ function AccessPage(props) {
               </div>
             </form>
             <div className='moveSignPage'>
-              <button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/signUp'); }}>회원가입</button>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/signUp'); }}>회원가입</button>
             </div>
           </div>
 
@@ -652,12 +646,18 @@ function AccessPage(props) {
               </div>
             </form>
             <div className='moveSignPage'>
-              <button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/') }}>로그인</button><button style = {{boxShadow:"0 0 0 0 white"}} onClick={() => { reset(); history.push('/signUp') }}>회원가입</button>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/') }}>로그인</button><button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/signUp') }}>회원가입</button>
             </div>
           </div>
         </Route >
 
         <Route exact path="/giraffe-admin">
+          {
+            console.log("ko")
+          }
+          {
+            console.log(position)
+          }
           <div className="right-panel">
             <form className="userForm">
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />관리자 로그인</h3>
@@ -671,9 +671,12 @@ function AccessPage(props) {
               </div>
 
               <div className="submitbox" >
-                <button type="button" onClick={() => { setPosition(position => "admin"); login(); }} value="Login" className="SignInBtn">로그인</button>
+                <button type="button" onClick={() => { setPosition("admin"); login(); }} value="Login" className="SignInBtn">로그인</button>
               </div>
             </form>
+            <div className='moveSignPage'>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>메인페이지</button>
+            </div>
           </div>
         </Route>
       </Switch >

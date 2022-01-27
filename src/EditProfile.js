@@ -52,6 +52,12 @@ function EditProfile(props) {
             }
             console.log("isCorrect.stdID: " + isCorrect.stdID + " isCorrect.name: " + isCorrect.name + " isCorrect.phoneNumber: " + isCorrect.phoneNumber + "  isCorrect.majorLogo: " + isCorrect.majorLogo);
         } else if (props.loginPosition === "student") {
+            console.log(stdID)
+            if (stdID.length === 9) {
+                changeIsCorrect("stdID", true);
+            } else {
+                changeIsCorrect("stdID", false);
+            }
             if (isCorrect.stdID && isCorrect.name && isCorrect.major && isCorrect.certFile) {
                 setEditButtonState(true);
             } else {
@@ -98,7 +104,6 @@ function EditProfile(props) {
                     case 400: console.log("정보를 로드하는데 실패했습니다."); return;
                     default: console.log("error: " + error.response.status); return;
                 }
-
             })
         //get 요청해서 학과리스트 가져오기
         axios.get('/major-list')
@@ -111,8 +116,6 @@ function EditProfile(props) {
                     default: console.log("error: " + error.response.status); return;
                 }
             })
-
-
     }, [])
 
     useEffect(() => {
@@ -185,11 +188,7 @@ function EditProfile(props) {
                                             }
                                         </datalist>
                                     </>
-
-
-
                             }
-
                         </div>
 
                         <div className="inputField">

@@ -192,3 +192,8 @@ i {
 i {
     margin: 4px;
 }
+
+.certFileButton {
+    border-radius: 20px;
+    /* box-shadow: 0 0 0 white; */
+}
