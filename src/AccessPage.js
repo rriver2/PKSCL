@@ -164,11 +164,12 @@ function AccessPage(props) {
       // debugger;
       axios.post('/login/' + position, payload)
         .then((payload) => {
-          props.setLoginPosition();
           if (position === "student") {
+            props.setLoginPosition("student");
             history.push('/main');
           }
           else if (position === "president") {
+            props.setLoginPosition("president");
             history.push('/manage');
           }
 

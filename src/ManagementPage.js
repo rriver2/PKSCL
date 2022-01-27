@@ -184,8 +184,8 @@ function ManagementPage(props){
         }else{
             alert("error!");
         }
-
-
+console.log("patch")
+    console.log(props.loginPosition)
         if(props.loginPosition === "president"){
             axios.patch('/student-list', payload)
             .then((payload) => {
@@ -210,6 +210,8 @@ function ManagementPage(props){
     }
 
     useEffect(() => {
+        console.log("get")
+        console.log(props.loginPosition)
         if(props.loginPosition === "president"){
             axios.get('/student-list')
             .then((payload) => {
