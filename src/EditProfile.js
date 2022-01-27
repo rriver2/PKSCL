@@ -89,6 +89,7 @@ function EditProfile(props) {
                             setCertFile(...payload.data.certFile);
                         }
                         return;
+                    default: return;
                 }
 
             })
