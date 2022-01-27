@@ -9,9 +9,12 @@ import './css/MainPage.css';
 import './css/EditProfile.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 
 function MainPage(props) {
+
+    const history = useHistory();
 
     const [studentPresident, setStudentPresident] = useState({
         "major": "컴퓨터공학과",
@@ -617,6 +620,15 @@ function MainPage(props) {
         }
     }
 
+    function logout() {
+        axios.post('/logout')
+            .then((payload) => {
+                history.push('/');
+            }).catch((error) => {
+                console.log("error: " + error.response.status);
+            })
+    }
+
     useEffect(() => {
         // axios.get('/main')
         //   .then((payload) => {
@@ -649,7 +661,8 @@ function MainPage(props) {
             {
                 editProfileState
                     ?
-                    <EditProfile setEditProfileState={setEditProfileState}></EditProfile>
+                    // <EditProfile loginPosition={props.loginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                    <EditProfile loginPosition={"student"} setEditProfileState={setEditProfileState}></EditProfile>
                     : null
             }
             <div className="leftPanel" id='leftPanel'>
@@ -675,7 +688,7 @@ function MainPage(props) {
                     <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                 </div>
                 <div className="managementPageBar">
-                    <i className="fas fa-chevron-right"></i>
+                    <i className="fas fa-chevron-right" onClick={() => { history.push('/manage') }}></i>
                 </div>
             </div>
 
@@ -690,7 +703,7 @@ function MainPage(props) {
                                 : null
                         }
                         <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
-                        <button className='submitButton'>로그아웃</button>
+                        <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                     </div>
                 </div>
                 <div className="quarterData">
@@ -811,17 +824,6 @@ function MainPage(props) {
 
                                     </div>
                                     <div className="cardImg">
-
-
-                                        {/* <div className = "pagenation">
-                                        <button><i className="fas fa-chevron-left"></i></button>
-                                            <button className= "pagenationItem">{4}</button>
-                                            <button className= "pagenationItem">{5}</button>
-                                            <button className= "pagenationItem" style={{color : "black"}}>{6}</button>
-                                            <button className= "pagenationItem">{7}</button>
-                                            <button className= "pagenationItem">{8}</button>
-                                        <button><i className="fas fa-chevron-right"></i></button>
-                                    </div> */}
                                     </div>
                                 </div>
                             )

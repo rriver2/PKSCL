@@ -1,20 +1,20 @@
 .errorContainer {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     height: 100%;
     width: 100%;
     z-index: 19;
-    position: fixed;
+    align-items: center;
     flex-direction: row;
     justify-content: center;
     top: 25%;
     left: 0;
+
 }
 
 .errorBox {
     background-color: white;
-    height: 350px;
-    width: 500px;
+    width: 600px;
     z-index: 20;
     flex-direction: column;
     justify-content: center;
@@ -23,6 +23,7 @@
     display: flex;
     border-radius: 20px;
     padding: 20px;
+
 }
 
 .errorBox i {
@@ -31,12 +32,7 @@
     margin-right: 15px;
 }
 
-.errorBox input {
-    width: 65%;
-    color: none;
-    border-radius: 50px;
 
-}
 
 .editField {
     border: 7px solid var(--color-quarter);
@@ -44,8 +40,9 @@
     color: black;
     width: 80%;
     padding: 20px;
-    height: 500px;
+    /* height: 500px; */
     align-items: center;
+    text-align: center;
 
 }
 
@@ -54,18 +51,46 @@
     padding: 5px;
     border-radius: 20px;
     display: flex;
-
+    margin-bottom: 10px;
 }
 
 .inputField i {
     font-size: 1.1rem;
-    color: gray
+    color: gray;
+    margin-right: 12px;
+    margin-left: 12px;
+
+
 }
 
-.inputField button {
-    display: flex;
-    border: 1px solid;
+.inputField label {
+    margin-right: 10px;
+    width: 60px;
+    text-align: left;
+}
 
+.inputField button,
+.fileButton {
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+    justify-content: space-around;
+    box-shadow: 1px 1px 5px 0px grey;
+    align-items: flex-end;
+    cursor: pointer;
+    width: 60px;
+}
+
+.inputField input {
+    background-color: #e4e4e4;
+    border: none;
+    text-align: center;
+    border-radius: 0px;
+    width: 70%;
+}
+
+.inputField input[id=major]::placeholder {
+    color: black;
 }
 
 input:required {
@@ -93,4 +118,5 @@ input:required {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
     z-index: 22;
+    align-items: center;
 }
