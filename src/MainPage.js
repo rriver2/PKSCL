@@ -6,7 +6,6 @@ import quarter4 from './img/quarter4.png';
 import receiptImg from './img/receipt.png';
 import EditProfile from './EditProfile';
 import './css/MainPage.css';
-import './css/EditProfile.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -16,25 +15,22 @@ function MainPage(props) {
 
     const history = useHistory();
 
-    const [studentPresident, setStudentPresident] = useState({
+    let answer = {
+        "studentPresident":{
         "major": "컴퓨터공학과",
         "name": "홍길동",
         "phoneNumber": "01012345678",
         "email": "PKSCL@pukyong.ac.kr"
-    });
-
-    const [quarterStatus, setQuarterStatus] = useState(
-        {
+    },"quarterStatus":{
             "quarter1": true,
             "quarter2": true,
             "quarter3": true,
             "quarter4": false
-        }
-    )
-
-    const [quarter, setQuarter] = useState({
+        },
+"quarter":
+        {
         "quarter1": {
-            "openDate": "2020/06/03",
+            "openDate": "2020-03-03",
             "eventList": [
                 {
                     "eventTitle": "1벚꽃축제",
@@ -233,7 +229,7 @@ function MainPage(props) {
             ]
         },
         "quarter2": {
-            "openDate": "2분기 공개 일자",
+            "openDate": "2022-06-23",
             "eventList": [
                 {
                     "eventTitle": "2벚꽃축제",
@@ -355,7 +351,7 @@ function MainPage(props) {
             ]
         },
         "quarter3": {
-            "openDate": "3분기 공개 일자",
+            "openDate": "2022-08-12",
             "eventList": [
                 {
                     "eventTitle": "3벚꽃축제",
@@ -442,7 +438,7 @@ function MainPage(props) {
             ]
         },
         "quarter4": {
-            "openDate": "3분기 공개 일자",
+            "openDate": "2022-12-30",
             "eventList": [
                 {
                     "eventTitle": "3벚꽃축제",
@@ -519,13 +515,21 @@ function MainPage(props) {
             ]
         }
 
-    })
+    }
+    }
+
+    const [studentPresident, setStudentPresident] = useState();
+
+    const [quarterStatus, setQuarterStatus] = useState()
+
+    const [quarter, setQuarter] = useState()
 
     const [eventAmount, setEventAmount] = useState([]);
     const [quarterAmount, setQuarterAmount] = useState(0);
     const [currentQuarter, setCurrentQuarter] = useState(props.todayQuarter);
     const [showAllReceiptButton, setShowAllReceiptButton] = useState([]);
     const [editProfileState, setEditProfileState] = useState(false);
+    const [openQuarterDate, setOpenQuarterDate] = useState()
 
     const [major, setMajor] = useState("");
     const [majorList, setMajorList] = useState(["국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"]);
@@ -538,15 +542,16 @@ function MainPage(props) {
         setShowAllReceiptButton(resetArray)
     }
 
-    function reset() {
-        CalculateCurrentQuarterReceiptSumList(quarter[currentQuarter]["eventList"]);
+    function reset(quarterData) {
+        CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
         resetShowAllReceiptButton();
     }
 
     function showQuarter(quarter) {
         if (quarterStatus[quarter]) {
             setCurrentQuarter(quarter);
-            defineColor(quarter)
+            defineColor(quarter);
+            reset(quarter);
         } else {
             alert("현재 공개된 장부가 아닙니다 :)")
         }
@@ -589,7 +594,6 @@ function MainPage(props) {
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
         let eventSum = [];
-        // console.log(eventList)
         for (let i = 0; i < eventList.length; i++) {
             eventSum.push(sumEvent(eventList[i]["receiptList"]));
         }
@@ -633,7 +637,7 @@ function MainPage(props) {
 
     function adminButton() {
                     return (<>
-                        <div className="searchBar" >
+                        <div className="mainSearchBar" >
                             <input className = "majorList" type="text" list="majorList-options" id='major' name="major" placeholder="학과를 입력하세요."
                         onChange={(e) => {
                         setMajor(majorList.indexOf(e.target.value) + 1);
@@ -649,14 +653,16 @@ function MainPage(props) {
                            }
                      </datalist>
                       <button style = {{boxShadow:"0 0 0 white"}} onClick={ ()=>{
-                           axios.get(`/main/${major}`)
+                           axios.get(`/ledger/admin/${major}`)
                             .then((payload) => {
-                                setStudentPresident({...payload.data["sclData"]["studentPresident"]});
-                                setQuarterStatus({...payload.data["sclData"]["quarterStatus"]});
-                                setQuarter({...payload.data["sclData"]["quarter"]});
+                                setStudentPresident({...payload.data["studentPresident"]});
+                                setQuarterStatus({...payload.data["quarterStatus"]});
+                                setQuarter({...payload.data["quarter"]});
+                                setOpenQuarterDate(quarter[currentQuarter]["openDate"])
+                                reset(props.todayQuarter);
                             })
                             .catch((error) => {
-                                alert("학과리스트를 불러올 수 없습니다.");
+                                alert("학과 장부 로드 실패.");
                             })
                        }}><i className="fas fa-search"></i></button>
                       </div>
@@ -665,17 +671,36 @@ function MainPage(props) {
     }
 
     useEffect(() => {
-        axios.get('/main')
+        if (props.loginPosition === "president"){
+        axios.get('/ledger')
           .then((payload) => {
-            setStudentPresident({...payload["sclData"]["studentPresident"]});
-            setQuarterStatus({...payload["sclData"]["quarterStatus"]});
-            setQuarter({...payload["sclData"]["quarter"]});
+            setStudentPresident({...payload.data["studentPresident"]});
+            setQuarterStatus({...payload.data["quarterStatus"]});
+            setQuarter({...payload.data["quarter"]});
+            setOpenQuarterDate(quarter[currentQuarter]["openDate"])
+            reset(props.todayQuarter);
+          })
+          .catch((error) => { 
+            alert("학과 장부를 불러올 수 없습니다.");
+            // setStudentPresident({...answer["studentPresident"]});
+            // setQuarterStatus({...answer["quarterStatus"]});
+            // setQuarter({...answer["quarter"]});
+            // setOpenQuarterDate(quarter[currentQuarter]["openDate"])
+            // reset(props.todayQuarter);
+          })
+        }else if( props.loginPosition === "admin"){
+        axios.get('/ledger')
+          .then((payload) => {
+            setStudentPresident({...payload.data["studentPresident"]});
+            setQuarterStatus({...payload.data["quarterStatus"]});
+            setQuarter({...payload.data["quarter"]});
+            setOpenQuarterDate(quarter[currentQuarter]["openDate"])
+            reset(props.todayQuarter);
           })
           .catch((error) => {
             alert("학과 장부를 불러올 수 없습니다.");
           })
-          if( props.loginPosition === "admin"){
-         axios.get('/major-list')
+         axios.get('/ledger/admin')
                 .then((payload) => {
                     setMajorList([...payload.data.majorList]);
                 })
@@ -683,12 +708,8 @@ function MainPage(props) {
                     alert("학과리스트를 불러올 수 없습니다.");
                 })
         }
-        reset();
     }, []);
 
-    useEffect(() => {
-        reset();
-    }, [currentQuarter]);
 
     useEffect(() => {
         // // console.log(document.getElementById("leftPanel")[0].style.position);
@@ -698,6 +719,11 @@ function MainPage(props) {
 
         // }
     }, [editProfileState])
+
+    useEffect(()=>{
+        if(quarter !== undefined)
+        reset(props.todayQuarter);
+    },[quarter])
 
 
     return (
@@ -709,7 +735,11 @@ function MainPage(props) {
                     <EditProfile loginPosition={"student"} setEditProfileState={setEditProfileState}></EditProfile>
                     : null
             }
-            <div className="leftPanel" id='leftPanel'>
+                {
+                     quarter === undefined
+                            ? null
+                            :(<>
+                                <div className="leftPanel" id='leftPanel'>
                 <div className="majorCard">
                     <div className="presidentCard">
                         <h2>{studentPresident["major"]}</h2>
@@ -751,14 +781,16 @@ function MainPage(props) {
                         }
                         {
                             props.loginPosition === "president"
-                                ? <button className='submitButton' onClick={() => { pksclSubmitButton(); }}> 장부 수정 완료</button>
+                                ? (<><input className="dateInput" type={"date"} value={openQuarterDate}
+                                onChange={(e)=>{setOpenQuarterDate(e.target.value)}}
+                                ></input><button className='submitButton' onClick={() => { pksclSubmitButton(); }}> 장부 수정 완료</button></>)
                                 : null
                         }
                         <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                         <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                     </div>
                 </div>
-                <div className="quarterData">
+                                <div className="quarterData">
                     <h2 className="quarterTotalAmount">
                         {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}
                     </h2>
@@ -883,9 +915,20 @@ function MainPage(props) {
                             )
                         })
                     }
-                </div>
+                        </div>
+                         </div>
+                         </>
+                            )
+                }
+                
 
-            </div>
+           
+
+
+
+
+
+
         </div>
     )
 }

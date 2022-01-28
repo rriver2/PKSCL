@@ -124,8 +124,8 @@
     height: 50px;
 }
 
-.searchBar {
-    height: 40px;
+.dateInput {
+    height: 32px;
     border-radius: 20px;
     padding-left: 20px;
     padding-right: 20px;
@@ -134,22 +134,43 @@
     margin-left: 20px;
     box-shadow: 1px 1px 5px 0px gray;
     margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    font-size: 15px;
+    border: none;
+    width: 300px;
+    caret-color: black;
 }
 
-.searchBar input {
+.mainSearchBar {
+    height: 32px;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    background-color: var(--color-white);
+    margin-left: 20px;
+    box-shadow: 1px 1px 5px 0px gray;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.mainSearchBar input {
     border: none;
     width: 300px;
     caret-color: black;
     height: auto;
 }
 
-.searchBar input:focus {
+.mainSearchBar input:focus {
     outline-color: var(--color-leftPanel);
     caret-color: black;
     background-color: none;
 }
 
-.searchBar input[type=text]:-ms-clear {
+.mainSearchBar input[type=text]:-ms-clear {
     display: none;
 }
 

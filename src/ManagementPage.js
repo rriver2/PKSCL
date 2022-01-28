@@ -3,11 +3,11 @@ import { Navbar, Container } from 'react-bootstrap';
 import './css/ManagementPage.css';
 import axios from 'axios';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-// import CertFile from './CertFile';
+import CertFile from './CertFile';
 
 function ManagementPage(props) {
     const history = useHistory();
-    const [waiting, setWaiting] = useState([{"stdId":"201715555","name":"문지환","email":"4567@naver.com","studentImgPath":"zxc/asd4.png"},{"stdId":"201716666","name":"김명준","email":"5678@naver.com","studentImgPath":"zxc/asd5.png"},{"stdId":"201717715","name":"김민수","email":"6767@naver.com","studentImgPath":"zxc/asd11.png"},{"stdId":"201717723","name":"김민수","email":"6789@naver.com","studentImgPath":"zxc/asd6.png"}]);
+    const [waiting, setWaiting] = useState([]);
     const [refusal, setRefusal] = useState([]);
     const [approval, setApproval] = useState([]);
 
@@ -105,11 +105,11 @@ function ManagementPage(props) {
 
     return (
         <div className="ManagementPageContainer">
-            {/* {
+            {
                 certFile === true
                 ?<CertFile></CertFile>
                 : null
-            } */}
+            }
             <div className="pageContainer">
                 <Navbar expand="lg" style={{ padding: "30px 0" }}>
                     <Container fluid style={{ justifyContent: "center", backgroundColor: "none" }}>
