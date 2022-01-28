@@ -543,8 +543,13 @@ function MainPage(props) {
     }
 
     function reset(quarterData) {
-        CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
-        resetShowAllReceiptButton();
+        if(quarter !== undefined ){
+            console.log("quarter")
+            console.log(quarter)
+            CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
+            resetShowAllReceiptButton();
+            setOpenQuarterDate(quarter[currentQuarter]["openDate"]);
+        }
     }
 
     function showQuarter(quarter) {
@@ -671,34 +676,20 @@ function MainPage(props) {
     }
 
     useEffect(() => {
-        if (props.loginPosition === "president"){
+        if( props.loginPosition === "admin"){
         axios.get('/ledger')
           .then((payload) => {
             setStudentPresident({...payload.data["studentPresident"]});
             setQuarterStatus({...payload.data["quarterStatus"]});
             setQuarter({...payload.data["quarter"]});
-            setOpenQuarterDate(quarter[currentQuarter]["openDate"])
-            reset(props.todayQuarter);
-          })
-          .catch((error) => { 
-            alert("학과 장부를 불러올 수 없습니다.");
-            // setStudentPresident({...answer["studentPresident"]});
-            // setQuarterStatus({...answer["quarterStatus"]});
-            // setQuarter({...answer["quarter"]});
-            // setOpenQuarterDate(quarter[currentQuarter]["openDate"])
-            // reset(props.todayQuarter);
-          })
-        }else if( props.loginPosition === "admin"){
-        axios.get('/ledger')
-          .then((payload) => {
-            setStudentPresident({...payload.data["studentPresident"]});
-            setQuarterStatus({...payload.data["quarterStatus"]});
-            setQuarter({...payload.data["quarter"]});
-            setOpenQuarterDate(quarter[currentQuarter]["openDate"])
             reset(props.todayQuarter);
           })
           .catch((error) => {
             alert("학과 장부를 불러올 수 없습니다.");
+             setStudentPresident({...answer["studentPresident"]});
+            setQuarterStatus({...answer["quarterStatus"]});
+            setQuarter({...answer["quarter"]});
+            reset(props.todayQuarter);
           })
          axios.get('/ledger/admin')
                 .then((payload) => {
@@ -707,6 +698,21 @@ function MainPage(props) {
                 .catch((error) => {
                     alert("학과리스트를 불러올 수 없습니다.");
                 })
+        }else if( props.loginPosition === "student"){
+        axios.get('/ledger')
+          .then((payload) => {
+            setStudentPresident({...payload.data["studentPresident"]});
+            setQuarterStatus({...payload.data["quarterStatus"]});
+            setQuarter({...payload.data["quarter"]});
+            reset(props.todayQuarter);
+          })
+          .catch((error) => {
+            alert("학과 장부를 불러올 수 없습니다.");
+             setStudentPresident({...answer["studentPresident"]});
+            setQuarterStatus({...answer["quarterStatus"]});
+            setQuarter({...answer["quarter"]});
+            reset(props.todayQuarter);
+          })
         }
     }, []);
 
@@ -779,13 +785,6 @@ function MainPage(props) {
                             ? adminButton()
                             : null
                         }
-                        {
-                            props.loginPosition === "president"
-                                ? (<><input className="dateInput" type={"date"} value={openQuarterDate}
-                                onChange={(e)=>{setOpenQuarterDate(e.target.value)}}
-                                ></input><button className='submitButton' onClick={() => { pksclSubmitButton(); }}> 장부 수정 완료</button></>)
-                                : null
-                        }
                         <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                         <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                     </div>
@@ -798,11 +797,12 @@ function MainPage(props) {
 
                         quarter[currentQuarter]["eventList"].map((event, i) => {
                             return (
-                                <div className="eventCard">
+                                <div className="eventCard" style={{backgroundColor:"yellow"}}>
                                     <div className="cardContent">
                                         <div className="eventTitle">
                                             <div><h4 >{event["eventTitle"]} </h4>  
                                             <div> 행사 총 금액 : {eventAmount[i]}</div></div>
+                                            <div className="eventButtons">
                                             {
                                                 event.receiptList.length === 1
                                                     ? null
@@ -825,6 +825,7 @@ function MainPage(props) {
                                                     )
 
                                             }
+                                            </div>
                                         </div>
 
                                         {

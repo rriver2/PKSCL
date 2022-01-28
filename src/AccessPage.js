@@ -166,7 +166,11 @@ function AccessPage(props) {
       axios.post('/login/' + position, payload)
         .then((payload) => {
           props.setLoginPosition(position);
-          history.push('/main');
+          if(position === "president"){
+            history.push('/edit-main');
+          }else if(position === "admin"||position === "student"){
+            history.push('/main');
+          }
         })
         .catch((error) => {
           alert("로그인에 실패했습니다 :)")
@@ -573,7 +577,6 @@ function AccessPage(props) {
 
         </Route>
 
-
         <Route exact path="/newpwd">
           <div className="right-panel">
             <form className="userForm">
@@ -679,6 +682,7 @@ function AccessPage(props) {
             </div>
           </div>
         </Route>
+
       </Switch >
     </div >
 
