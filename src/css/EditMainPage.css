@@ -1,13 +1,15 @@
-.MainPageContainer {
+.EditMainPageContainer {
     font-family: "OTWelcomeRA";
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
 }
 
-.leftPanel {
-    width: 35%;
-    height: 100vh;
+.EditMainPageContainer .leftPanel {
+    min-width: 20vw;
+    height: 100%;
     background-color: var(--color-leftPanel);
     display: flex;
     flex-direction: row;
@@ -19,69 +21,35 @@
     border-bottom-right-radius: 20px;
 }
 
-.majorCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 250px;
-    margin-left: 50px;
-}
-
-.presidentCard {
-    background-color: var(--color-card);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    padding-top: 20px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 0px gray;
-}
-
-.presidentCard img {
-    height: 180px;
-    width: 180px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.cogExplanation {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: var(--color-white);
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 0px gray;
-}
-
-.quarter {
+.EditMainPageContainer .quarter {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 20px;
 }
 
-.quarterButton div:hover,
-.quarterButton:hover {
+.EditMainPageContainer .quarterButton div:hover,
+.EditMainPageContainer .quarterButton:hover {
     transition: 0.5s;
     transform: scale(1.05);
     cursor: pointer;
 }
 
-.quarterButton {
+.EditMainPageContainer .quarterButton {
     width: 100px;
     height: 100px;
     margin: 10px auto;
     position: relative;
 }
 
-.quarterButton img {
+.EditMainPageContainer .quarterButton img {
     padding: 0;
     height: 100px;
     width: 100px;
     filter: drop-shadow(3px 5px 3px gray);
 }
 
-.quarterButton div {
+.EditMainPageContainer .quarterButton div {
     z-index: 20;
     padding: 5px 10px;
     text-align: center;
@@ -92,40 +60,40 @@
     color: white;
 }
 
-.fa-chevron-right {
+.EditMainPageContainer .fa-chevron-right {
     cursor: pointer;
 }
 
-.managementPageBar {
+.EditMainPageContainer .managementPageBar {
     display: flex;
     align-items: center;
     margin-right: 10px;
 }
 
-.managementPageBar:hover {
+.EditMainPageContainer .managementPageBar:hover {
     transition: 0.5s;
     transform: scale(1.5);
 }
 
-.rightPanel {
-    width: 70%;
+.EditMainPageContainer .rightPanel {
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
 
-.nav {
+.EditMainPageContainer .nav {
     top: 0;
     width: 100%;
     justify-content: flex-end;
 }
 
-.majorList {
+.EditMainPageContainer .majorList {
     height: 50px;
 }
 
-.dateInput {
+.EditMainPageContainer .dateInput {
     height: 32px;
     border-radius: 20px;
     padding-left: 20px;
@@ -143,7 +111,7 @@
     caret-color: black;
 }
 
-.mainSearchBar {
+.EditMainPageContainer .mainSearchBar {
     height: 32px;
     border-radius: 20px;
     padding-left: 20px;
@@ -158,36 +126,36 @@
     font-size: 15px;
 }
 
-.mainSearchBar input {
+.EditMainPageContainer .mainSearchBar input {
     border: none;
     width: 300px;
     caret-color: black;
     height: auto;
 }
 
-.mainSearchBar input:focus {
+.EditMainPageContainer .mainSearchBar input:focus {
     outline-color: var(--color-leftPanel);
     caret-color: black;
     background-color: none;
 }
 
-.mainSearchBar input[type=text]:-ms-clear {
+.EditMainPageContainer .mainSearchBar input[type=text]:-ms-clear {
     display: none;
 }
 
-.eventButtons {
+.EditMainPageContainer .eventButtons {
     display: flex;
     flex-direction: row !important;
     align-items: flex-start;
 }
 
-.buttons {
+.EditMainPageContainer .buttons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.submitButton {
+.EditMainPageContainer .submitButton {
     background-color: var(--color-quarter);
     border: none;
     outline: none;
@@ -202,13 +170,12 @@
 }
 
 
-.quarterData {
+.EditMainPageContainer .quarterData {
     margin-top: 30px;
     width: 700px;
-    margin-right: 100px;
 }
 
-.eventTitle {
+.EditMainPageContainer .eventTitle {
     border-left: 9px solid var(--color-quarter);
     display: flex;
     width: 650px;
@@ -216,15 +183,15 @@
     justify-content: space-between;
 }
 
-.eventTitle div,
-.eventTitle h4 {
+.EditMainPageContainer .eventTitle div,
+.EditMainPageContainer .eventTitle h4 {
     margin-left: 10px;
     text-align: left;
 }
 
-.eventTitle button {
+.EditMainPageContainer .eventTitle button {
     width: 120px;
-    background-color: var(--color-leftPanel);
+    background-color: var(--color-letPanel);
     border: none;
     outline: none;
     height: 35px;
@@ -233,24 +200,24 @@
     margin: 0 0 15px 0;
 }
 
-.eventTitle div {
+.EditMainPageContainer .eventTitle div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.eventCard {
+.EditMainPageContainer .eventCard {
     margin-top: 30px;
     display: flex;
     box-shadow: 1px 1px 10px 0px gray;
     margin-bottom: 60px;
 }
 
-.quarterTotalAmount {
+.EditMainPageContainer .quarterTotalAmount {
     color: var(--color-quarter);
 }
 
-.cardContent {
+.EditMainPageContainer .cardContent {
     display: flex;
     margin: 10px 30px;
     width: 500px;
@@ -259,88 +226,88 @@
     align-items: flex-start;
 }
 
-#receiptContent {
+.EditMainPageContainer #receiptContent {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.cardContent h4,
-.cardContent h5 {
+.EditMainPageContainer .cardContent h4,
+.EditMainPageContainer .cardContent h5 {
     color: var(--color-quarter);
 }
 
-.receiptTitle {
+.EditMainPageContainer .receiptTitle {
     width: 400px;
     display: flex;
     justify-content: space-between;
 }
 
-.receiptTitle div {
+.EditMainPageContainer .receiptTitle div {
     color: var(--color-quarter);
 }
 
-#receiptContent table {
+.EditMainPageContainer #receiptContent table {
     margin: 10px 0;
     width: 400px;
     height: 240px;
 }
 
-.receiptTable thead {
+.EditMainPageContainer .receiptTable thead {
     display: block;
 }
 
-.receiptTable tbody {
+.EditMainPageContainer .receiptTable tbody {
     display: block;
     overflow-y: auto;
     height: 220px;
     width: fit-content;
 }
 
-.receiptTable tbody::-webkit-scrollbar {
+.EditMainPageContainer .receiptTable tbody::-webkit-scrollbar {
     width: 8px;
 }
 
-.receiptTable tbody::-webkit-scrollbar-track-piece {
+.EditMainPageContainer .receiptTable tbody::-webkit-scrollbar-track-piece {
     background-color: var(--color-tableOdd);
     border-radius: 100px;
     width: 10px;
 }
 
-.receiptTable tbody::-webkit-scrollbar-thumb {
+.EditMainPageContainer .receiptTable tbody::-webkit-scrollbar-thumb {
     background-color: var(--color-quarter);
     border-radius: 100px;
 }
 
-.receiptTable tbody::-webkit-scrollbar-track-piece:end {
+.EditMainPageContainer .receiptTable tbody::-webkit-scrollbar-track-piece:end {
     background-color: none;
     margin-bottom: 20px;
 }
 
-.receiptTable tr {
+.EditMainPageContainer .receiptTable tr {
     height: 40px;
 }
 
-#receiptContent th {
+.EditMainPageContainer #receiptContent th {
     background-color: var(--color-quarter);
     color: var(--color-white);
     width: 100px;
 }
 
-#receiptContent tr:nth-child(even) {
+.EditMainPageContainer #receiptContent tr:nth-child(even) {
     background-color: var(--color-tableEven);
 }
 
-#receiptContent tr:nth-child(odd) {
+.EditMainPageContainer #receiptContent tr:nth-child(odd) {
     background-color: var(--color-tableOdd);
 }
 
-#receiptContent td {
+.EditMainPageContainer #receiptContent td {
     width: 100px;
 }
 
-.receiptCard {
+.EditMainPageContainer .receiptCard {
     border-top: 2px solid var(--color-quarter);
     padding-top: 10px;
     display: flex;
@@ -348,13 +315,13 @@
     padding: 30px 0 0 0;
 }
 
-.receiptResource {
+.EditMainPageContainer .receiptResource {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.receiptCard img {
+.EditMainPageContainer .receiptCard img {
     display: inline-block;
     width: 220px;
     height: 330px;
@@ -374,3 +341,35 @@
 .cardImg .pagenationItem {
     color: var(--color-quarter);
 } */
+
+.EditMainPageContainer .remotePanel {
+    min-width: 15vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 10%;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.EditMainPageContainer .editButton {
+    width: 120px;
+    background-color: var(--color-leftPanel);
+    border: none;
+    outline: none;
+    height: 35px;
+    border-radius: 49px;
+    color: var(--color-quarter);
+    margin: 0 0 15px 0
+}
+
+.EditMainPageContainer .remotePanelBox {
+    background-color: var(--color-leftPanel);
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+}

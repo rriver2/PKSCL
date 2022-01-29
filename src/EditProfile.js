@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import './css/EditProfile.css'
 import { useHistory } from 'react-router-dom';
-import './css/EditProfile.css';
 
 function EditProfile(props) {
     const history = useHistory();
+    const modalRef = useRef();
+
     const [boxState, setBoxState] = useState("profile");
     const [stdID, setStdID] = useState("");
     const [major, setMajor] = useState("");
@@ -116,6 +118,47 @@ function EditProfile(props) {
             })
     }
 
+    function patchProfile() {
+        let payload = new FormData();
+
+        payload.append("stdID", stdID);
+        payload.append("name", name);
+
+        if (props.loginPosition === "student") { //학생
+            payload.append("major", major);
+            payload.append("certFile", certFile);
+        }
+        else if (props.loginPosition === "student") { //학생회장
+            payload.append("phoneNumber", phoneNumber);
+            payload.append("majorLogo", majorLogo);
+        }
+
+        axios.patch("/profile", payload, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((payload) => {
+            switch (payload.status) {
+                case 200:
+                    alert("정보가 변경되었습니다.");
+                    break;
+                default: alert("success: " + payload.status); break;
+            }
+        })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400:
+                        alert(error.response.data.errorMessage);
+                        break;
+                    default:
+                        alert("error: " + error.status);
+                        break;
+                }
+            })
+
+
+    }
+
     function reset() {
         setInputEmail("");
         setInputPassword("");
@@ -155,7 +198,7 @@ function EditProfile(props) {
     useEffect(() => {
         //debug
         setStdID(() => "123456789");
-        setMajor(() => "0");
+        setMajor(() => "1");
         setName(() => "홍길동");
         setPhoneNumber(() => "010-0000-0000");
         setEmail(() => "userID@pukyong.ac.kr");
@@ -251,8 +294,20 @@ function EditProfile(props) {
                 }
             })
 
+        document.addEventListener('mousedown', clickModalOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', clickModalOutside);
+        };
 
     }, [])
+
+    const clickModalOutside = event => {
+        if (props.editProfileState && (event.target === modalRef.current)) {
+            props.setEditProfileState(false);
+        }
+    };
+
 
     useEffect(() => {
         if (phoneNumber.length === 10) {
@@ -264,193 +319,221 @@ function EditProfile(props) {
     }, [phoneNumber]);
 
     return (
-        <div className='black-bg'>
-            <div className="errorContainer">
-                <div className="errorBox">
-                    {
-                        boxState === "profile"
-                            ? <>
-                                <div className='boxTitle' >
-                                    <h2 style={{ marginLeft: "20%" }}><i className="fas fa-users" />프로필 편집</h2>
-                                    <button className="btn btn-danger" style={{ marginLeft: "auto", height: "30px" }} onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
+        <div className="errorContainer" ref={modalRef}>
+            <div className="errorBox">
+                {
+                    boxState === "profile"
+                        ? <>
+                            <div className='boxTitle' >
+                                <h2 style={{ marginLeft: "20%" }}><i className="fas fa-users" />프로필 편집</h2>
+                                <button className="btn btn-danger" style={{ marginLeft: "auto", height: "30px" }} onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
+                            </div>
+
+                            <div className='editField'>
+                                <div className="inputField">
+                                    <i className="fas fa-key"></i>
+                                    <label>비밀번호</label>
+                                    <empty style={{ width: "200px" }}></empty>
+                                    <button type='button' onClick={() => { setBoxState("newPassword") }}>변경</button>
                                 </div>
 
-                                <div className='editField'>
-                                    <div className="inputField">
-                                        <i className="fas fa-key"></i>
-                                        <label>비밀번호</label>
-                                        <empty style={{ width: "200px" }}></empty>
-                                        <button type='button' onClick={() => { setBoxState("newPassword") }}>변경</button>
-                                    </div>
+                                <div className="inputField">
+                                    <i className="fas fa-lock"></i>
+                                    <label>학번</label>
+                                    <input onChange={(e) => {
+                                        setStdID(e.target.value.replace(/[^0-9]/g, ''));
+                                        if (e.target.value.length === 9) {
+                                            changeIsCorrect("stdID", true);
 
-                                    <div className="inputField">
-                                        <i className="fas fa-lock"></i>
-                                        <label>학번</label>
-                                        <input onChange={(e) => {
-                                            setStdID(e.target.value.replace(/[^0-9]/g, ''));
-                                            if (e.target.value.length === 9) {
-                                                changeIsCorrect("stdID", true);
-
-                                            } else {
-                                                changeIsCorrect("stdID", false);
-                                            }
+                                        } else {
+                                            changeIsCorrect("stdID", false);
                                         }
-                                        } name="stdID" value={stdID} maxLength="9" placeholder="내용을 입력해주세요" type="text" />
+                                    }
+                                    } name="stdID" value={stdID} maxLength="9" placeholder="내용을 입력해주세요" type="text" />
 
-                                    </div>
+                                </div>
 
-                                    <div className="inputField">
-                                        <i className="fas fa-book-open" style={{ fontSize: "0.85rem" }}></i>
-                                        <label >학과</label>
-                                        {
-                                            props.loginPosition === "president"
-                                                ?
-                                                <input type="text" list="majorList-options" id='major' name="major" placeholder="학과를 입력하세요." value={major} readOnly></input>
-                                                :
-                                                <>
-
-                                                    <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
-                                                        style={{ textColor: "black" }}
-                                                        onChange={(e) => {
-                                                            setMajor(majorList.indexOf(e.target.value) + 1);
-
-                                                            if (majorList.includes(e.target.value)) {
-                                                                changeIsCorrect("major", true);
-                                                            } else {
-                                                                changeIsCorrect("major", false);
-                                                            }
-                                                        }
-                                                        } ></input>
-                                                    <datalist id="majorList-options" >
-                                                        {
-                                                            majorList.map((majorName, i) => {
-                                                                return (
-                                                                    <option value={majorName} key={i} ></option>
-                                                                )
-                                                            })
-                                                        }
-                                                    </datalist>
-                                                </>
-
-
-
-                                        }
-
-                                    </div>
-
-                                    <div className="inputField">
-                                        <i className="fas fa-user"></i>
-                                        <label>이름</label>
-                                        <input onChange={(e) => {
-                                            setName(e.target.value)
-                                            if (e.target.value === "") {
-                                                changeIsCorrect("name", false);
-                                            } else {
-                                                changeIsCorrect("name", true);
-                                            }
-                                        }
-                                        } name="name" value={name} type="text" placeholder="이름을 입력해주세요" />
-                                    </div>
-
+                                <div className="inputField">
+                                    <i className="fas fa-book-open" style={{ fontSize: "0.85rem" }}></i>
+                                    <label >학과</label>
                                     {
                                         props.loginPosition === "president"
                                             ?
-                                            <div className="inputField">
-                                                <i className="fas fa-user"></i>
-                                                <label>전화번호</label>
-                                                <input onChange={(e) => {
-                                                    setPhoneNumber(e.target.value)
-                                                    if (e.target.value === "") {
-                                                        changeIsCorrect("phoneNum", false);
-                                                    } else {
-                                                        changeIsCorrect("phoneNum", true);
+                                            <input type="text" list="majorList-options" id='major' name="major" placeholder="학과를 입력하세요." value={major} readOnly></input>
+                                            :
+                                            <>
+
+                                                <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                    style={{ textColor: "black" }}
+                                                    onChange={(e) => {
+                                                        setMajor(majorList.indexOf(e.target.value) + 1);
+
+                                                        if (majorList.includes(e.target.value)) {
+                                                            changeIsCorrect("major", true);
+                                                        } else {
+                                                            changeIsCorrect("major", false);
+                                                        }
                                                     }
-                                                }
-                                                } maxLength="13" name="phoneNum" value={phoneNumber} type="text" placeholder="내용을 입력하세요" />
-                                            </div>
-                                            : null
+                                                    } ></input>
+                                                <datalist id="majorList-options" >
+                                                    {
+                                                        majorList.map((majorName, i) => {
+                                                            return (
+                                                                <option value={majorName} key={i} ></option>
+                                                            )
+                                                        })
+                                                    }
+                                                </datalist>
+                                            </>
+
+
+
                                     }
 
+                                </div>
 
+                                <div className="inputField">
+                                    <i className="fas fa-user"></i>
+                                    <label>이름</label>
+                                    <input onChange={(e) => {
+                                        setName(e.target.value)
+                                        if (e.target.value === "") {
+                                            changeIsCorrect("name", false);
+                                        } else {
+                                            changeIsCorrect("name", true);
+                                        }
+                                    }
+                                    } name="name" value={name} type="text" placeholder="이름을 입력해주세요" />
+                                </div>
+
+                                {
+                                    props.loginPosition === "president"
+                                        ?
+                                        <div className="inputField">
+                                            <i className="fas fa-user"></i>
+                                            <label>전화번호</label>
+                                            <input onChange={(e) => {
+                                                setPhoneNumber(e.target.value)
+                                                if (e.target.value === "") {
+                                                    changeIsCorrect("phoneNum", false);
+                                                } else {
+                                                    changeIsCorrect("phoneNum", true);
+                                                }
+                                            }
+                                            } maxLength="13" name="phoneNum" value={phoneNumber} type="text" placeholder="내용을 입력하세요" />
+                                        </div>
+                                        : null
+                                }
+
+
+
+                                <div className="inputField">
+                                    <i className="fas fa-envelope"></i>
+                                    <label>이메일</label>
+                                    <input id="inputEmail" name="email" value={email} type="text" readOnly />
+                                </div>
+
+                                {
+                                    props.loginPosition === "president"
+                                        ?
+                                        <div className="inputField">
+                                            <i className="fas fa-key"></i>
+                                            <label>학과로고</label>
+                                            {/* <empty style={{ width: "200px" }}></empty> */}
+                                            <input className='uploadName' placeholder='학과로고를 첨부해주세요' value={majorLogo.name} readOnly />
+                                            <label htmlFor="majorLogo">찾기</label>
+                                            <input type="file" id='majorLogo' name="majorLogo" accept='image/*'
+                                                onChange={(e) => {
+                                                    majorLogo(e.target.files[0]);
+                                                    if (e.target.value === "") {
+                                                        changeIsCorrect("majorLogo", false);
+                                                    } else {
+                                                        changeIsCorrect("majorLogo", true);
+                                                    }
+                                                }} />
+                                            <button type='button'>변경하기</button>
+                                        </div>
+                                        :
+                                        <div className="inputField">
+                                            <i className="fas fa-user-graduate"></i>
+                                            <label>학생증</label>
+                                            <input style={{ width: "200px" }} value={certFile.name} readOnly></input>
+                                            <label className='fileButton' htmlFor="file">찾기</label>
+                                            <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
+                                                onChange={(e) => {
+                                                    setCertFile(e.target.files[0]);
+                                                    if (e.target.value === "") {
+                                                        changeIsCorrect("certFile", false);
+                                                    } else {
+                                                        changeIsCorrect("certFile", true);
+                                                    }
+
+                                                }}></input>
+                                        </div>
+                                }
+                            </div>
+
+                            <div className="errorBtns">
+                                <button className="errorBtn" type="button" onClick={() => {
+                                    editButtonState ? patchProfile() : alert('정보를 모두 입력해주세요.');
+                                }}>저장하기</button>
+                                <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
+
+                            </div>
+                        </>
+                        : boxState === "withdrawal"
+                            ? <>
+                                <div className='boxTitle' >
+                                    <h2 ><i className="fas fa-users" style={{ color: "#dc3545" }} />회원 탈퇴</h2>
+                                </div>
+
+                                <div className='editField' style={{ borderColor: "#dc3545" }}>
 
                                     <div className="inputField">
                                         <i className="fas fa-envelope"></i>
                                         <label>이메일</label>
-                                        <input id="inputEmail" name="email" value={email} type="text" readOnly />
+                                        <input id="inputEmail" onChange={(e) => {
+                                            setInputEmail(e.target.value)
+                                            if (e.target.value === "") {
+                                                changeIsCorrect("inputEmail", false);
+                                            } else {
+                                                changeIsCorrect("inputEmail", true);
+                                            }
+                                        }} value={inputEmail} type="text" placeholder='이메일을 입력하세요.' />
                                     </div>
 
-                                    {
-                                        props.loginPosition === "president"
-                                            ?
-                                            <div className="inputField">
-                                                <i className="fas fa-key"></i>
-                                                <label>학과로고</label>
-                                                {/* <empty style={{ width: "200px" }}></empty> */}
-                                                <input className='uploadName' placeholder='학과로고를 첨부해주세요' value={majorLogo.name} readOnly />
-                                                <label htmlFor="majorLogo">찾기</label>
-                                                <input type="file" id='majorLogo' name="majorLogo" accept='image/*'
-                                                    onChange={(e) => {
-                                                        majorLogo(e.target.files[0]);
-                                                        if (e.target.value === "") {
-                                                            changeIsCorrect("majorLogo", false);
-                                                        } else {
-                                                            changeIsCorrect("majorLogo", true);
-                                                        }
-                                                    }} />
-                                                <button type='button'>변경하기</button>
-                                            </div>
-                                            :
-                                            <div className="inputField">
-                                                <i className="fas fa-user-graduate"></i>
-                                                <label>학생증</label>
-                                                <input style={{ width: "200px" }} value={certFile.name} readOnly></input>
-                                                <label className='fileButton' htmlFor="file">찾기</label>
-                                                <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
-                                                    onChange={(e) => {
-                                                        setCertFile(e.target.files[0]);
-                                                        if (e.target.value === "") {
-                                                            changeIsCorrect("certFile", false);
-                                                        } else {
-                                                            changeIsCorrect("certFile", true);
-                                                        }
+                                    <div className="inputField">
+                                        <i className="fas fa-key"></i>
+                                        <label>비밀번호</label>
+                                        {/* <empty style={{ width: "200px" }}></empty> */}
+                                        <input type="password" onChange={(e) => {
+                                            setInputPassword(e.target.value)
+                                            if (e.target.value === "") {
+                                                changeIsCorrect("inputPassword", false);
+                                            } else {
+                                                changeIsCorrect("inputPassword", true);
+                                            }
+                                        }} value={inputPassword} placeholder='비밀번호를 입력하세요.' />
 
-                                                    }}></input>
-                                            </div>
-                                    }
+                                    </div>
                                 </div>
 
                                 <div className="errorBtns">
-                                    <button className="errorBtn" type="button" onClick={() => {
-                                        editButtonState ? alert("전송") : console.log("isCorrect.stdID: " + isCorrect.stdID + " isCorrect.name: " + isCorrect.name + " isCorrect.phoneNumber: " + isCorrect.phoneNumber + "  isCorrect.majorLogo: " + isCorrect.majorLogo);
-                                    }}>저장하기</button>
-                                    <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
+                                    <button className="errorBtn" type="button" style={{ backgroundColor: "#dc3545" }} onClick={() => { withdrawal(); }}>탈퇴</button>
+                                    <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile") }}>취소</button>
 
                                 </div>
                             </>
-                            : boxState === "withdrawal"
+                            : boxState === "newPassword"
                                 ? <>
                                     <div className='boxTitle' >
-                                        <h2 ><i className="fas fa-users" style={{ color: "#dc3545" }} />회원 탈퇴</h2>
+                                        <h2 ><i className="fas fa-users" />비밀번호 변경</h2>
                                     </div>
 
-                                    <div className='editField' style={{ borderColor: "#dc3545" }}>
-
-                                        <div className="inputField">
-                                            <i className="fas fa-envelope"></i>
-                                            <label>이메일</label>
-                                            <input id="inputEmail" onChange={(e) => {
-                                                setInputEmail(e.target.value)
-                                                if (e.target.value === "") {
-                                                    changeIsCorrect("inputEmail", false);
-                                                } else {
-                                                    changeIsCorrect("inputEmail", true);
-                                                }
-                                            }} value={inputEmail} type="text" placeholder='이메일을 입력하세요.' />
-                                        </div>
-
+                                    <div className='editField' >
                                         <div className="inputField">
                                             <i className="fas fa-key"></i>
-                                            <label>비밀번호</label>
+                                            <label style={{ width: "80px" }}>비밀번호</label>
                                             {/* <empty style={{ width: "200px" }}></empty> */}
                                             <input type="password" onChange={(e) => {
                                                 setInputPassword(e.target.value)
@@ -459,88 +542,59 @@ function EditProfile(props) {
                                                 } else {
                                                     changeIsCorrect("inputPassword", true);
                                                 }
-                                            }} value={inputPassword} placeholder='비밀번호를 입력하세요.' />
+                                            }} value={inputPassword} placeholder='현재 비밀번호를 입력하세요.' />
+                                        </div>
 
+                                        <div className="inputField">
+                                            <i className="fas fa-key"></i>
+                                            <label style={{ width: "80px" }}>새 비밀번호</label>
+                                            {/* <empty style={{ width: "200px" }}></empty> */}
+                                            <input type="password" onChange={(e) => {
+                                                setInputNewPassword(e.target.value)
+                                                if (e.target.value === "") {
+                                                    changeIsCorrect("inputNewPassword", false);
+                                                } else {
+                                                    changeIsCorrect("inputNewPassword", true);
+                                                }
+                                            }} value={inputNewPassword} placeholder='새 비밀번호를 입력하세요.' />
+                                        </div>
+
+                                        <div className="inputField">
+                                            <i className="fas fa-key"></i>
+                                            <label style={{ width: "80px" }} >새 비밀번호 확인</label>
+                                            {/* <empty style={{ width: "200px" }}></empty> */}
+                                            <input type="password" onChange={(e) => {
+                                                setInputCheckNewPassword(e.target.value)
+                                                if (e.target.value === "") {
+                                                    changeIsCorrect("inputCheckNewPassword", false);
+                                                } else {
+                                                    changeIsCorrect("inputCheckNewPassword", true);
+                                                }
+                                            }} value={inputCheckNewPassword} placeholder='새 비밀번호를 다시 입력하세요.' />
                                         </div>
                                     </div>
 
                                     <div className="errorBtns">
-                                        <button className="errorBtn" type="button" style={{ backgroundColor: "#dc3545" }} onClick={() => { withdrawal(); }}>탈퇴</button>
-                                        <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile") }}>취소</button>
+                                        {
+                                            newPasswordButton
+                                                ?
+                                                <button className="errorBtn" type="button" onClick={() => { newPassword(); }}>변경</button>
+                                                :
+                                                <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                                    onClick={() => { console.log(isCorrect.inputPassword + " " + isCorrect.inputNewPassword + " " + isCorrect.inputCheckNewPassword); }}>변경</button>
+
+                                        }
+
+                                        <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile"); reset(); }}>취소</button>
 
                                     </div>
                                 </>
-                                : boxState === "newPassword"
-                                    ? <>
-                                        <div className='boxTitle' >
-                                            <h2 ><i className="fas fa-users" />비밀번호 변경</h2>
-                                        </div>
+                                : null
+                }
 
-                                        <div className='editField' >
-                                            <div className="inputField">
-                                                <i className="fas fa-key"></i>
-                                                <label style={{ width: "80px" }}>비밀번호</label>
-                                                {/* <empty style={{ width: "200px" }}></empty> */}
-                                                <input type="password" onChange={(e) => {
-                                                    setInputPassword(e.target.value)
-                                                    if (e.target.value === "") {
-                                                        changeIsCorrect("inputPassword", false);
-                                                    } else {
-                                                        changeIsCorrect("inputPassword", true);
-                                                    }
-                                                }} value={inputPassword} placeholder='현재 비밀번호를 입력하세요.' />
-                                            </div>
-
-                                            <div className="inputField">
-                                                <i className="fas fa-key"></i>
-                                                <label style={{ width: "80px" }}>새 비밀번호</label>
-                                                {/* <empty style={{ width: "200px" }}></empty> */}
-                                                <input type="password" onChange={(e) => {
-                                                    setInputNewPassword(e.target.value)
-                                                    if (e.target.value === "") {
-                                                        changeIsCorrect("inputNewPassword", false);
-                                                    } else {
-                                                        changeIsCorrect("inputNewPassword", true);
-                                                    }
-                                                }} value={inputNewPassword} placeholder='새 비밀번호를 입력하세요.' />
-                                            </div>
-
-                                            <div className="inputField">
-                                                <i className="fas fa-key"></i>
-                                                <label style={{ width: "80px" }} >새 비밀번호 확인</label>
-                                                {/* <empty style={{ width: "200px" }}></empty> */}
-                                                <input type="password" onChange={(e) => {
-                                                    setInputCheckNewPassword(e.target.value)
-                                                    if (e.target.value === "") {
-                                                        changeIsCorrect("inputCheckNewPassword", false);
-                                                    } else {
-                                                        changeIsCorrect("inputCheckNewPassword", true);
-                                                    }
-                                                }} value={inputCheckNewPassword} placeholder='새 비밀번호를 다시 입력하세요.' />
-                                            </div>
-                                        </div>
-
-                                        <div className="errorBtns">
-                                            {
-                                                newPasswordButton
-                                                    ?
-                                                    <button className="errorBtn" type="button" onClick={() => { newPassword(); }}>변경</button>
-                                                    :
-                                                    <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
-                                                        onClick={() => { console.log(isCorrect.inputPassword + " " + isCorrect.inputNewPassword + " " + isCorrect.inputCheckNewPassword); }}>변경</button>
-
-                                            }
-
-                                            <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile"); reset(); }}>취소</button>
-
-                                        </div>
-                                    </>
-                                    : null
-                    }
-
-                </div>
             </div>
         </div>
+
     );
 }
 

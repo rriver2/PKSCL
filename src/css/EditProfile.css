@@ -3,13 +3,13 @@
     display: flex;
     height: 100%;
     width: 100%;
-    z-index: 19;
     align-items: center;
     flex-direction: row;
     justify-content: center;
-    top: 25%;
     left: 0;
-
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 22;
 }
 
 .errorBox {
@@ -120,11 +120,4 @@ input:required {
     transition: 0.5s;
 }
 
-.black-bg {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    z-index: 22;
-    align-items: center;
-}
+.black-bg {}

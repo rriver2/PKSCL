@@ -11,7 +11,7 @@
 
 .certFileBox {
     background-color: white;
-    width: 600px;
+    width: 300px;
     z-index: 20;
     flex-direction: column;
     justify-content: center;
@@ -27,4 +27,8 @@
     color: var(--color-quarter);
     font-size: 50px;
     margin-right: 15px;
+}
+
+.CertFileButton {
+    box-shadow: 0 0 0 white;
 }
