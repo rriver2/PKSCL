@@ -725,7 +725,9 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                     }
                                 </div>
                             </>)
-                            : <div className="quarterData" style={{backgroundColor: "red"}}>현재 공개된 장부가 아닙니다.</div>
+                            : <div className="quarterData" style={{color: "red"}}>
+                                현재 학생회장이 공개한 장부가 아닙니다. <br/>장부의 예시를 보고싶다면 아래 버튼을 눌러보시겡나?????
+                            </div>
                         }
                          </div>
                          </>
