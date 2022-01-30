@@ -195,7 +195,7 @@ function MainPage(props) {
             ]
 },
   "quarter3": {
-"status": "false",
+"status": "true",
 },
   "quarter4":{
 "status": "false",
@@ -222,11 +222,18 @@ let answerDate = {
 
     const [major, setMajor] = useState();
     const [majorList, setMajorList] = useState();
+
+    const [fixEventButton, setFixEventButton] = useState([]);
+
     function resetShowAllReceiptButton() {
-        let resetArray = [];
-        for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
-            resetArray.push(true)
+       let resetArray = [];
+        if(quarter[currentQuarter]["eventList"] !== undefined){
+       
+            for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
+                resetArray.push(true)
+            }
         }
+
         setShowAllReceiptButton(resetArray)
     }
 
@@ -235,6 +242,7 @@ let answerDate = {
             CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
             resetShowAllReceiptButton();
         }
+        window.scrollTo(0, 0);
     }
 
     function showQuarter(selectedQuarter) {
@@ -242,14 +250,12 @@ let answerDate = {
             if (quarter[selectedQuarter]["status"]==="true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                reset(selectedQuarter);
             } else {
                 alert("현재 공개된 장부가 아닙니다 :)")
             }
         }else{
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                reset(selectedQuarter);
         }
     }
 
@@ -338,6 +344,21 @@ let answerDate = {
                 })
     }
 
+        function eventDelectButton() {
+        let answer = window.confirm("삭제하면 되돌릴 수 없습니다.");
+        if(answer){
+            alert("삭제 API추가해야함")
+        }else{
+            alert("삭제가 취소되었습니다.")
+        }
+    }
+
+    function eventFixButton() {
+        
+        alert("수정 API추가해야함")
+    }
+
+
     useEffect(() => {
         axios.get('/ledger')
           .then((payload) => {
@@ -353,6 +374,7 @@ let answerDate = {
             let Quarter = {"quarter1":answer["quarter1"],"quarter2":answer["quarter2"],"quarter3":answer["quarter3"],"quarter4":answer["quarter4"]}
             setQuarter({...Quarter});
             reset(props.todayQuarter);
+            GetDate();
           })
     }, []);
 
@@ -366,15 +388,28 @@ let answerDate = {
         // }
     }, [editProfileState])
 
+
+    useEffect(()=>{
+        if(quarter !== undefined){
+        console.log(currentQuarter)
+        reset(currentQuarter);
+        }
+        
+    },[currentQuarter])
+
     useEffect(()=>{
         if(quarter !== undefined)
         reset(props.todayQuarter);
     },[quarter])
 
 
+
     return (
         <div className="EditMainPageContainer">
-            {
+        {
+            props.loginPosition !== "president"
+            ? <div>잘못된 접근입니다.</div>
+            :(<>{
                 editProfileState
                     ?
                     // <EditProfile loginPosition={props.loginPosition} setEditProfileState={setEditProfileState}></EditProfile>
@@ -400,21 +435,40 @@ let answerDate = {
                 </div>)
                 }
             </div>
-
+    {/* rightPanel */}
             <div className="rightPanel">
-
                 <div className="nav">
                     <div className="buttons">
-                        {
-                            quarterDate !== undefined
-                            ?(<div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div> )
-                            :null
-                        }
+                    {
+                                    quarterDate !== undefined 
+                                    ?(
+                                        <>장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
+                                onChange={(e)=>{
+                                    let tempDateArray = {...quarterDate}
+                                    tempDateArray[currentQuarter][0] = e.target.value;
+                                    setQuarterDate(tempDateArray)
+                                    }}
+                                ></input>~
+                                <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][1]}
+                                style={{marginLeft:"10px"}}
+                                onChange={(e)=>{
+                                    let tempDateArray = {...quarterDate}
+                                    tempDateArray[currentQuarter][1] = e.target.value;
+                                    setQuarterDate(tempDateArray)
+                                    }}
+                                ></input></>
+                                    )
+                                    : null
+                            }
+                        <button className='submitButton' type='button' onClick={() => {  history.push('/main')  }}>학생 입장 장부 확인</button>
                         <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                         <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                     </div>
                 </div>
-                                <div className="quarterData">
+
+                {/* 장부 */}
+                <div style={{display:"flex"}}>
+                <div className="quarterData">
                     <h2 className="quarterTotalAmount">
                         {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}
                     </h2>
@@ -429,6 +483,20 @@ let answerDate = {
                                             <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}</div></div> 
                                             <div>{event["eventContext"]}  </div></div>
                                             <div className="eventButtons">
+                                            <button onClick={() => { eventDelectButton();}} style={{marginRight:"15px"}}> 행사 삭제 </button>
+                                            {
+                                                fixEventButton[i] === true
+                                                ?<button onClick={() => { 
+                                                    let array = [...fixEventButton];
+                                                    array[i] = !fixEventButton[i];
+                                                    eventFixButton(); setFixEventButton(array)
+                                                }} style={{marginRight:"15px"}}> 행사 수정 완료 </button>
+                                                :<button onClick={() => { 
+                                                    let array = [...fixEventButton];
+                                                    array[i] = !fixEventButton[i];
+                                                    setFixEventButton(array)
+                                                }} style={{marginRight:"15px"}}> 행사 수정 </button>
+                                            }
                                             {
                                                 event.receiptList.length <= 1
                                                     ? null
@@ -461,6 +529,7 @@ let answerDate = {
                                                     <div className="receiptCard">
                                                         <div className="receiptResource">
                                                             {
+                                                                console.log(event),
                                                                 event["receiptList"].length === 0
                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                 :(<>
@@ -502,7 +571,13 @@ let answerDate = {
                                                             }
                                                             
                                                         </div>
-                                                        <img src={receiptImg} alt="receipt" height={"150"} width={"100"} />
+                                                        {
+                                                            event["receiptList"].length === 0
+                                                                        ? null
+                                                                        : 
+                                                        <img src={event["receiptList"][0]["receiptImg"]} style={{backgroundColor: "var(--color-leftPanel)"}} alt={event["receiptList"][0]["receiptImg"]} height={"150"} width={"100"} />
+                                                        }
+                                                        
                                                     </div>
 
                                                 </div>)
@@ -554,7 +629,11 @@ let answerDate = {
                                                                             
                                                                        </>)}
                                                                     </div>
-                                                                    <img src={receiptImg} alt="receipt" height={"150"} width={"100"} />
+                                                                    {
+                                                                        event["receiptList"].length === 0
+                                                                        ? null
+                                                                        : <img src={receipt["receiptImg"]} alt={receipt["receiptImg"]} style={{backgroundColor: "var(--color-leftPanel)"}} height={"150"} width={"100"} />
+                                                                    }
                                                                 </div>
 
                                                             )
@@ -573,11 +652,43 @@ let answerDate = {
                         })
                         )
                     }
+                        <div style={{marginBottom:"40px", display:"flex", justifyContent: "center"}}>
+                            <button className = "editButton" onClick={() => {alert("행사추가 API 추가해야함")}} > 행사 추가 </button>
                         </div>
-                         </div>
+                </div>
+                {/* 장부 */}
+
+                {/* 2 */}
+                            <div className="remotePanel">
+                                <div className="remotePanelBox">
+                                    <div>
+                                        <h5>행사 목록</h5>
+                                        {
+                                            quarter[currentQuarter]["eventList"]=== undefined
+                                            ? (<div>입력된 행사가 없습니다.</div>)
+                                            :(<>{
+                                                quarter[currentQuarter]["eventList"].map((event, i) => {
+                                                return (<div>{event["eventTitle"]}</div>)
+                                            })
+                                            }
+                                            </>)
+                                        }
+                                        <div style={{color:"#d32c2c"}}>
+                                        ※ 장부를 잘못 기입해서 문제가 발생할 경우의 책임은 학생회장 본인에게 있습니다.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                {/* 2 */}
+                </div>
+            </div>
+                        
+    {/* rightPanel */}                   
                          </>
                             )
-                }
+                }</>)
+        }
+            
                 
         </div>
     )

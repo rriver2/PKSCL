@@ -79,7 +79,7 @@
     width: 70vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 }
 
 
@@ -87,6 +87,8 @@
     top: 0;
     width: 100%;
     justify-content: flex-end;
+    position: fixed;
+    height: 20px;
 }
 
 .EditMainPageContainer .majorList {
@@ -107,7 +109,7 @@
     margin-top: 15px;
     font-size: 15px;
     border: none;
-    width: 300px;
+    width: 200px;
     caret-color: black;
 }
 
@@ -153,6 +155,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    height: 8vh;
 }
 
 .EditMainPageContainer .submitButton {
@@ -171,16 +174,18 @@
 
 
 .EditMainPageContainer .quarterData {
-    margin-top: 30px;
+    margin-top: 12vh;
     width: 700px;
+    margin-right: 0;
 }
 
 .EditMainPageContainer .eventTitle {
-    border-left: 9px solid var(--color-quarter);
-    display: flex;
-    width: 650px;
+    display: flex !important;
+    width: 200px;
     margin: 10px 0;
+    flex-direction: column !important;
     justify-content: space-between;
+    color: var(--color-quarter);
 }
 
 .EditMainPageContainer .eventSource {
@@ -213,21 +218,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-.EditMainPageContainer .eventTitle {
-    display: flex !important;
-    flex-direction: row !important;
-    width: 400px;
-    justify-content: space-between;
-    color: var(--color-quarter);
-}
-
-.EditMainPageContainer .eventCard {
-    margin-top: 30px;
-    display: flex;
-    box-shadow: 1px 1px 10px 0px gray;
-    margin-bottom: 60px;
 }
 
 .EditMainPageContainer .eventCard {
@@ -337,6 +327,7 @@
     display: flex;
     margin: 0 0 30px 0;
     padding: 30px 0 0 0;
+    width: 650px;
 }
 
 .EditMainPageContainer .receiptResource {
@@ -367,7 +358,7 @@
 } */
 
 .EditMainPageContainer .remotePanel {
-    min-width: 15vw;
+    width: 20vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -378,6 +369,7 @@
     right: 0;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    align-items: flex-end;
 }
 
 .EditMainPageContainer .editButton {

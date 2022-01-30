@@ -196,7 +196,7 @@ function MainPage(props) {
             ]
 },
   "quarter3": {
-"status": "false",
+"status": "true",
 },
   "quarter4":{
 "status": "false",
@@ -223,10 +223,15 @@ let answerDate = {
 
     const [major, setMajor] = useState();
     const [majorList, setMajorList] = useState();
+
+    
     function resetShowAllReceiptButton() {
-        let resetArray = [];
-        for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
-            resetArray.push(true)
+         let resetArray = [];
+            console.log(quarter[currentQuarter]["eventList"])
+        if(quarter[currentQuarter]["eventList"] !== undefined){
+            for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
+                resetArray.push(true)
+            }
         }
         setShowAllReceiptButton(resetArray)
     }
@@ -236,21 +241,20 @@ let answerDate = {
             CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
             resetShowAllReceiptButton();
         }
+        window.scrollTo(0, 0);
     }
 
     function showQuarter(selectedQuarter) {
-        if(props.loginPosition === "student"){
+        if(props.loginPosition === "student" || props.loginPosition === "president"){
             if (quarter[selectedQuarter]["status"]==="true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                reset(selectedQuarter);
             } else {
                 alert("현재 공개된 장부가 아닙니다 :)")
             }
         }else{
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                reset(selectedQuarter);
         }
     }
 
@@ -397,7 +401,7 @@ let answerDate = {
     useEffect(() => {
         if( props.loginPosition === "admin"){
             let ledgerMajor;
-                axios.get('https://pkscl.kro.kr/major-list')
+                axios.get('/major-list')
                     .then((payload) => {
                         setMajorList([...payload.data["majorList"]]);
                          if(major === undefined){
@@ -412,9 +416,12 @@ let answerDate = {
                     })
                     .catch((error) => {
                         alert("학과리스트를 불러올 수 없습니다.");
+                        //지우기
+                        adminGetLedger(major);
+                        adminGetDate(major);
                     })
                 
-        }else if( props.loginPosition === "student"){
+        }else if( props.loginPosition === "student" || props.loginPosition === "president"){
         axios.get('/ledger')
           .then((payload) => {
             setStudentPresident({...payload.data["studentPresident"]});
@@ -424,6 +431,7 @@ let answerDate = {
           })
           .catch((error) => {
             alert("학과 장부를 불러올 수 없습니다.");
+            //지우기
             setStudentPresident({...answer["studentPresident"]});
             let Quarter = {"quarter1":answer["quarter1"],"quarter2":answer["quarter2"],"quarter3":answer["quarter3"],"quarter4":answer["quarter4"]}
             setQuarter({...Quarter});
@@ -442,9 +450,19 @@ let answerDate = {
         // }
     }, [editProfileState])
 
+
+    useEffect(()=>{
+        if(quarter !== undefined){
+        console.log(currentQuarter)
+        reset(currentQuarter);
+        }
+        
+    },[currentQuarter])
+
     useEffect(()=>{
         if(quarter !== undefined)
         reset(props.todayQuarter);
+        
     },[quarter])
 
 
@@ -475,6 +493,7 @@ let answerDate = {
                         안녕하세요 {studentPresident["major"]} 회장 {studentPresident["name"]}입니다.
                         PKCOG 온라인 장부를 통해 학과 장부를 분기별로 확인하세요 :)
                         장부 확인 중 문의 사항이 있으시다면 이메일로 연락주십시오.
+                    <div style={{color:"#d32c2c"}}>※ 학과의 장부 유출 시 발생하는 문제의 책임은 학생 본인에게 있습니다.</div>
                     </div>
                 </div>
                 <div className="quarter">
@@ -484,7 +503,7 @@ let answerDate = {
                     <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                 </div>
                 {
-                    props.loginPosition === "student"
+                    props.loginPosition === "student" || props.loginPosition === "president" 
                     ? null
                     :(<div className="managementPageBar">
                     <i className="fas fa-chevron-right" onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}></i>
@@ -502,6 +521,13 @@ let answerDate = {
                                 ? (<><div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div> {adminButton()}</>)
                                 : null)
                             :null
+                        }
+                        {
+                            props.loginPosition === "president"
+                            ? (<><div style={{color:"red"}}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
+                            <button className='submitButton' style = {{width:"130px"}}type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button> 
+                                </>)
+                            : null
                         }
                         <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                         <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
@@ -595,9 +621,13 @@ let answerDate = {
                                                             }
                                                             
                                                         </div>
-                                                        <img src={receiptImg} alt="receipt" height={"150"} width={"100"} />
+                                                    {
+                                                            event["receiptList"].length === 0
+                                                                        ? null
+                                                                        : 
+                                                        <img src={event["receiptList"][0]["receiptImg"]} style={{backgroundColor: "var(--color-leftPanel)"}} alt={event["receiptList"][0]["receiptImg"]} height={"150"} width={"100"} />
+                                                        }
                                                     </div>
-
                                                 </div>)
                                                 : (<div id="receiptContent" >
                                                     {
@@ -647,8 +677,12 @@ let answerDate = {
                                                                             
                                                                        </>)}
                                                                     </div>
-                                                                    <img src={receiptImg} alt="receipt" height={"150"} width={"100"} />
-                                                                </div>
+                                                                    {
+                                                                        event["receiptList"].length === 0
+                                                                        ? null
+                                                                        : <img src={receipt["receiptImg"]} alt={receipt["receiptImg"]} style={{backgroundColor: "var(--color-leftPanel)"}} height={"150"} width={"100"} />
+                                                                    }
+                                                                    </div>
 
                                                             )
                                                         })

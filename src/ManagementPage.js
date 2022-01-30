@@ -194,6 +194,11 @@ function ManagementPage(props) {
                 ?(<CertFile  certFileStudnet={certFileStudnet} setCertFile={setCertFile}></CertFile>)
                 : null
             }
+            {
+                props.loginPosition === "student"
+                ? <div>잘못된 접근입니다.</div>
+                :(
+            <>
             <div className="pageContainer">
                 <Navbar expand="lg" style={{ padding: "30px 0" }}>
                     <Container fluid style={{ justifyContent: "center", backgroundColor: "none" }}>
@@ -269,7 +274,8 @@ function ManagementPage(props) {
                                                             ?(<><td>{student.stdID}</td>
                                                                 <td>{student.name}</td>
                                                                 <td><button className="certFileButton" type='button' onClick={() => {
-                                                            setCertFile(true);
+                                                                    setCertFileStudnet(student);
+                                                                    setCertFile(true);
                                                         }}>학생증</button></td>
                                                         <td ><input
                                                             id={student}
@@ -288,8 +294,8 @@ function ManagementPage(props) {
                                                                 <td>{student.phoneNumber}</td>
                                                                 <td>{student.email}</td>
                                                                 <td><button className="certFileButton" type='button' onClick={() => {
-                                                                    setCertFile(true);
                                                                     setCertFileStudnet(student);
+                                                                    setCertFile(true);
                                                                 }}>학생증</button></td>
                                                                 </tr>
                                                                 <td style={{ width: "100px"}}><input
@@ -407,7 +413,7 @@ function ManagementPage(props) {
                     }
                 }}></i>
             </div>
-
+            </>)}
         </div>
 
 
