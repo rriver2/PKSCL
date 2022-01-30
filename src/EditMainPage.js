@@ -491,7 +491,7 @@ let answerDate = {
                     {
                                     quarterDate !== undefined 
                                     ?(
-                                        <>장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
+                                        <>{currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
                                 onChange={(e)=>{
                                     let tempDateArray = {...quarterDate}
                                     tempDateArray[currentQuarter][0] = e.target.value;
