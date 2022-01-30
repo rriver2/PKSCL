@@ -17,191 +17,160 @@ function MainPage(props) {
 
     let answer = {
     "studentPresident": {
-        "major": "일어일문학부",
+        "major": "사학과",
         "name": "홍길동",
         "phoneNumber": "01012345678",
         "email": "PKSCL@pukyon.ac.kr"
     },
- "quarter1": {
-"status": "true",
-"eventList": [
+    "quarter": {
+        "quarter1": {
+            "status": "false"
+        },
+        "quarter2": {
+            "status": "true",
+            "eventList": [
                 {
-                    "eventTitle": "sFLcLzeF",
-                    "eventContext": "sFLcLzeFNfsHRBSC",
+                    "eventTitle": "plAzqFgQ",
+                    "eventContext": "plAzqFgQWvKdNagG",
                     "receiptList": [
                         {
-                            "receiptTitle": "IfliKTTK",
+                            "receiptTitle": "pJqYikgz",
                             "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        },
-                        {
-                            "receiptTitle": "UBgFjrfx",
-                            "receiptImg": "./test",
-                            "receiptContext": "UBgFjrfxFOuTWaKd",
+                            "receiptContext": "pJqYikgzCEJmUvHd",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "WLUXKFBM",
+                            "receiptTitle": "LHROdIiN",
                             "receiptImg": "./test",
-                            "receiptContext": "WLUXKFBMjnhMOVOs",
+                            "receiptContext": "LHROdIiNGyUjoUQY",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "futcdKZl",
+                            "receiptTitle": "fHPUOYrB",
                             "receiptImg": "./test",
-                            "receiptContext": "futcdKZlUDCoatzV",
+                            "receiptContext": "fHPUOYrBsrbCYKYM",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "jliAdKwk",
+                            "receiptTitle": "obdNTBcS",
                             "receiptImg": "./test",
-                            "receiptContext": "jliAdKwkRetxDYyj",
+                            "receiptContext": "obdNTBcSgHIKDLVF",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "WpFiBquW",
+                            "receiptTitle": "SorFTTNG",
                             "receiptImg": "./test",
-                            "receiptContext": "WpFiBquWPqwwpfZT",
-                            "receiptDetailList":  [
-                                            {
-                                                "context": "마이쮸",
-                                                "price": "3000",
-                                                "amount": "3"
-                                            }
-                                        ]
-                        }
-                    ]
-                },
-                 {
-                    "eventTitle": "Hi",
-                    "eventContext": "hi",
-                    "receiptList": [
-                        {
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        }]
-                },
-                 {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
-                    "receiptList": [
-                        {
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                            ]
-                        },{
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        },{
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        }]
-                },
-                {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
-                    "receiptList": []
-                }
-            ]
-},
- "quarter2": {
-"status": "true",
-"eventList": [
-                {
-                    "eventTitle": "sFLcLzeF",
-                    "eventContext": "sFLcLzeFNfsHRBSC",
-                    "receiptList": [
-                        {
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        },
-                        {
-                            "receiptTitle": "UBgFjrfx",
-                            "receiptImg": "./test",
-                            "receiptContext": "UBgFjrfxFOuTWaKd",
+                            "receiptContext": "SorFTTNGgdcqKBSy",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "WLUXKFBM",
+                            "receiptTitle": "KQWwqFCs",
                             "receiptImg": "./test",
-                            "receiptContext": "WLUXKFBMjnhMOVOs",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "futcdKZl",
-                            "receiptImg": "./test",
-                            "receiptContext": "futcdKZlUDCoatzV",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "jliAdKwk",
-                            "receiptImg": "./test",
-                            "receiptContext": "jliAdKwkRetxDYyj",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "WpFiBquW",
-                            "receiptImg": "./test",
-                            "receiptContext": "WpFiBquWPqwwpfZT",
+                            "receiptContext": "KQWwqFCsclLmMaXj",
                             "receiptDetailList": []
                         }
                     ]
                 },
                 {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
+                    "eventTitle": "RHbkPBIE",
+                    "eventContext": "RHbkPBIEBwTsnXIj",
                     "receiptList": []
                 }
             ]
-},
-  "quarter3": {
-"status": "true",
-},
-  "quarter4":{
-"status": "false",
-}
+        },
+        "quarter3": {
+            "status": "true",
+            "eventList": [
+                {
+                    "eventTitle": "yeMdfHab",
+                    "eventContext": "yeMdfHabcgrnVkht",
+                    "receiptList": [
+                        {
+                            "receiptTitle": "ZXZDjper",
+                            "receiptImg": "./test",
+                            "receiptContext": "ZXZDjperGRNgjdJn",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "UZcvcbBe",
+                            "receiptImg": "./test",
+                            "receiptContext": "UZcvcbBeBDkDgric",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "KhlJbXuU",
+                            "receiptImg": "./test",
+                            "receiptContext": "KhlJbXuUtyYaiAkQ",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "VgvsKLQi",
+                            "receiptImg": "./test",
+                            "receiptContext": "VgvsKLQiWZxSbGCc",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "TiStGEOc",
+                            "receiptImg": "./test",
+                            "receiptContext": "TiStGEOcJGfVJynG",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "ZvJbSmcc",
+                            "receiptImg": "./test",
+                            "receiptContext": "ZvJbSmccgwJpCjFz",
+                            "receiptDetailList": []
+                        }
+                    ]
+                },
+                {
+                    "eventTitle": "KDZaEtQW",
+                    "eventContext": "KDZaEtQWBMhKjqyv",
+                    "receiptList": [
+                        {
+                            "receiptTitle": "HeGmdtwh",
+                            "receiptImg": "./test",
+                            "receiptContext": "HeGmdtwhhQMWMwuE",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "rBNXGenn",
+                            "receiptImg": "./test",
+                            "receiptContext": "rBNXGennDDsekmMO",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "mxZRHjSu",
+                            "receiptImg": "./test",
+                            "receiptContext": "mxZRHjSuUXbkTupH",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "NvugNiCX",
+                            "receiptImg": "./test",
+                            "receiptContext": "NvugNiCXMcGrJAGM",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "tCAJtdQy",
+                            "receiptImg": "./test",
+                            "receiptContext": "tCAJtdQyGbGdgOzJ",
+                            "receiptDetailList": []
+                        }
+                    ]
+                },
+                {
+                    "eventTitle": "PsokpBqu",
+                    "eventContext": "PsokpBqufDlmIcaa",
+                    "receiptList": []
+                }
+            ]
+        },
+        "quarter4": {
+            "status": "false"
+        }
     }
+}
 
 let answerDate = {   
     "quarter1" : ["2022-01-01", "2022-01-02"],
@@ -209,6 +178,8 @@ let answerDate = {
     "quarter3" : ["2022-01-05", "2022-01-06"],
     "quarter4" : ["2022-01-07", "2022-01-08"]
 }
+
+let answerMajorList = {"majorList":["기린학과","국어국문학과","영어영문학부","일어일문학부","사학과","경제학부","법학과","행정학과","국제지역학부","중국학과","신문방송학과","정치외교학과","유아교육과","시각디자인학과","공업디자인학과","패션디자인학과","경영학부","국제통상학부","응용수학과","통계학과","물리학과","화학과","미생물학과","해양스포츠학과","간호학과","과학시스템시뮬레이션학과","건축공학과","건축학과","소방공학과","시스템경영공학부","IT융합응용공학과","안전공학과","융합디스플레이공학과","의공학과","전기공학과","전자공학과","정보통신공학과","제어계측공학과","조선해양시스템공학과","컴퓨터공학과","토목공학과","고분자공학과","공업화학과","금속공학과","기계공학과","기계설계공학과","기계시스템공학과","냉동공조공학과","신소재시스템공학과","인쇄정보공학과","재료공학과","화학공학과","지속가능공학부","식품공학과","해양바이오신소재학과","해양생산시스템관리학부","해양수산경영학과","수해양산업교육과","자원생물학과","식품영양학과","생물공학과","수산생명의학과","환경공학과","해양공학과","해양학과","지구환경과학과","환경대기과학과","에너지자원공학과","공간정보시스템공학과","생태공학과","데이터정보과학부(빅데이터융합전공)","데이터정보과학부(통계·데이터사이언스전공)","미디어커뮤니케이션학부(언론정보전공)","미디어커뮤니케이션학부(휴먼ICT융합전공)","스마트헬스케어학부(의공학전공)","스마트헬스케어학부(해양스포츠전공)","스마트헬스케어학부(휴먼바이오융합전공)","전자정보통신공학부(전자공학전공)","전자정보통신공학부(정보통신공학전공)","조형학부(건축학전공)","조형학부(공업디자인전공)","조형학부(시각디자인전공)","컴퓨터공학부(소프트웨어·인공지능전공)","컴퓨터공학부(컴퓨터공학전공)","평생교육·상담학과","기계조선융합공학과","전기전자소프트웨어공학과","공공안전경찰학과"]}
 
     const [studentPresident, setStudentPresident] = useState();
 
@@ -224,10 +195,10 @@ let answerDate = {
     const [major, setMajor] = useState();
     const [majorList, setMajorList] = useState();
 
+    const [searchButton, setSearchButton] = useState("search");
     
     function resetShowAllReceiptButton() {
          let resetArray = [];
-            console.log(quarter[currentQuarter]["eventList"])
         if(quarter[currentQuarter]["eventList"] !== undefined){
             for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
                 resetArray.push(true)
@@ -237,7 +208,7 @@ let answerDate = {
     }
 
     function reset(quarterData) {
-        if(quarter !== undefined){
+        if(quarter !== undefined && quarter[quarterData]["eventList"] !== undefined){
             CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
             resetShowAllReceiptButton();
         }
@@ -287,6 +258,7 @@ let answerDate = {
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
+
         if(eventList === undefined){
             setQuarterAmount(0);
         }else{
@@ -333,16 +305,24 @@ let answerDate = {
     }
 
     function adminButton() {
-        if (majorList=== undefined){
+        if (majorList === undefined){
             return;
         }else{
                     return (<>
                         <div className="mainSearchBar" >
                             <input className = "majorList" 
                             type="text" list="majorList-options" id='major' name="major" placeholder="학과를 입력하세요."
-                        onChange={(e) => {
-                        setMajor(majorList.indexOf(e.target.value) + 1);
-                        ;}} style={{width : "250px"}}>
+                            onChange={(e) => {
+                            setMajor(e.target.value);
+                            ;}} 
+                            style={{width : "250px"}}
+                            onKeyPress={(e)=>{
+                                if(e.key === "Enter"){
+                                    adminGetLedger(major);
+                                }
+                            }}
+                            value={major}
+                            >
                         </input>
                        <datalist id="majorList-options" >
                            {
@@ -354,16 +334,12 @@ let answerDate = {
                            }
                      </datalist>
                       <button style = {{boxShadow:"0 0 0 white"}} onClick={ ()=>{
-                           axios.get(`/ledger/admin/${major}`)
-                            .then((payload) => {
-                                setStudentPresident({...payload.data["studentPresident"]});
-                                setQuarter({...payload.data["quarter"]});
-                                reset(props.todayQuarter);
-                            })
-                            .catch((error) => {
-                                alert("학과 장부 로드 실패.");
-                            })
-                       }}><i className="fas fa-search"></i></button>
+                          adminGetLedger(major);
+                       }}> {
+                                searchButton === "search"
+                                        ? <i className="fas fa-search"></i>
+                                        : <i className="fas fa-times"></i>
+                                }</button>
                       </div>
                             </>
                             )
@@ -371,29 +347,56 @@ let answerDate = {
     }
 
     function adminGetLedger(ledgerMajor) {
-        axios.get(`/ledger/admin?${ledgerMajor}`)
-                .then((payload) => {
-                    setStudentPresident({...payload.data["studentPresident"]});
-                    let Quarter = {"quarter1":payload.data["quarter1"],"quarter2":payload.data["quarter2"],"quarter3":payload.data["quarter3"],"quarter4":payload.data["quarter4"]}
-                    setQuarter({...Quarter});
-                    reset(props.todayQuarter);
-                })
-                .catch((error) => {
-                    alert("학과 장부를 불러올 수 없습니다.");
-                    setStudentPresident({...answer["studentPresident"]});
-                    let Quarter = {"quarter1":answer["quarter1"],"quarter2":answer["quarter2"],"quarter3":answer["quarter3"],"quarter4":answer["quarter4"]}
-                    setQuarter({...Quarter});
-                    reset(props.todayQuarter);
-                })
+        if (searchButton === "x") {
+            setMajor("");
+            setSearchButton("search");
+        } else {
+            if (major === "") {
+                alert("검색명을 입력해주세요 :)");
+            } else if((majorList.includes(ledgerMajor))){
+                let findMajorIndex = majorList.indexOf(ledgerMajor) + 1
+                getAdminLedger(findMajorIndex);
+                adminGetDate(findMajorIndex);
+                setMajor("");
+                setSearchButton("search");
+            } else{
+                alert("해당하는 학과가 없습니다 다시 검색해주세요:)");
+            }
+        }
     }
 
-    function adminGetDate(ledgerMajor) {
-        axios.get(`/ledger-date?${ledgerMajor}`)
+    function getAdminLedger(findMajorIndex) {
+        axios.get(`/ledger/admin?${findMajorIndex}`)
+            .then((payload) => {
+                setStudentPresident({...payload.data["studentPresident"]});
+                setQuarter({...payload.data["quarter"]});
+                reset(props.todayQuarter);
+            })
+            .catch((error) => {
+                if(major === undefined){
+                alert(`컴퓨터공학과 장부를 불러올 수 없습니다.`);
+                    }else{
+                alert(`${major} 장부를 불러올 수 없습니다.`);
+                    }
+                //지우기
+                setStudentPresident({...answer["studentPresident"]});
+                setQuarter({...answer["quarter"]});
+                reset(props.todayQuarter);
+            })                                                                                                                       
+                                                                    
+    }
+
+    function adminGetDate(findMajorIndex) {
+        axios.get(`/ledger-date?${findMajorIndex}`)
                 .then((payload) => {
                     setQuarterDate({...payload.data});
                 })
                 .catch((error) => {
-                    alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
+                    if(major === undefined){
+                        alert(`컴퓨터공학과의 장부 open, close 날짜를 불러올 수 없습니다.`);
+                    }else{
+                        alert(`${major}의 장부 open, close 날짜를 불러올 수 없습니다.`);
+                    }
                     setQuarterDate({...answerDate});
                 })
     }
@@ -407,34 +410,40 @@ let answerDate = {
                          if(major === undefined){
                             let ledgerMajorList =[...payload.data["majorList"]];
                             ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학과") + 1);
-                            adminGetLedger(ledgerMajor);
+                            getAdminLedger(ledgerMajor);
                             adminGetDate(ledgerMajor);
                          }else{
-                             adminGetLedger(major);
+                             getAdminLedger(major);
                              adminGetDate(major);
                          }
                     })
                     .catch((error) => {
                         alert("학과리스트를 불러올 수 없습니다.");
                         //지우기
-                        adminGetLedger(major);
-                        adminGetDate(major);
+                        let ledgerMajorList =[...answerMajorList["majorList"]];
+                        setMajorList(ledgerMajorList);
+                        if(major === undefined){
+                            ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학과") + 1);
+                            getAdminLedger(ledgerMajor);
+                            adminGetDate(ledgerMajor);
+                         }else{
+                            getAdminLedger(major);
+                            adminGetDate(major);
+                         }
                     })
                 
         }else if( props.loginPosition === "student" || props.loginPosition === "president"){
         axios.get('/ledger')
           .then((payload) => {
             setStudentPresident({...payload.data["studentPresident"]});
-            let Quarter = {"quarter1":payload.data["quarter1"],"quarter2":payload.data["quarter2"],"quarter3":payload.data["quarter3"],"quarter4":payload.data["quarter4"]}
-            setQuarter({...Quarter});
+            setQuarter({...payload.data["quarter"]});
             reset(props.todayQuarter);
           })
           .catch((error) => {
             alert("학과 장부를 불러올 수 없습니다.");
             //지우기
             setStudentPresident({...answer["studentPresident"]});
-            let Quarter = {"quarter1":answer["quarter1"],"quarter2":answer["quarter2"],"quarter3":answer["quarter3"],"quarter4":answer["quarter4"]}
-            setQuarter({...Quarter});
+            setQuarter({...answer["quarter"]});
             reset(props.todayQuarter);
           })
         }
@@ -453,7 +462,6 @@ let answerDate = {
 
     useEffect(()=>{
         if(quarter !== undefined){
-        console.log(currentQuarter)
         reset(currentQuarter);
         }
         
@@ -493,7 +501,7 @@ let answerDate = {
                         안녕하세요 {studentPresident["major"]} 회장 {studentPresident["name"]}입니다.
                         PKCOG 온라인 장부를 통해 학과 장부를 분기별로 확인하세요 :)
                         장부 확인 중 문의 사항이 있으시다면 이메일로 연락주십시오.
-                    <div style={{color:"#d32c2c"}}>※ 학과의 장부 유출 시 발생하는 문제의 책임은 학생 본인에게 있습니다.</div>
+                    <div style={{color:"#d32c2c"}}>※ 학과의 장부를 외부로 유출 시 발생하는 문제의 책임은 학생 본인에게 있습니다.</div>
                     </div>
                 </div>
                 <div className="quarter">
@@ -518,7 +526,9 @@ let answerDate = {
                         {
                             quarterDate !== undefined
                             ?(props.loginPosition === "admin"
-                                ? (<><div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div> {adminButton()}</>)
+                                ? (<>
+                                <div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div> 
+                                {adminButton()}</>)
                                 : null)
                             :null
                         }
@@ -535,7 +545,7 @@ let answerDate = {
                 </div>
                                 <div className="quarterData">
                     <h2 className="quarterTotalAmount">
-                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}
+                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
                     </h2>
                     {
                         quarter[currentQuarter]["eventList"] === undefined
@@ -545,7 +555,7 @@ let answerDate = {
                                 <div className="eventCard" >
                                     <div className="cardContent">
                                         <div className="eventSource">
-                                            <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}</div></div> 
+                                            <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}원</div></div> 
                                             <div>{event["eventContext"]}  </div></div>
                                             <div className="eventButtons">
                                             {
@@ -585,9 +595,9 @@ let answerDate = {
                                                                 :(<>
                                                                     <div className="receiptTitle"><h5>{event["receiptList"][0]["receiptTitle"]}</h5> 
                                                                     {
-                                                                        event["receiptList"][0]["receiptDetailList"] === undefined
+                                                                        event["receiptList"][0]["receiptDetailList"].length === 0 
                                                                         ?null
-                                                                        :(<div>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}</div>)
+                                                                        :(<div>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
                                                                     }
                                                             </div>
 
@@ -643,7 +653,7 @@ let answerDate = {
                                                                         {
                                                                             receipt["receiptDetailList"].length === 0
                                                                             ?null
-                                                                            : <div>{j+1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}</div>
+                                                                            : <div>{j+1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                         }
                                                                         </div>
                                                                         <div>{receipt["receiptContext"]}</div>

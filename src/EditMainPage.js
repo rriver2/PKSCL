@@ -16,23 +16,66 @@ function MainPage(props) {
 
     let answer = {
     "studentPresident": {
-        "major": "일어일문학부",
+        "major": "사학과",
         "name": "홍길동",
         "phoneNumber": "01012345678",
         "email": "PKSCL@pukyon.ac.kr"
     },
- "quarter1": {
-"status": "true",
-"eventList": [
+    "quarter": {
+        "quarter1": {
+            "status": "false",
+            "eventList": [
                 {
-                    "eventTitle": "sFLcLzeF",
-                    "eventContext": "sFLcLzeFNfsHRBSC",
+                    "eventTitle": "oniFaEEE",
+                    "eventContext": "oniFaEEEJjqQgeRE",
                     "receiptList": [
                         {
-                            "receiptTitle": "IfliKTTK",
+                            "receiptTitle": "mxyfpUJL",
                             "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
+                            "receiptContext": "mxyfpUJLUqTCUECN",
                             "receiptDetailList": [
+                                {
+                                    "context": "대선",
+                                    "price": "2000",
+                                    "amount": "3"
+                                },
+                                {
+                                    "context": "대선1",
+                                    "price": "20002",
+                                    "amount": "322"
+                                },
+                                {
+                                    "context": "대선12",
+                                    "price": "223",
+                                    "amount": "32"
+                                },
+                                {
+                                    "context": "대선14",
+                                    "price": "4421",
+                                    "amount": "311"
+                                }
+                            ]
+                        },
+                        {
+                            "receiptTitle": "WkBvlSoH",
+                            "receiptImg": "./test",
+                            "receiptContext": "WkBvlSoHRXbimqAq",
+                            "receiptDetailList": [
+                                {
+                                    "context": "대선12",
+                                    "price": "231",
+                                    "amount": "111"
+                                },
+                                {
+                                    "context": "대선2",
+                                    "price": "200123120",
+                                    "amount": "334"
+                                },
+                                {
+                                    "context": "대선1",
+                                    "price": "200120",
+                                    "amount": "352"
+                                },
                                 {
                                     "context": "대선",
                                     "price": "2000",
@@ -41,166 +84,167 @@ function MainPage(props) {
                             ]
                         },
                         {
-                            "receiptTitle": "UBgFjrfx",
+                            "receiptTitle": "bJGCyazU",
                             "receiptImg": "./test",
-                            "receiptContext": "UBgFjrfxFOuTWaKd",
+                            "receiptContext": "bJGCyazUvVeBeQJp",
                             "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "WLUXKFBM",
-                            "receiptImg": "./test",
-                            "receiptContext": "WLUXKFBMjnhMOVOs",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "futcdKZl",
-                            "receiptImg": "./test",
-                            "receiptContext": "futcdKZlUDCoatzV",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "jliAdKwk",
-                            "receiptImg": "./test",
-                            "receiptContext": "jliAdKwkRetxDYyj",
-                            "receiptDetailList": []
-                        },
-                        {
-                            "receiptTitle": "WpFiBquW",
-                            "receiptImg": "./test",
-                            "receiptContext": "WpFiBquWPqwwpfZT",
-                            "receiptDetailList":  [
-                                            {
-                                                "context": "마이쮸",
-                                                "price": "3000",
-                                                "amount": "3"
-                                            }
-                                        ]
                         }
                     ]
-                },
-                 {
-                    "eventTitle": "Hi",
-                    "eventContext": "hi",
-                    "receiptList": [
-                        {
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        }]
-                },
-                 {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
-                    "receiptList": [
-                        {
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                            ]
-                        },{
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        },{
-                            "receiptTitle": "IfliKTTK",
-                            "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        }]
-                },
-                {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
-                    "receiptList": []
                 }
             ]
-},
- "quarter2": {
-"status": "true",
-"eventList": [
+        },
+        "quarter2": {
+            "status": "true",
+            "eventList": [
                 {
-                    "eventTitle": "sFLcLzeF",
-                    "eventContext": "sFLcLzeFNfsHRBSC",
+                    "eventTitle": "plAzqFgQ",
+                    "eventContext": "plAzqFgQWvKdNagG",
                     "receiptList": [
                         {
-                            "receiptTitle": "IfliKTTK",
+                            "receiptTitle": "pJqYikgz",
                             "receiptImg": "./test",
-                            "receiptContext": "IfliKTTKQVcAkWtQ",
-                            "receiptDetailList": [
-                                {
-                                    "context": "대선",
-                                    "price": "2000",
-                                    "amount": "3"
-                                }
-                            ]
-                        },
-                        {
-                            "receiptTitle": "UBgFjrfx",
-                            "receiptImg": "./test",
-                            "receiptContext": "UBgFjrfxFOuTWaKd",
+                            "receiptContext": "pJqYikgzCEJmUvHd",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "WLUXKFBM",
+                            "receiptTitle": "LHROdIiN",
                             "receiptImg": "./test",
-                            "receiptContext": "WLUXKFBMjnhMOVOs",
+                            "receiptContext": "LHROdIiNGyUjoUQY",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "futcdKZl",
+                            "receiptTitle": "fHPUOYrB",
                             "receiptImg": "./test",
-                            "receiptContext": "futcdKZlUDCoatzV",
+                            "receiptContext": "fHPUOYrBsrbCYKYM",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "jliAdKwk",
+                            "receiptTitle": "obdNTBcS",
                             "receiptImg": "./test",
-                            "receiptContext": "jliAdKwkRetxDYyj",
+                            "receiptContext": "obdNTBcSgHIKDLVF",
                             "receiptDetailList": []
                         },
                         {
-                            "receiptTitle": "WpFiBquW",
+                            "receiptTitle": "SorFTTNG",
                             "receiptImg": "./test",
-                            "receiptContext": "WpFiBquWPqwwpfZT",
+                            "receiptContext": "SorFTTNGgdcqKBSy",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "KQWwqFCs",
+                            "receiptImg": "./test",
+                            "receiptContext": "KQWwqFCsclLmMaXj",
                             "receiptDetailList": []
                         }
                     ]
                 },
                 {
-                    "eventTitle": "anyUUxKH",
-                    "eventContext": "anyUUxKHkiHxULkZ",
+                    "eventTitle": "RHbkPBIE",
+                    "eventContext": "RHbkPBIEBwTsnXIj",
                     "receiptList": []
                 }
             ]
-},
-  "quarter3": {
-"status": "true",
-},
-  "quarter4":{
-"status": "false",
-}
+        },
+        "quarter3": {
+            "status": "true",
+            "eventList": [
+                {
+                    "eventTitle": "yeMdfHab",
+                    "eventContext": "yeMdfHabcgrnVkht",
+                    "receiptList": [
+                        {
+                            "receiptTitle": "ZXZDjper",
+                            "receiptImg": "./test",
+                            "receiptContext": "ZXZDjperGRNgjdJn",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "UZcvcbBe",
+                            "receiptImg": "./test",
+                            "receiptContext": "UZcvcbBeBDkDgric",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "KhlJbXuU",
+                            "receiptImg": "./test",
+                            "receiptContext": "KhlJbXuUtyYaiAkQ",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "VgvsKLQi",
+                            "receiptImg": "./test",
+                            "receiptContext": "VgvsKLQiWZxSbGCc",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "TiStGEOc",
+                            "receiptImg": "./test",
+                            "receiptContext": "TiStGEOcJGfVJynG",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "ZvJbSmcc",
+                            "receiptImg": "./test",
+                            "receiptContext": "ZvJbSmccgwJpCjFz",
+                            "receiptDetailList": []
+                        }
+                    ]
+                },
+                {
+                    "eventTitle": "KDZaEtQW",
+                    "eventContext": "KDZaEtQWBMhKjqyv",
+                    "receiptList": [
+                        {
+                            "receiptTitle": "HeGmdtwh",
+                            "receiptImg": "./test",
+                            "receiptContext": "HeGmdtwhhQMWMwuE",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "rBNXGenn",
+                            "receiptImg": "./test",
+                            "receiptContext": "rBNXGennDDsekmMO",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "mxZRHjSu",
+                            "receiptImg": "./test",
+                            "receiptContext": "mxZRHjSuUXbkTupH",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "NvugNiCX",
+                            "receiptImg": "./test",
+                            "receiptContext": "NvugNiCXMcGrJAGM",
+                            "receiptDetailList": []
+                        },
+                        {
+                            "receiptTitle": "tCAJtdQy",
+                            "receiptImg": "./test",
+                            "receiptContext": "tCAJtdQyGbGdgOzJ",
+                            "receiptDetailList": []
+                        }
+                    ]
+                },
+                {
+                    "eventTitle": "PsokpBqu",
+                    "eventContext": "PsokpBqufDlmIcaa",
+                    "receiptList": []
+                }
+            ]
+        },
+        "quarter4": {
+            "status": "false",
+            "eventList": [
+                {
+                    "eventTitle": "fEUMZWzO",
+                    "eventContext": "fEUMZWzOgxzcSNmY",
+                    "receiptList": []
+                }
+            ]
+        }
     }
+}
 
 let answerDate = {   
     "quarter1" : ["2022-01-01", "2022-01-02"],
@@ -340,6 +384,7 @@ let answerDate = {
                 })
                 .catch((error) => {
                     alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
+                    //지우기
                     setQuarterDate({...answerDate});
                 })
     }
@@ -362,20 +407,20 @@ let answerDate = {
     useEffect(() => {
         axios.get('/ledger')
           .then((payload) => {
-            setStudentPresident({...payload.data["studentPresident"]});
-            let Quarter = {"quarter1":payload.data["quarter1"],"quarter2":payload.data["quarter2"],"quarter3":payload.data["quarter3"],"quarter4":payload.data["quarter4"]}
-            setQuarter({...Quarter});
-            reset(props.todayQuarter);
-            GetDate();
-          })
-          .catch((error) => {
-            alert("학과 장부를 불러올 수 없습니다.");
-            setStudentPresident({...answer["studentPresident"]});
-            let Quarter = {"quarter1":answer["quarter1"],"quarter2":answer["quarter2"],"quarter3":answer["quarter3"],"quarter4":answer["quarter4"]}
-            setQuarter({...Quarter});
-            reset(props.todayQuarter);
-            GetDate();
-          })
+                setStudentPresident({...payload.data["studentPresident"]});
+                setQuarter({...payload.data["quarter"]});
+                reset(props.todayQuarter);
+                GetDate();
+            })
+            .catch((error) => {
+                alert("학과 장부를 불러올 수 없습니다.");
+                //지우기
+                console.log(answer)
+                setStudentPresident({...answer["studentPresident"]});
+                setQuarter({...answer["quarter"]});
+                reset(props.todayQuarter);
+                GetDate();
+            })   
     }, []);
 
 
@@ -391,7 +436,6 @@ let answerDate = {
 
     useEffect(()=>{
         if(quarter !== undefined){
-        console.log(currentQuarter)
         reset(currentQuarter);
         }
         
@@ -439,6 +483,9 @@ let answerDate = {
             <div className="rightPanel">
                 <div className="nav">
                     <div className="buttons">
+                        {
+                            console.log(quarterDate)
+                        }
                     {
                                     quarterDate !== undefined 
                                     ?(
@@ -470,7 +517,7 @@ let answerDate = {
                 <div style={{display:"flex"}}>
                 <div className="quarterData">
                     <h2 className="quarterTotalAmount">
-                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}
+                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
                     </h2>
                     {
                         quarter[currentQuarter]["eventList"] === undefined
@@ -480,7 +527,7 @@ let answerDate = {
                                 <div className="eventCard" >
                                     <div className="cardContent">
                                         <div className="eventSource">
-                                            <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}</div></div> 
+                                            <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}원</div></div> 
                                             <div>{event["eventContext"]}  </div></div>
                                             <div className="eventButtons">
                                             <button onClick={() => { eventDelectButton();}} style={{marginRight:"15px"}}> 행사 삭제 </button>
@@ -529,15 +576,14 @@ let answerDate = {
                                                     <div className="receiptCard">
                                                         <div className="receiptResource">
                                                             {
-                                                                console.log(event),
                                                                 event["receiptList"].length === 0
                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                 :(<>
                                                                     <div className="receiptTitle"><h5>{event["receiptList"][0]["receiptTitle"]}</h5> 
                                                                     {
-                                                                        event["receiptList"][0]["receiptDetailList"] === undefined
+                                                                        event["receiptList"][0]["receiptDetailList"].length === 0 
                                                                         ?null
-                                                                        :(<div>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}</div>)
+                                                                        :(<div>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
                                                                     }
                                                             </div>
 
@@ -595,7 +641,7 @@ let answerDate = {
                                                                         {
                                                                             receipt["receiptDetailList"].length === 0
                                                                             ?null
-                                                                            : <div>{j+1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}</div>
+                                                                            : <div>{j+1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                         }
                                                                         </div>
                                                                         <div>{receipt["receiptContext"]}</div>
