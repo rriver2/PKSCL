@@ -52,7 +52,7 @@ function AccessPage(props) {
   useEffect(() => {
     // https://pkscl.kro.kr/major-list
 
-    axios.get('/major-list')
+    axios.get('https://cors-jhs.herokuapp.com/https://pkscl.kro.kr/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);
       })

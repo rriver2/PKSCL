@@ -47,7 +47,7 @@ function loadmonth() {
 
 function App() {
 
-    const [loginPosition, setLoginPosition] = useState("admin");
+    const [loginPosition, setLoginPosition] = useState("president");
     const [todayQuarter, setTodatQuarter] = useState(selectseason);
 
     useEffect(()=>{

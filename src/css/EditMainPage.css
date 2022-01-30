@@ -183,15 +183,24 @@
     justify-content: space-between;
 }
 
-.EditMainPageContainer .eventTitle div,
-.EditMainPageContainer .eventTitle h4 {
+.EditMainPageContainer .eventSource {
+    border-left: 9px solid var(--color-quarter);
+    display: flex;
+    width: 650px;
+    margin: 10px 0;
+    justify-content: space-between;
+}
+
+.EditMainPageContainer .eventSource div,
+.EditMainPageContainer .eventSource h4 {
     margin-left: 10px;
     text-align: left;
 }
 
-.EditMainPageContainer .eventTitle button {
+
+.EditMainPageContainer .eventSource button {
     width: 120px;
-    background-color: var(--color-letPanel);
+    background-color: var(--color-leftPanel);
     border: none;
     outline: none;
     height: 35px;
@@ -200,10 +209,25 @@
     margin: 0 0 15px 0;
 }
 
-.EditMainPageContainer .eventTitle div {
+.EditMainPageContainer .eventSource div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.EditMainPageContainer .eventTitle {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 400px;
+    justify-content: space-between;
+    color: var(--color-quarter);
+}
+
+.EditMainPageContainer .eventCard {
+    margin-top: 30px;
+    display: flex;
+    box-shadow: 1px 1px 10px 0px gray;
+    margin-bottom: 60px;
 }
 
 .EditMainPageContainer .eventCard {
