@@ -411,6 +411,7 @@ let answerDate = {
                 setQuarter({...payload.data["quarter"]});
                 reset(props.todayQuarter);
                 GetDate();
+                defineColor(props.todayQuarter);
             })
             .catch((error) => {
                 alert("학과 장부를 불러올 수 없습니다.");
@@ -420,6 +421,7 @@ let answerDate = {
                 setQuarter({...answer["quarter"]});
                 reset(props.todayQuarter);
                 GetDate();
+                defineColor(props.todayQuarter);
             })   
     }, []);
 

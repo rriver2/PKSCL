@@ -371,6 +371,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                 setStudentPresident({...payload.data["studentPresident"]});
                 setQuarter({...payload.data["quarter"]});
                 reset(props.todayQuarter);
+                showQuarter(props.todayQuarter);
             })
             .catch((error) => {
                 if(major === undefined){
@@ -382,6 +383,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                 setStudentPresident({...answer["studentPresident"]});
                 setQuarter({...answer["quarter"]});
                 reset(props.todayQuarter);
+                showQuarter(props.todayQuarter);
             })                                                                                                                       
                                                                     
     }
@@ -390,6 +392,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
         axios.get(`/ledger-date?${findMajorIndex}`)
                 .then((payload) => {
                     setQuarterDate({...payload.data});
+                    showQuarter(props.todayQuarter);
                 })
                 .catch((error) => {
                     if(major === undefined){
@@ -398,6 +401,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                         alert(`${major}의 장부 open, close 날짜를 불러올 수 없습니다.`);
                     }
                     setQuarterDate({...answerDate});
+                    showQuarter(props.todayQuarter);
                 })
     }
 
@@ -412,9 +416,11 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                             ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학과") + 1);
                             getAdminLedger(ledgerMajor);
                             adminGetDate(ledgerMajor);
+                            defineColor(props.todayQuarter);
                          }else{
                              getAdminLedger(major);
                              adminGetDate(major);
+                             defineColor(props.todayQuarter);
                          }
                     })
                     .catch((error) => {
@@ -426,9 +432,11 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                             ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학과") + 1);
                             getAdminLedger(ledgerMajor);
                             adminGetDate(ledgerMajor);
+                            defineColor(props.todayQuarter);
                          }else{
                             getAdminLedger(major);
                             adminGetDate(major);
+                            defineColor(props.todayQuarter);
                          }
                     })
                 
@@ -438,6 +446,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
             setStudentPresident({...payload.data["studentPresident"]});
             setQuarter({...payload.data["quarter"]});
             reset(props.todayQuarter);
+            defineColor(props.todayQuarter);
           })
           .catch((error) => {
             alert("학과 장부를 불러올 수 없습니다.");
@@ -445,6 +454,7 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
             setStudentPresident({...answer["studentPresident"]});
             setQuarter({...answer["quarter"]});
             reset(props.todayQuarter);
+            defineColor(props.todayQuarter);
           })
         }
     }, []);
@@ -543,6 +553,9 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                         <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                     </div>
                 </div>
+                        {
+                            props.loginPosition === "admin" || quarter[currentQuarter]["status"]==="true"
+                            ?(<>
                                 <div className="quarterData">
                     <h2 className="quarterTotalAmount">
                         {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
@@ -710,7 +723,10 @@ let answerMajorList = {"majorList":["기린학과","국어국문학과","영어�
                         })
                         )
                     }
-                        </div>
+                                </div>
+                            </>)
+                            : <div className="quarterData" style={{backgroundColor: "red"}}>현재 공개된 장부가 아닙니다.</div>
+                        }
                          </div>
                          </>
                             )
