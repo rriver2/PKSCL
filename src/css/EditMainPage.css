@@ -256,6 +256,7 @@
     width: 400px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .EditMainPageContainer .receiptTitle div {
@@ -263,7 +264,7 @@
 }
 
 .EditMainPageContainer #receiptContent table {
-    margin: 10px 0;
+    margin: 5px 0;
     width: 400px;
     height: 240px;
 }
@@ -275,8 +276,9 @@
 .EditMainPageContainer .receiptTable tbody {
     display: block;
     overflow-y: auto;
-    height: 220px;
+    height: 180px;
     width: fit-content;
+
 }
 
 .EditMainPageContainer .receiptTable tbody::-webkit-scrollbar {
@@ -317,15 +319,18 @@
     background-color: var(--color-tableOdd);
 }
 
-.EditMainPageContainer #receiptContent td {
+.EditMainPageContainer #receiptContent td,
+.EditMainPageContainer #receiptContent input {
     width: 100px;
+    border-bottom: 2px solid var(--color-quarter);
+
 }
 
 .EditMainPageContainer .receiptCard {
     border-top: 2px solid var(--color-quarter);
     padding-top: 10px;
     display: flex;
-    margin: 0 0 30px 0;
+    margin: 0 0 10px 0;
     padding: 30px 0 0 0;
     width: 650px;
 }
@@ -386,6 +391,18 @@
 .EditMainPageContainer .remotePanelBox {
     background-color: var(--color-leftPanel);
     padding: 20px;
-    margin-right: 20px;
+    margin-right: 80px;
     border-radius: 20px;
+    width: 240px;
+    box-shadow: 1px 1px 10px 0px grey;
+}
+
+.uploadimg input {
+    width: 220px !important;
+    margin-left: 30px;
+    border-bottom: none !important;
+}
+
+.uploadimg #file-upload-button {
+    background-color: var(--color-leftPanel) !important;
 }

@@ -6,6 +6,9 @@ import axios from 'axios';
 import './css/AccessPage.css';
 
 function AccessPage(props) {
+  let debugAPIURL = "";
+  // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
+
   // let [signType, setSignType] =useState("signIn");
   const [position, setPosition] = useState("student");
 
@@ -44,15 +47,14 @@ function AccessPage(props) {
       setEmail(email + "@pukyong.ac.kr");
     } else if (email.length > 1) { //커서 자동이동
       let input = document.getElementById('inputEmail');
+
       input.focus();
       input.setSelectionRange(email.length - 14, email.length - 14);
     }
   }, [email]);
 
   useEffect(() => {
-    // https://pkscl.kro.kr/major-list
-
-    axios.get('https://cors-jhs.herokuapp.com/https://pkscl.kro.kr/major-list')
+    axios.get(debugAPIURL + '/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);
       })
@@ -65,9 +67,13 @@ function AccessPage(props) {
   useEffect(() => {
     console.log(isCorrect);
     if (position === "president") {
-      if (isCorrect.includes(false))
-        setSignUpButtonState(false);
-      else setSignUpButtonState(true);
+      for (let i = 0; i < 7; i++) {
+        if (isCorrect[i] === false) {
+          setSignUpButtonState(false);
+          return
+        }
+      }
+      setSignUpButtonState(true);
     }
 
     if (position === "student") {
@@ -116,17 +122,21 @@ function AccessPage(props) {
       payload.append("major", major)
       payload.append("name", name);
       payload.append("email", email);
-      payload.append("certFile", certFile);
+
+      if (position === "student")
+        payload.append("certFile", certFile);
+      else if (position === "president")
+        payload.append("phoneNumber", phoneNumber);
 
       for (let value of payload.values()) {
         console.log(value);
       }
 
-      axios.post("/signup/" + position, payload, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      axios.post(debugAPIURL + "/signup/" + position, payload,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
         }
-      })
+      )
         .then((payload) => {
           switch (payload.status) {
             case 200:
@@ -161,9 +171,8 @@ function AccessPage(props) {
     }
     else {
       let payload = { "email": email, "password": password };
-      console.log("sdsd")
       console.log(position)
-      axios.post('/login/' + position, payload)
+      axios.post(debugAPIURL + '/login/' + position, payload)
         .then((payload) => {
           props.setLoginPosition(position);
           if (position === "president") {
@@ -188,7 +197,7 @@ function AccessPage(props) {
     }
     else {
       let payload = { "email": email, "stdID": stdID, "name": name };
-      axios.post('/newpwd/' + position, payload)
+      axios.post(debugAPIURL + '/newpwd/' + position, payload)
         .then((payload) => {
           console.log(payload);
           if (window.confirm('입력하신 이메일로 임시 비밀번호를 발급하였습니다.')) {
@@ -209,7 +218,7 @@ function AccessPage(props) {
 
   function certEmail() {
     let payload = { "email": email };
-    axios.post('/email/' + position, payload)
+    axios.post(debugAPIURL + '/email/' + position, payload)
       .then((payload) => {
         alert("입력하신 이메일로 메일을 발송했습니다.");
       })
@@ -282,17 +291,17 @@ function AccessPage(props) {
                       ></input>[필수] 부경대학교 재학생 또는 휴학생 입니다. */}
                       <details>
                         <summary><input class="InfoCheckedList" type="checkbox"
-                         onClick={() => { changePersonalInformation(0) }}
+                          onClick={() => { changePersonalInformation(0) }}
                         ></input>[필수] 부경대학교 재학생 또는 휴학생 입니다.</summary>
                         <span>
                           <div style={{ backgroundColor: "var(--color-bright-gray)", margin: "10px 0 10px 0", height: "85px", overflowY: "auto" }}>
                             <p /> PKSCL은 부경대학교 소속인 학생들을 대상으로 학과의 장부를 공개하고 있습니다.
-                            <br /> 1차 인증 ) 학교 인증 
+                            <br /> 1차 인증 ) 학교 인증
                             <br /> - 학교 이메일로 부경대학교 학생임을 인증 후 회원가입 가능
                             <br /> 2차 인증 ) 학과 인증
                             <br /> 학생 - 학생회장이 본과 학생으로 승인할 시 해당 학과의 온라인 장부 열람 가능
                             <br /> 학생회장 - PKSCL 챗봇을 통해 학생회장 증명 서류를 제출 한 후 해당 학과의 온라인 장부 관리 가능
-                        </div>
+                          </div>
                         </span>
                       </details>
                       <details>
@@ -446,10 +455,11 @@ function AccessPage(props) {
                       <datalist id="majorList-options" >
                         {
                           majorList.map((majorName, i) => {
-                            return (
-                              <option value={majorName} key={i} ></option>
-                            )
-
+                            if(i !== 0){
+                                return (
+                                    <option value={majorName} key={i} ></option>
+                                )
+                            }
                           })
                         }
                       </datalist>
@@ -526,21 +536,26 @@ function AccessPage(props) {
                             </>)
                       }
                     </div>
+                    {
+                      position === "student"
+                        ?
+                        <div className="input-field filebox">
+                          <i className="fas fa-user-graduate" style={isCorrect[7] === true ? { color: "var(--color-quarter)" } : null}></i>
+                          <input className='uploadName' placeholder='학생증을 첨부해주세요' value={certFile.name} readOnly />
+                          <label htmlFor="certFile">찾기</label>
+                          <input type="file" id='certFile' name="certFile" accept='image/*'
+                            onChange={(e) => {
+                              setCertFile(e.target.files[0]);
+                              if (e.target.value === "") {
+                                changeIsCorrect(7, false);
+                              } else {
+                                changeIsCorrect(7, true);
+                              }
+                            }} />
+                        </div>
+                        : null
+                    }
 
-                    <div className="input-field filebox">
-                      <i className="fas fa-user-graduate" style={isCorrect[7] === true ? { color: "var(--color-quarter)" } : null}></i>
-                      <input className='uploadName' placeholder='학생증을 첨부해주세요' value={certFile.name} readOnly />
-                      <label htmlFor="certFile">찾기</label>
-                      <input type="file" id='certFile' name="certFile" accept='image/*'
-                        onChange={(e) => {
-                          setCertFile(e.target.files[0]);
-                          if (e.target.value === "") {
-                            changeIsCorrect(7, false);
-                          } else {
-                            changeIsCorrect(7, true);
-                          }
-                        }} />
-                    </div>
 
                     <div className="submitbox" >
                       <button type="button" style={signUpButtonState ? null : { backgroundColor: '#ACACAC' }}
@@ -647,14 +662,19 @@ function AccessPage(props) {
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
-                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
+                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} 
+                onKeyPress={(e) => {
+                    if (e.key === "Enter") { login() }
+                  }}
+                  value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>
               <div className="input-field">
                 <i className="fas fa-key"></i>
-                <input onChange={(e) => { setPassword(e.target.value) }} 
-                onKeyPress={(e)=>{
-                    if(e.key === "Enter"){ login() } }}
-                value={password} type="password" placeholder="비밀번호" />
+                <input onChange={(e) => { setPassword(e.target.value) }}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") { login() }
+                  }}
+                  value={password} type="password" placeholder="비밀번호" />
               </div>
 
               <div className="submitbox" >
@@ -683,14 +703,19 @@ function AccessPage(props) {
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />PKSCL</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
-                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
+                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} 
+                onKeyPress={(e) => {
+                    if (e.key === "Enter") { login() }
+                  }}
+                  value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>
               <div className="input-field">
                 <i className="fas fa-key"></i>
-                <input onChange={(e) => { setPassword(e.target.value) }} 
-                  onKeyPress={(e)=>{
-                    if(e.key === "Enter"){ login() } }}
-                value={password} type="password" placeholder="비밀번호" />
+                <input onChange={(e) => { setPassword(e.target.value) }}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") { login() }
+                  }}
+                  value={password} type="password" placeholder="비밀번호" />
               </div>
 
               <div className="submitbox" >

@@ -4,6 +4,9 @@ import './css/EditProfile.css'
 import { useHistory } from 'react-router-dom';
 
 function EditProfile(props) {
+    let debugAPIURL = "";
+    // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
+
     const history = useHistory();
     const modalRef = useRef();
 
@@ -71,7 +74,7 @@ function EditProfile(props) {
             if (window.confirm('정말 탈퇴하시겠습니까?')) {
                 const payload = { "inputEmail": inputEmail, "inputPassword": inputPassword }
                 //axio.탈퇴
-                axios.post('/withdrawal', payload)
+                axios.post(debugAPIURL + '/withdrawal', payload)
                     .then((payload) => {
                         switch (payload.status) {
                             case 200:
@@ -101,7 +104,7 @@ function EditProfile(props) {
 
     function newPassword() {
         const payload = { "inputPassword": inputPassword, "inputNewPassword": inputNewPassword, "inputCheckNewPassword": inputCheckNewPassword }
-        axios.patch('/password', payload)
+        axios.patch(debugAPIURL + '/password', payload)
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
@@ -118,9 +121,9 @@ function EditProfile(props) {
             })
     }
 
-    function patchProfile() {
+    function putProfile() {
         let payload = new FormData();
-
+        console.log(props.loginPosition);
         payload.append("stdID", stdID);
         payload.append("name", name);
 
@@ -128,12 +131,12 @@ function EditProfile(props) {
             payload.append("major", major);
             payload.append("certFile", certFile);
         }
-        else if (props.loginPosition === "student") { //학생회장
+        else if (props.loginPosition === "president") { //학생회장
             payload.append("phoneNumber", phoneNumber);
             payload.append("majorLogo", majorLogo);
         }
 
-        axios.patch("/profile", payload, {
+        axios.put(debugAPIURL + "/profile/" + props.loginPosition, payload, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -202,8 +205,9 @@ function EditProfile(props) {
         setName(() => "홍길동");
         setPhoneNumber(() => "010-0000-0000");
         setEmail(() => "userID@pukyong.ac.kr");
-        setCertFile({ name: "학생증.jpg" });
-        setMajorLogo({ name: "학과로고.jpg" });
+        // setCertFile({ name: "학생증.jpg" });
+        setCertFile("");
+        setMajorLogo("");
 
         setIsCorrect(
             {
@@ -224,19 +228,19 @@ function EditProfile(props) {
 
 
         //get 요청해서 로그인된 정보 가져오기
-        axios.get('/profile')
+        axios.get(debugAPIURL + '/profile')
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
-                        setStdID(...payload.data.stdID);
-                        setMajor(...payload.data.major);
-                        setName(...payload.data.name);
-                        setEmail(...payload.data.email);
+                        setStdID(...payload.data["stdID"]);
+                        setMajor(...payload.data["major"]);
+                        setName(...payload.data["name"]);
+                        setEmail(...payload.data["email"]);
 
 
                         if (props.loginPosition === "prsident") {
-                            setPhoneNumber(...payload.data.phoneNumber);
-                            setMajorLogo(...payload.data.majorLogo);
+                            setPhoneNumber(...payload.data["phoneNumber"]);
+                            setMajorLogo(...payload.data["majorLogo"]);
                             setIsCorrect(
                                 {
                                     stdID: true,
@@ -253,7 +257,7 @@ function EditProfile(props) {
                                 }
                             );
                         } else if (props.loginPosition === "student") {
-                            setCertFile(...payload.data.certFile);
+                            setCertFile(...payload.data["certFile"]);
                             setIsCorrect(
                                 {
                                     stdID: true,
@@ -283,7 +287,7 @@ function EditProfile(props) {
 
             })
         //get 요청해서 학과리스트 가져오기
-        axios.get('/major-list')
+        axios.get(debugAPIURL + '/major-list')
             .then((payload) => {
                 setMajorList([...payload.data.majorList]);
             })
@@ -437,21 +441,20 @@ function EditProfile(props) {
                                     props.loginPosition === "president"
                                         ?
                                         <div className="inputField">
-                                            <i className="fas fa-key"></i>
+                                            <i className="fas fa-user-graduate"></i>
                                             <label>학과로고</label>
-                                            {/* <empty style={{ width: "200px" }}></empty> */}
-                                            <input className='uploadName' placeholder='학과로고를 첨부해주세요' value={majorLogo.name} readOnly />
-                                            <label htmlFor="majorLogo">찾기</label>
-                                            <input type="file" id='majorLogo' name="majorLogo" accept='image/*'
+                                            <input style={{ width: "200px" }} value={majorLogo.name} readOnly></input>
+                                            <label className='fileButton' htmlFor="file">찾기</label>
+                                            <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
                                                 onChange={(e) => {
-                                                    majorLogo(e.target.files[0]);
+                                                    setMajorLogo(e.target.files[0]);
                                                     if (e.target.value === "") {
                                                         changeIsCorrect("majorLogo", false);
                                                     } else {
                                                         changeIsCorrect("majorLogo", true);
                                                     }
-                                                }} />
-                                            <button type='button'>변경하기</button>
+
+                                                }}></input>
                                         </div>
                                         :
                                         <div className="inputField">
@@ -475,7 +478,7 @@ function EditProfile(props) {
 
                             <div className="errorBtns">
                                 <button className="errorBtn" type="button" onClick={() => {
-                                    editButtonState ? patchProfile() : alert('정보를 모두 입력해주세요.');
+                                    editButtonState ? putProfile() : alert('정보를 모두 입력해주세요.');
                                 }}>저장하기</button>
                                 <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
 
