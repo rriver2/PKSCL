@@ -389,3 +389,14 @@
 .cardImg .pagenationItem {
     color: var(--color-quarter);
 } */
+
+.chatbot {
+    box-shadow: 1px 1px 5px 0px white;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.chatbot .fa-question-circle {
+    font-size: 40px;
+}

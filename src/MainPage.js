@@ -377,6 +377,8 @@ function MainPage(props) {
 
     const [searchButton, setSearchButton] = useState("search");
 
+    const [chatbot,setChatbot] = useState(true);
+
     function resetShowAllReceiptButton() {
         let resetArray = [];
         if (quarter[currentQuarter]["eventList"] !== undefined) {
@@ -481,6 +483,8 @@ function MainPage(props) {
                 history.push('/');
             }).catch((error) => {
                 console.log("error: " + error.response.status);
+                // 빼기
+                 history.push('/');
             })
     }
 
@@ -555,6 +559,7 @@ function MainPage(props) {
                 setQuarter({ ...payload.data["quarter"] });
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
+                setChatbot(false);
             })
             .catch((error) => {
                 if (major === undefined) {
@@ -588,6 +593,19 @@ function MainPage(props) {
             })
     }
 
+    function getExPKSCL() {
+         axios.get(debugAPIURL + '/0')
+                    .then((payload)=>{
+                        setStudentPresident({ ...payload.data["studentPresident"] });
+                        setQuarter({ ...payload.data["quarter"] });
+                        // reset(props.todayQuarter);
+                        // defineColor(props.todayQuarter);
+                    })
+                    .catch((error)=>{
+                        alert("임시 장부를 불러올 수 없습니다.");
+                    })
+    }
+
     useEffect(() => {
         if (props.loginPosition === "admin") {
             let ledgerMajor;
@@ -605,9 +623,11 @@ function MainPage(props) {
                         adminGetDate(major);
                         defineColor(props.todayQuarter);
                     }
+                    setChatbot(false);
                 })
                 .catch((error) => {
-                    alert("학과리스트를 불러올 수 없습니다.");
+                    alert("장부를 불러올 수 없습니다.");
+                    getExPKSCL();
                     //지우기
                     let ledgerMajorList = [...answerMajorList["majorList"]];
                     setMajorList(ledgerMajorList);
@@ -623,16 +643,74 @@ function MainPage(props) {
                     }
                 })
 
-        } else if (props.loginPosition === "student" || props.loginPosition === "president") {
+        } else if (props.loginPosition === "president") {
             axios.get(debugAPIURL + '/ledger')
                 .then((payload) => {
                     setStudentPresident({ ...payload.data["studentPresident"] });
                     setQuarter({ ...payload.data["quarter"] });
                     // reset(props.todayQuarter);
                     // defineColor(props.todayQuarter);
+                    setChatbot(false);
                 })
                 .catch((error) => {
                     alert("학과 장부를 불러올 수 없습니다.");
+
+                    axios.get('/status')
+                    .then((payload)=>{
+                        if(payload["status"]==="refusal") {
+                            alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
+                        }
+                        else if(payload["status"]==="waiting") {
+                            alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
+                        }
+                        else if(payload["status"]==="approval") {
+                            alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
+                        }
+                    })
+                    .catch((error)=>{
+                        alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                    })
+                   getExPKSCL();
+                    //뒤에 삭제하기
+                    setStudentPresident({ ...answer["studentPresident"] });
+                    setQuarter({ ...answer["quarter"] });
+                    // reset(props.todayQuarter);
+                    // defineColor(props.todayQuarter);
+                })
+
+            reset(props.todayQuarter);
+            defineColor(props.todayQuarter);
+        }else if (props.loginPosition === "student") {
+            axios.get(debugAPIURL + '/ledger')
+                .then((payload) => {
+                    setStudentPresident({ ...payload.data["studentPresident"] });
+                    setQuarter({ ...payload.data["quarter"] });
+                    // reset(props.todayQuarter);
+                    // defineColor(props.todayQuarter);
+                    setChatbot(false);
+                })
+                .catch((error) => {
+                    alert("학과 장부를 불러올 수 없습니다.");
+
+                    axios.get('/status')
+                    .then((payload)=>{
+                        if(payload["status"]==="refusal") {
+                            alert("사용자(학생)는 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                        }
+                        else if(payload["status"]==="waiting") alert("사용자(학생)는 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                        else if(payload["status"]==="approval") {
+                            alert("사용자(학생)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
+                        }
+                    })
+                    .catch((error)=>{
+                        alert("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                    })
+                    getExPKSCL();
+                    //뒤에 삭제하기
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
                     // reset(props.todayQuarter);

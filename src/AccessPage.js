@@ -45,9 +45,8 @@ function AccessPage(props) {
   useEffect(() => {
     if (email.length === 1) { //첫글자 입력시
       setEmail(email + "@pukyong.ac.kr");
-    } else if (email.length > 1) { //커서 자동이동
-      let input = document.getElementById('inputEmail');
-
+    }else if(email.includes("@pukyong.ac.kr")){
+    let input = document.getElementById('inputEmail');
       input.focus();
       input.setSelectionRange(email.length - 14, email.length - 14);
     }
@@ -62,6 +61,7 @@ function AccessPage(props) {
         alert("학과리스트를 불러올 수 없습니다.");
       })
 
+    defineColor(props.todayQuarter);
   }, []);
 
   useEffect(() => {
@@ -140,19 +140,22 @@ function AccessPage(props) {
         .then((payload) => {
           switch (payload.status) {
             case 200:
-              if (window.confirm("회원가입에 성공하였습니다.")) {
+              if (alert("회원가입에 성공하였습니다 :)")) {
                 reset();
                 history.push('/');
+                return;
               }
               else {
                 history.push('/signUp');
+                return;
               }
-            default: alert("success: " + payload.status);
+            default: alert("success: " + payload.status);return;
           }
         })
         .catch((error) => {
           switch (error.status) {
-            case 400: alert("이미 존재하는 회장ID(이메일)입니다."); return;
+            case 409: alert("이미 존재하는 이메일입니다 :)"); return;
+            case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
             default: alert("error: " + error.status); return;
           }
         })
@@ -241,6 +244,25 @@ function AccessPage(props) {
     PersonalInformation[index] = !personalInformation[index];
     setPersonalInformation([...PersonalInformation]);
   };
+
+  function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard) {
+        document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+        document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+        document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+        document.documentElement.style.setProperty("--color-card", colorCard);
+    }
+
+    function defineColor(quarter) {
+        if (quarter === "quarter1") {
+            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed");
+        } else if (quarter === "quarter2") {
+            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df");
+        } else if (quarter === "quarter3") {
+            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed");
+        } else if (quarter === "quarter4") {
+            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb");
+        }
+    }
 
 
   return (
