@@ -30,6 +30,7 @@
     border: none;
     width: 300px;
     caret-color: black;
+    padding-left: 10px;
 }
 
 .searchBar input:focus {
@@ -85,7 +86,7 @@ i {
 
 .tableSet {
     margin: 0 30px;
-    width: 500px;
+    width: 90%;
     text-align: center;
 }
 
@@ -196,4 +197,25 @@ i {
 .certFileButton {
     border-radius: 20px;
     /* box-shadow: 0 0 0 white; */
+}
+
+
+@media (max-width:950px) {
+    .container-fluid {
+        flex-direction: column;
+    }
+
+    .searchBar {
+        margin-top: 10px;
+    }
+
+    .tables {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .tableSet:nth-child(1) {
+        margin-bottom: 20px;
+    }
+
 }

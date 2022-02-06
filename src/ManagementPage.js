@@ -59,6 +59,7 @@ function ManagementPage(props) {
             "studentImgPath": "/img/time.png",
         }],
     }
+
     const history = useHistory();
     const [waiting, setWaiting] = useState([]);
     const [refusal, setRefusal] = useState([]);

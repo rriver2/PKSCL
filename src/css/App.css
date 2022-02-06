@@ -1,9 +1,10 @@
-@font-face {
+/* @font-face {
     font-family: 'OTWelcomeRA';
+    font-family: "Work Sans";
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 @font-face {
     font-family: 'YUniverse-B';
@@ -11,6 +12,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 
 :root {
     /* basic color*/
@@ -28,7 +30,10 @@
 
 
 body {
-    font-family: "OTWelcomeRA";
+    /* font-family: "OTWelcomeRA"; */
+    font-family: "Work Sans";
+    font-weight: bold;
+
     width: 100%;
     height: 100%;
     margin: 0;
@@ -51,4 +56,7 @@ button {
 
 input {
     line-height: normal;
+    /* font-family: 'Malgun gothic', sans-serif !important; */
+    font-family: "Work Sans";
+    font-weight: bold;
 }

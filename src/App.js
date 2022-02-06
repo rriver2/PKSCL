@@ -25,37 +25,35 @@ function selectseason() {
       return "";
   }
 }
-function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard) {
+function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
   document.documentElement.style.setProperty("--color-quarter", colorQuarter);
   document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
   document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
   document.documentElement.style.setProperty("--color-card", colorCard);
+  document.documentElement.style.setProperty("--color-background", colorBackground);
 }
 
 function defineColor(quarter) {
   if (quarter === "quarter1") {
-    setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed");
+    setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fff5f5");
   } else if (quarter === "quarter2") {
-    setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df");
+    setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f3f9f3");
   } else if (quarter === "quarter3") {
-    setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed");
+    setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
   } else if (quarter === "quarter4") {
-    setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb");
+    setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
   }
 }
 
 
 function App() {
 
-  const [loginPosition, setLoginPosition] = useState("admin");
+  const [loginPosition, setLoginPosition] = useState("president");
   const [todayQuarter, setTodatQuarter] = useState(selectseason);
 
-  function resetColor() {
+  useEffect(() => {
     let quarter = selectseason();
     defineColor(quarter);
-  }
-  useEffect(() => {
-      resetColor();
   }, [])
 
   return (
@@ -74,9 +72,6 @@ function App() {
         </Route>
 
         <Route path='/' >
-            {
-                resetColor()
-            }
           <AccessPage setLoginPosition={setLoginPosition} todayQuarter={todayQuarter}> </AccessPage>
         </Route>
 

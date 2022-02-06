@@ -45,8 +45,8 @@ function AccessPage(props) {
   useEffect(() => {
     if (email.length === 1) { //첫글자 입력시
       setEmail(email + "@pukyong.ac.kr");
-    }else if(email.includes("@pukyong.ac.kr")){
-    let input = document.getElementById('inputEmail');
+    } else if (email.includes("@pukyong.ac.kr")) {
+      let input = document.getElementById('inputEmail');
       input.focus();
       input.setSelectionRange(email.length - 14, email.length - 14);
     }
@@ -140,23 +140,21 @@ function AccessPage(props) {
         .then((payload) => {
           switch (payload.status) {
             case 200:
-              if (alert("회원가입에 성공하였습니다 :)")) {
-                reset();
-                history.push('/');
-                return;
+              alert("회원가입에 성공하였습니다 :)")
+              if (position === "president") {
+                if (window.confirm('학생회장 인증을 완료해야지 장부 업로드 및 학생 관리를 할 수 있습니다. 챗봇으로 이동하시겠습니까?'))
+                  window.location("http://pf.kakao.com/_hxnlXb")
               }
-              else {
-                history.push('/signUp');
-                return;
-              }
-            default: alert("success: " + payload.status);return;
+              history.push('/');
+              return;
+            default: alert("success: " + payload.status); return;
           }
         })
         .catch((error) => {
-          switch (error.status) {
+          switch (error.response.status) {
             case 409: alert("이미 존재하는 이메일입니다 :)"); return;
             case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
-            default: alert("error: " + error.status); return;
+            default: alert("error: " + error.response.status); return;
           }
         })
     }
@@ -225,9 +223,12 @@ function AccessPage(props) {
       .then((payload) => {
         alert("입력하신 이메일로 메일을 발송했습니다.");
       })
-      .catch((payload) => {
-        console.log(payload);
-        alert(payload.data.errorMessage);
+      .catch((error) => {
+        switch (error.response.status) {
+          case 409: alert("이미 존재하는 이메일입니다 :)"); return;
+          case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
+          default: alert("error: " + error.response.status); return;
+        }
       });
   };
 
@@ -245,28 +246,29 @@ function AccessPage(props) {
     setPersonalInformation([...PersonalInformation]);
   };
 
-  function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard) {
-        document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-        document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-        document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-        document.documentElement.style.setProperty("--color-card", colorCard);
-    }
+  function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
+    document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+    document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+    document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+    document.documentElement.style.setProperty("--color-card", colorCard);
+    document.documentElement.style.setProperty("--color-background", colorBackground);
+  }
 
-    function defineColor(quarter) {
-        if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed");
-        } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df");
-        } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed");
-        } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb");
-        }
+  function defineColor(quarter) {
+    if (quarter === "quarter1") {
+      setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fff5f5");
+    } else if (quarter === "quarter2") {
+      setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f3f9f3");
+    } else if (quarter === "quarter3") {
+      setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
+    } else if (quarter === "quarter4") {
+      setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
     }
+  }
 
 
   return (
-    <div className="container">
+    <div className="accessContainer">
 
       <div className="left-panel">
         <div className="content">
@@ -477,10 +479,10 @@ function AccessPage(props) {
                       <datalist id="majorList-options" >
                         {
                           majorList.map((majorName, i) => {
-                            if(i !== 0){
-                                return (
-                                    <option value={majorName} key={i} ></option>
-                                )
+                            if (i !== 0) {
+                              return (
+                                <option value={majorName} key={i} ></option>
+                              )
                             }
                           })
                         }
@@ -684,8 +686,8 @@ function AccessPage(props) {
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
-                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} 
-                onKeyPress={(e) => {
+                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
+                  onKeyPress={(e) => {
                     if (e.key === "Enter") { login() }
                   }}
                   value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
@@ -725,8 +727,8 @@ function AccessPage(props) {
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />PKSCL</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
-                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }} 
-                onKeyPress={(e) => {
+                <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
+                  onKeyPress={(e) => {
                     if (e.key === "Enter") { login() }
                   }}
                   value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />

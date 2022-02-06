@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-import majorlogo from './img/majorlogo.png';
 import quarter1 from './img/quarter1.png';
 import quarter2 from './img/quarter2.png';
 import quarter3 from './img/quarter3.png';
@@ -26,338 +25,338 @@ function MainPage(props) {
     const history = useHistory();
     const el = useRef();
 
-    // let answer = {
-    //     "studentPresident": {
-    //         "major": "국어국문학과",
-    //         "name": "홍길동",
-    //         "phoneNumber": "01012345678",
-    //         "email": "PKSCL@pukyon.ac.kr"
-    //     },
-    //     "quarter": {
-    //         "quarter1": {
-    //             "status": "true",
-    //             "eventList": [
-    //                 {
-    //                     "eventNumber": "1",
-    //                     "eventTitle": "임시데이터 입니다.",
-    //                     "eventContext": "데이타 O",
-    //                     "receiptList": [
+    let answer = {
+        "studentPresident": {
+            "major": "국어국문학과",
+            "name": "홍길동",
+            "phoneNumber": "01012345678",
+            "email": "PKSCL@pukyon.ac.kr"
+        },
+        "quarter": {
+            "quarter1": {
+                "status": "true",
+                "eventList": [
+                    {
+                        "eventNumber": "1",
+                        "eventTitle": "임시데이터 입니다.",
+                        "eventContext": "데이타 O",
+                        "receiptList": [
 
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "2",
-    //                     "eventTitle": "학과 OT",
-    //                     "eventContext": "학과 OT를 진행하였습니다.",
-    //                     "receiptList": [
-    //                         {
-    //                             "receiptTitle": "학과 OT 영수증1",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "학과 OT 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "돈까스",
-    //                                     "price": "2000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "2000"
-    //                                 },
-    //                                 {
-    //                                     "context": "대선",
-    //                                     "price": "3000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "6000"
-    //                                 },
-    //                                 {
-    //                                     "context": "참이슬",
-    //                                     "price": "1000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "1000"
-    //                                 },
-    //                                 {
-    //                                     "context": "초콜렛",
-    //                                     "price": "1000",
-    //                                     "amount": "5",
-    //                                     "totalAmount": "5000"
-    //                                 }
-    //                             ]
-    //                         },
-    //                         {
-    //                             "receiptTitle": "학과 OT 영수증2",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "학과 OT 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "갈비",
-    //                                     "price": "2000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "4000"
-    //                                 },
-    //                                 {
-    //                                     "context": "과자",
-    //                                     "price": "3000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "3000"
-    //                                 },
-    //                                 {
-    //                                     "context": "지우개",
-    //                                     "price": "1000",
-    //                                     "amount": "3",
-    //                                     "totalAmount": "3000"
-    //                                 },
-    //                                 {
-    //                                     "context": "연필",
-    //                                     "price": "1000",
-    //                                     "amount": "5",
-    //                                     "totalAmount": "5000"
+                        ]
+                    },
+                    {
+                        "eventNumber": "2",
+                        "eventTitle": "학과 OT",
+                        "eventContext": "학과 OT를 진행하였습니다.",
+                        "receiptList": [
+                            {
+                                "receiptTitle": "학과 OT 영수증1",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "학과 OT 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "돈까스",
+                                        "price": "2000",
+                                        "amount": "1",
+                                        "totalAmount": "2000"
+                                    },
+                                    {
+                                        "context": "대선",
+                                        "price": "3000",
+                                        "amount": "2",
+                                        "totalAmount": "6000"
+                                    },
+                                    {
+                                        "context": "참이슬",
+                                        "price": "1000",
+                                        "amount": "1",
+                                        "totalAmount": "1000"
+                                    },
+                                    {
+                                        "context": "초콜렛",
+                                        "price": "1000",
+                                        "amount": "5",
+                                        "totalAmount": "5000"
+                                    }
+                                ]
+                            },
+                            {
+                                "receiptTitle": "학과 OT 영수증2",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "학과 OT 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "갈비",
+                                        "price": "2000",
+                                        "amount": "2",
+                                        "totalAmount": "4000"
+                                    },
+                                    {
+                                        "context": "과자",
+                                        "price": "3000",
+                                        "amount": "1",
+                                        "totalAmount": "3000"
+                                    },
+                                    {
+                                        "context": "지우개",
+                                        "price": "1000",
+                                        "amount": "3",
+                                        "totalAmount": "3000"
+                                    },
+                                    {
+                                        "context": "연필",
+                                        "price": "1000",
+                                        "amount": "5",
+                                        "totalAmount": "5000"
 
-    //                                 }
-    //                             ]
-    //                         },
-    //                         {
-    //                             "receiptTitle": "학과 OT 영수증3",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "학과 OT 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "컵",
-    //                                     "price": "2000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "2000"
-    //                                 },
-    //                                 {
-    //                                     "context": "휴지",
-    //                                     "price": "5000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "10000"
-    //                                 },
-    //                                 {
-    //                                     "context": "책",
-    //                                     "price": "6000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "12000"
-    //                                 },
-    //                                 {
-    //                                     "context": "바구니",
-    //                                     "price": "7000",
-    //                                     "amount": "3",
-    //                                     "totalAmount": "21000"
-    //                                 },
-    //                                 {
-    //                                     "context": "이어폰",
-    //                                     "price": "8000",
-    //                                     "amount": "4",
-    //                                     "totalAmount": "32000"
-    //                                 },
-    //                                 {
-    //                                     "context": "콜라",
-    //                                     "price": "5000",
-    //                                     "amount": "5",
-    //                                     "totalAmount": "25000",
-    //                                 },
-    //                                 {
-    //                                     "context": "물",
-    //                                     "price": "4000",
-    //                                     "amount": "7",
-    //                                     "totalAmount": "28000"
-    //                                 },
-    //                                 {
-    //                                     "context": "프라이팬",
-    //                                     "price": "3000",
-    //                                     "amount": "6",
-    //                                     "totalAmount": "36000"
-    //                                 }
-    //                             ]
-    //                         }
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "3",
-    //                     "eventTitle": "학과 OT2",
-    //                     "eventContext": "학과 OT2를 진행하였습니다.",
-    //                     "receiptList": [
-    //                         {
-    //                             "receiptTitle": "학과 OT2 영수증1",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "학과 OT2 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "돈까스",
-    //                                     "price": "3000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "3000"
-    //                                 },
-    //                                 {
-    //                                     "context": "대선",
-    //                                     "price": "2000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "4000"
-    //                                 },
-    //                                 {
-    //                                     "context": "갈비",
-    //                                     "price": "4000",
-    //                                     "amount": "5",
-    //                                     "totalAmount": "20000"
-    //                                 },
-    //                                 {
-    //                                     "context": "참이슬",
-    //                                     "price": "5000",
-    //                                     "amount": "6",
-    //                                     "totalAmount": "30000"
-    //                                 },
-    //                                 {
-    //                                     "context": "초콜렛",
-    //                                     "price": "1000",
-    //                                     "amount": "7",
-    //                                     "totalAmount": "7000"
+                                    }
+                                ]
+                            },
+                            {
+                                "receiptTitle": "학과 OT 영수증3",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "학과 OT 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "컵",
+                                        "price": "2000",
+                                        "amount": "1",
+                                        "totalAmount": "2000"
+                                    },
+                                    {
+                                        "context": "휴지",
+                                        "price": "5000",
+                                        "amount": "2",
+                                        "totalAmount": "10000"
+                                    },
+                                    {
+                                        "context": "책",
+                                        "price": "6000",
+                                        "amount": "2",
+                                        "totalAmount": "12000"
+                                    },
+                                    {
+                                        "context": "바구니",
+                                        "price": "7000",
+                                        "amount": "3",
+                                        "totalAmount": "21000"
+                                    },
+                                    {
+                                        "context": "이어폰",
+                                        "price": "8000",
+                                        "amount": "4",
+                                        "totalAmount": "32000"
+                                    },
+                                    {
+                                        "context": "콜라",
+                                        "price": "5000",
+                                        "amount": "5",
+                                        "totalAmount": "25000",
+                                    },
+                                    {
+                                        "context": "물",
+                                        "price": "4000",
+                                        "amount": "7",
+                                        "totalAmount": "28000"
+                                    },
+                                    {
+                                        "context": "프라이팬",
+                                        "price": "3000",
+                                        "amount": "6",
+                                        "totalAmount": "36000"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "eventNumber": "3",
+                        "eventTitle": "학과 OT2",
+                        "eventContext": "학과 OT2를 진행하였습니다.",
+                        "receiptList": [
+                            {
+                                "receiptTitle": "학과 OT2 영수증1",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "학과 OT2 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "돈까스",
+                                        "price": "3000",
+                                        "amount": "1",
+                                        "totalAmount": "3000"
+                                    },
+                                    {
+                                        "context": "대선",
+                                        "price": "2000",
+                                        "amount": "2",
+                                        "totalAmount": "4000"
+                                    },
+                                    {
+                                        "context": "갈비",
+                                        "price": "4000",
+                                        "amount": "5",
+                                        "totalAmount": "20000"
+                                    },
+                                    {
+                                        "context": "참이슬",
+                                        "price": "5000",
+                                        "amount": "6",
+                                        "totalAmount": "30000"
+                                    },
+                                    {
+                                        "context": "초콜렛",
+                                        "price": "1000",
+                                        "amount": "7",
+                                        "totalAmount": "7000"
 
-    //                                 },
-    //                                 {
-    //                                     "context": "지우개",
-    //                                     "price": "2000",
-    //                                     "amount": "8",
-    //                                     "totalAmount": "16000"
-    //                                 },
-    //                                 {
-    //                                     "context": "연필",
-    //                                     "price": "3000",
-    //                                     "amount": "9",
-    //                                     "totalAmount": "27000"
-    //                                 }
-    //                             ]
-    //                         },
-    //                         {
-    //                             "receiptTitle": "학과 OT2 영수증2",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "학과 OT2 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "갈비",
-    //                                     "price": "4000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "4000"
+                                    },
+                                    {
+                                        "context": "지우개",
+                                        "price": "2000",
+                                        "amount": "8",
+                                        "totalAmount": "16000"
+                                    },
+                                    {
+                                        "context": "연필",
+                                        "price": "3000",
+                                        "amount": "9",
+                                        "totalAmount": "27000"
+                                    }
+                                ]
+                            },
+                            {
+                                "receiptTitle": "학과 OT2 영수증2",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "학과 OT2 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "갈비",
+                                        "price": "4000",
+                                        "amount": "1",
+                                        "totalAmount": "4000"
 
-    //                                 },
-    //                                 {
-    //                                     "context": "돈까스",
-    //                                     "price": "5000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "10000"
-    //                                 },
-    //                                 {
-    //                                     "context": "휴지",
-    //                                     "price": "2000",
-    //                                     "amount": "3",
-    //                                     "totalAmount": "6000"
-    //                                 },
-    //                                 {
-    //                                     "context": "컵",
-    //                                     "price": "4000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "8000"
-    //                                 },
-    //                                 {
-    //                                     "context": "콜라",
-    //                                     "price": "1000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "1000"
-    //                                 },
-    //                                 {
-    //                                     "context": "바구니",
-    //                                     "price": "1000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "2000"
-    //                                 }
-    //                             ]
-    //                         }
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "4",
-    //                     "eventTitle": "새내기배움터",
-    //                     "eventContext": "새내기배움터를 진행하였습니다.",
-    //                     "receiptList": [
-    //                         {
-    //                             "receiptTitle": "새내기배움터 영수증 1",
-    //                             "receiptImg": { name: "./static/receiptImg/test2.png" },
-    //                             "receiptContext": "새내기배움터 OT 영수증입니다.",
-    //                             "receiptDetailList": [
-    //                                 {
-    //                                     "context": "이어폰",
-    //                                     "price": "5000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "5000"
-    //                                 },
-    //                                 {
-    //                                     "context": "콜라",
-    //                                     "price": "4000",
-    //                                     "amount": "2",
-    //                                     "totalAmount": "8000"
-    //                                 },
-    //                                 {
-    //                                     "context": "물",
-    //                                     "price": "3000",
-    //                                     "amount": "1",
-    //                                     "totalAmount": "3000"
-    //                                 }
-    //                             ]
-    //                         }
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "5",
-    //                     "eventTitle": "벚꽃축제1",
-    //                     "eventContext": "벚꽃축제1를 진행하였습니다.",
-    //                     "receiptList": [
+                                    },
+                                    {
+                                        "context": "돈까스",
+                                        "price": "5000",
+                                        "amount": "2",
+                                        "totalAmount": "10000"
+                                    },
+                                    {
+                                        "context": "휴지",
+                                        "price": "2000",
+                                        "amount": "3",
+                                        "totalAmount": "6000"
+                                    },
+                                    {
+                                        "context": "컵",
+                                        "price": "4000",
+                                        "amount": "2",
+                                        "totalAmount": "8000"
+                                    },
+                                    {
+                                        "context": "콜라",
+                                        "price": "1000",
+                                        "amount": "1",
+                                        "totalAmount": "1000"
+                                    },
+                                    {
+                                        "context": "바구니",
+                                        "price": "1000",
+                                        "amount": "2",
+                                        "totalAmount": "2000"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "eventNumber": "4",
+                        "eventTitle": "새내기배움터",
+                        "eventContext": "새내기배움터를 진행하였습니다.",
+                        "receiptList": [
+                            {
+                                "receiptTitle": "새내기배움터 영수증 1",
+                                "receiptImg": { name: "./static/receiptImg/test2.png" },
+                                "receiptContext": "새내기배움터 OT 영수증입니다.",
+                                "receiptDetailList": [
+                                    {
+                                        "context": "이어폰",
+                                        "price": "5000",
+                                        "amount": "1",
+                                        "totalAmount": "5000"
+                                    },
+                                    {
+                                        "context": "콜라",
+                                        "price": "4000",
+                                        "amount": "2",
+                                        "totalAmount": "8000"
+                                    },
+                                    {
+                                        "context": "물",
+                                        "price": "3000",
+                                        "amount": "1",
+                                        "totalAmount": "3000"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "eventNumber": "5",
+                        "eventTitle": "벚꽃축제1",
+                        "eventContext": "벚꽃축제1를 진행하였습니다.",
+                        "receiptList": [
 
-    //                     ]
-    //                 }
-    //             ]
-    //         },
-    //         "quarter2": {
-    //             "status": "true",
-    //             "eventList": [
-    //                 {
-    //                     "eventNumber": "6",
-    //                     "eventTitle": "공개일 O",
-    //                     "eventContext": "데이타 O",
-    //                     "receiptList": [
+                        ]
+                    }
+                ]
+            },
+            "quarter2": {
+                "status": "true",
+                "eventList": [
+                    {
+                        "eventNumber": "6",
+                        "eventTitle": "공개일 O",
+                        "eventContext": "데이타 O",
+                        "receiptList": [
 
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "7",
-    //                     "eventTitle": "우리학과 OT",
-    //                     "eventContext": "OT를 완료하였습니다.",
-    //                     "receiptList": [
+                        ]
+                    },
+                    {
+                        "eventNumber": "7",
+                        "eventTitle": "우리학과 OT",
+                        "eventContext": "OT를 완료하였습니다.",
+                        "receiptList": [
 
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "8",
-    //                     "eventTitle": "MT 영수증",
-    //                     "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
-    //                     "receiptList": [
+                        ]
+                    },
+                    {
+                        "eventNumber": "8",
+                        "eventTitle": "MT 영수증",
+                        "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
+                        "receiptList": [
 
-    //                     ]
-    //                 },
-    //                 {
-    //                     "eventNumber": "9",
-    //                     "eventTitle": "MT 영수증2",
-    //                     "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
-    //                     "receiptList": [
+                        ]
+                    },
+                    {
+                        "eventNumber": "9",
+                        "eventTitle": "MT 영수증2",
+                        "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
+                        "receiptList": [
 
-    //                     ]
-    //                 }
-    //             ]
-    //         },
-    //         "quarter3": {
-    //             "status": "true"
-    //         },
-    //         "quarter4": {
-    //             "status": "false"
-    //         }
-    //     }
-    // }
+                        ]
+                    }
+                ]
+            },
+            "quarter3": {
+                "status": "true"
+            },
+            "quarter4": {
+                "status": "false"
+            }
+        }
+    }
 
     let answerDate = {
         "quarter1": ["2022-01-01", "2022-01-02"],
@@ -378,6 +377,7 @@ function MainPage(props) {
     const [currentQuarter, setCurrentQuarter] = useState(props.todayQuarter);
     const [showAllReceiptButton, setShowAllReceiptButton] = useState([]);
     const [editProfileState, setEditProfileState] = useState(false);
+    const [editEventState, setEditEventState] = useState(false);
 
     const [major, setMajor] = useState();
     const [majorList, setMajorList] = useState();
@@ -463,22 +463,23 @@ function MainPage(props) {
         }
     }
 
-    function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard) {
+    function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
         document.documentElement.style.setProperty("--color-quarter", colorQuarter);
         document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
         document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
         document.documentElement.style.setProperty("--color-card", colorCard);
+        document.documentElement.style.setProperty("--color-background", colorBackground);
     }
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed");
+            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fff5f5");
         } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df");
+            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f3f9f3");
         } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed");
+            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
         } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb");
+            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
         }
     }
 
@@ -667,6 +668,18 @@ function MainPage(props) {
         setQuarter(tempQuarter);
     }
 
+    function changeReceiptTitle(value, i) {
+        var tempQuarter = { ...quarter };
+        tempQuarter[currentQuarter]["eventList"][i].receiptTitle = value;
+        setQuarter(tempQuarter);
+    }
+
+    function changeReceiptContext(value, i) {
+        var tempQuarter = { ...quarter };
+        tempQuarter[currentQuarter]["eventList"][i].receiptContext = value;
+        setQuarter(tempQuarter);
+    }
+
     function changeItem(key, value, i, j, k) {
         console.log("changeItem");
         var tempQuarter = { ...quarter };
@@ -758,6 +771,7 @@ function MainPage(props) {
                             // <EditProfile editProfileState={editProfileState} loginPosition={"president"} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
+
                         {
                             quarter === undefined
                                 ? null
@@ -809,7 +823,7 @@ function MainPage(props) {
                                                         )
                                                         : null
                                                 }
-                                                <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부 확인</button>
+                                                <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
                                                 <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                 <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                             </div>
@@ -826,7 +840,7 @@ function MainPage(props) {
                                                         ? <div>입력된 행사가 없습니다.</div>
                                                         : (quarter[currentQuarter]["eventList"].map((event, i) => {
                                                             return (
-                                                                <div className="eventCard" >
+                                                                <div className="eventCard" key={i} >
                                                                     <div className="cardContent">
                                                                         <div className="eventSource">
 
@@ -850,22 +864,7 @@ function MainPage(props) {
                                                                                     </h4>
                                                                                     <div>행사 총 금액 : {eventAmount[i]}원</div>
                                                                                 </div>
-                                                                                <div>
-                                                                                    {
-                                                                                        fixEventButton[i]
-                                                                                            ?
-                                                                                            <input type="text" style={{ border: "transparent", textAlign: "left" }} placeholder={event["eventContext"]}
-                                                                                                onInput={
-                                                                                                    (e) => {
-                                                                                                        changeEventContext(e.target.value, i);
-                                                                                                    }}></input>
-                                                                                            :
-                                                                                            <>{event["eventContext"]}</>
-                                                                                    }
 
-
-
-                                                                                </div>
                                                                             </div>
 
 
@@ -909,6 +908,23 @@ function MainPage(props) {
                                                                             </div>
                                                                         </div>
 
+                                                                        <div>
+                                                                            {
+                                                                                fixEventButton[i]
+                                                                                    ?
+                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }} placeholder={event["eventContext"]}
+                                                                                        onInput={
+                                                                                            (e) => {
+                                                                                                changeEventContext(e.target.value, i);
+                                                                                            }}></input>
+                                                                                    :
+                                                                                    <>{event["eventContext"]}</>
+                                                                            }
+
+
+
+                                                                        </div>
+
                                                                         {
                                                                             showAllReceiptButton[i] === false
                                                                                 ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
@@ -923,14 +939,25 @@ function MainPage(props) {
 
                                                                                                         <div className="receiptTitle">
                                                                                                             <h5>
-                                                                                                                {event["receiptList"][0]["receiptTitle"]}
                                                                                                                 {
                                                                                                                     fixEventButton[i]
-                                                                                                                        ? <span onClick={() => {
+                                                                                                                        ?
+                                                                                                                        <>
+                                                                                                                            <span onClick={() => { receiptDeleteButton(i, 0); }}>
+                                                                                                                                <i className="far fa-trash-alt"></i>
+                                                                                                                            </span>
+                                                                                                                            <input type="text" style={{ border: "transparent", textAlign: "left", width: "160px" }} placeholder={event["receiptList"][0]["receiptTitle"]}
+                                                                                                                                onInput={
+                                                                                                                                    (e) => {
+                                                                                                                                        changeReceiptTitle(e.target.value, i);
+                                                                                                                                    }}></input>
 
-                                                                                                                            receiptDeleteButton(i, 0);
-                                                                                                                        }}><i className="far fa-trash-alt"></i></span>
-                                                                                                                        : null
+                                                                                                                        </>
+
+                                                                                                                        :
+                                                                                                                        <>
+                                                                                                                            {event["receiptList"][0]["receiptTitle"]}
+                                                                                                                        </>
                                                                                                                 }
 
                                                                                                             </h5>
@@ -939,12 +966,31 @@ function MainPage(props) {
                                                                                                                     ? null
                                                                                                                     : (<div>
                                                                                                                         1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
-
                                                                                                                     </div>)
                                                                                                             }
+
+
                                                                                                         </div>
 
-                                                                                                        <div>{event["receiptList"][0]["receiptContext"]}</div>
+
+                                                                                                        {fixEventButton[i]
+                                                                                                            ? <>
+                                                                                                                <div>
+
+
+                                                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "360px" }} placeholder={event["receiptList"][0]["receiptContext"]}
+                                                                                                                        onInput={
+                                                                                                                            (e) => {
+                                                                                                                                changeReceiptContext(e.target.value, i);
+                                                                                                                            }}>
+                                                                                                                    </input>
+                                                                                                                </div>
+
+                                                                                                            </>
+                                                                                                            :
+                                                                                                            <div>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                        }
+
 
 
 
@@ -962,7 +1008,7 @@ function MainPage(props) {
                                                                                                                     <tbody>
                                                                                                                         {event["receiptList"][0]["receiptDetailList"].map((item, k) => {
                                                                                                                             return (
-                                                                                                                                <tr>
+                                                                                                                                <tr key={k}>
                                                                                                                                     <td>
                                                                                                                                         {
                                                                                                                                             fixEventButton[i]
@@ -1070,7 +1116,7 @@ function MainPage(props) {
                                                                                     {
                                                                                         event["receiptList"].map((receipt, j) => {
                                                                                             return (
-                                                                                                <div className="receiptCard">
+                                                                                                <div className="receiptCard" key={j}>
                                                                                                     <div className="receiptResource">
                                                                                                         {
                                                                                                             event["receiptList"].length === 0
@@ -1081,20 +1127,20 @@ function MainPage(props) {
                                                                                                                             {
                                                                                                                                 fixEventButton[i]
                                                                                                                                     ? <span onClick={() => {
-
                                                                                                                                         receiptDeleteButton(i, j);
                                                                                                                                     }}><i class="far fa-trash-alt"></i></span>
                                                                                                                                     : null
                                                                                                                             }
                                                                                                                         </h5>
-
                                                                                                                         {
                                                                                                                             receipt["receiptDetailList"].length === 0
                                                                                                                                 ? null
                                                                                                                                 : <div>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                                                                         }
 
+
                                                                                                                     </div>
+
                                                                                                                     <div>{receipt["receiptContext"]}</div>
                                                                                                                     {
                                                                                                                         receipt["receiptDetailList"].length === 0
@@ -1112,7 +1158,7 @@ function MainPage(props) {
                                                                                                                                     <tbody>
                                                                                                                                         {receipt["receiptDetailList"].map((item, k) => {
                                                                                                                                             return (
-                                                                                                                                                <tr>
+                                                                                                                                                <tr key={k}>
                                                                                                                                                     <td>
                                                                                                                                                         {
                                                                                                                                                             fixEventButton[i]
@@ -1202,8 +1248,8 @@ function MainPage(props) {
                                                                                                                     <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                                                                         alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} title='변경하시려면 클릭하세요.' />
                                                                                                                 </label>
-                                                                                                                {/* <input type="file" id="receiptImg" accept="image/*"
-                                                                                                                    onChange={(e) => { uploadImg(e.target.files[0], i, j); console.log("hi:" + i + " " + j) }} style={{ display: "none" }}></input> */}
+                                                                                                                <input type="file" id="receiptImg" accept="image/*"
+                                                                                                                    onChange={(e) => { uploadImg(e.target.files[0], i, j); console.log("hi:" + i + " " + j) }} style={{ display: "none" }}></input>
                                                                                                             </div>
 
                                                                                                             : <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
@@ -1245,6 +1291,7 @@ function MainPage(props) {
                                                 <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
                                                     <button className="editButton" onClick={() => {
                                                         eventAddButton(currentQuarter);
+                                                        setEditEventState(true);
                                                     }} > 행사 추가 </button>
                                                 </div>
 
@@ -1256,7 +1303,7 @@ function MainPage(props) {
                                             <div className="remotePanel">
                                                 <div className="remotePanelBox" style={{ display: "flex" }}>
                                                     <div>
-                                                        <h5 style={{ textAlign: "center", marginBottom: "5px" }}>📚행사 목록📚</h5>
+                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚행사 목록📚</h5>
                                                         <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 변경할 수 있습니다.</p>
 
                                                         {

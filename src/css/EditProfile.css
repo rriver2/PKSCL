@@ -32,10 +32,11 @@
     margin-right: 15px;
 }
 
+
 .boxTitle {
     width: 70%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: baseline;
 }
 
@@ -68,12 +69,14 @@
 }
 
 .inputField [type=password] {
-    font-family: 'Malgun gothic', dotum, sans-serif;
+    /* font-family: 'Malgun gothic', dotum, sans-serif; */
+    font-family: "Work Sans";
+
 }
 
 .inputField label {
     margin-right: 10px;
-    width: 60px;
+    width: 80px;
     text-align: left;
 }
 
@@ -119,5 +122,3 @@ input:required {
     cursor: pointer;
     transition: 0.5s;
 }
-
-.black-bg {}

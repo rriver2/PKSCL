@@ -22,7 +22,8 @@ function MainPage(props) {
             "major": "국어국문학과",
             "name": "홍길동",
             "phoneNumber": "01012345678",
-            "email": "PKSCL@pukyon.ac.kr"
+            "email": "PKSCL@pukyon.ac.kr",
+            "majorLogo": majorlogo
         },
         "quarter": {
             "quarter1": {
@@ -377,7 +378,7 @@ function MainPage(props) {
 
     const [searchButton, setSearchButton] = useState("search");
 
-    const [chatbot,setChatbot] = useState(true);
+    const [chatbot, setChatbot] = useState(true);
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -458,22 +459,23 @@ function MainPage(props) {
         }
     }
 
-    function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard) {
+    function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
         document.documentElement.style.setProperty("--color-quarter", colorQuarter);
         document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
         document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
         document.documentElement.style.setProperty("--color-card", colorCard);
+        document.documentElement.style.setProperty("--color-background", colorBackground);
     }
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed");
+            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fff5f5");
         } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df");
+            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f3f9f3");
         } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed");
+            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
         } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb");
+            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
         }
     }
 
@@ -484,7 +486,7 @@ function MainPage(props) {
             }).catch((error) => {
                 console.log("error: " + error.response.status);
                 // 빼기
-                 history.push('/');
+                history.push('/');
             })
     }
 
@@ -512,7 +514,7 @@ function MainPage(props) {
                     <datalist id="majorList-options" >
                         {
                             majorList.map((majorName, i) => {
-                                if( i !== 0){
+                                if (i !== 0) {
                                     return (
                                         <option value={majorName} key={i} ></option>
                                     )
@@ -594,16 +596,16 @@ function MainPage(props) {
     }
 
     function getExPKSCL() {
-         axios.get(debugAPIURL + '/0')
-                    .then((payload)=>{
-                        setStudentPresident({ ...payload.data["studentPresident"] });
-                        setQuarter({ ...payload.data["quarter"] });
-                        // reset(props.todayQuarter);
-                        // defineColor(props.todayQuarter);
-                    })
-                    .catch((error)=>{
-                        alert("임시 장부를 불러올 수 없습니다.");
-                    })
+        axios.get(debugAPIURL + '/0')
+            .then((payload) => {
+                setStudentPresident({ ...payload.data["studentPresident"] });
+                setQuarter({ ...payload.data["quarter"] });
+                // reset(props.todayQuarter);
+                // defineColor(props.todayQuarter);
+            })
+            .catch((error) => {
+                alert("임시 장부를 불러올 수 없습니다.");
+            })
     }
 
     useEffect(() => {
@@ -656,24 +658,24 @@ function MainPage(props) {
                     alert("학과 장부를 불러올 수 없습니다.");
 
                     axios.get('/status')
-                    .then((payload)=>{
-                        if(payload["status"]==="refusal") {
-                            alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
-                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
-                        }
-                        else if(payload["status"]==="waiting") {
-                            alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
-                        }
-                        else if(payload["status"]==="approval") {
-                            alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
-                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
-                        }
-                    })
-                    .catch((error)=>{
-                        alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
-                    })
-                   getExPKSCL();
+                        .then((payload) => {
+                            if (payload["status"] === "refusal") {
+                                alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.location("http://pf.kakao.com/_hxnlXb")
+                            }
+                            else if (payload["status"] === "waiting") {
+                                alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.location("http://pf.kakao.com/_hxnlXb")
+                            }
+                            else if (payload["status"] === "approval") {
+                                alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.location("http://pf.kakao.com/_hxnlXb")
+                            }
+                        })
+                        .catch((error) => {
+                            alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                        })
+                    getExPKSCL();
                     //뒤에 삭제하기
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
@@ -683,7 +685,7 @@ function MainPage(props) {
 
             reset(props.todayQuarter);
             defineColor(props.todayQuarter);
-        }else if (props.loginPosition === "student") {
+        } else if (props.loginPosition === "student") {
             axios.get(debugAPIURL + '/ledger')
                 .then((payload) => {
                     setStudentPresident({ ...payload.data["studentPresident"] });
@@ -696,19 +698,19 @@ function MainPage(props) {
                     alert("학과 장부를 불러올 수 없습니다.");
 
                     axios.get('/status')
-                    .then((payload)=>{
-                        if(payload["status"]==="refusal") {
-                            alert("사용자(학생)는 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
-                        }
-                        else if(payload["status"]==="waiting") alert("사용자(학생)는 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
-                        else if(payload["status"]==="approval") {
-                            alert("사용자(학생)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
-                            if (window.confirm('챗봇으로 이동하시겠습니까?'))window.location("http://pf.kakao.com/_hxnlXb")
-                        }
-                    })
-                    .catch((error)=>{
-                        alert("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
-                    })
+                        .then((payload) => {
+                            if (payload["status"] === "refusal") {
+                                alert("사용자(학생)는 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                            }
+                            else if (payload["status"] === "waiting") alert("사용자(학생)는 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                            else if (payload["status"] === "approval") {
+                                alert("사용자(학생)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.location("http://pf.kakao.com/_hxnlXb")
+                            }
+                        })
+                        .catch((error) => {
+                            alert("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                        })
                     getExPKSCL();
                     //뒤에 삭제하기
                     setStudentPresident({ ...answer["studentPresident"] });
@@ -765,7 +767,7 @@ function MainPage(props) {
                                 <div className="presidentCard">
                                     <h2>{studentPresident["major"]}</h2>
                                     <p> 온라인 장부 입니다. </p>
-                                    <img src={majorlogo} alt="majorlogo" height={"150"} width={"10"} />
+                                    <img src={studentPresident["majorLogo"]} alt="majorLogo" height={"150"} width={"10"} />
                                     <h3>{studentPresident["name"]}</h3>
                                     <p>{studentPresident["phoneNumber"]}</p>
                                     <p>{studentPresident["email"]}</p>
@@ -810,10 +812,10 @@ function MainPage(props) {
                                             ? (<><div style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
                                                 <button className='submitButton' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
                                             </>)
-                                            : null
+                                            : (<><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>)
                                     }
-                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
-                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+
                                 </div>
                             </div>
                             {
