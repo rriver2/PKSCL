@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import log from './img/log.svg';
+import log from './img/log.png';
 import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -272,13 +272,14 @@ function AccessPage(props) {
 
       <div className="left-panel">
         <div className="content">
-          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
+          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
+              <h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
         </div>
         <img src={log} className="image" alt="" />
-        <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }} style={{ height: "10px", width: "20px", backgroundColor: "red" }}></button>
+        <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }} style={{ height: "10px", width: "20px", boxShadow: "1px 1px 5px 0px var(--color-quarterCircle)" }}></button>
       </div>
       <Switch>
 

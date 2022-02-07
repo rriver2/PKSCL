@@ -25,339 +25,8 @@ function MainPage(props) {
     const history = useHistory();
     const el = useRef();
 
-    let answer = {
-        "studentPresident": {
-            "major": "국어국문학과",
-            "name": "홍길동",
-            "phoneNumber": "01012345678",
-            "email": "PKSCL@pukyon.ac.kr"
-        },
-        "quarter": {
-            "quarter1": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "1",
-                        "eventTitle": "임시데이터 입니다.",
-                        "eventContext": "데이타 O",
-                        "receiptList": [
-
-                        ]
-                    },
-                    {
-                        "eventNumber": "2",
-                        "eventTitle": "학과 OT",
-                        "eventContext": "학과 OT를 진행하였습니다.",
-                        "receiptList": [
-                            {
-                                "receiptTitle": "학과 OT 영수증1",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "학과 OT 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "돈까스",
-                                        "price": "2000",
-                                        "amount": "1",
-                                        "totalAmount": "2000"
-                                    },
-                                    {
-                                        "context": "대선",
-                                        "price": "3000",
-                                        "amount": "2",
-                                        "totalAmount": "6000"
-                                    },
-                                    {
-                                        "context": "참이슬",
-                                        "price": "1000",
-                                        "amount": "1",
-                                        "totalAmount": "1000"
-                                    },
-                                    {
-                                        "context": "초콜렛",
-                                        "price": "1000",
-                                        "amount": "5",
-                                        "totalAmount": "5000"
-                                    }
-                                ]
-                            },
-                            {
-                                "receiptTitle": "학과 OT 영수증2",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "학과 OT 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "갈비",
-                                        "price": "2000",
-                                        "amount": "2",
-                                        "totalAmount": "4000"
-                                    },
-                                    {
-                                        "context": "과자",
-                                        "price": "3000",
-                                        "amount": "1",
-                                        "totalAmount": "3000"
-                                    },
-                                    {
-                                        "context": "지우개",
-                                        "price": "1000",
-                                        "amount": "3",
-                                        "totalAmount": "3000"
-                                    },
-                                    {
-                                        "context": "연필",
-                                        "price": "1000",
-                                        "amount": "5",
-                                        "totalAmount": "5000"
-
-                                    }
-                                ]
-                            },
-                            {
-                                "receiptTitle": "학과 OT 영수증3",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "학과 OT 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "컵",
-                                        "price": "2000",
-                                        "amount": "1",
-                                        "totalAmount": "2000"
-                                    },
-                                    {
-                                        "context": "휴지",
-                                        "price": "5000",
-                                        "amount": "2",
-                                        "totalAmount": "10000"
-                                    },
-                                    {
-                                        "context": "책",
-                                        "price": "6000",
-                                        "amount": "2",
-                                        "totalAmount": "12000"
-                                    },
-                                    {
-                                        "context": "바구니",
-                                        "price": "7000",
-                                        "amount": "3",
-                                        "totalAmount": "21000"
-                                    },
-                                    {
-                                        "context": "이어폰",
-                                        "price": "8000",
-                                        "amount": "4",
-                                        "totalAmount": "32000"
-                                    },
-                                    {
-                                        "context": "콜라",
-                                        "price": "5000",
-                                        "amount": "5",
-                                        "totalAmount": "25000",
-                                    },
-                                    {
-                                        "context": "물",
-                                        "price": "4000",
-                                        "amount": "7",
-                                        "totalAmount": "28000"
-                                    },
-                                    {
-                                        "context": "프라이팬",
-                                        "price": "3000",
-                                        "amount": "6",
-                                        "totalAmount": "36000"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "eventNumber": "3",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT2를 진행하였습니다.",
-                        "receiptList": [
-                            {
-                                "receiptTitle": "학과 OT2 영수증1",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "학과 OT2 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "돈까스",
-                                        "price": "3000",
-                                        "amount": "1",
-                                        "totalAmount": "3000"
-                                    },
-                                    {
-                                        "context": "대선",
-                                        "price": "2000",
-                                        "amount": "2",
-                                        "totalAmount": "4000"
-                                    },
-                                    {
-                                        "context": "갈비",
-                                        "price": "4000",
-                                        "amount": "5",
-                                        "totalAmount": "20000"
-                                    },
-                                    {
-                                        "context": "참이슬",
-                                        "price": "5000",
-                                        "amount": "6",
-                                        "totalAmount": "30000"
-                                    },
-                                    {
-                                        "context": "초콜렛",
-                                        "price": "1000",
-                                        "amount": "7",
-                                        "totalAmount": "7000"
-
-                                    },
-                                    {
-                                        "context": "지우개",
-                                        "price": "2000",
-                                        "amount": "8",
-                                        "totalAmount": "16000"
-                                    },
-                                    {
-                                        "context": "연필",
-                                        "price": "3000",
-                                        "amount": "9",
-                                        "totalAmount": "27000"
-                                    }
-                                ]
-                            },
-                            {
-                                "receiptTitle": "학과 OT2 영수증2",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "학과 OT2 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "갈비",
-                                        "price": "4000",
-                                        "amount": "1",
-                                        "totalAmount": "4000"
-
-                                    },
-                                    {
-                                        "context": "돈까스",
-                                        "price": "5000",
-                                        "amount": "2",
-                                        "totalAmount": "10000"
-                                    },
-                                    {
-                                        "context": "휴지",
-                                        "price": "2000",
-                                        "amount": "3",
-                                        "totalAmount": "6000"
-                                    },
-                                    {
-                                        "context": "컵",
-                                        "price": "4000",
-                                        "amount": "2",
-                                        "totalAmount": "8000"
-                                    },
-                                    {
-                                        "context": "콜라",
-                                        "price": "1000",
-                                        "amount": "1",
-                                        "totalAmount": "1000"
-                                    },
-                                    {
-                                        "context": "바구니",
-                                        "price": "1000",
-                                        "amount": "2",
-                                        "totalAmount": "2000"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "eventNumber": "4",
-                        "eventTitle": "새내기배움터",
-                        "eventContext": "새내기배움터를 진행하였습니다.",
-                        "receiptList": [
-                            {
-                                "receiptTitle": "새내기배움터 영수증 1",
-                                "receiptImg": { name: "./static/receiptImg/test2.png" },
-                                "receiptContext": "새내기배움터 OT 영수증입니다.",
-                                "receiptDetailList": [
-                                    {
-                                        "context": "이어폰",
-                                        "price": "5000",
-                                        "amount": "1",
-                                        "totalAmount": "5000"
-                                    },
-                                    {
-                                        "context": "콜라",
-                                        "price": "4000",
-                                        "amount": "2",
-                                        "totalAmount": "8000"
-                                    },
-                                    {
-                                        "context": "물",
-                                        "price": "3000",
-                                        "amount": "1",
-                                        "totalAmount": "3000"
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "eventNumber": "5",
-                        "eventTitle": "벚꽃축제1",
-                        "eventContext": "벚꽃축제1를 진행하였습니다.",
-                        "receiptList": [
-
-                        ]
-                    }
-                ]
-            },
-            "quarter2": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "6",
-                        "eventTitle": "공개일 O",
-                        "eventContext": "데이타 O",
-                        "receiptList": [
-
-                        ]
-                    },
-                    {
-                        "eventNumber": "7",
-                        "eventTitle": "우리학과 OT",
-                        "eventContext": "OT를 완료하였습니다.",
-                        "receiptList": [
-
-                        ]
-                    },
-                    {
-                        "eventNumber": "8",
-                        "eventTitle": "MT 영수증",
-                        "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
-                        "receiptList": [
-
-                        ]
-                    },
-                    {
-                        "eventNumber": "9",
-                        "eventTitle": "MT 영수증2",
-                        "eventContext": "MT를 진행하였습니다. 큰 사건사고 없이 잘 마무리하였습니다 !",
-                        "receiptList": [
-
-                        ]
-                    }
-                ]
-            },
-            "quarter3": {
-                "status": "true"
-            },
-            "quarter4": {
-                "status": "false"
-            }
-        }
-    }
-
+    let answer = {"studentPresident":{"major":"영어영문학부","name":"한준규","phoneNumber":"010-3340-6496","email":"hellllo3627@pukyong.ac.kr","majorLogo":null},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"12","eventTitle":"학과 OT2","eventContext":"학과 OT를 잘 마무리 하였습니다.","receiptList":[{"receiptNumber":"9","receiptTitle":"학과 OT2 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 OT2 영수증 1번입니다. ","receiptDetailList":[{"context":"참이슬","price":"1000","amount":"2","totalAmount":"2000"},{"context":"프라이팬","price":"2000","amount":"5","totalAmount":"10000"},{"context":"돈까스","price":"2500","amount":"6","totalAmount":"15000"}]},{"receiptNumber":"10","receiptTitle":"학과 OT2 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 OT2 영수증 1번입니다. ","receiptDetailList":[{"context":"대선","price":"1500","amount":"1","totalAmount":"1500"},{"context":"갈비","price":"2500","amount":"4","totalAmount":"10000"},{"context":"참이슬","price":"3500","amount":"1","totalAmount":"3500"},{"context":"초콜렛","price":"5000","amount":"2","totalAmount":"10000"},{"context":"연필","price":"2000","amount":"2","totalAmount":"4000"}]}]},{"eventNumber":"13","eventTitle":"학과 새내기배움터 진행","eventContext":"학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.","receiptList":[{"receiptNumber":"11","receiptTitle":"학과 새내기배움터 진행 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 새내기배움터 진행 영수증1","receiptDetailList":[{"context":"갈비","price":"2731","amount":"1","totalAmount":"2731"},{"context":"콜라","price":"2731","amount":"3","totalAmount":"8193"},{"context":"바구니","price":"2731","amount":"2","totalAmount":"5462"},{"context":"참이슬","price":"2731","amount":"5","totalAmount":"13655"}]},{"receiptNumber":"12","receiptTitle":"학과 새내기배움터 진행 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 새내기배움터 진행 영수증1","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"컵","price":"2731","amount":"2","totalAmount":"5462"},{"context":"바구니","price":"2731","amount":"3","totalAmount":"8193"},{"context":"이어폰","price":"2731","amount":"5","totalAmount":"13655"}]}]},{"eventNumber":"14","eventTitle":"빛 축제","eventContext":"빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.","receiptList":[{"receiptNumber":"13","receiptTitle":"빛 축제 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"빛 축제 영수증 1 영수증입니다.","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"과자","price":"2731","amount":"2","totalAmount":"5462"}]},{"receiptNumber":"14","receiptTitle":"빛 축제 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"빛 축제 영수증 1 영수증입니다.","receiptDetailList":[{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"},{"context":"휴지","price":"2731","amount":"4","totalAmount":"10924"},{"context":"참이슬","price":"2731","amount":"4","totalAmount":"10924"}]}]}]},"quarter2":{"status":"true","eventList":[{"eventNumber":"18","eventTitle":"기말고사 응원전","eventContext":"기말고사 응원전을 진행하였습니다.","receiptList":[{"receiptNumber":"19","receiptTitle":"기말고사 응원전 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"기말고사 응원전 영수증 1번","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"}]}]},{"eventNumber":"19","eventTitle":"기말고사 응원전2","eventContext":"학생회비가 남게되어 기말고사응원전을 한번 더 진행하였습니다.","receiptList":[{"receiptNumber":"20","receiptTitle":"기말고사 응원전 재영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"기말고사 응원전 재영수증 1번","receiptDetailList":[{"context":"돈까스","price":"2731","amount":"1","totalAmount":"2731"},{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"}]}]}]},"quarter3":{"status":"false","eventList":[{"eventNumber":"20","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"21","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"갈비","price":"2731","amount":"2","totalAmount":"5462"},{"context":"연필","price":"2731","amount":"3","totalAmount":"8193"}]}]},{"eventNumber":"21","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"22","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"프라이팬","price":"2731","amount":"4","totalAmount":"10924"},{"context":"갈비","price":"2731","amount":"5","totalAmount":"13655"}]}]}]},"quarter4":{"status":"false","eventList":[{"eventNumber":"22","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"23","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"바구니","price":"2731","amount":"1","totalAmount":"2731"},{"context":"대선","price":"2731","amount":"2","totalAmount":"5462"}]}]},{"eventNumber":"23","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"24","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"바구니","price":"2731","amount":"2","totalAmount":"5462"},{"context":"과자","price":"2731","amount":"2","totalAmount":"5462"}]}]}]}}}
+    
     let answerDate = {
         "quarter1": ["2022-01-01", "2022-01-02"],
         "quarter2": ["2022-01-03", "2022-01-04"],
@@ -397,9 +66,11 @@ function MainPage(props) {
 
     function reset(quarterData) {
         if (quarter !== undefined) {
-            CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
-            setList(quarter[quarterData]["eventList"]);
-            // resetShowAllReceiptButton();
+            if (quarter[quarterData]["eventList"] !== undefined) {
+                CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
+                setList(quarter[quarterData]["eventList"]);
+                // resetShowAllReceiptButton();
+            }
         }
         else {
             console.log("quarter === undefined");
@@ -504,7 +175,7 @@ function MainPage(props) {
             })
     }
 
-    function eventDelectButton(eventNumber, index) {
+    function eventDeleteButton(eventNumber, index) {
         let answer = window.confirm("삭제하면 되돌릴 수 없습니다.");
         if (answer) {
             // alert("삭제 API추가해야함" + eventNumber);
@@ -519,11 +190,12 @@ function MainPage(props) {
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
-                            setQuarter(tempQuarter);
+                            loadLedger();
                             alert("행사 장부가 삭제되었습니다.");
                             break;
                     }
                 }).catch((error) => {
+                    
                     alert("장부를 삭제하는데 실패했습니다.");
                 })
         } else {
@@ -548,10 +220,13 @@ function MainPage(props) {
                 switch (payload.status) {
                     case 200:
                         alert("장부를 수정하였습니다.");
+                        loadLedger();
                         break;
                     default:
                         alert("success code: " + payload.status);
+                        loadLedger();
                         break;
+                    
                 }
             })
             .catch((error) => {
@@ -694,12 +369,8 @@ function MainPage(props) {
         // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
-
-
-
-    useEffect(() => {
+    function loadLedger() {
         let resetArray = [];
-
         axios.get(debugAPIURL + '/ledger')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
@@ -711,11 +382,12 @@ function MainPage(props) {
                     }
                 }
 
-                // reset(props.todayQuarter);
-                // defineColor(props.todayQuarter);
+                reset(props.todayQuarter);
+                defineColor(props.todayQuarter);
             })
             .catch((error) => {
                 alert("학과 장부를 불러올 수 없습니다.");
+                //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });
                 setList(answer["quarter"][currentQuarter]["eventList"]);
@@ -727,24 +399,38 @@ function MainPage(props) {
 
                 console.log(resetArray);
                 setShowAllReceiptButton(resetArray);
-                // reset(props.todayQuarter);
-                // defineColor(props.todayQuarter);
+                reset(props.todayQuarter);
+                defineColor(props.todayQuarter);
             })
 
 
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
         GetDate();
+    }
+
+    function eventSequenceButton() {
+        let payload = [...list.map(e=>e["eventNumber"])];
+        axios.put(debugAPIURL + '~~', payload)
+            .then((payload) => {
+                console.log("Success put eventSequence");
+            }).catch((error) => {
+                console.log(payload)
+                alert(error.response.data["errorMessage"]);
+            })
+    }
 
 
-
-
+    useEffect(() => {
+        loadLedger();
     }, []);
 
 
     useEffect(() => {
         if (quarter !== undefined) {
             reset(currentQuarter);
+            if (quarter[currentQuarter]["eventList"] !== undefined) {
+            setList(quarter[currentQuarter]["eventList"]);}
         }
 
     }, [currentQuarter])
@@ -752,8 +438,9 @@ function MainPage(props) {
     useEffect(() => {
         if (quarter !== undefined) {
             reset(props.todayQuarter);
+            if (quarter[currentQuarter]["eventList"] !== undefined) {
+            setList(quarter[currentQuarter]["eventList"]);}
         }
-
 
     }, [quarter])
 
@@ -778,16 +465,17 @@ function MainPage(props) {
                                 : (<>
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2") }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                                         </div>
                                         {
                                             props.loginPosition === "student"
                                                 ? null
                                                 : (<div className="managementPageBar">
-                                                    <i className="fas fa-chevron-right" onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}></i>
+                                                    <i className="fas fa-chevron-right" onClick={() => { 
+                                                        defineColor(props.todayQuarter); history.push('/manage') }}></i>
                                                 </div>)
                                         }
                                     </div>
@@ -843,12 +531,9 @@ function MainPage(props) {
                                                                 <div className="eventCard" key={i} >
                                                                     <div className="cardContent">
                                                                         <div className="eventSource">
-
-                                                                            <div>
+                                                                            <div style={{ width: "230px" }}>
                                                                                 <div className="eventTitle">
                                                                                     <h4>
-
-
                                                                                         {
                                                                                             fixEventButton[i]
                                                                                                 ?
@@ -862,14 +547,14 @@ function MainPage(props) {
                                                                                         }
 
                                                                                     </h4>
-                                                                                    <div>행사 총 금액 : {eventAmount[i]}원</div>
+                                                                                    <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
                                                                                 </div>
 
                                                                             </div>
 
 
                                                                             <div className="eventButtons">
-                                                                                <button onClick={() => { eventDelectButton(event["eventNumber"], i); }} style={{ marginRight: "15px" }}> 행사 삭제 </button>
+                                                                                <button onClick={() => { eventDeleteButton(event["eventNumber"], i); }} style={{ marginRight: "15px" }}> 행사 삭제 </button>
                                                                                 {
                                                                                     fixEventButton[i] === true
                                                                                         ? <button onClick={() => {
@@ -978,7 +663,7 @@ function MainPage(props) {
                                                                                                                 <div>
 
 
-                                                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "360px" }} placeholder={event["receiptList"][0]["receiptContext"]}
+                                                                                                                    <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} placeholder={event["receiptList"][0]["receiptContext"]}
                                                                                                                         onInput={
                                                                                                                             (e) => {
                                                                                                                                 changeReceiptContext(e.target.value, i);
@@ -988,7 +673,7 @@ function MainPage(props) {
 
                                                                                                             </>
                                                                                                             :
-                                                                                                            <div>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                            <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
                                                                                                         }
 
 
@@ -1059,10 +744,9 @@ function MainPage(props) {
                                                                                                                         }
                                                                                                                         )}
                                                                                                                     </tbody>
-                                                                                                                </table>
                                                                                                                     {fixEventButton[i]
                                                                                                                         ?
-                                                                                                                        <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                                                                                                                        <div style={{ display: "flex", justifyContent: "center", width: "400px", position: "relative", }}>
                                                                                                                             <button type='button' className='submitButton' style={{ margin: "0" }}
                                                                                                                                 onClick={() => {
                                                                                                                                     var tempQuarter = { ...quarter };
@@ -1080,6 +764,9 @@ function MainPage(props) {
                                                                                                                         :
                                                                                                                         null
                                                                                                                     }
+
+                                                                                                                </table>
+
 
                                                                                                                 </>)
                                                                                                         }
@@ -1123,25 +810,57 @@ function MainPage(props) {
                                                                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                                                                 : (<>
                                                                                                                     <div className="receiptTitle">
-                                                                                                                        <h5>{receipt["receiptTitle"]}
+                                                                                                                        <h5>
                                                                                                                             {
                                                                                                                                 fixEventButton[i]
-                                                                                                                                    ? <span onClick={() => {
-                                                                                                                                        receiptDeleteButton(i, j);
-                                                                                                                                    }}><i class="far fa-trash-alt"></i></span>
-                                                                                                                                    : null
+                                                                                                                                    ?
+                                                                                                                                    <>
+                                                                                                                                        <span onClick={() => { receiptDeleteButton(i, 0); }}>
+                                                                                                                                            <i className="far fa-trash-alt"></i>
+                                                                                                                                        </span>
+                                                                                                                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "160px" }} placeholder={event["receiptList"][0]["receiptTitle"]}
+                                                                                                                                            onInput={
+                                                                                                                                                (e) => {
+                                                                                                                                                    changeReceiptTitle(e.target.value, i);
+                                                                                                                                                }}></input>
+
+                                                                                                                                    </>
+
+                                                                                                                                    :
+                                                                                                                                    <>
+                                                                                                                                        {event["receiptList"][0]["receiptTitle"]}
+                                                                                                                                    </>
                                                                                                                             }
+
                                                                                                                         </h5>
                                                                                                                         {
-                                                                                                                            receipt["receiptDetailList"].length === 0
+                                                                                                                            event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                                 ? null
-                                                                                                                                : <div>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
+                                                                                                                                : (<div>
+                                                                                                                                    1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
+                                                                                                                                </div>)
                                                                                                                         }
 
 
                                                                                                                     </div>
 
-                                                                                                                    <div>{receipt["receiptContext"]}</div>
+                                                                                                                    {fixEventButton[i]
+                                                                                                                        ? <>
+                                                                                                                            <div>
+
+
+                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} placeholder={event["receiptList"][0]["receiptContext"]}
+                                                                                                                                    onInput={
+                                                                                                                                        (e) => {
+                                                                                                                                            changeReceiptContext(e.target.value, i);
+                                                                                                                                        }}>
+                                                                                                                                </input>
+                                                                                                                            </div>
+
+                                                                                                                        </>
+                                                                                                                        :
+                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                                    }
                                                                                                                     {
                                                                                                                         receipt["receiptDetailList"].length === 0
                                                                                                                             ? <div>입력된 영수증 내역이 없습니다.</div>
@@ -1207,25 +926,28 @@ function MainPage(props) {
                                                                                                                                                 </tr>)
                                                                                                                                         })
                                                                                                                                         }
-                                                                                                                                    </tbody> </table>
-                                                                                                                                {fixEventButton[i]
-                                                                                                                                    ?
-                                                                                                                                    <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                                                                                                                                        <button className='submitButton' type='button' style={{ margin: "0" }}
-                                                                                                                                            onClick={() => {
-                                                                                                                                                var tempQuarter = { ...quarter };
+                                                                                                                                    </tbody>
+                                                                                                                                    {fixEventButton[i]
+                                                                                                                                        ?
+                                                                                                                                        <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                                                                                                                                            <button className='submitButton' type='button' style={{ margin: "0" }}
+                                                                                                                                                onClick={() => {
+                                                                                                                                                    var tempQuarter = { ...quarter };
 
-                                                                                                                                                tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"].push({
-                                                                                                                                                    context: "",
-                                                                                                                                                    price: "",
-                                                                                                                                                    amount: "",
-                                                                                                                                                    totalAmount: ""
-                                                                                                                                                })
-                                                                                                                                                setQuarter(tempQuarter)
-                                                                                                                                            }}>항목 추가</button></div>
-                                                                                                                                    :
-                                                                                                                                    null
-                                                                                                                                }
+                                                                                                                                                    tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"].push({
+                                                                                                                                                        context: "",
+                                                                                                                                                        price: "",
+                                                                                                                                                        amount: "",
+                                                                                                                                                        totalAmount: ""
+                                                                                                                                                    })
+                                                                                                                                                    setQuarter(tempQuarter)
+                                                                                                                                                }}>항목 추가</button></div>
+                                                                                                                                        :
+                                                                                                                                        null
+                                                                                                                                    }
+
+                                                                                                                                </table>
+
                                                                                                                             </>
                                                                                                                             )
                                                                                                                     }
@@ -1270,7 +992,9 @@ function MainPage(props) {
                                                                         {
                                                                             fixEventButton[i] === true
                                                                                 ?
-                                                                                <div style={{ width: "650px", display: "flex", justifyContent: "flex-end" }}>
+                                                                                <div style={{
+                                                                                    width: "650px", display: "flex", justifyContent: "flex-end", position: "relative",
+                                                                                }}>
                                                                                     <button className='submitButton' type='button'
                                                                                         onClick={() => {
                                                                                             receiptAddButton(i);
@@ -1308,17 +1032,21 @@ function MainPage(props) {
 
                                                         {
                                                             list !== undefined
-                                                                ?
-                                                                <ReactSortable tag="div" list={list} setList={setList}>
+                                                                ?<>
+                                                                <ReactSortable className= "sortTable" tag="div" list={list} setList={setList}>
 
                                                                     {list.map((item, i) => (
                                                                         <div style={{ marginLeft: "20px" }} key={item.eventNumber}>{i + 1}. {item.eventTitle}</div>
                                                                     ))}
 
-                                                                    <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
-                                                                        <button className='submitButton' type='button' onClick={() => { alert("API 문서가 없어서 기능 구현 안함") }}> 순서 변경 </button>
-                                                                    </div>
+
                                                                 </ReactSortable>
+                                                                    <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
+                                                                        <button className='submitButton' type='button' onClick={() => { 
+                                                                            eventSequenceButton();
+                                                                            alert("API 문서가 없어서 기능 구현 안함") }}> 순서 변경 </button>
+                                                                    </div>
+                                                                    </>
                                                                 : <span>등록된 행사가 없습니다.</span>
                                                         }
 
