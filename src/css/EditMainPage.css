@@ -316,7 +316,6 @@
 
 .EditMainPageContainer .receiptTable tbody::-webkit-scrollbar-track-piece:end {
     background-color: none;
-    margin-bottom: 20px;
 }
 
 .EditMainPageContainer .receiptTable tr {
@@ -343,6 +342,7 @@
     border-bottom: 2px solid var(--color-quarter);
 
 }
+
 
 .EditMainPageContainer .receiptCard {
     border-top: 2px solid var(--color-quarter);

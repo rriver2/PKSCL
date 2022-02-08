@@ -31,7 +31,10 @@ function MainPage(props) {
     "quarter": {
          "quarter1": { "status": "true", 
             "eventList": [
-                { "eventNumber": "12", "eventTitle": "학과 OT2", "eventContext": "학과 OT를 잘 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }] }, 
+                { "eventNumber": "12", 
+                "eventTitle": "학과 OT2", 
+                "eventContext": "학과 OT를 잘 마무리 하였습니다.", 
+                "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" },{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" },{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }] }, 
                 { "eventNumber": "13", "eventTitle": "학과 새내기배움터 진행", "eventContext": "학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "11", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "콜라", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "참이슬", "price": "2731", "amount": "5", "totalAmount": "13655" }] }, { "receiptNumber": "12", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "컵", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "바구니", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "이어폰", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] }, 
                 { "eventNumber": "14", "eventTitle": "빛 축제", "eventContext": "빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.", "receiptList": [{ "receiptNumber": "13", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }, { "receiptNumber": "14", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "휴지", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "참이슬", "price": "2731", "amount": "4", "totalAmount": "10924" }] }] }] }, 
         "quarter2": { "status": "true", 
@@ -66,7 +69,7 @@ function MainPage(props) {
         "quarter4": ["2022-01-07", "2022-01-08"]
     }
 
-    const [totalAmount, setTotalAmount] = useState([])
+    // const [totalAmount, setTotalAmount] = useState([])
 
     const [studentPresident, setStudentPresident] = useState();
 
@@ -83,7 +86,7 @@ function MainPage(props) {
     const [editEventData, setEditEventData] = useState({});
     const [editEventAmount, setEditEventAmount] = useState({});
 
-    const [fixEventButton, setFixEventButton] = useState([]);
+    // const [fixEventButton, setFixEventButton] = useState([]);
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -235,37 +238,37 @@ function MainPage(props) {
         }
     }
 
-    function eventFixButton(event) {
-        var payload = new FormData();
+    // function eventFixButton(event) {
+    //     var payload = new FormData();
 
-        payload.append("event", event)
-        payload.append("quarter", currentQuarter);
+    //     payload.append("event", event)
+    //     payload.append("quarter", currentQuarter);
 
-        console.log(payload);
+    //     console.log(payload);
 
-        axios.put(debugAPIURL + "/ledger", payload,
-            {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            }
-        )
-            .then((payload) => {
-                switch (payload.status) {
-                    case 200:
-                        alert("장부를 수정하였습니다.");
-                        getLedger();
-                        break;
-                    default:
-                        alert("success code: " + payload.status);
-                        getLedger();
-                        break;
+    //     axios.put(debugAPIURL + "/ledger", payload,
+    //         {
+    //             headers: { 'Content-Type': 'multipart/form-data' }
+    //         }
+    //     )
+    //         .then((payload) => {
+    //             switch (payload.status) {
+    //                 case 200:
+    //                     alert("장부를 수정하였습니다.");
+    //                     getLedger();
+    //                     break;
+    //                 default:
+    //                     alert("success code: " + payload.status);
+    //                     getLedger();
+    //                     break;
 
-                }
-            })
-            .catch((error) => {
-                alert("장부 수정을 처리하지 못했습니다. code: " + error.response.status)
-            });
-        console.log(quarter);
-    }
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             alert("장부 수정을 처리하지 못했습니다. code: " + error.response.status)
+    //         });
+    //     console.log(quarter);
+    // }
 
     function eventAddButton(currentQuarter) {
         console.log(quarter);
@@ -296,35 +299,35 @@ function MainPage(props) {
         setQuarter(temp);
     }
 
-    function receiptAddButton(i) {
-        const temp = { ...quarter };
-        temp[currentQuarter]["eventList"][i]["receiptList"].push({
+    // function receiptAddButton(i) {
+    //     const temp = { ...quarter };
+    //     temp[currentQuarter]["eventList"][i]["receiptList"].push({
 
-            "receiptTitle": "영수증 제목을 입력해주세요",
-            "receiptImg": { name: "" },
-            "receiptContext": "영수증 내용을 입력해주세요",
-            "receiptDetailList": [
-                {
-                    "context": "",
-                    "price": "",
-                    "amount": "",
-                    "totalAmount": ""
+    //         "receiptTitle": "영수증 제목을 입력해주세요",
+    //         "receiptImg": { name: "" },
+    //         "receiptContext": "영수증 내용을 입력해주세요",
+    //         "receiptDetailList": [
+    //             {
+    //                 "context": "",
+    //                 "price": "",
+    //                 "amount": "",
+    //                 "totalAmount": ""
 
-                },
-            ]
-        })
-        setQuarter(temp);
-    }
+    //             },
+    //         ]
+    //     })
+    //     setQuarter(temp);
+    // }
 
-    function receiptDeleteButton(i, j) {
-        let answer = window.confirm("영수증을 삭제하시겠습니까?");
-        if (answer) {
-            const temp = { ...quarter };
-            temp[currentQuarter]["eventList"][i]["receiptList"].splice(j, 1);
-            setQuarter(temp);
-            alert("영수증이 삭제되었습니다.");
-        }
-    }
+    // function receiptDeleteButton(i, j) {
+    //     let answer = window.confirm("영수증을 삭제하시겠습니까?");
+    //     if (answer) {
+    //         const temp = { ...quarter };
+    //         temp[currentQuarter]["eventList"][i]["receiptList"].splice(j, 1);
+    //         setQuarter(temp);
+    //         alert("영수증이 삭제되었습니다.");
+    //     }
+    // }
 
     function putLedgerDate() {
         const payload = {
@@ -342,13 +345,13 @@ function MainPage(props) {
             })
     }
 
-    function uploadImg(img, i, j) {
-        console.log("I : " + i + "J : " + j);
-        const temp = { ...quarter };
-        temp[currentQuarter]["eventList"][i]["receiptList"][j]["receiptImg"] = img;
-        setQuarter(temp);
-        console.log(quarter);
-    }
+    // function uploadImg(img, i, j) {
+    //     console.log("I : " + i + "J : " + j);
+    //     const temp = { ...quarter };
+    //     temp[currentQuarter]["eventList"][i]["receiptList"][j]["receiptImg"] = img;
+    //     setQuarter(temp);
+    //     console.log(quarter);
+    // }
 
     function processImage(file) {
         if (file != null) {
@@ -362,43 +365,43 @@ function MainPage(props) {
         }
     }
 
-    function changeEventTitle(value, i) {
-        var tempQuarter = { ...quarter };
-        tempQuarter[currentQuarter]["eventList"][i].eventTitle = value;
-        setQuarter(tempQuarter);
-    }
+    // function changeEventTitle(value, i) {
+    //     var tempQuarter = { ...quarter };
+    //     tempQuarter[currentQuarter]["eventList"][i].eventTitle = value;
+    //     setQuarter(tempQuarter);
+    // }
 
-    function changeEventContext(value, i) {
-        var tempQuarter = { ...quarter };
-        tempQuarter[currentQuarter]["eventList"][i].eventContext = value;
-        setQuarter(tempQuarter);
-    }
+    // function changeEventContext(value, i) {
+    //     var tempQuarter = { ...quarter };
+    //     tempQuarter[currentQuarter]["eventList"][i].eventContext = value;
+    //     setQuarter(tempQuarter);
+    // }
 
-    function changeReceiptTitle(value, i) {
-        var tempQuarter = { ...quarter };
-        tempQuarter[currentQuarter]["eventList"][i].receiptTitle = value;
-        setQuarter(tempQuarter);
-    }
+    // function changeReceiptTitle(value, i) {
+    //     var tempQuarter = { ...quarter };
+    //     tempQuarter[currentQuarter]["eventList"][i].receiptTitle = value;
+    //     setQuarter(tempQuarter);
+    // }
 
-    function changeReceiptContext(value, i) {
-        var tempQuarter = { ...quarter };
-        tempQuarter[currentQuarter]["eventList"][i].receiptContext = value;
-        setQuarter(tempQuarter);
-    }
+    // function changeReceiptContext(value, i) {
+    //     var tempQuarter = { ...quarter };
+    //     tempQuarter[currentQuarter]["eventList"][i].receiptContext = value;
+    //     setQuarter(tempQuarter);
+    // }
 
-    function changeItem(key, value, i, j, k) {
-        console.log("changeItem");
-        var tempQuarter = { ...quarter };
-        var item = tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"][k];
+    // function changeItem(key, value, i, j, k) {
+    //     console.log("changeItem");
+    //     var tempQuarter = { ...quarter };
+    //     var item = tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"][k];
 
-        item[key] = value;
-        item["totalAmount"] = item["price"] * item["amount"];
-        setQuarter(tempQuarter);
+    //     item[key] = value;
+    //     item["totalAmount"] = item["price"] * item["amount"];
+    //     setQuarter(tempQuarter);
         // var tempShowAllReceiptButton = [...showAllReceiptButton];
         // tempShowAllReceiptButton[i] = true;
         // console.log(tempShowAllReceiptButton);
         // setShowAllReceiptButton(tempShowAllReceiptButton);
-    }
+    // }
 
     function getLedger() {
         let resetArray = [];

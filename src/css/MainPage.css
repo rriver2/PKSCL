@@ -314,7 +314,7 @@
 .receiptTable tbody {
     display: block;
     overflow-y: auto;
-    height: 220px;
+    height: 200px;
     width: fit-content;
 }
 
@@ -335,7 +335,6 @@
 
 .receiptTable tbody::-webkit-scrollbar-track-piece:end {
     background-color: none;
-    margin-bottom: 20px;
 }
 
 .receiptTable tr {

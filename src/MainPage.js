@@ -833,8 +833,12 @@ function MainPage(props) {
                                                             <div className="eventCard" >
                                                                 <div className="cardContent">
                                                                     <div className="eventSource">
-                                                                        <div><div className="eventTitle"><h4 >{event["eventTitle"]}</h4>  <div>행사 총 금액 : {eventAmount[i]}원</div></div>
-                                                                            <div>{event["eventContext"]}  </div></div>
+                                                                        <div>
+                                                                            <h4 >{event["eventTitle"]}</h4>  
+                                                                            <div style={{color:"var(--color-quarter)"}}>행사 총 금액 : {eventAmount[i]}원</div>
+                                                                            
+                                                                            <div>{event["eventContext"]}  </div>
+                                                                        </div>
                                                                         <div className="eventButtons">
                                                                             {
                                                                                 event.receiptList.length <= 1
@@ -842,18 +846,18 @@ function MainPage(props) {
                                                                                     : (
                                                                                         showAllReceiptButton[i] === false
                                                                                             ? (
-                                                                                                <button onClick={() => {
+                                                                                                <button style={{width: "50px"}} onClick={() => {
                                                                                                     let array = [...showAllReceiptButton];
                                                                                                     array[i] = !showAllReceiptButton[i];
                                                                                                     setShowAllReceiptButton(array)
-                                                                                                }}>전체보기 취소</button>
+                                                                                                }}><i class="fas fa-angle-double-up"></i></button>
                                                                                             )
                                                                                             : (
-                                                                                                <button onClick={() => {
+                                                                                                <button style={{width: "50px"}} onClick={() => {
                                                                                                     let array = [...showAllReceiptButton];
                                                                                                     array[i] = !showAllReceiptButton[i];
                                                                                                     setShowAllReceiptButton(array)
-                                                                                                }}>전체보기</button>
+                                                                                                }}><i class="fas fa-angle-double-down"></i></button>
                                                                                             )
                                                                                     )
 
@@ -871,13 +875,13 @@ function MainPage(props) {
                                                                                             event["receiptList"].length === 0
                                                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                                                 : (<>
-                                                                                                    <div className="receiptTitle"><h5>{event["receiptList"][0]["receiptTitle"]}</h5>
+                                                                                                    <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                         {
                                                                                                             event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                 ? null
-                                                                                                                : (<div>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
+                                                                                                                : (<div style={{color:"var(--color-quarter)"}}>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
                                                                                                         }
-                                                                                                    </div>
+                                                                                                  
 
                                                                                                     <div>{event["receiptList"][0]["receiptContext"]}</div>
 
@@ -927,13 +931,12 @@ function MainPage(props) {
                                                                                                         event["receiptList"].length === 0
                                                                                                             ? <div>입력된 영수증이 없습니다.</div>
                                                                                                             : (<>
-                                                                                                                <div className="receiptTitle"><h5>{receipt["receiptTitle"]}</h5>
+                                                                                                                <h5>{receipt["receiptTitle"]}</h5>
                                                                                                                     {
                                                                                                                         receipt["receiptDetailList"].length === 0
                                                                                                                             ? null
-                                                                                                                            : <div>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
+                                                                                                                            : <div style={{color:"var(--color-quarter)"}}>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                                                                     }
-                                                                                                                </div>
                                                                                                                 <div>{receipt["receiptContext"]}</div>
                                                                                                                 {
                                                                                                                     receipt["receiptDetailList"].length === 0

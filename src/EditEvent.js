@@ -13,30 +13,29 @@ function EditEvent(props) {
         setEventData(props.editEventData);
     }, []);
 
-    function changeEventTitle(value) {
+    function changeEventItem(value,item) {
         let tempEditEventData = { ...eventData };
-        tempEditEventData["eventTitle"] = value;
+        tempEditEventData[item] = value;
+        setEventData(tempEditEventData);
+    }
+    
+    function changeReceiptItem(value,j,item) {
+        let tempEditEventData = { ...eventData };
+        tempEditEventData["receiptList"][j][item] = value;
         setEventData(tempEditEventData);
     }
 
-    function changeEventContext(value) {
+        function changeItem(key, value, j, k) {
         let tempEditEventData = { ...eventData };
-        tempEditEventData["eventContext"] = value;
+        let item = tempEditEventData["receiptList"][j]["receiptDetailList"][k];
+        item[key] = value;
+        item["totalAmount"] = item["price"] * item["amount"];
         setEventData(tempEditEventData);
+        // var tempShowAllReceiptButton = [...showAllReceiptButton];
+        // tempShowAllReceiptButton[i] = true;
+        // console.log(tempShowAllReceiptButton);
+        // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
-
-    function changeReceiptTitle(value) {
-        let tempEditEventData = { ...eventData };
-        tempEditEventData["receiptTitle"] = value;
-        setEventData(tempEditEventData);
-    }
-
-    function changeReceiptContext(value) {
-        let tempEditEventData = { ...eventData };
-        tempEditEventData["receiptContext"] = value;
-        setEventData(tempEditEventData);
-    }
-
 
     function eventDeleteButton() {
         axios.delete(debugAPIURL + '/ledger/?eventNumber=' + eventData["eventNumber"])
@@ -66,8 +65,6 @@ function EditEvent(props) {
 
     function receiptDeleteButton(j) {
         let answer = window.confirm("영수증을 삭제하시겠습니까?");
-        console.log("receiptList")
-         console.log(eventData["receiptList"])
         if (answer) {
             if(eventData["receiptList"][j]["receiptNumber"]!==undefined){
                 SetDeleteReceiptList([...deleteReceiptList, eventData["receiptList"][j]["receiptNumber"]])
@@ -86,6 +83,32 @@ function EditEvent(props) {
         }
     }
 
+    function receiptDetailDeleteButton(j,k) {
+            let tempEditEventData = {
+                "eventNumber" : eventData["eventNumber"],
+                "eventTitle" : eventData["eventTitle"],
+                "eventContext" : eventData["eventContext"],
+                "receiptList" : 
+                            eventData["receiptList"].map((receipt,p)=>{
+                                if(p!==j) return receipt;
+                                return({
+                                        "receiptNumber" : receipt["receiptNumber"],
+                                        "receiptTitle": receipt["receiptTitle"],
+                                        "receiptImg": receipt["receiptImg"],
+                                        "receiptContext": receipt["receiptContext"],
+                                        "receiptDetailList": 
+                                        receipt["receiptDetailList"].filter(
+                                        (event,i)=>{ 
+                                            return (i!==k)
+                                        })
+                                        }
+                                    )
+                            })
+            }
+        setEventData(tempEditEventData);
+        alert("영수증 detail이 삭제되었습니다.");
+    }
+
      function sumItems(price, amount) {
         return price * amount;
     }
@@ -93,25 +116,13 @@ function EditEvent(props) {
     function sumReceipt(receiptDetailList) {
         let sumReceiptValue = 0;
         if (receiptDetailList !== undefined) {
+
             for (let i = 0; i < receiptDetailList.length; i++) {
                 let item = receiptDetailList[i];
                 sumReceiptValue = sumReceiptValue + sumItems(item["price"], item["amount"]);
             }
         }
         return sumReceiptValue;
-    }
-
-    function changeItem(key, value, j, k) {
-        console.log("changeItem");
-        let tempEditEventData = { ...eventData };
-        let item = tempEditEventData["receiptList"][j]["receiptDetailList"][k];
-        item[key] = value;
-        item["totalAmount"] = item["price"] * item["amount"];
-        setEventData(tempEditEventData);
-        // var tempShowAllReceiptButton = [...showAllReceiptButton];
-        // tempShowAllReceiptButton[i] = true;
-        // console.log(tempShowAllReceiptButton);
-        // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
     function uploadImg(img, j) {
@@ -141,6 +152,8 @@ function EditEvent(props) {
     }
 
     function editEventButton(){
+        console.log("payload")
+        console.log(eventData)
         editEventNameAPI();
         editReciptAPI();
         if(deleteReceiptList.length !==0)  deleteEventNameAPI();
@@ -178,25 +191,24 @@ function EditEvent(props) {
     return(
         // <div className="editEventContainer">
             <div className="editEventBox">
-                {
-                    console.log(eventData)
-                }
-                                            <div className="quarterData" style={{marginTop:"0"}}>
+                    <div className="quarterData" style={{marginTop:"0"}}>
                 {
                                                     eventData === undefined
                                                         ? <div>입력된 행사가 없습니다.</div>
                                                         : (
-                                                                <div className="eventCard" style={{height: "90vh", overflow : "overlay"}}>
+                                                                <div className="editEventCard" >
                                                                     <div className="cardContent">
                                                                         <div className="eventSource">
                                                                             <div style={{ width: "230px" }}>
                                                                                 <div className="eventTitle">
                                                                                     <h4>
                                                                                         
-                                                                                                <input type="text" style={{ border: "transparent", textAlign: "left" }} placeholder={eventData["eventTitle"]}
+                                                                                                <input type="text" style={{ border: "transparent", textAlign: "left" ,width: "450px" }} 
+                                                                                                placeholder={eventData["eventTitle"]}
+                                                                                                value={eventData["eventTitle"]}
                                                                                                     onInput={
                                                                                                         (e) => {
-                                                                                                            changeEventTitle(e.target.value);
+                                                                                                            changeEventItem(e.target.value,"eventTitle");
                                                                                                         }}></input>
                                                                     
                                                                                     </h4>
@@ -207,21 +219,29 @@ function EditEvent(props) {
 
 
                                                                             <div className="eventButtons">
-                                                                                <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}> <i class="far fa-trash-alt"></i> </button>
+                                                                                <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}> 
+                                                                                <i class="far fa-trash-alt"></i> </button>
                                                                                 <button onClick={() => {
-                                                                                    alert("행사수정API")
-                                                                                    //행사 수정 API
                                                                                     editEventButton();
                                                                                     props.setEditEventState(false)
                                                                                         }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>
+                                                                                <button onClick={() => {
+                                                                                    if(window.confirm("행사 수정을 취소하시겠습니까?")){
+                                                                                        props.setEditEventState(false)
+                                                                                        alert("취소되었습니다.")
+                                                                                    }
+                                                                                    
+                                                                                        }} style={{ marginRight: "15px" }}><i class="fas fa-times"></i> </button>
                                                                             </div>
                                                                         </div>
 
                                                                         <div>
-                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }} placeholder={eventData["eventContext"]}
+                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }} 
+                                                                                    laceholder={eventData["eventContext"]}
+                                                                                    value={eventData["eventContext"]}
                                                                                         onInput={
                                                                                             (e) => {
-                                                                                                changeEventContext(e.target.value);
+                                                                                                changeEventItem(e.target.value,"eventContext");
                                                                                             }}></input>
                                
                                                                         </div>
@@ -242,10 +262,13 @@ function EditEvent(props) {
                                                                                                                                         <span onClick={() => { receiptDeleteButton(j); }}>
                                                                                                                                             <i className="far fa-trash-alt"></i>
                                                                                                                                         </span>
-                                                                                                                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "160px" }} placeholder={eventData["receiptList"][j]["receiptTitle"]}
+                                                                                                                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "350px" }} 
+                                                                                                                                        placeholder={eventData["receiptList"][j]["receiptTitle"]}
+                                                                                                                                        value={eventData["receiptList"][j]["receiptTitle"]}
+                                                                                                                                        
                                                                                                                                             onInput={
                                                                                                                                                 (e) => {
-                                                                                                                                                    changeReceiptTitle(e.target.value);
+                                                                                                                                                    changeReceiptItem(e.target.value,j,"receiptTitle");
                                                                                                                                                 }}></input>
 
                                                                                                                         </h5>
@@ -263,10 +286,12 @@ function EditEvent(props) {
                                                                                                                             <div>
 
 
-                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} placeholder={eventData["receiptList"][j]["receiptContext"]}
+                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} 
+                                                                                                                                placeholder={eventData["receiptList"][j]["receiptContext"]}
+                                                                                                                                value={eventData["receiptList"][j]["receiptContext"]}
                                                                                                                                     onInput={
                                                                                                                                         (e) => {
-                                                                                                                                            changeReceiptContext(e.target.value);
+                                                                                                                                            changeReceiptItem(e.target.value,j,"receiptContext");
                                                                                                                                         }}>
                                                                                                                                 </input>
                                                                                                                             </div>
@@ -276,21 +301,29 @@ function EditEvent(props) {
                                                                                                                         receipt["receiptDetailList"].length === 0
                                                                                                                             ? <div>입력된 영수증 내역이 없습니다.</div>
                                                                                                                             : (<>
-                                                                                                                                <table className="receiptTable">
-                                                                                                                                    <thead>
+                                                                                                                                <table className="receiptTable" style={{width:"400px"}}>
+                                                                                                                                    <thead >
                                                                                                                                         <tr>
-                                                                                                                                            <th>품명</th>
-                                                                                                                                            <th>단가</th>
-                                                                                                                                            <th>수량</th>
-                                                                                                                                            <th>가격</th>
+                                                                                                                                            <th style={{width:"40px"}}><i class="far fa-trash-alt"></i></th>
+                                                                                                                                            <th style={{width:"90px"}}>품명</th>
+                                                                                                                                            <th style={{width:"90px"}}>단가</th>
+                                                                                                                                            <th style={{width:"90px"}}>수량</th>
+                                                                                                                                            <th style={{width:"90px"}}>가격</th>
                                                                                                                                         </tr>
                                                                                                                                     </thead>
                                                                                                                                     <tbody>
                                                                                                                                         {receipt["receiptDetailList"].map((item, k) => {
                                                                                                                                             return (
                                                                                                                                                 <tr key={k}>
-                                                                                                                                                    <td>
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["context"]}
+                                                                                                                                                    <td style={{width:"40px"}}>
+                                                                                                                                                        <span onClick={() => { receiptDetailDeleteButton(j,k); }}>
+                                                                                                                                                            <i className="far fa-trash-alt"></i>
+                                                                                                                                                        </span>
+                                                                                                                                                    </td>
+                                                                                                                                                    <td style={{width:"90px"}}>
+                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" ,width:"90px"}} 
+                                                                                                                                                                placeholder={item["context"]}
+                                                                                                                                                                value={item["context"]}
                                                                                                                                                                     onInput={
                                                                                                                                                                         (e) => {
                                                                                                                                                                             changeItem("context", e.target.value, j, k);
@@ -299,9 +332,11 @@ function EditEvent(props) {
                                                                                                                                                     </td>
 
                                                                                                                                                     
-                                                                                                                                                    <td>
+                                                                                                                                                    <td style={{width:"90px"}}>
                                                                                                                                                         
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["price"]}
+                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" ,width:"90px" }} 
+                                                                                                                                                                placeholder={item["price"]}
+                                                                                                                                                                value={item["price"]}
                                                                                                                                                                     onInput={
                                                                                                                                                                         (e) => {
                                                                                                                                                                             changeItem("price", e.target.value.replace(/[^0-9]/g, ''), j, k);
@@ -309,8 +344,10 @@ function EditEvent(props) {
                                                                                                                                                                 
                                                                                                                                                     </td>
 
-                                                                                                                                                    <td>
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["amount"]}
+                                                                                                                                                    <td style={{width:"90px"}}>
+                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" ,width:"90px" }} 
+                                                                                                                                                                placeholder={item["amount"]}
+                                                                                                                                                                value={item["amount"]}
                                                                                                                                                                     onInput={
                                                                                                                                                                         (e) => {
                                                                                                                                                                             changeItem("amount", e.target.value.replace(/[^0-9]/g, ''), j, k);
@@ -318,7 +355,7 @@ function EditEvent(props) {
                                                                                                                                                                 
                                                                                                                                                     </td>
 
-                                                                                                                                                    <td>
+                                                                                                                                                    <td style={{width:"90px", textAlign: "center"}}>
                                                                                                                                                         {item["totalAmount"]}
                                                                                                                                                     </td>
                                                                                                                                                 </tr>)

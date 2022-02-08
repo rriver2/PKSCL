@@ -60,3 +60,37 @@
 .editSubmitButton i {
     font-size: 15px;
 }
+
+.receiptTable td {
+    width: 100px;
+}
+
+.editEventCard {
+    margin-top: 30px;
+    display: flex;
+    box-shadow: 1px 1px 10px 0px gray;
+    margin-bottom: 60px;
+    background-color: white;
+    height: 90vh;
+    overflow: overlay;
+    border-radius: 5px;
+}
+
+.editEventCard::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editEventCard::-webkit-scrollbar-track-piece {
+    background-color: var(--color-tableOdd);
+    border-radius: 100px;
+    width: 10px;
+}
+
+.editEventCard::-webkit-scrollbar-thumb {
+    background-color: var(--color-quarter);
+    border-radius: 100px;
+}
+
+.editEventCard::-webkit-scrollbar-track-piece:end {
+    background-color: none;
+}
