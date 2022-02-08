@@ -175,7 +175,8 @@ function EditEvent(props) {
     }
 
     function editReciptAPI(){
-        //form으로 보내기 영수증 추가 및 수정
+        console.log(eventData)
+        alert("editReciptAPI 추가해야함")
     }
 
     function deleteEventNameAPI(){
