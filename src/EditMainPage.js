@@ -415,7 +415,6 @@ function MainPage(props) {
                         resetArray.push(false)
                     }
                 }
-
                 reset(props.todayQuarter);
                 defineColor(props.todayQuarter);
             })
@@ -837,7 +836,7 @@ function MainPage(props) {
                                             <div className="remotePanel">
                                                 <div className="remotePanelBox" style={{ display: "flex" }}>
                                                     <div>
-                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚행사 순서📚</h5>
+                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚행사 목록</h5>
                                                         <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 바꾸고 순서 변경 버튼을 눌러주세요 !</p>
 
                                                         {

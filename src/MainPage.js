@@ -3,7 +3,8 @@ import quarter1 from './img/quarter1.png';
 import quarter2 from './img/quarter2.png';
 import quarter3 from './img/quarter3.png';
 import quarter4 from './img/quarter4.png';
-import receiptImg from './img/receipt.png';
+
+import giraffe from './img/giraffe.png';
 import EditProfile from './EditProfile';
 import './css/MainPage.css';
 import { useEffect, useState } from 'react';
@@ -830,6 +831,7 @@ function MainPage(props) {
                                                     ? <div>입력된 행사가 없습니다.</div>
                                                     : (quarter[currentQuarter]["eventList"].map((event, i) => {
                                                         return (
+                                                            <div style={{display:"flex",alignItems: "flex-end"}}>
                                                             <div className="eventCard" >
                                                                 <div className="cardContent">
                                                                     <div className="eventSource">
@@ -984,13 +986,15 @@ function MainPage(props) {
 
 
                                                                 </div>
-                                                                <div className="cardImg">
-                                                                </div>
+                                                      
+                                                            </div>
+                                                            <img src={giraffe} className="image" alt="" style={{width:"70px",height:"70px",marginBottom:"50px"}}/>
                                                             </div>
                                                         )
                                                     })
                                                     )
                                             }
+                                            
                                         </div>
                                     </>)
                                     : <div className="quarterData" style={{ color: "red" }}>
