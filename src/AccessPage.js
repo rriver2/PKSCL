@@ -3,7 +3,7 @@ import log from './img/log.svg';
 import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './css/AccessPage.css';
+import './css/AccessPage.scss';
 
 function AccessPage(props) {
   let debugAPIURL = "";
@@ -271,7 +271,11 @@ function AccessPage(props) {
     <div className="accessContainer">
 
       <div className="left-panel">
+                <div class='wave -one'></div>
+                <div class='wave -two'></div>
+                <div class='wave -three'></div>
         <div className="content">
+            
           <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
@@ -280,7 +284,7 @@ function AccessPage(props) {
         <img src={log} className="image" alt="" />
         <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
           style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}></button>
-      </div>
+        </div>
       <Switch>
 
         <Route exact path="/signUp">
