@@ -469,9 +469,9 @@ function MainPage(props) {
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fff5f5");
+            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
         } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f3f9f3");
+            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
         } else if (quarter === "quarter3") {
             setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
         } else if (quarter === "quarter4") {

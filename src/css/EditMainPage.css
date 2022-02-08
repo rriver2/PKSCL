@@ -7,6 +7,7 @@
     justify-content: center;
     min-height: 100vh;
     width: 100vw;
+    background-color: var(--color-background);
 }
 
 .EditMainPageContainer .leftPanel {
@@ -21,6 +22,7 @@
     left: 0;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    z-index: 10;
 }
 
 .EditMainPageContainer .quarter {
@@ -159,10 +161,13 @@
 }
 
 .EditMainPageContainer .buttons {
+    width: 100%;
+    z-index: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 8vh;
+    background-color: var(--color-background);
 }
 
 .EditMainPageContainer .submitButton {
