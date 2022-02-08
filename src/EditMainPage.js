@@ -13,6 +13,8 @@ import { useHistory } from 'react-router-dom';
 import { useRef } from 'react';
 import { upload } from '@testing-library/user-event/dist/upload';
 import { ReactSortable } from "react-sortablejs";
+import EditEvent from './EditEvent';
+
 
 
 
@@ -25,8 +27,38 @@ function MainPage(props) {
     const history = useHistory();
     const el = useRef();
 
-    let answer = {"studentPresident":{"major":"영어영문학부","name":"한준규","phoneNumber":"010-3340-6496","email":"hellllo3627@pukyong.ac.kr","majorLogo":null},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"12","eventTitle":"학과 OT2","eventContext":"학과 OT를 잘 마무리 하였습니다.","receiptList":[{"receiptNumber":"9","receiptTitle":"학과 OT2 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 OT2 영수증 1번입니다. ","receiptDetailList":[{"context":"참이슬","price":"1000","amount":"2","totalAmount":"2000"},{"context":"프라이팬","price":"2000","amount":"5","totalAmount":"10000"},{"context":"돈까스","price":"2500","amount":"6","totalAmount":"15000"}]},{"receiptNumber":"10","receiptTitle":"학과 OT2 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 OT2 영수증 1번입니다. ","receiptDetailList":[{"context":"대선","price":"1500","amount":"1","totalAmount":"1500"},{"context":"갈비","price":"2500","amount":"4","totalAmount":"10000"},{"context":"참이슬","price":"3500","amount":"1","totalAmount":"3500"},{"context":"초콜렛","price":"5000","amount":"2","totalAmount":"10000"},{"context":"연필","price":"2000","amount":"2","totalAmount":"4000"}]}]},{"eventNumber":"13","eventTitle":"학과 새내기배움터 진행","eventContext":"학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.","receiptList":[{"receiptNumber":"11","receiptTitle":"학과 새내기배움터 진행 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 새내기배움터 진행 영수증1","receiptDetailList":[{"context":"갈비","price":"2731","amount":"1","totalAmount":"2731"},{"context":"콜라","price":"2731","amount":"3","totalAmount":"8193"},{"context":"바구니","price":"2731","amount":"2","totalAmount":"5462"},{"context":"참이슬","price":"2731","amount":"5","totalAmount":"13655"}]},{"receiptNumber":"12","receiptTitle":"학과 새내기배움터 진행 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"학과 새내기배움터 진행 영수증1","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"컵","price":"2731","amount":"2","totalAmount":"5462"},{"context":"바구니","price":"2731","amount":"3","totalAmount":"8193"},{"context":"이어폰","price":"2731","amount":"5","totalAmount":"13655"}]}]},{"eventNumber":"14","eventTitle":"빛 축제","eventContext":"빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.","receiptList":[{"receiptNumber":"13","receiptTitle":"빛 축제 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"빛 축제 영수증 1 영수증입니다.","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"과자","price":"2731","amount":"2","totalAmount":"5462"}]},{"receiptNumber":"14","receiptTitle":"빛 축제 영수증 1","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"빛 축제 영수증 1 영수증입니다.","receiptDetailList":[{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"},{"context":"휴지","price":"2731","amount":"4","totalAmount":"10924"},{"context":"참이슬","price":"2731","amount":"4","totalAmount":"10924"}]}]}]},"quarter2":{"status":"true","eventList":[{"eventNumber":"18","eventTitle":"기말고사 응원전","eventContext":"기말고사 응원전을 진행하였습니다.","receiptList":[{"receiptNumber":"19","receiptTitle":"기말고사 응원전 영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"기말고사 응원전 영수증 1번","receiptDetailList":[{"context":"휴지","price":"2731","amount":"1","totalAmount":"2731"},{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"}]}]},{"eventNumber":"19","eventTitle":"기말고사 응원전2","eventContext":"학생회비가 남게되어 기말고사응원전을 한번 더 진행하였습니다.","receiptList":[{"receiptNumber":"20","receiptTitle":"기말고사 응원전 재영수증 1번","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"기말고사 응원전 재영수증 1번","receiptDetailList":[{"context":"돈까스","price":"2731","amount":"1","totalAmount":"2731"},{"context":"프라이팬","price":"2731","amount":"2","totalAmount":"5462"}]}]}]},"quarter3":{"status":"false","eventList":[{"eventNumber":"20","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"21","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"갈비","price":"2731","amount":"2","totalAmount":"5462"},{"context":"연필","price":"2731","amount":"3","totalAmount":"8193"}]}]},{"eventNumber":"21","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"22","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"프라이팬","price":"2731","amount":"4","totalAmount":"10924"},{"context":"갈비","price":"2731","amount":"5","totalAmount":"13655"}]}]}]},"quarter4":{"status":"false","eventList":[{"eventNumber":"22","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"23","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"바구니","price":"2731","amount":"1","totalAmount":"2731"},{"context":"대선","price":"2731","amount":"2","totalAmount":"5462"}]}]},{"eventNumber":"23","eventTitle":"공개일 X","eventContext":"데이터 O","receiptList":[{"receiptNumber":"24","receiptTitle":"데이터 O","receiptImg":{"name":"./static/receiptImg/test2.png"},"receiptContext":"데이터 O","receiptDetailList":[{"context":"바구니","price":"2731","amount":"2","totalAmount":"5462"},{"context":"과자","price":"2731","amount":"2","totalAmount":"5462"}]}]}]}}}
-    
+    let answer = { "studentPresident": { "major": "영어영문학부", "name": "한준규", "phoneNumber": "010-3340-6496", "email": "hellllo3627@pukyong.ac.kr", "majorLogo": null }, 
+    "quarter": {
+         "quarter1": { "status": "true", 
+            "eventList": [
+                { "eventNumber": "12", "eventTitle": "학과 OT2", "eventContext": "학과 OT를 잘 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }] }, 
+                { "eventNumber": "13", "eventTitle": "학과 새내기배움터 진행", "eventContext": "학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "11", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "콜라", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "참이슬", "price": "2731", "amount": "5", "totalAmount": "13655" }] }, { "receiptNumber": "12", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "컵", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "바구니", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "이어폰", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] }, 
+                { "eventNumber": "14", "eventTitle": "빛 축제", "eventContext": "빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.", "receiptList": [{ "receiptNumber": "13", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }, { "receiptNumber": "14", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "휴지", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "참이슬", "price": "2731", "amount": "4", "totalAmount": "10924" }] }] }] }, 
+        "quarter2": { "status": "true", 
+            "eventList": [
+                { "eventNumber": "18", "eventTitle": "기말고사 응원전", "eventContext": "기말고사 응원전을 진행하였습니다.", 
+                "receiptList": [
+                    { "receiptNumber": "19", 
+                    "receiptTitle": "기말고사 응원전 영수증 1번", 
+                    "receiptImg": { "name": "./static/receiptImg/test2.png" }, 
+                    "receiptContext": "기말고사 응원전 영수증 1번", 
+                    "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
+                ] },{ "receiptNumber": "19", 
+                    "receiptTitle": "기말고사 응원전 영수증 1번", 
+                    "receiptImg": { "name": "./static/receiptImg/test2.png" }, 
+                    "receiptContext": "기말고사 응원전 영수증 1번", 
+                    "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
+                ] }] }, 
+                { "eventNumber": "19", "eventTitle": "기말고사 응원전2", "eventContext": "학생회비가 남게되어 기말고사응원전을 한번 더 진행하였습니다.", "receiptList": [{ "receiptNumber": "20", "receiptTitle": "기말고사 응원전 재영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "기말고사 응원전 재영수증 1번", "receiptDetailList": [{ "context": "돈까스", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }] }, 
+        "quarter3": { "status": "false",
+            "eventList": [
+                { "eventNumber": "20", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "21", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "연필", "price": "2731", "amount": "3", "totalAmount": "8193" }] }] }, 
+                { "eventNumber": "21", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "22", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "갈비", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] }] }, 
+        "quarter4": { "status": "false", 
+            "eventList": [
+                { "eventNumber": "22", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "23", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "대선", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }, 
+                { "eventNumber": "23", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "24", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }] } } }
+
     let answerDate = {
         "quarter1": ["2022-01-01", "2022-01-02"],
         "quarter2": ["2022-01-03", "2022-01-04"],
@@ -46,10 +78,10 @@ function MainPage(props) {
     const [currentQuarter, setCurrentQuarter] = useState(props.todayQuarter);
     const [showAllReceiptButton, setShowAllReceiptButton] = useState([]);
     const [editProfileState, setEditProfileState] = useState(false);
-    const [editEventState, setEditEventState] = useState(false);
 
-    const [major, setMajor] = useState();
-    const [majorList, setMajorList] = useState();
+    const [editEventState, setEditEventState] = useState(false);
+    const [editEventData, setEditEventData] = useState({});
+    const [editEventAmount, setEditEventAmount] = useState({});
 
     const [fixEventButton, setFixEventButton] = useState([]);
 
@@ -57,7 +89,7 @@ function MainPage(props) {
         let resetArray = [];
         if (quarter[currentQuarter]["eventList"] !== undefined) {
             for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
-                resetArray.push(true)
+                resetArray.push(false)
             }
         }
 
@@ -69,7 +101,7 @@ function MainPage(props) {
             if (quarter[quarterData]["eventList"] !== undefined) {
                 CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
                 setList(quarter[quarterData]["eventList"]);
-                // resetShowAllReceiptButton();
+                resetShowAllReceiptButton();
             }
         }
         else {
@@ -190,12 +222,12 @@ function MainPage(props) {
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
-                            loadLedger();
+                            getLedger();
                             alert("행사 장부가 삭제되었습니다.");
                             break;
                     }
                 }).catch((error) => {
-                    
+
                     alert("장부를 삭제하는데 실패했습니다.");
                 })
         } else {
@@ -220,13 +252,13 @@ function MainPage(props) {
                 switch (payload.status) {
                     case 200:
                         alert("장부를 수정하였습니다.");
-                        loadLedger();
+                        getLedger();
                         break;
                     default:
                         alert("success code: " + payload.status);
-                        loadLedger();
+                        getLedger();
                         break;
-                    
+
                 }
             })
             .catch((error) => {
@@ -292,7 +324,6 @@ function MainPage(props) {
             setQuarter(temp);
             alert("영수증이 삭제되었습니다.");
         }
-
     }
 
     function putLedgerDate() {
@@ -369,7 +400,7 @@ function MainPage(props) {
         // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
-    function loadLedger() {
+    function getLedger() {
         let resetArray = [];
         axios.get(debugAPIURL + '/ledger')
             .then((payload) => {
@@ -399,10 +430,7 @@ function MainPage(props) {
 
                 console.log(resetArray);
                 setShowAllReceiptButton(resetArray);
-                reset(props.todayQuarter);
-                defineColor(props.todayQuarter);
             })
-
 
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
@@ -410,27 +438,36 @@ function MainPage(props) {
     }
 
     function eventSequenceButton() {
-        let payload = [...list.map(e=>e["eventNumber"])];
-        axios.put(debugAPIURL + '~~', payload)
+        let eventNumberList=[];
+        list.map((event) =>{
+            if( event["eventNumber"]!== undefined)
+            eventNumberList.push(event["eventNumber"])})
+        let payload = {"eventNumberList":[...eventNumberList]};
+        axios.put(debugAPIURL + '/event-sequence', payload)
             .then((payload) => {
-                console.log("Success put eventSequence");
+                console.log("행사 순서가 수정되었습니다.");
+                getLedger();
             }).catch((error) => {
-                console.log(payload)
                 alert(error.response.data["errorMessage"]);
             })
     }
 
 
     useEffect(() => {
-        loadLedger();
+        getLedger();
     }, []);
+
+     useEffect(() => {
+        if(editEventState===false) getLedger();
+    }, [editEventState]);
 
 
     useEffect(() => {
         if (quarter !== undefined) {
             reset(currentQuarter);
             if (quarter[currentQuarter]["eventList"] !== undefined) {
-            setList(quarter[currentQuarter]["eventList"]);}
+                setList(quarter[currentQuarter]["eventList"]);
+            }
         }
 
     }, [currentQuarter])
@@ -439,7 +476,8 @@ function MainPage(props) {
         if (quarter !== undefined) {
             reset(props.todayQuarter);
             if (quarter[currentQuarter]["eventList"] !== undefined) {
-            setList(quarter[currentQuarter]["eventList"]);}
+                setList(quarter[currentQuarter]["eventList"]);
+            }
         }
 
     }, [quarter])
@@ -458,6 +496,14 @@ function MainPage(props) {
                             // <EditProfile editProfileState={editProfileState} loginPosition={"president"} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
+                    {
+                        editEventState
+                            ?(
+                                <>{console.log(editEventData)}
+                                <EditEvent setEditEventState={setEditEventState} editEventData={editEventData} editEventAmount={editEventAmount}></EditEvent>
+                            </>)
+                            : null
+                    }
 
                         {
                             quarter === undefined
@@ -474,8 +520,9 @@ function MainPage(props) {
                                             props.loginPosition === "student"
                                                 ? null
                                                 : (<div className="managementPageBar">
-                                                    <i className="fas fa-chevron-right" onClick={() => { 
-                                                        defineColor(props.todayQuarter); history.push('/manage') }}></i>
+                                                    <i className="fas fa-chevron-right" onClick={() => {
+                                                        defineColor(props.todayQuarter); history.push('/manage')
+                                                    }}></i>
                                                 </div>)
                                         }
                                     </div>
@@ -533,19 +580,7 @@ function MainPage(props) {
                                                                         <div className="eventSource">
                                                                             <div style={{ width: "230px" }}>
                                                                                 <div className="eventTitle">
-                                                                                    <h4>
-                                                                                        {
-                                                                                            fixEventButton[i]
-                                                                                                ?
-                                                                                                <input type="text" style={{ border: "transparent", textAlign: "left" }} placeholder={event["eventTitle"]}
-                                                                                                    onInput={
-                                                                                                        (e) => {
-                                                                                                            changeEventTitle(e.target.value, i);
-                                                                                                        }}></input>
-                                                                                                :
-                                                                                                <>{event["eventTitle"]}</>
-                                                                                        }
-
+                                                                                    <h4>{event["eventTitle"]}
                                                                                     </h4>
                                                                                     <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
                                                                                 </div>
@@ -554,20 +589,15 @@ function MainPage(props) {
 
 
                                                                             <div className="eventButtons">
-                                                                                <button onClick={() => { eventDeleteButton(event["eventNumber"], i); }} style={{ marginRight: "15px" }}> 행사 삭제 </button>
-                                                                                {
-                                                                                    fixEventButton[i] === true
-                                                                                        ? <button onClick={() => {
-                                                                                            let array = [...fixEventButton];
-                                                                                            array[i] = !fixEventButton[i];
-                                                                                            eventFixButton(event); setFixEventButton(array)
-                                                                                        }} style={{ marginRight: "15px" }}> 행사 수정 완료 </button>
-                                                                                        : <button onClick={() => {
-                                                                                            let array = [...fixEventButton];
-                                                                                            array[i] = !fixEventButton[i];
-                                                                                            setFixEventButton(array);
-                                                                                        }} style={{ marginRight: "15px" }}> 행사 수정 </button>
-                                                                                }
+                                                                                <button onClick={() => { 
+                                                                                    eventDeleteButton(event["eventNumber"], i); }} style={{ marginRight: "15px" }}> 
+                                                                                    <i class="far fa-trash-alt"></i> </button>
+                                                                                <button onClick={() => {
+                                                                                            setEditEventState(true)
+                                                                                            setEditEventData(quarter[currentQuarter]["eventList"][i]);
+                                                                                            setEditEventAmount(eventAmount[i]);
+                                                                                        }} style={{ marginRight: "15px" }}><i class="fas fa-wrench"></i></button>
+                                                                                
                                                                                 {
                                                                                     event.receiptList.length <= 1
                                                                                         ? null
@@ -578,14 +608,14 @@ function MainPage(props) {
                                                                                                         let array = [...showAllReceiptButton];
                                                                                                         array[i] = !showAllReceiptButton[i];
                                                                                                         setShowAllReceiptButton(array);
-                                                                                                    }}>전체보기 취소</button>
+                                                                                                    }}><i class="fas fa-angle-double-up"></i></button>
                                                                                                 )
                                                                                                 : (
                                                                                                     <button onClick={() => {
                                                                                                         let array = [...showAllReceiptButton];
                                                                                                         array[i] = !showAllReceiptButton[i];
                                                                                                         setShowAllReceiptButton(array);
-                                                                                                    }}>전체보기</button>
+                                                                                                    }}><i class="fas fa-angle-double-down"></i></button>
                                                                                                 )
                                                                                         )
 
@@ -593,22 +623,7 @@ function MainPage(props) {
                                                                             </div>
                                                                         </div>
 
-                                                                        <div>
-                                                                            {
-                                                                                fixEventButton[i]
-                                                                                    ?
-                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }} placeholder={event["eventContext"]}
-                                                                                        onInput={
-                                                                                            (e) => {
-                                                                                                changeEventContext(e.target.value, i);
-                                                                                            }}></input>
-                                                                                    :
-                                                                                    <>{event["eventContext"]}</>
-                                                                            }
-
-
-
-                                                                        </div>
+                                                                        <div>{event["eventContext"]}</div>
 
                                                                         {
                                                                             showAllReceiptButton[i] === false
@@ -623,29 +638,7 @@ function MainPage(props) {
                                                                                                     : (<>
 
                                                                                                         <div className="receiptTitle">
-                                                                                                            <h5>
-                                                                                                                {
-                                                                                                                    fixEventButton[i]
-                                                                                                                        ?
-                                                                                                                        <>
-                                                                                                                            <span onClick={() => { receiptDeleteButton(i, 0); }}>
-                                                                                                                                <i className="far fa-trash-alt"></i>
-                                                                                                                            </span>
-                                                                                                                            <input type="text" style={{ border: "transparent", textAlign: "left", width: "160px" }} placeholder={event["receiptList"][0]["receiptTitle"]}
-                                                                                                                                onInput={
-                                                                                                                                    (e) => {
-                                                                                                                                        changeReceiptTitle(e.target.value, i);
-                                                                                                                                    }}></input>
-
-                                                                                                                        </>
-
-                                                                                                                        :
-                                                                                                                        <>
-                                                                                                                            {event["receiptList"][0]["receiptTitle"]}
-                                                                                                                        </>
-                                                                                                                }
-
-                                                                                                            </h5>
+                                                                                                            <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                             {
                                                                                                                 event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                     ? null
@@ -656,29 +649,8 @@ function MainPage(props) {
 
 
                                                                                                         </div>
-
-
-                                                                                                        {fixEventButton[i]
-                                                                                                            ? <>
-                                                                                                                <div>
-
-
-                                                                                                                    <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} placeholder={event["receiptList"][0]["receiptContext"]}
-                                                                                                                        onInput={
-                                                                                                                            (e) => {
-                                                                                                                                changeReceiptContext(e.target.value, i);
-                                                                                                                            }}>
-                                                                                                                    </input>
-                                                                                                                </div>
-
-                                                                                                            </>
-                                                                                                            :
-                                                                                                            <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
-                                                                                                        }
-
-
-
-
+                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                      
                                                                                                         {
                                                                                                             event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                 ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
@@ -695,47 +667,19 @@ function MainPage(props) {
                                                                                                                             return (
                                                                                                                                 <tr key={k}>
                                                                                                                                     <td>
-                                                                                                                                        {
-                                                                                                                                            fixEventButton[i]
-                                                                                                                                                ?
-                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["context"]}
-                                                                                                                                                    onInput={
-                                                                                                                                                        (e) => {
-                                                                                                                                                            changeItem("context", e.target.value, i, 0, k);
-                                                                                                                                                        }}></input>
-                                                                                                                                                :
                                                                                                                                                 <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
-                                                                                                                                        }
-
+                                                                                                                                    
                                                                                                                                     </td>
 
                                                                                                                                     <td>
-                                                                                                                                        {
-                                                                                                                                            fixEventButton[i]
-                                                                                                                                                ?
-                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["price"]}
-                                                                                                                                                    onInput={
-                                                                                                                                                        (e) => {
-                                                                                                                                                            changeItem("price", e.target.value.replace(/[^0-9]/g, ''), i, 0, k);
-                                                                                                                                                        }}></input>
-                                                                                                                                                :
                                                                                                                                                 <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-                                                                                                                                        }
+                                                                                                                                        
 
                                                                                                                                     </td>
 
                                                                                                                                     <td>
-                                                                                                                                        {
-                                                                                                                                            fixEventButton[i]
-                                                                                                                                                ?
-                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["amount"]}
-                                                                                                                                                    onInput={
-                                                                                                                                                        (e) => {
-                                                                                                                                                            changeItem("amount", e.target.value.replace(/[^0-9]/g, ''), i, 0, k);
-                                                                                                                                                        }}></input>
-                                                                                                                                                :
                                                                                                                                                 <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-                                                                                                                                        }
+                                                                                                                                        
 
                                                                                                                                     </td>
                                                                                                                                     <td>{item["totalAmount"]}</td>
@@ -744,26 +688,7 @@ function MainPage(props) {
                                                                                                                         }
                                                                                                                         )}
                                                                                                                     </tbody>
-                                                                                                                    {fixEventButton[i]
-                                                                                                                        ?
-                                                                                                                        <div style={{ display: "flex", justifyContent: "center", width: "400px", position: "relative", }}>
-                                                                                                                            <button type='button' className='submitButton' style={{ margin: "0" }}
-                                                                                                                                onClick={() => {
-                                                                                                                                    var tempQuarter = { ...quarter };
-
-                                                                                                                                    tempQuarter[currentQuarter]["eventList"][i]["receiptList"][0]["receiptDetailList"].push({
-                                                                                                                                        context: "",
-                                                                                                                                        price: "",
-                                                                                                                                        amount: "",
-                                                                                                                                        totalAmount: ""
-                                                                                                                                    })
-                                                                                                                                    setQuarter(tempQuarter)
-                                                                                                                                }}>항목 추가
-                                                                                                                            </button>
-                                                                                                                        </div>
-                                                                                                                        :
-                                                                                                                        null
-                                                                                                                    }
+                                                                                                                    
 
                                                                                                                 </table>
 
@@ -779,19 +704,10 @@ function MainPage(props) {
                                                                                             event["receiptList"].length === 0
                                                                                                 ? null
                                                                                                 :
-                                                                                                !fixEventButton[i]
-                                                                                                    ? <img src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                <img src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                                                         alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"} />
-                                                                                                    :
-                                                                                                    <>
-                                                                                                        <input type="file" id="receiptImg" accept="image/*" style={{ display: "none" }}
-                                                                                                            onChange={(e) => { uploadImg(e.target.files[0], i, 0); }}></input>
-                                                                                                        <label htmlFor='receiptImg'>
-
-                                                                                                            <img src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                                alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"} title='변경하시려면 클릭하세요.' />
-                                                                                                        </label>
-                                                                                                    </>
+                                                                                                    
+                                                                                                    
                                                                                         }
 
                                                                                     </div>
@@ -810,29 +726,7 @@ function MainPage(props) {
                                                                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                                                                 : (<>
                                                                                                                     <div className="receiptTitle">
-                                                                                                                        <h5>
-                                                                                                                            {
-                                                                                                                                fixEventButton[i]
-                                                                                                                                    ?
-                                                                                                                                    <>
-                                                                                                                                        <span onClick={() => { receiptDeleteButton(i, 0); }}>
-                                                                                                                                            <i className="far fa-trash-alt"></i>
-                                                                                                                                        </span>
-                                                                                                                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "160px" }} placeholder={event["receiptList"][0]["receiptTitle"]}
-                                                                                                                                            onInput={
-                                                                                                                                                (e) => {
-                                                                                                                                                    changeReceiptTitle(e.target.value, i);
-                                                                                                                                                }}></input>
-
-                                                                                                                                    </>
-
-                                                                                                                                    :
-                                                                                                                                    <>
-                                                                                                                                        {event["receiptList"][0]["receiptTitle"]}
-                                                                                                                                    </>
-                                                                                                                            }
-
-                                                                                                                        </h5>
+                                                                                                                        <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                                         {
                                                                                                                             event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                                 ? null
@@ -843,24 +737,8 @@ function MainPage(props) {
 
 
                                                                                                                     </div>
-
-                                                                                                                    {fixEventButton[i]
-                                                                                                                        ? <>
-                                                                                                                            <div>
-
-
-                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} placeholder={event["receiptList"][0]["receiptContext"]}
-                                                                                                                                    onInput={
-                                                                                                                                        (e) => {
-                                                                                                                                            changeReceiptContext(e.target.value, i);
-                                                                                                                                        }}>
-                                                                                                                                </input>
-                                                                                                                            </div>
-
-                                                                                                                        </>
-                                                                                                                        :
-                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
-                                                                                                                    }
+                                                                                                                    <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                                    
                                                                                                                     {
                                                                                                                         receipt["receiptDetailList"].length === 0
                                                                                                                             ? <div>입력된 영수증 내역이 없습니다.</div>
@@ -879,45 +757,20 @@ function MainPage(props) {
                                                                                                                                             return (
                                                                                                                                                 <tr key={k}>
                                                                                                                                                     <td>
-                                                                                                                                                        {
-                                                                                                                                                            fixEventButton[i]
-                                                                                                                                                                ?
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["context"]}
-                                                                                                                                                                    onInput={
-                                                                                                                                                                        (e) => {
-                                                                                                                                                                            changeItem("context", e.target.value, i, j, k);
-                                                                                                                                                                        }}></input>
-                                                                                                                                                                :
-                                                                                                                                                                <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
-                                                                                                                                                        }
+                                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
+                                                                                                                                                        
                                                                                                                                                     </td>
 
                                                                                                                                                     <td>
-                                                                                                                                                        {
-                                                                                                                                                            fixEventButton[i]
-                                                                                                                                                                ?
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["price"]}
-                                                                                                                                                                    onInput={
-                                                                                                                                                                        (e) => {
-                                                                                                                                                                            changeItem("price", e.target.value.replace(/[^0-9]/g, ''), i, j, k);
-                                                                                                                                                                        }}></input>
-                                                                                                                                                                :
+                                                                                                                                                        
                                                                                                                                                                 <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-                                                                                                                                                        }
+                                                                                                                                                        
                                                                                                                                                     </td>
 
                                                                                                                                                     <td>
-                                                                                                                                                        {
-                                                                                                                                                            fixEventButton[i]
-                                                                                                                                                                ?
-                                                                                                                                                                <input type="text" style={{ border: "transparent", textAlign: "center" }} placeholder={item["amount"]}
-                                                                                                                                                                    onInput={
-                                                                                                                                                                        (e) => {
-                                                                                                                                                                            changeItem("amount", e.target.value.replace(/[^0-9]/g, ''), i, j, k);
-                                                                                                                                                                        }}></input>
-                                                                                                                                                                :
+                                                                                                                                                        
                                                                                                                                                                 <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-                                                                                                                                                        }
+                                                                                                                                                        
                                                                                                                                                     </td>
 
                                                                                                                                                     <td>
@@ -927,24 +780,6 @@ function MainPage(props) {
                                                                                                                                         })
                                                                                                                                         }
                                                                                                                                     </tbody>
-                                                                                                                                    {fixEventButton[i]
-                                                                                                                                        ?
-                                                                                                                                        <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                                                                                                                                            <button className='submitButton' type='button' style={{ margin: "0" }}
-                                                                                                                                                onClick={() => {
-                                                                                                                                                    var tempQuarter = { ...quarter };
-
-                                                                                                                                                    tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"].push({
-                                                                                                                                                        context: "",
-                                                                                                                                                        price: "",
-                                                                                                                                                        amount: "",
-                                                                                                                                                        totalAmount: ""
-                                                                                                                                                    })
-                                                                                                                                                    setQuarter(tempQuarter)
-                                                                                                                                                }}>항목 추가</button></div>
-                                                                                                                                        :
-                                                                                                                                        null
-                                                                                                                                    }
 
                                                                                                                                 </table>
 
@@ -959,26 +794,11 @@ function MainPage(props) {
                                                                                                     {
                                                                                                         console.log(i + " " + j)
                                                                                                     }
-
-                                                                                                    {
-
-                                                                                                        fixEventButton[i]
-                                                                                                            ?
-                                                                                                            <div className="uploadimg">
-
-                                                                                                                <label htmlFor='receiptImg'>
-                                                                                                                    <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                                        alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} title='변경하시려면 클릭하세요.' />
-                                                                                                                </label>
-                                                                                                                <input type="file" id="receiptImg" accept="image/*"
-                                                                                                                    onChange={(e) => { uploadImg(e.target.files[0], i, j); console.log("hi:" + i + " " + j) }} style={{ display: "none" }}></input>
-                                                                                                            </div>
-
-                                                                                                            : <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                    <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                                                                 alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"} />
 
 
-                                                                                                    }
+                                                                                                    
                                                                                                 </div>
 
                                                                                             )
@@ -989,19 +809,7 @@ function MainPage(props) {
 
                                                                         }
 
-                                                                        {
-                                                                            fixEventButton[i] === true
-                                                                                ?
-                                                                                <div style={{
-                                                                                    width: "650px", display: "flex", justifyContent: "flex-end", position: "relative",
-                                                                                }}>
-                                                                                    <button className='submitButton' type='button'
-                                                                                        onClick={() => {
-                                                                                            receiptAddButton(i);
-                                                                                        }}>영수증 추가</button>
-                                                                                </div>
-                                                                                : null
-                                                                        }
+                                                                                                  
 
 
                                                                     </div>
@@ -1015,8 +823,7 @@ function MainPage(props) {
                                                 <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
                                                     <button className="editButton" onClick={() => {
                                                         eventAddButton(currentQuarter);
-                                                        setEditEventState(true);
-                                                    }} > 행사 추가 </button>
+                                                    }} > <i class="fas fa-plus"></i> </button>
                                                 </div>
 
 
@@ -1027,26 +834,27 @@ function MainPage(props) {
                                             <div className="remotePanel">
                                                 <div className="remotePanelBox" style={{ display: "flex" }}>
                                                     <div>
-                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚행사 목록📚</h5>
-                                                        <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 변경할 수 있습니다.</p>
+                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚행사 순서📚</h5>
+                                                        <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 바꾸고 순서 변경 버튼을 눌러주세요 !</p>
 
                                                         {
                                                             list !== undefined
-                                                                ?<>
-                                                                <ReactSortable className= "sortTable" tag="div" list={list} setList={setList}>
+                                                                ? <>
+                                                                    <ReactSortable className="sortTable" tag="div" list={list} setList={setList}>
 
-                                                                    {list.map((item, i) => (
-                                                                        <div style={{ marginLeft: "20px" }} key={item.eventNumber}>{i + 1}. {item.eventTitle}</div>
-                                                                    ))}
+                                                                        {list.map((item, i) => (
+                                                                            <div style={{ marginLeft: "20px" }} key={item.eventNumber}>{i + 1}. {item.eventTitle}</div>
+                                                                        ))}
 
-
-                                                                </ReactSortable>
+                                                                    </ReactSortable>
+                                                                    {
                                                                     <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
-                                                                        <button className='submitButton' type='button' onClick={() => { 
+                                                                        <button className='submitButton' type='button' onClick={() => {
                                                                             eventSequenceButton();
-                                                                            alert("API 문서가 없어서 기능 구현 안함") }}> 순서 변경 </button>
+                                                                        }}> 순서 변경 </button>
                                                                     </div>
-                                                                    </>
+                                                                    }
+                                                                </>
                                                                 : <span>등록된 행사가 없습니다.</span>
                                                         }
 

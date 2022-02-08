@@ -1,0 +1,62 @@
+.editEventContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 22;
+}
+
+.editEventBox {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    align-items: center;
+}
+
+.editEventBox i {
+    color: var(--color-quarter);
+    font-size: 20px;
+}
+
+
+.editEventBtn {
+    width: 150px;
+    background-color: var(--color-quarter);
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: var(--color-white);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 15px 15px 0 15px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.editSubmitButton {
+    width: 50px;
+    background-color: var(--color-leftPanel);
+    border: none;
+    outline: none;
+    height: 35px;
+    border-radius: 49px;
+    color: var(--color-quarter);
+    margin: 0 0 15px 0;
+}
+
+.editSubmitButton i {
+    font-size: 15px;
+}

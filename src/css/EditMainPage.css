@@ -153,6 +153,11 @@
     align-items: flex-start;
 }
 
+.EditMainPageContainer .eventButtons i {
+    color: var(--color-quarter);
+    font-size: 20px;
+}
+
 .EditMainPageContainer .buttons {
     display: flex;
     justify-content: flex-end;
@@ -207,7 +212,7 @@
 
 
 .EditMainPageContainer .eventSource button {
-    width: 120px;
+    width: 50px;
     background-color: var(--color-leftPanel);
     border: none;
     outline: none;
@@ -386,7 +391,7 @@
 }
 
 .EditMainPageContainer .editButton {
-    width: 120px;
+    width: 50px;
     background-color: var(--color-leftPanel);
     border: none;
     outline: none;
