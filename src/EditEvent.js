@@ -106,7 +106,6 @@ function EditEvent(props) {
                             })
             }
         setEventData(tempEditEventData);
-        alert("영수증 detail이 삭제되었습니다.");
     }
 
      function sumItems(price, amount) {
@@ -389,12 +388,14 @@ function EditEvent(props) {
 
                                                                                                             <div className="uploadimg">
 
-                                                                                                                <label htmlFor='receiptImg'>
-                                                                                                                    <img src={processImage(eventData["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                                        alt={processImage(eventData["receiptList"][j]["receiptImg"])} height={"150"} title='변경하시려면 클릭하세요.' />
-                                                                                                                </label>
+                                                                                                                {/* <label for='receiptImg'> */}
+                                                                                                                    <img src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                                        alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"} title='영수증 사진' />
+                                                                                                                {/* </label> */}
+
                                                                                                                 <input type="file" id="receiptImg" accept="image/*"
-                                                                                                                    onChange={(e) => { uploadImg(e.target.files[j], j); }} style={{ display: "none" }}></input>
+                                                                                                                    onChange={(e) => { uploadImg(e.target.files[0], j); }}
+                                                                                                                    ></input>
                                                                                                             </div>
                                                                                                 </div>
 

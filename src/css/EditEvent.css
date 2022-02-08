@@ -94,3 +94,8 @@
 .editEventCard::-webkit-scrollbar-track-piece:end {
     background-color: none;
 }
+
+#receiptImg {
+    width: 220px !important;
+    margin-left: 30px;
+}

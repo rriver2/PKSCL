@@ -409,6 +409,7 @@ function MainPage(props) {
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
+                setList(answer["quarter"][currentQuarter]["eventList"]);
 
                 if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined) {
                     for (let i = 0; i < payload.data["quarter"][currentQuarter]["eventList"].length; i++) {
@@ -417,6 +418,7 @@ function MainPage(props) {
                 }
                 reset(props.todayQuarter);
                 defineColor(props.todayQuarter);
+                setShowAllReceiptButton(resetArray);
             })
             .catch((error) => {
                 alert("학과 장부를 불러올 수 없습니다.");
@@ -430,7 +432,6 @@ function MainPage(props) {
                     resetArray.push(false)
                 }
 
-                console.log(resetArray);
                 setShowAllReceiptButton(resetArray);
             })
 
@@ -793,9 +794,6 @@ function MainPage(props) {
                                                                                                                 </>)}
                                                                                                     </div>
 
-                                                                                                    {
-                                                                                                        console.log(i + " " + j)
-                                                                                                    }
                                                                                                     <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                                                                 alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"} />
 

@@ -381,7 +381,7 @@
 } */
 
 .EditMainPageContainer .remotePanel {
-    width: 20vw;
+    width: 1px;
     height: 100%;
     display: flex;
     flex-direction: column;
