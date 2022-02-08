@@ -707,7 +707,7 @@ function AccessPage(props) {
               </div>
 
               <div className="submitbox" >
-                <button type="button" onClick={() => { setPosition("admin"); login(); }} value="Login" className="SignInBtn">로그인</button>
+                <button type="button" onClick={() => { reset(); setPosition("admin"); login(); }} value="Login" className="SignInBtn">로그인</button>
               </div>
             </form>
             <div className='moveSignPage'>
@@ -748,7 +748,7 @@ function AccessPage(props) {
               </div>
 
               <div className="submitbox" >
-                <button type="button" onClick={() => { login() }} value="Login" className="SignInBtn">로그인</button>
+                <button type="button" onClick={() => { reset(); login() }} value="Login" className="SignInBtn">로그인</button>
               </div>
             </form>
             <div className='moveSignPage'>
