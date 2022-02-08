@@ -225,10 +225,10 @@ function MainPage(props) {
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
-                            getLedger();
                             alert("행사 장부가 삭제되었습니다.");
                             break;
                     }
+                    getLedger();
                 }).catch((error) => {
 
                     alert("장부를 삭제하는데 실패했습니다.");
@@ -273,30 +273,44 @@ function MainPage(props) {
     function eventAddButton(currentQuarter) {
         console.log(quarter);
         console.log(currentQuarter);
-        const temp = { ...quarter };
-        temp[currentQuarter]["eventList"].push({
-            eventContext: "행사내용",
-            eventNumber: "eventNumber",
-            eventTitle: "행사 이름",
-            receiptList: [
-                {
-                    "receiptTitle": "영수증 제목을 입력해주세요",
-                    "receiptImg": { name: "" },
-                    "receiptContext": "영수증 내용을 입력해주세요",
-                    "receiptDetailList": [
-                        {
-                            "context": "",
-                            "price": "",
-                            "amount": "",
-                            "totalAmount": ""
+        // const temp = { ...quarter };
+        // temp[currentQuarter]["eventList"].push({
+        //     eventContext: "행사내용",
+        //     eventNumber: "eventNumber",
+        //     eventTitle: "행사 이름",
+        //     receiptList: [
+        //         {
+        //             "receiptTitle": "영수증 제목을 입력해주세요",
+        //             "receiptImg": { name: "" },
+        //             "receiptContext": "영수증 내용을 입력해주세요",
+        //             "receiptDetailList": [
+        //                 {
+        //                     "context": "",
+        //                     "price": "",
+        //                     "amount": "",
+        //                     "totalAmount": ""
 
-                        },
-                    ]
-                },
-            ],
-        });
-
-        setQuarter(temp);
+        //                 },
+        //             ]
+        //         },
+        //     ],
+        // });
+        axios.post(debugAPIURL + "/ledger",currentQuarter)
+            .then((payload) => {
+                switch (payload.status) {
+                    case 200:
+                        alert("장부를 추가하였습니다.");
+                        getLedger();
+                        break;
+                    default:
+                        alert("success code: " + payload.status);
+                        getLedger();
+                        break;
+                }
+            })
+            .catch((error) => {
+                alert("장부 추가에 실패했습니다. code: " + error.response.status)
+            });
     }
 
     // function receiptAddButton(i) {
@@ -826,7 +840,7 @@ function MainPage(props) {
                                                     }} > <i class="fas fa-plus"></i> </button>
                                                 </div>
 
-
+                                            
                                             </div>
                                             {/* 장부 */}
 

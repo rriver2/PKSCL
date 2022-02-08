@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import './css/EditEvent.css'
+import PreviewImg from './PreviewImg';
 
 function EditEvent(props) {
     let debugAPIURL = "";
@@ -8,6 +9,7 @@ function EditEvent(props) {
 
     const [eventData,setEventData] = useState();
     const [deleteReceiptList,SetDeleteReceiptList] = useState([]);
+    const [showImg,setShowImg] = useState(false);
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -191,6 +193,11 @@ function EditEvent(props) {
     return(
         // <div className="editEventContainer">
             <div className="editEventBox">
+                {
+                    showImg
+                    ?<PreviewImg setShowImg={setShowImg}></PreviewImg>
+                    :null
+                }
                     <div className="quarterData" style={{marginTop:"0"}}>
                 {
                                                     eventData === undefined
@@ -390,7 +397,10 @@ function EditEvent(props) {
 
                                                                                                                 {/* <label for='receiptImg'> */}
                                                                                                                     <img src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                                        alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"} title='영수증 사진' />
+                                                                                                                        alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"} title='영수증 사진'
+                                                                                                                        onClick={()=>{setShowImg(true)}}
+                                                                                                                        />
+                                                                                                                
                                                                                                                 {/* </label> */}
 
                                                                                                                 <input type="file" id="receiptImg" accept="image/*"
@@ -423,10 +433,6 @@ function EditEvent(props) {
                                                         )
                                                 }
                                                 </div>
-                <div className="editEventBtns">
-                <button className="editEventBtn">나가기</button>
-                <button className="editEventBtn">저장하기</button>
-                </div>
             {/* </div> */}
         </div>
     )

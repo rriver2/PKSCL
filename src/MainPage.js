@@ -988,7 +988,11 @@ function MainPage(props) {
                                                                 </div>
                                                       
                                                             </div>
-                                                            <img src={giraffe} className="image" alt="" style={{width:"70px",height:"70px",marginBottom:"50px"}}/>
+                                                            {
+                                                               event.receiptList.length > 1 &&  showAllReceiptButton[i] === false
+                                                               ? <div><img src={giraffe} className="image" alt="" style={{width:"70px",height:"70px"}}/><div style={{marginBottom:"50px",textAlign:"center"}}>end</div></div>
+                                                               : null
+                                                            }
                                                             </div>
                                                         )
                                                     })
