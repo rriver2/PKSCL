@@ -156,7 +156,7 @@ function EditEvent(props) {
         console.log("payload")
         console.log(eventData)
         editEventNameAPI();
-        editReciptAPI();
+        sendReciept();
         if(deleteReceiptList.length !==0)  deleteEventNameAPI();
     }
 
@@ -175,11 +175,6 @@ function EditEvent(props) {
             })
     }
 
-    function editReciptAPI(){
-        console.log(eventData)
-        alert("editReciptAPI 추가해야함")
-    }
-
     function deleteEventNameAPI(){
         let payload = {"deleteReceiptList":deleteReceiptList}
         axios.delete("/receipt",payload)
@@ -189,6 +184,89 @@ function EditEvent(props) {
             .catch((error) => {
                 alert("영수증 삭제 실패")
             })
+    }
+
+    function postReceipt(j) {
+
+      let payload = new FormData();
+        
+      let receiptData = eventData["receiptList"][j];
+
+    payload.append("eventNumber", eventData["eventNumber"]);
+      payload.append("receiptTitle", receiptData["receiptTitle"]);
+      payload.append("receiptContext", receiptData["receiptContext"]);
+      payload.append("receiptDetailist", receiptData["receiptDetailList"])
+
+      axios.post(debugAPIURL + "/receipt", payload,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      )
+        .then((payload) => {
+          switch (payload.status) {
+            case 200:
+                alert("영수증 추가 완료");
+              return;
+            default: alert("success: " + payload.status); return;
+          }
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 400: alert("영수증 추가 실패"); return;
+            default: alert("error: " + error.response.status); return;
+          }
+        })
+    
+  }
+
+  function putReceipt(j) {
+
+      let payload = new FormData();
+
+     
+        
+      let receiptData = eventData["receiptList"][j];
+
+      payload.append("receiptNumber", receiptData["receiptNumber"]);
+      payload.append("receiptTitle", receiptData["receiptTitle"]);
+      payload.append("receiptContext", receiptData["receiptContext"]);
+      payload.append("receiptDetailist", receiptData["receiptDetailList"])
+
+
+      console.log("payload")
+
+      axios.put(debugAPIURL + "/receipt", payload,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      )
+        .then((payload) => {
+          switch (payload.status) {
+            case 200:
+                alert("영수증 수정 완료");
+              return;
+            default: alert("success: " + payload.status); return;
+          }
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 400: alert("영수증 수정 실패"); return;
+            default: alert("error: " + error.response.status); return;
+          }
+        })
+    
+  }
+    function sendReciept(){
+
+        eventData["receiptList"].map((receipt,j)=>{
+                if(receipt["receiptNumber"]=== undefined){
+                        postReceipt(j);
+                    }else{
+                        putReceipt(j);
+                    }
+                }     
+        )
+        
     }
 
     return(

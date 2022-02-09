@@ -246,14 +246,14 @@ div .checkbox-form {
     transform-origin: 50% 48%;
     border-radius: 43%;
     z-index: -20;
-    animation: drift 6000ms infinite linear;
+    animation: drift 9000ms infinite linear;
     // background-color: red;
     opacity: .6;
     background: var(--color-quarter);
 }
 
 .wave.-three {
-    animation: drift 5000ms infinite linear;
+    animation: drift 13000ms infinite linear;
     opacity: .6;
     background: var(--color-leftPanel);
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import log from './img/log.svg';
+import log from './img/log.png';
 import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
