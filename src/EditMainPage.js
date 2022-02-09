@@ -18,7 +18,7 @@ import EditEvent from './EditEvent';
 
 
 
-function MainPage(props) {
+function EditMainPage(props) {
     const [list, setList] = useState([]);
 
     let debugAPIURL = "";
@@ -920,4 +920,4 @@ function MainPage(props) {
 }
 
 
-export default MainPage;
+export default EditMainPage;

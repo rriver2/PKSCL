@@ -10,6 +10,7 @@ function EditEvent(props) {
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
+    const [editState,setEditState]= useState(true);
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -170,6 +171,9 @@ function EditEvent(props) {
         editEventNameAPI();
         sendReciept();
         if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
+        if(editState === true){
+            props.setEditEventState(false);
+        }
     }
 
     function editEventNameAPI() {
@@ -184,6 +188,7 @@ function EditEvent(props) {
             })
             .catch((error) => {
                 alert("행사 이름, 행사 설명 수정 실패")
+                setEditState(false)
             })
     }
 
@@ -204,6 +209,7 @@ function EditEvent(props) {
             })
             .catch((error) => {
                 alert("영수증 삭제 실패")
+                setEditState(false)
             })
     }
 
@@ -239,8 +245,8 @@ function EditEvent(props) {
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 추가 실패"); return;
-                    default: alert("error: " + error.response.status); return;
+                    case 400: alert("영수증 추가 실패"); setEditState(false); return;
+                    default: alert("error: " + error.response.status);setEditState(false); return;
                 }
             })
 
@@ -261,11 +267,6 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-
-
-
-
-
         axios.put(debugAPIURL + "/receipt", payload,
             {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -281,8 +282,8 @@ function EditEvent(props) {
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 수정 실패"); return;
-                    default: alert("error: " + error.response.status); return;
+                    case 400: alert("영수증 수정 실패"); setEditState(false); return;
+                    default: alert("error: " + error.response.status); setEditState(false); return;
                 }
             })
 
@@ -340,7 +341,6 @@ function EditEvent(props) {
                                                 <i class="far fa-trash-alt"></i> </button>
                                             <button onClick={() => {
                                                 editEventButton();
-                                                props.setEditEventState(false)
                                             }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>
                                             <button onClick={() => {
                                                 if (window.confirm("행사 수정을 취소하시겠습니까?")) {
