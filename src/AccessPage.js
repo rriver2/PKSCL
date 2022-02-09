@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import log from './img/log.png';
+import logo from './img/logo.png';
 import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -281,7 +281,7 @@ function AccessPage(props) {
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
         </div>
-            <img src={log} className="image" alt="" />
+            <img src={logo} className="image" alt="PKSCL logo" />
         <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
           style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}></button>
         </div>
