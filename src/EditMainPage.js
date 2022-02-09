@@ -452,6 +452,7 @@ function EditMainPage(props) {
                 reset(props.todayQuarter);
                 defineColor(props.todayQuarter);
                 setShowAllReceiptButton(resetArray);
+                GetDate();
             })
             .catch((error) => {
                 alert("학과 장부를 불러올 수 없습니다.");
@@ -467,10 +468,6 @@ function EditMainPage(props) {
 
                 setShowAllReceiptButton(resetArray);
             })
-
-        reset(props.todayQuarter);
-        defineColor(props.todayQuarter);
-        GetDate();
     }
 
     function eventSequenceButton() {
