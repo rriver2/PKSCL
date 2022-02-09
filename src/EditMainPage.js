@@ -295,7 +295,8 @@ function MainPage(props) {
         //         },
         //     ],
         // });
-        axios.post(debugAPIURL + "/ledger",currentQuarter)
+        let payload = {"quarter" : currentQuarter}
+        axios.post(debugAPIURL + "/ledger",payload)
             .then((payload) => {
                 switch (payload.status) {
                     case 200:

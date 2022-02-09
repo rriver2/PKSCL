@@ -181,7 +181,8 @@ function EditEvent(props) {
     }
 
     function deleteEventNameAPI(){
-        axios.delete("/receipt",deleteReceiptList)
+        let payload = {"deleteReceiptList":deleteReceiptList}
+        axios.delete("/receipt",payload)
             .then((payload) => {
                 alert("영수증 삭제 완료")
             })
