@@ -494,7 +494,6 @@ function EditMainPage(props) {
         if (editEventState === false) getLedger();
     }, [editEventState]);
 
-
     useEffect(() => {
         if (quarter !== undefined) {
             reset(currentQuarter);

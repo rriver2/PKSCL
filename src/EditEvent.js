@@ -34,10 +34,6 @@ function EditEvent(props) {
         item[key] = value;
         item["totalAmount"] = item["price"] * item["amount"];
         setEventData(tempEditEventData);
-        // var tempShowAllReceiptButton = [...showAllReceiptButton];
-        // tempShowAllReceiptButton[i] = true;
-        // console.log(tempShowAllReceiptButton);
-        // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
     function eventDeleteButton() {
@@ -166,13 +162,14 @@ function EditEvent(props) {
     }
 
     function editEventButton() {
-        console.log("payload")
-        console.log(eventData)
         editEventNameAPI();
         sendReciept();
         if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
-        if(editState === true){
+        if(editState === false){
+            alert("행사 수정이 완료되었습니다.");
             props.setEditEventState(false);
+        }else{
+            alert("행사 수정에 실패했습니다.");
         }
     }
 
@@ -185,10 +182,10 @@ function EditEvent(props) {
         axios.patch("/event", payload)
             .then((payload) => {
                 // alert("행사 이름, 행사 설명 수정 완료")
+                setEditState(false)
             })
             .catch((error) => {
                 // alert("행사 이름, 행사 설명 수정 실패")
-                setEditState(false)
             })
     }
 
@@ -206,10 +203,10 @@ function EditEvent(props) {
         axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
             .then((payload) => {
                 // alert("영수증 삭제 완료")
+                setEditState(false)
             })
             .catch((error) => {
                 // alert("영수증 삭제 실패")
-                setEditState(false)
             })
     }
 
@@ -239,15 +236,16 @@ function EditEvent(props) {
                 switch (payload.status) {
                     case 200:
                         // alert("영수증 추가 완료");
+                        setEditState(false);
                         return;
-                    default: return;
+                    default: setEditState(false);return;
                     // default: alert("success: " + payload.status); return;
                 }
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 추가 실패"); setEditState(false); return;
-                    default: alert("error: " + error.response.status);setEditState(false); return;
+                    case 400: alert("영수증 추가 실패");  return;
+                    default: alert("error: " + error.response.status); return;
                 }
             })
 
@@ -277,21 +275,23 @@ function EditEvent(props) {
                 switch (payload.status) {
                     case 200:
                         // alert("영수증 수정 완료");
+                        setEditState(false);
                         return;
-                    default: return;
+                    default: setEditState(false); return;
                     // alert("success: " + payload.status); 
                 }
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 수정 실패"); setEditState(false); return;
-                    default: alert("error: " + error.response.status); setEditState(false); return;
+                    case 400: alert("영수증 수정 실패");  return;
+                    default: alert("error: " + error.response.status); return;
                 }
             })
 
     }
     function sendReciept() {
 
+        // eslint-disable-next-line array-callback-return
         eventData["receiptList"].map((receipt, j) => {
             if (receipt["receiptNumber"] === undefined) {
                 postReceipt(j);
