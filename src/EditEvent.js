@@ -10,7 +10,7 @@ function EditEvent(props) {
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
-    const [editState,setEditState]= useState(true);
+    const [editState,setEditState]= useState([true,true,true]);
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -165,7 +165,10 @@ function EditEvent(props) {
         editEventNameAPI();
         sendReciept();
         if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
-        if(editState === false){
+        let success = editState.includes(true)
+        console.log("success")
+        console.log(success)
+        if(success === false){
             alert("행사 수정이 완료되었습니다.");
             props.setEditEventState(false);
         }else{
@@ -182,7 +185,9 @@ function EditEvent(props) {
         axios.patch("/event", payload)
             .then((payload) => {
                 // alert("행사 이름, 행사 설명 수정 완료")
-                setEditState(false)
+                let editStateTemp = [...editState];
+                editStateTemp[0] = false;
+                setEditState(editStateTemp)
             })
             .catch((error) => {
                 // alert("행사 이름, 행사 설명 수정 실패")
@@ -203,7 +208,9 @@ function EditEvent(props) {
         axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
             .then((payload) => {
                 // alert("영수증 삭제 완료")
-                setEditState(false)
+                let editStateTemp = [...editState];
+                editStateTemp[2] = false;
+                setEditState(editStateTemp)
             })
             .catch((error) => {
                 // alert("영수증 삭제 실패")
@@ -237,15 +244,15 @@ function EditEvent(props) {
                     case 200:
                         // alert("영수증 추가 완료");
                         setEditState(false);
-                        return;
-                    default: setEditState(false);return;
+                        return true;
+                    default: setEditState(false);return true;
                     // default: alert("success: " + payload.status); return;
                 }
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 추가 실패");  return;
-                    default: alert("error: " + error.response.status); return;
+                    case 400: alert("영수증 추가 실패");  return false;
+                    default: alert("error: " + error.response.status); return false;
                 }
             })
 
@@ -276,15 +283,15 @@ function EditEvent(props) {
                     case 200:
                         // alert("영수증 수정 완료");
                         setEditState(false);
-                        return;
-                    default: setEditState(false); return;
+                        return true;
+                    default: setEditState(false); return true;
                     // alert("success: " + payload.status); 
                 }
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("영수증 수정 실패");  return;
-                    default: alert("error: " + error.response.status); return;
+                    case 400: alert("영수증 수정 실패");  return false;
+                    default: alert("error: " + error.response.status); return false;
                 }
             })
 
@@ -294,13 +301,22 @@ function EditEvent(props) {
         // eslint-disable-next-line array-callback-return
         eventData["receiptList"].map((receipt, j) => {
             if (receipt["receiptNumber"] === undefined) {
-                postReceipt(j);
+                let result = postReceipt(j);
+                if( result === false) {
+                    let editStateTemp = [...editState];
+                    editStateTemp[1] = true;
+                    setEditState(editStateTemp)
+                }
             } else {
-                putReceipt(j);
+                let result = putReceipt(j);
+                if( result === false) {
+                    let editStateTemp = [...editState];
+                    editStateTemp[1] = true;
+                    setEditState(editStateTemp)
+                }
             }
         }
         )
-
     }
 
     return (
