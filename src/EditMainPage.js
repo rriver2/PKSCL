@@ -319,13 +319,12 @@ function EditMainPage(props) {
                 switch (payload.status) {
                     case 200:
                         alert("장부를 추가하였습니다.");
-                        getLedger();
                         break;
                     default:
                         alert("success code: " + payload.status);
-                        getLedger();
                         break;
                 }
+                getLedger();
             })
             .catch((error) => {
                 alert("장부 추가에 실패했습니다. code: " + error.response.status)
@@ -626,7 +625,7 @@ function EditMainPage(props) {
                                                                                 <button onClick={() => {
                                                                                     eventDeleteButton(event["eventNumber"], i);
                                                                                 }} style={{ marginRight: "15px" }}>
-                                                                                    <i class="far fa-trash-alt"></i> </button>
+                                                                                    <i class="far fa-trash-alt"></i></button>
                                                                                 <button onClick={() => {
                                                                                     setEditEventState(true)
                                                                                     setEditEventData(quarter[currentQuarter]["eventList"][i]);

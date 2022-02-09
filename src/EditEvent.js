@@ -184,10 +184,10 @@ function EditEvent(props) {
         }
         axios.patch("/event", payload)
             .then((payload) => {
-                alert("행사 이름, 행사 설명 수정 완료")
+                // alert("행사 이름, 행사 설명 수정 완료")
             })
             .catch((error) => {
-                alert("행사 이름, 행사 설명 수정 실패")
+                // alert("행사 이름, 행사 설명 수정 실패")
                 setEditState(false)
             })
     }
@@ -205,10 +205,10 @@ function EditEvent(props) {
         console.log("/receipt" + deleteReceiptListURL)
         axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
             .then((payload) => {
-                alert("영수증 삭제 완료")
+                // alert("영수증 삭제 완료")
             })
             .catch((error) => {
-                alert("영수증 삭제 실패")
+                // alert("영수증 삭제 실패")
                 setEditState(false)
             })
     }
@@ -238,9 +238,10 @@ function EditEvent(props) {
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
-                        alert("영수증 추가 완료");
+                        // alert("영수증 추가 완료");
                         return;
-                    default: alert("success: " + payload.status); return;
+                    default: return;
+                    // default: alert("success: " + payload.status); return;
                 }
             })
             .catch((error) => {
@@ -275,9 +276,10 @@ function EditEvent(props) {
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
-                        alert("영수증 수정 완료");
+                        // alert("영수증 수정 완료");
                         return;
-                    default: alert("success: " + payload.status); return;
+                    default: return;
+                    // alert("success: " + payload.status); 
                 }
             })
             .catch((error) => {
