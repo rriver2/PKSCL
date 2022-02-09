@@ -45,12 +45,12 @@ function EditEvent(props) {
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
-                        alert("행사 장부가 삭제되었습니다.");
+                        // alert("행사 장부가 삭제되었습니다.");
                         break;
                     default: break;
                 }
             }).catch((error) => {
-                alert("장부를 삭제하는데 실패했습니다.");
+                // alert("장부를 삭제하는데 실패했습니다.");
             })
     }
 
