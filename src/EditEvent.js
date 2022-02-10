@@ -10,7 +10,7 @@ function EditEvent(props) {
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
-    const [editState,setEditState]= useState([true,true,true]);
+    const [editState,setEditState] = useState(false);
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -34,6 +34,10 @@ function EditEvent(props) {
         item[key] = value;
         item["totalAmount"] = item["price"] * item["amount"];
         setEventData(tempEditEventData);
+        // var tempShowAllReceiptButton = [...showAllReceiptButton];
+        // tempShowAllReceiptButton[i] = true;
+        // console.log(tempShowAllReceiptButton);
+        // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
     function eventDeleteButton() {
@@ -41,12 +45,12 @@ function EditEvent(props) {
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
-                        // alert("행사 장부가 삭제되었습니다.");
+                        alert("행사 장부가 삭제되었습니다.");
                         break;
                     default: break;
                 }
             }).catch((error) => {
-                // alert("장부를 삭제하는데 실패했습니다.");
+                alert("장부를 삭제하는데 실패했습니다.");
             })
     }
 
@@ -162,36 +166,30 @@ function EditEvent(props) {
     }
 
     function editEventButton() {
-        editEventNameAPI();
-        sendReciept();
-        if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
-        let success = editState.includes(true)
-        console.log("success")
-        console.log(success)
-        if(success === false){
-            alert("행사 수정이 완료되었습니다.");
-            props.setEditEventState(false);
-        }else{
-            alert("행사 수정에 실패했습니다.");
-        }
-    }
-
-    function editEventNameAPI() {
         let payload = {
             "eventNumber": eventData["eventNumber"],
             "eventTitle": eventData["eventTitle"],
             "eventContext": eventData["eventContext"]
         }
-        axios.patch("/event", payload)
+
+        let promise = new Promise ((resolve, reject)=>{
+            axios.patch("/event", payload)
             .then((payload) => {
-                // alert("행사 이름, 행사 설명 수정 완료")
-                let editStateTemp = [...editState];
-                editStateTemp[0] = false;
-                setEditState(editStateTemp)
+                resolve("행사 이름, 행사 설명 수정 완료")
             })
             .catch((error) => {
-                // alert("행사 이름, 행사 설명 수정 실패")
+                reject("행사 이름, 행사 설명 수정 실패")
             })
+        })
+
+        promise
+        .then(value=>{
+            if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
+        })
+        .catch((value=>{
+            alert(value)
+        }))
+        
     }
 
     function deleteReceiptListAPI() {
@@ -203,18 +201,24 @@ function EditEvent(props) {
                 deleteReceiptListURL = deleteReceiptListURL + "," + deleteReceiptList[i];
             }
         }
-        console.log("deleteReceiptListAPI")
-        console.log("/receipt" + deleteReceiptListURL)
-        axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
+        let promise = new Promise ((resolve, reject)=>{
+            axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
             .then((payload) => {
-                // alert("영수증 삭제 완료")
-                let editStateTemp = [...editState];
-                editStateTemp[2] = false;
-                setEditState(editStateTemp)
+                resolve("영수증 삭제 완료")
             })
             .catch((error) => {
-                // alert("영수증 삭제 실패")
+                reject("영수증 삭제 실패")
             })
+        })
+
+        promise
+        .then(value=>{
+            sendReciept();
+        })
+        .catch((value=>{
+            alert(value)
+        }))
+        
     }
 
     function postReceipt(j) {
@@ -233,28 +237,28 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
+        let promise = new Promise ((resolve, reject)=>{
+            axios.post(debugAPIURL + "/receipt", payload,
+                {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                }
+            )
+                .then((payload) => {
+                    resolve("영수증 추가 완료")
+                })
+                .catch((error) => {
+                    reject("영수증 삭제 실패")
+                })
+            })
 
-        axios.post(debugAPIURL + "/receipt", payload,
-            {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            }
-        )
-            .then((payload) => {
-                switch (payload.status) {
-                    case 200:
-                        // alert("영수증 추가 완료");
-                        setEditState(false);
-                        return true;
-                    default: setEditState(false);return true;
-                    // default: alert("success: " + payload.status); return;
-                }
-            })
-            .catch((error) => {
-                switch (error.response.status) {
-                    case 400: alert("영수증 추가 실패");  return false;
-                    default: alert("error: " + error.response.status); return false;
-                }
-            })
+        promise
+                .then(value=>{
+                    alert(value)
+                })
+                .catch((value=>{
+                    alert(value)
+                    setEditState(false)
+                }))
 
     }
 
@@ -273,50 +277,41 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
+let promise = new Promise ((resolve, reject)=>{
         axios.put(debugAPIURL + "/receipt", payload,
             {
                 headers: { 'Content-Type': 'multipart/form-data' }
             }
         )
             .then((payload) => {
-                switch (payload.status) {
-                    case 200:
-                        // alert("영수증 수정 완료");
-                        setEditState(false);
-                        return true;
-                    default: setEditState(false); return true;
-                    // alert("success: " + payload.status); 
-                }
+                resolve("영수증 추가 완료")
             })
             .catch((error) => {
-                switch (error.response.status) {
-                    case 400: alert("영수증 수정 실패");  return false;
-                    default: alert("error: " + error.response.status); return false;
-                }
+                reject("영수증 삭제 실패")
             })
+             })
+
+        promise
+                .then(value=>{
+                    alert(value)
+                })
+                .catch((value=>{
+                    alert(value)
+                    setEditState(false)
+                }))
 
     }
     function sendReciept() {
-
-        // eslint-disable-next-line array-callback-return
         eventData["receiptList"].map((receipt, j) => {
-            if (receipt["receiptNumber"] === undefined) {
-                let result = postReceipt(j);
-                if( result === false) {
-                    let editStateTemp = [...editState];
-                    editStateTemp[1] = true;
-                    setEditState(editStateTemp)
-                }
-            } else {
-                let result = putReceipt(j);
-                if( result === false) {
-                    let editStateTemp = [...editState];
-                    editStateTemp[1] = true;
-                    setEditState(editStateTemp)
+                if (receipt["receiptNumber"] === undefined) {
+                    postReceipt(j);
+                } else {
+                    putReceipt(j);
                 }
             }
-        }
         )
+        if(editState===true) props.setEditEventState(false);
+
     }
 
     return (
