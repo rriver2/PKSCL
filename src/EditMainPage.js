@@ -495,8 +495,10 @@ function EditMainPage(props) {
         let promise = new Promise ((resolve, reject)=>{
             axios.patch(debugAPIURL + '/event-sequence', payload)
             .then((payload) => {
+                setList(list)
                 resolve("행사 순서가 수정되었습니다.")
             }).catch((error) => {
+                setList(quarter[currentQuarter]["eventList"])
                 reject("행사 순서 수정에 실패했습니다.")
             })
         })

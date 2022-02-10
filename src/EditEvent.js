@@ -335,7 +335,7 @@ let promise = new Promise ((resolve, reject)=>{
                                             <div className="eventTitle">
                                                 <h4>
 
-                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "450px" }}
+                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "400px" }}
                                                         placeholder={"행사 제목을 입력하세요"}
                                                         value={eventData["eventTitle"]}
                                                         onInput={
