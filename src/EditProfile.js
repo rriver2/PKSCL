@@ -343,7 +343,7 @@ function EditProfile(props) {
                         ? <>
                             <div className='boxTitle'>
                                 <h2 ><i className="fas fa-users" />프로필 편집</h2>
-                                <button className="btn btn-danger" onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
+                                <button className="btn btn-danger" style={{ fontWeight: "600" }} onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
                             </div>
 
                             <div className='editField'>
@@ -351,7 +351,7 @@ function EditProfile(props) {
                                     <i className="fas fa-key"></i>
                                     <label>비밀번호</label>
                                     <empty style={{ width: "200px" }}></empty>
-                                    <button type='button' onClick={() => { setBoxState("newPassword") }}>변경</button>
+                                    <button type='button' style={{ fontWeight: "bold" }} onClick={() => { setBoxState("newPassword") }}>변경</button>
                                 </div>
 
                                 <div className="inputField">
@@ -373,28 +373,28 @@ function EditProfile(props) {
                                 <div className="inputField">
                                     <i className="fas fa-book-open" style={{ fontSize: "0.85rem" }}></i>
                                     <label >학과</label>
-                                                <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
-                                                    style={{ textColor: "black" }}
-                                                    onChange={(e) => {
-                                                        setMajor(majorList.indexOf(e.target.value) + 1);
+                                    <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                        style={{ textColor: "black" }}
+                                        onChange={(e) => {
+                                            setMajor(majorList.indexOf(e.target.value) + 1);
 
-                                                        if (majorList.includes(e.target.value)) {
-                                                            changeIsCorrect("major", true);
-                                                        } else {
-                                                            changeIsCorrect("major", false);
-                                                        }
-                                                    }
-                                                    } ></input>
-                                                <datalist id="majorList-options" >
-                                                    {
-                                                        majorList.map((majorName, i) => {
-                                                            return (
-                                                                <option value={majorName} key={i} ></option>
-                                                            )
-                                                        })
-                                                    }
-                                                </datalist>
-                                            
+                                            if (majorList.includes(e.target.value)) {
+                                                changeIsCorrect("major", true);
+                                            } else {
+                                                changeIsCorrect("major", false);
+                                            }
+                                        }
+                                        } ></input>
+                                    <datalist id="majorList-options" >
+                                        {
+                                            majorList.map((majorName, i) => {
+                                                return (
+                                                    <option value={majorName} key={i} ></option>
+                                                )
+                                            })
+                                        }
+                                    </datalist>
+
                                 </div>
 
                                 <div className="inputField">
@@ -486,18 +486,18 @@ function EditProfile(props) {
                                 <button className="errorBtn" type="button" onClick={() => {
                                     editButtonState ? putProfile() : alert('정보를 모두 입력해주세요.');
                                     props.loginPosition === "student"
-                                    ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
-                                        ? putProfile()
-                                        :alert("정보수정이 취소되었습니다. ")}</>)
-                                    : (<>{
-                                        props.loginPosition === "president"
-                                        ? (<>{window.confirm('프로필 편집을 변경하실 경우 챗봇을 통하여 관리자에게 회장인증을 해야 합니다. 프로필을 편집하시겠습니까?')
+                                        ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
                                             ? putProfile()
-                                            :alert("정보수정이 취소되었습니다. ")}</>)
-                                        : null
-                                    }</>)
-                                    
-            
+                                            : alert("정보수정이 취소되었습니다. ")}</>)
+                                        : (<>{
+                                            props.loginPosition === "president"
+                                                ? (<>{window.confirm('프로필 편집을 변경하실 경우 챗봇을 통하여 관리자에게 회장인증을 해야 합니다. 프로필을 편집하시겠습니까?')
+                                                    ? putProfile()
+                                                    : alert("정보수정이 취소되었습니다. ")}</>)
+                                                : null
+                                        }</>)
+
+
                                 }}>저장하기</button>
                                 <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
 

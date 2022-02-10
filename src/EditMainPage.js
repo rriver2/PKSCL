@@ -326,6 +326,7 @@ function EditMainPage(props) {
                         }
 
                         setShowAllReceiptButton(resetArray);
+                        
                         reject()
                     })
                 })
@@ -339,6 +340,7 @@ function EditMainPage(props) {
                 .catch((value=>{
                     alert(value)
                 }))
+                
 
             })
             .catch((error) => {
@@ -385,7 +387,7 @@ function EditMainPage(props) {
         }
 
         // console.log(payload);
-        axios.put(debugAPIURL + 'ledger-date', payload)
+        axios.put(debugAPIURL + '/ledger-date', payload)
             .then((payload) => {
                 console.log("Success edit ledger-date");
             }).catch((error) => {
@@ -464,12 +466,17 @@ function EditMainPage(props) {
                         resetArray.push(false)
                     }
                 }
-                reset(props.todayQuarter);
-                defineColor(props.todayQuarter);
+                reset(currentQuarter);
+                defineColor(currentQuarter);
                 setShowAllReceiptButton(resetArray);
                 GetDate();
             })
             .catch((error) => {
+                switch (error.response.status) {
+                            case 403:
+                                 history.push('/main')
+                            break;
+                        }
                 alert("학과 장부를 불러올 수 없습니다.");
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
@@ -492,7 +499,7 @@ function EditMainPage(props) {
                 eventNumberList.push(event["eventNumber"])
         })
         let payload = { "eventNumberList": [...eventNumberList] };
-        axios.put(debugAPIURL + '/event-sequence', payload)
+        axios.patch(debugAPIURL + '/event-sequence', payload)
             .then((payload) => {
                 console.log("행사 순서가 수정되었습니다.");
                 getLedger();
@@ -507,7 +514,9 @@ function EditMainPage(props) {
     }, []);
 
     useEffect(() => {
-        if (editEventState === false) getLedger();
+        if (editEventState === false) {
+            getLedger();
+        }
     }, [editEventState]);
 
     useEffect(() => {
@@ -849,12 +858,7 @@ function EditMainPage(props) {
                                                                                         })
                                                                                     }
                                                                                 </div>)
-
-
                                                                         }
-
-
-
 
                                                                     </div>
                                                                     <div className="cardImg"></div>
@@ -901,11 +905,6 @@ function EditMainPage(props) {
                                                                 </>
                                                                 : <span>등록된 행사가 없습니다.</span>
                                                         }
-
-
-
-
-
 
                                                         <div style={{ color: "#d32c2c" }}>
                                                             ※ 장부를 잘못 기입해서 문제가 발생할 경우의 책임은 학생회장 본인에게 있습니다.
