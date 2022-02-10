@@ -549,174 +549,175 @@ function MainPage(props) {
                                                     ? <div>입력된 행사가 없습니다.</div>
                                                     : (quarter[currentQuarter]["eventList"].map((event, i) => {
                                                         return (
-                                                            <div style={{display:"flex",alignItems: "flex-end"}}>
-                                                            <div className="eventCard" >
-                                                                <div className="cardContent">
-                                                                    <div className="eventSource">
-                                                                        <div>
-                                                                            <h4 >{event["eventTitle"]}</h4>  
-                                                                            <div style={{color:"var(--color-quarter)"}}>행사 총 금액 : {eventAmount[i]}원</div>
-                                                                            
-                                                                            <div>{event["eventContext"]}  </div>
+                                                            <div style={{ display: "flex", alignItems: "flex-end" }}>
+                                                                <div className="eventCard" >
+                                                                    <div className="cardContent">
+                                                                        <div className="eventSource">
+                                                                            <div>
+                                                                                <h4 >{event["eventTitle"]}</h4>
+                                                                                <div style={{ color: "var(--color-quarter)" }}>행사 총 금액 : {eventAmount[i]}원</div>
+
+                                                                                <div>{event["eventContext"]}  </div>
+                                                                            </div>
+                                                                            <div className="eventButtons">
+                                                                                {
+                                                                                    event.receiptList.length <= 1
+                                                                                        ? null
+                                                                                        : (
+                                                                                            showAllReceiptButton[i] === false
+                                                                                                ? (
+                                                                                                    <button style={{ width: "50px" }} onClick={() => {
+                                                                                                        let array = [...showAllReceiptButton];
+                                                                                                        array[i] = !showAllReceiptButton[i];
+                                                                                                        setShowAllReceiptButton(array)
+                                                                                                    }}><i class="fas fa-angle-double-up"></i></button>
+                                                                                                )
+                                                                                                : (
+                                                                                                    <button style={{ width: "50px" }} onClick={() => {
+                                                                                                        let array = [...showAllReceiptButton];
+                                                                                                        array[i] = !showAllReceiptButton[i];
+                                                                                                        setShowAllReceiptButton(array)
+                                                                                                    }}><i class="fas fa-angle-double-down"></i></button>
+                                                                                                )
+                                                                                        )
+
+                                                                                }
+                                                                            </div>
                                                                         </div>
-                                                                        <div className="eventButtons">
-                                                                            {
-                                                                                event.receiptList.length <= 1
-                                                                                    ? null
-                                                                                    : (
-                                                                                        showAllReceiptButton[i] === false
-                                                                                            ? (
-                                                                                                <button style={{width: "50px"}} onClick={() => {
-                                                                                                    let array = [...showAllReceiptButton];
-                                                                                                    array[i] = !showAllReceiptButton[i];
-                                                                                                    setShowAllReceiptButton(array)
-                                                                                                }}><i class="fas fa-angle-double-up"></i></button>
-                                                                                            )
-                                                                                            : (
-                                                                                                <button style={{width: "50px"}} onClick={() => {
-                                                                                                    let array = [...showAllReceiptButton];
-                                                                                                    array[i] = !showAllReceiptButton[i];
-                                                                                                    setShowAllReceiptButton(array)
-                                                                                                }}><i class="fas fa-angle-double-down"></i></button>
-                                                                                            )
-                                                                                    )
 
-                                                                            }
-                                                                        </div>
-                                                                    </div>
+                                                                        {
+                                                                            showAllReceiptButton[i] === true
+                                                                                ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
 
-                                                                    {
-                                                                        showAllReceiptButton[i] === true
-                                                                            ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
-
-                                                                                <div className="receiptCard">
-                                                                                    <div className="receiptResource">
-                                                                                        {
-                                                                                            event["receiptList"].length === 0
-                                                                                                ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                : (<>
-                                                                                                    <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
+                                                                                    <div className="receiptCard">
+                                                                                        <div className="receiptResource">
+                                                                                            {
+                                                                                                event["receiptList"].length === 0
+                                                                                                    ? <div>입력된 영수증이 없습니다.</div>
+                                                                                                    : (<>
+                                                                                                        <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                         {
                                                                                                             event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                 ? null
-                                                                                                                : (<div style={{color:"var(--color-quarter)"}}>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
+                                                                                                                : (<div style={{ color: "var(--color-quarter)" }}>1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원</div>)
                                                                                                         }
-                                                                                                  
-
-                                                                                                    <div>{event["receiptList"][0]["receiptContext"]}</div>
 
 
+                                                                                                        <div>{event["receiptList"][0]["receiptContext"]}</div>
 
-                                                                                                    {
-                                                                                                        event["receiptList"][0]["receiptDetailList"].length === 0
-                                                                                                            ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
-                                                                                                            : (<><table className="receiptTable"><thead>
-                                                                                                                <tr>
-                                                                                                                    <th>품명</th>
-                                                                                                                    <th>단가</th>
-                                                                                                                    <th>수량</th>
-                                                                                                                    <th>가격</th>
-                                                                                                                </tr>
-                                                                                                            </thead>
-                                                                                                                <tbody>{event["receiptList"][0]["receiptDetailList"].map((item, k) => {
-                                                                                                                    return (<tr>
-                                                                                                                        <td>{item["context"]}</td>
-                                                                                                                        <td>{item["price"]}</td>
-                                                                                                                        <td>{item["amount"]}</td>
-                                                                                                                        <td>{sumItems(item["price"], item["amount"])}</td>
-                                                                                                                    </tr>)
-                                                                                                                })}
-                                                                                                                </tbody> </table></>)
-                                                                                                    }
-                                                                                                </>
-                                                                                                )
+
+
+                                                                                                        {
+                                                                                                            event["receiptList"][0]["receiptDetailList"].length === 0
+                                                                                                                ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
+                                                                                                                : (<><table className="receiptTable"><thead>
+                                                                                                                    <tr>
+                                                                                                                        <th>품명</th>
+                                                                                                                        <th>단가</th>
+                                                                                                                        <th>수량</th>
+                                                                                                                        <th>가격</th>
+                                                                                                                    </tr>
+                                                                                                                </thead>
+                                                                                                                    <tbody>{event["receiptList"][0]["receiptDetailList"].map((item, k) => {
+                                                                                                                        return (<tr>
+                                                                                                                            <td>{item["context"]}</td>
+                                                                                                                            <td>{item["price"]}</td>
+                                                                                                                            <td>{item["amount"]}</td>
+                                                                                                                            <td>{sumItems(item["price"], item["amount"])}</td>
+                                                                                                                        </tr>)
+                                                                                                                    })}
+                                                                                                                    </tbody> </table></>)
+                                                                                                        }
+                                                                                                    </>
+                                                                                                    )
+                                                                                            }
+
+                                                                                        </div>
+                                                                                        {
+                                                                                            event["receiptList"].length === 0
+                                                                                                ? null
+                                                                                                :
+                                                                                                <img src={event["receiptList"][0]["receiptImg"]["name"]} style={{ backgroundColor: "var(--color-leftPanel)" }} alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"} />
                                                                                         }
-
                                                                                     </div>
+                                                                                </div>)
+                                                                                : (<div id="receiptContent" >
                                                                                     {
-                                                                                        event["receiptList"].length === 0
-                                                                                            ? null
-                                                                                            :
-                                                                                            <img src={event["receiptList"][0]["receiptImg"]} style={{ backgroundColor: "var(--color-leftPanel)" }} alt={event["receiptList"][0]["receiptImg"]} height={"150"} width={"100"} />
-                                                                                    }
-                                                                                </div>
-                                                                            </div>)
-                                                                            : (<div id="receiptContent" >
-                                                                                {
-                                                                                    event["receiptList"].map((receipt, j) => {
-                                                                                        return (
-                                                                                            <div className="receiptCard">
-                                                                                                <div className="receiptResource">
-                                                                                                    {
-                                                                                                        event["receiptList"].length === 0
-                                                                                                            ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                            : (<>
-                                                                                                                <h5>{receipt["receiptTitle"]}</h5>
+                                                                                        event["receiptList"].map((receipt, j) => {
+                                                                                            return (
+                                                                                                <div className="receiptCard">
+                                                                                                    <div className="receiptResource">
+                                                                                                        {
+                                                                                                            event["receiptList"].length === 0
+                                                                                                                ? <div>입력된 영수증이 없습니다.</div>
+                                                                                                                : (<>
+                                                                                                                    <h5>{receipt["receiptTitle"]}</h5>
                                                                                                                     {
                                                                                                                         receipt["receiptDetailList"].length === 0
                                                                                                                             ? null
-                                                                                                                            : <div style={{color:"var(--color-quarter)"}}>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
+                                                                                                                            : <div style={{ color: "var(--color-quarter)" }}>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                                                                     }
-                                                                                                                <div>{receipt["receiptContext"]}</div>
-                                                                                                                {
-                                                                                                                    receipt["receiptDetailList"].length === 0
-                                                                                                                        ? <div>입력된 영수증 내역이 없습니다.</div>
-                                                                                                                        : (<>
-                                                                                                                            <table className="receiptTable">
-                                                                                                                                <thead>
-                                                                                                                                    <tr>
-                                                                                                                                        <th>품명</th>
-                                                                                                                                        <th>단가</th>
-                                                                                                                                        <th>수량</th>
-                                                                                                                                        <th>가격</th>
-                                                                                                                                    </tr>
-                                                                                                                                </thead>
-                                                                                                                                <tbody>
-                                                                                                                                    {receipt["receiptDetailList"].map((item, k) => {
-                                                                                                                                        return (<tr>
-                                                                                                                                            <td>{item["context"]}</td>
-                                                                                                                                            <td>{item["price"]}</td>
-                                                                                                                                            <td>{item["amount"]}</td>
-                                                                                                                                            <td>{sumItems(item["price"], item["amount"])}</td>
-                                                                                                                                        </tr>)
-                                                                                                                                    })
-                                                                                                                                    }
-                                                                                                                                </tbody> </table>
-                                                                                                                        </>
-                                                                                                                        )
-                                                                                                                }
+                                                                                                                    <div>{receipt["receiptContext"]}</div>
+                                                                                                                    {
+                                                                                                                        receipt["receiptDetailList"].length === 0
+                                                                                                                            ? <div>입력된 영수증 내역이 없습니다.</div>
+                                                                                                                            : (<>
+                                                                                                                                <table className="receiptTable">
+                                                                                                                                    <thead>
+                                                                                                                                        <tr>
+                                                                                                                                            <th>품명</th>
+                                                                                                                                            <th>단가</th>
+                                                                                                                                            <th>수량</th>
+                                                                                                                                            <th>가격</th>
+                                                                                                                                        </tr>
+                                                                                                                                    </thead>
+                                                                                                                                    <tbody>
+                                                                                                                                        {receipt["receiptDetailList"].map((item, k) => {
+                                                                                                                                            return (<tr>
+                                                                                                                                                <td>{item["context"]}</td>
+                                                                                                                                                <td>{item["price"]}</td>
+                                                                                                                                                <td>{item["amount"]}</td>
+                                                                                                                                                <td>{sumItems(item["price"], item["amount"])}</td>
+                                                                                                                                            </tr>)
+                                                                                                                                        })
+                                                                                                                                        }
+                                                                                                                                    </tbody> </table>
+                                                                                                                            </>
+                                                                                                                            )
+                                                                                                                    }
 
-                                                                                                            </>)}
+                                                                                                                </>)}
+                                                                                                    </div>
+                                                                                                    {
+                                                                                                        event["receiptList"].length === 0
+                                                                                                            ? null
+                                                                                                            : <img src={receipt["receiptImg"]["name"]} alt={receipt["receiptImg"]["name"]}
+                                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"} />
+                                                                                                    }
                                                                                                 </div>
-                                                                                                {
-                                                                                                    event["receiptList"].length === 0
-                                                                                                        ? null
-                                                                                                        : <img src={receipt["receiptImg"]} alt={receipt["receiptImg"]} style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"} />
-                                                                                                }
-                                                                                            </div>
 
-                                                                                        )
-                                                                                    })
-                                                                                }
-                                                                            </div>)
+                                                                                            )
+                                                                                        })
+                                                                                    }
+                                                                                </div>)
 
-                                                                    }
+                                                                        }
 
+
+                                                                    </div>
 
                                                                 </div>
-                                                      
-                                                            </div>
-                                                            {
-                                                               event.receiptList.length > 1 &&  showAllReceiptButton[i] === false
-                                                               ? <div><img src={giraffe} className="image" alt="" style={{width:"70px",height:"70px"}}/><div style={{marginBottom:"50px",textAlign:"center"}}>end</div></div>
-                                                               : null
-                                                            }
+                                                                {
+                                                                    event.receiptList.length > 1 && showAllReceiptButton[i] === false
+                                                                        ? <div><img src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px" }} /><div style={{ marginBottom: "50px", textAlign: "center" }}>end</div></div>
+                                                                        : null
+                                                                }
                                                             </div>
                                                         )
                                                     })
                                                     )
                                             }
-                                            
+
                                         </div>
                                     </>)
                                     : <div className="quarterData" style={{ color: "red" }}>
