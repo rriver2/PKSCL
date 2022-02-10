@@ -442,19 +442,9 @@ function EditMainPage(props) {
 
     function getLedger() {
         let resetArray = [];
-            let promise = new Promise ((resolve, reject)=>{
             axios.get(debugAPIURL + '/ledger')
             .then((payload) => {
-                resolve("학과 장부 로드 완료")
-            })
-            .catch((error) => {
-                reject("학과 장부 로드 실패")
-            })
-        })
-
-        promise
-        .then(value=>{
-            setStudentPresident({ ...payload.data["studentPresident"] });
+                setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
                 setList(payload.data["quarter"][currentQuarter]["eventList"]);
 
@@ -467,10 +457,10 @@ function EditMainPage(props) {
                 defineColor(currentQuarter);
                 setShowAllReceiptButton(resetArray);
                 GetDate();
-        })
-        .catch((value=>{
-            alert(value)
-                //지우기
+            })
+            .catch((error) => {
+                //삭제하기
+                alert("장부를 불러오지 못했습니다.")
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });
                 setList(answer["quarter"][currentQuarter]["eventList"]);
@@ -481,7 +471,8 @@ function EditMainPage(props) {
                 }
 
                 setShowAllReceiptButton(resetArray);
-        }))
+            })
+
     }
 
     function eventSequenceButton() {
