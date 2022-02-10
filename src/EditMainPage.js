@@ -316,23 +316,24 @@ function EditMainPage(props) {
                     .catch((error) => {
                         alert("학과 장부를 불러올 수 없습니다.");
                         //지우기
-                        setStudentPresident({ ...answer["studentPresident"] });
-                        setQuarter({ ...answer["quarter"] });
-                        setList(answer["quarter"][currentQuarter]["eventList"]);
-                        console.log(answer["quarter"][currentQuarter]["eventList"]);
-
-                        for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                            resetArray.push(false)
-                        }
-
-                        setShowAllReceiptButton(resetArray);
+                        // setStudentPresident({ ...answer["studentPresident"] });
+                        // setQuarter({ ...answer["quarter"] });
+                        // setList(answer["quarter"][currentQuarter]["eventList"]);
+                        // console.log(answer["quarter"][currentQuarter]["eventList"]);
+                        // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                        //     resetArray.push(false)
+                        // }
+                        // setShowAllReceiptButton(resetArray);
                         
                         reject()
                     })
                 })
                 promise
                 .then(()=>{
-                    let i = Number(quarter[currentQuarter]["eventList"].length)-1;
+                    console.log( "여기임 여기" )
+                    console.log( quarter )
+                    console.log( Number(quarter[currentQuarter]["eventList"].length))
+                    let i = Number(quarter[currentQuarter]["eventList"].length);
                     setEditEventState(true)
                     setEditEventData(quarter[currentQuarter]["eventList"][i]);
                     setEditEventAmount(eventAmount[i]);
@@ -386,7 +387,6 @@ function EditMainPage(props) {
             closeDate: quarterDate[currentQuarter][1],
         }
 
-        // console.log(payload);
         axios.put(debugAPIURL + '/ledger-date', payload)
             .then((payload) => {
                 console.log("Success edit ledger-date");
@@ -394,14 +394,6 @@ function EditMainPage(props) {
                 alert(error.response.data["errorMessage"]);
             })
     }
-
-    // function uploadImg(img, i, j) {
-    //     console.log("I : " + i + "J : " + j);
-    //     const temp = { ...quarter };
-    //     temp[currentQuarter]["eventList"][i]["receiptList"][j]["receiptImg"] = img;
-    //     setQuarter(temp);
-    //     console.log(quarter);
-    // }
 
     function processImage(file) {
         if (file != null) {
@@ -479,16 +471,16 @@ function EditMainPage(props) {
                         }
                 alert("학과 장부를 불러올 수 없습니다.");
                 //지우기
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                setList(answer["quarter"][currentQuarter]["eventList"]);
-                console.log(answer["quarter"][currentQuarter]["eventList"]);
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // setList(answer["quarter"][currentQuarter]["eventList"]);
+                // console.log(answer["quarter"][currentQuarter]["eventList"]);
 
-                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                    resetArray.push(false)
-                }
+                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                //     resetArray.push(false)
+                // }
 
-                setShowAllReceiptButton(resetArray);
+                // setShowAllReceiptButton(resetArray);
             })
     }
 

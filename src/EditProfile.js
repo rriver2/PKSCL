@@ -342,7 +342,7 @@ function EditProfile(props) {
                     boxState === "profile"
                         ? <>
                             <div className='boxTitle'>
-                                <h2 ><i className="fas fa-users" />프로필 편집</h2>
+                                <h2 style={{ marginRight: "8px" }}><i className="fas fa-users" />프로필 편집</h2>
                                 <button className="btn btn-danger" style={{ fontWeight: "600" }} onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
                             </div>
 
@@ -444,10 +444,10 @@ function EditProfile(props) {
                                         <>
                                             {userStatus === "approval"
                                                 ? <div className="inputField">
-                                                    <i className="fas fa-user-graduate"></i>
+                                                    <i className="fas fa-user-graduate" style={{ fontSize: "1.25rem" }}></i>
                                                     <label>학과로고</label>
                                                     <input style={{ width: "200px" }} placeholder={majorLogo} readOnly></input>
-                                                    <label className='fileButton' htmlFor="file">찾기</label>
+                                                    <label className='fileButton' htmlFor="file" style={{ width: "60px" }}>찾기</label>
                                                     <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
                                                         onChange={(e) => {
                                                             setMajorLogo(e.target.files[0]);

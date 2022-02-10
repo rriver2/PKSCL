@@ -506,7 +506,8 @@ function MainPage(props) {
                                         props.loginPosition === "president"
                                             ? (<>{
                                                 tempQuarter === true
-                                                ?<div>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
+                                                ?<><div style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>
                                                 :(<><div style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
                                                 <button className='submitButton' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button></>)
                                             }
