@@ -10,7 +10,7 @@ function EditEvent(props) {
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
-    const [editState,setEditState] = useState(false);
+    const [editState,setEditState] = useState(true);
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -257,7 +257,6 @@ function EditEvent(props) {
 
         promise
                 .then(value=>{
-                    alert(value)
                 })
                 .catch((value=>{
                     alert(value)
@@ -297,7 +296,6 @@ let promise = new Promise ((resolve, reject)=>{
 
         promise
                 .then(value=>{
-                    alert(value)
                 })
                 .catch((value=>{
                     alert(value)
