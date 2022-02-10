@@ -113,7 +113,7 @@ function EditMainPage(props) {
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
-                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
+               
 
                 if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined) {
                     for (let i = 0; i < payload.data["quarter"][currentQuarter]["eventList"].length; i++) {
@@ -124,6 +124,7 @@ function EditMainPage(props) {
                 defineColor(currentQuarter);
                 setShowAllReceiptButton(resetArray);
                 GetDate();
+                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -135,14 +136,16 @@ function EditMainPage(props) {
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });
-                setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                console.log(answer["quarter"][currentQuarter]["eventList"]);
+                
+                console.log([...answer["quarter"][currentQuarter]["eventList"]]);
 
                 for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
                     resetArray.push(false)
                 }
 
                 setShowAllReceiptButton(resetArray);
+
+                setList([...answer["quarter"][currentQuarter]["eventList"]]);
             })
     }
 
