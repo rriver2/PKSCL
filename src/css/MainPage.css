@@ -13,7 +13,6 @@
 .leftPanel {
     min-width: 35vw;
     height: 100%;
-    background-color: var(--color-leftPanel);
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -22,15 +21,14 @@
     left: 0;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    box-shadow: 1px 1px 5px 0px gray;
 }
 
 .majorCard {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 250px;
-    margin-left: 50px;
+    width: 300px;
+    align-items: center;
 }
 
 .presidentCard {
@@ -39,9 +37,11 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    width: 250px;
     padding-top: 20px;
     border-radius: 20px;
     box-shadow: 1px 1px 5px 0px gray;
+    margin-top: 50px;
 }
 
 .presidentCard img {
@@ -53,10 +53,12 @@
 
 .cogExplanation {
     margin-top: 20px;
+    width: 250px;
     padding: 10px;
     background-color: var(--color-white);
     border-radius: 20px;
     box-shadow: 1px 1px 5px 0px gray;
+    font-size: 13px;
 }
 
 .quarter {
@@ -74,16 +76,23 @@
 }
 
 .quarterButton {
-    width: 100px;
-    height: 100px;
+    width: 18vh;
+    height: 18vh;
     margin: 10px auto;
+    position: relative;
+}
+
+.quarterButton:nth-child(1) {
+    width: 18vh;
+    height: 18vh;
+    margin-top: 50px;
     position: relative;
 }
 
 .quarterButton img {
     padding: 0;
-    height: 100px;
-    width: 100px;
+    width: 18vh;
+    height: 18vh;
     filter: drop-shadow(3px 5px 3px gray);
 }
 
@@ -92,9 +101,9 @@
     padding: 5px 10px;
     text-align: center;
     position: absolute;
-    height: 100px;
-    width: 100px;
-    line-height: 100px;
+    width: 18vh;
+    height: 18vh;
+    line-height: 18vh;
     color: white;
 }
 
@@ -121,10 +130,19 @@
 }
 
 
-.nav {
-    top: 0;
+.MainPageContainer .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    position: fixed;
+    list-style: none;
+    background: rgb(255 255 255 / 90%);
+    right: 0;
+    box-shadow: 1px 1px 1px 0 rgb(207 206 206);
     width: 100%;
     justify-content: flex-end;
+    height: 8vh;
 }
 
 .majorList {
@@ -204,10 +222,10 @@
     width: 100px;
     padding: 5px;
     cursor: pointer;
-    font-size: 12px;
     border-radius: 20px;
     margin: 15px 10px;
     transition: 0.5s;
+    font-size: 12px important !;
 }
 
 
@@ -215,6 +233,7 @@
     margin-top: 30px;
     width: 700px;
     margin-right: 100px;
+    margin-top: 90px;
 }
 
 .eventSource {

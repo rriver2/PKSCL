@@ -14,8 +14,7 @@ import { useRef } from 'react';
 import { upload } from '@testing-library/user-event/dist/upload';
 import { ReactSortable } from "react-sortablejs";
 import EditEvent from './EditEvent';
-
-
+import PreviewImg from './PreviewImg';
 
 
 function EditMainPage(props) {
@@ -104,8 +103,8 @@ function EditMainPage(props) {
     const [editEventData, setEditEventData] = useState({});
     const [editEventAmount, setEditEventAmount] = useState({});
 
-    // const [fixEventButton, setFixEventButton] = useState([]);
-
+    const [showImg, setShowImg] = useState(false);
+    const [previewImg, setPreviewImg] = useState();
 
     function getLedger() {
         let resetArray = [];
@@ -142,7 +141,7 @@ function EditMainPage(props) {
                 for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
                     resetArray.push(false)
                 }
-
+                GetDate();
                 setShowAllReceiptButton(resetArray);
 
                 setList([...answer["quarter"][currentQuarter]["eventList"]]);
@@ -523,6 +522,11 @@ function EditMainPage(props) {
 
     return (
         <div className="EditMainPageContainer">
+             {
+                showImg
+                    ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
+                    : null
+            }
             {
                 props.loginPosition !== "president"
                     ? <div>잘못된 접근입니다.</div>
@@ -548,20 +552,12 @@ function EditMainPage(props) {
                                 : (<>
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
-                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0);}}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" style={{margin: "50px"}} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0);}}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2"); window.scrollTo(0, 0);}}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3"); window.scrollTo(0, 0); }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4"); window.scrollTo(0, 0); }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                                         </div>
-                                        {
-                                            props.loginPosition === "student"
-                                                ? null
-                                                : (<div className="managementPageBar">
-                                                    <i className="fas fa-chevron-right" onClick={() => {
-                                                        defineColor(props.todayQuarter); history.push('/manage')
-                                                    }}></i>
-                                                </div>)
-                                        }
+                                        
                                     </div>
                                     {/* rightPanel */}
                                     <div className="rightPanel">
@@ -570,10 +566,14 @@ function EditMainPage(props) {
                                                 {/* {
                                                     console.log(quarterDate)
                                                 } */}
+                                                <div style={{display:"flex"}}>
+                                                <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
+                                                <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
+                                                </div>
                                                 {
                                                     quarterDate !== undefined
                                                         ? (
-                                                            <>{currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
+                                                            <div style={{display:"flex", alignItems: "center"}}>{currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
                                                                 onChange={(e) => {
                                                                     let tempDateArray = { ...quarterDate }
                                                                     tempDateArray[currentQuarter][0] = e.target.value;
@@ -590,13 +590,14 @@ function EditMainPage(props) {
                                                                         putLedgerDate();
 
                                                                     }}
-                                                                ></input></>
+                                                                ></input></div>
                                                         )
                                                         : null
                                                 }
-                                                <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
+                                                <div style={{display:"flex"}}>
                                                 <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                 <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -741,10 +742,9 @@ function EditMainPage(props) {
                                                                                             event["receiptList"].length === 0
                                                                                                 ? null
                                                                                                 :
-                                                                                                <img src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                    alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"} />
-
-
+                                                                                                <img className= "receiptImg" src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                    alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"} 
+                                                                                                    onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"]));}}/>
                                                                                         }
 
                                                                                     </div>
@@ -829,7 +829,9 @@ function EditMainPage(props) {
                                                                                                     </div>
 
                                                                                                     <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                        alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"} />
+                                                                                                        alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"} 
+                                                                                                        className= "receiptImg" 
+                                                                                                        onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"]));}}/>
 
                                                                                                 </div>
 

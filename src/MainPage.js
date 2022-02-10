@@ -10,6 +10,7 @@ import './css/MainPage.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import PreviewImg from './PreviewImg';
 
 
 function MainPage(props) {
@@ -100,6 +101,9 @@ function MainPage(props) {
     const [chatbot, setChatbot] = useState(true);
 
     const[tempQuarter, setTempQuarter]=useState(false);
+
+    const [showImg, setShowImg] = useState(false);
+    const [previewImg, setPreviewImg] = useState();
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -362,26 +366,29 @@ function MainPage(props) {
                 })
                 .catch((error) => {
                     alert("학과 장부를 불러올 수 없습니다.");
-
-                    axios.get('/status')
-                        .then((payload) => {
-                            if (payload.data["status"] === "refusal") {
-                                alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
-                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                            }
-                            else if (payload.data["status"] === "waiting") {
-                                alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                            }
-                            else if (payload.data["status"] === "approval") {
-                                alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
-                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                            }
-                            getExPKSCL();
-                        })
-                        .catch((error) => {
-                            alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
-                        })
+                    setStudentPresident({ ...answer["studentPresident"] });
+                setQuarter({ ...answer["quarter"] });
+                
+                console.log([...answer["quarter"][currentQuarter]["eventList"]]);
+                    // axios.get('/status')
+                    //     .then((payload) => {
+                    //         if (payload.data["status"] === "refusal") {
+                    //             alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                    //         }
+                    //         else if (payload.data["status"] === "waiting") {
+                    //             alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                    //         }
+                    //         else if (payload.data["status"] === "approval") {
+                    //             alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                    //         }
+                    //         getExPKSCL();
+                    //     })
+                    //     .catch((error) => {
+                    //         alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                    //     })
                 })
 
             reset(props.todayQuarter);
@@ -446,6 +453,11 @@ function MainPage(props) {
 
     return (
         <div className="MainPageContainer">
+            {
+                showImg
+                    ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
+                    : null
+            }
             {
                 editProfileState
                     ?
@@ -618,7 +630,10 @@ function MainPage(props) {
                                                                                             event["receiptList"].length === 0
                                                                                                 ? null
                                                                                                 :
-                                                                                                <img src={event["receiptList"][0]["receiptImg"]["name"]} style={{ backgroundColor: "var(--color-leftPanel)" }} alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"} />
+                                                                                                <img className= "receiptImg" src={event["receiptList"][0]["receiptImg"]["name"]} 
+                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} 
+                                                                                                alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"} 
+                                                                                                onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]);}}/>
                                                                                         }
                                                                                     </div>
                                                                                 </div>)
@@ -673,7 +688,9 @@ function MainPage(props) {
                                                                                                         event["receiptList"].length === 0
                                                                                                             ? null
                                                                                                             : <img src={receipt["receiptImg"]["name"]} alt={receipt["receiptImg"]["name"]}
-                                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"} />
+                                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"} 
+                                                                                                                className= "receiptImg"
+                                                                                                                onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]);}}/>
                                                                                                     }
                                                                                                 </div>
 

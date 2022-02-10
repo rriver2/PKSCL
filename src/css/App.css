@@ -38,6 +38,7 @@ body {
     height: 100%;
     margin: 0;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 button:hover {
@@ -59,4 +60,8 @@ input {
     /* font-family: 'Malgun gothic', sans-serif !important; */
     font-family: "Work Sans";
     font-weight: bold;
+}
+
+.receiptImg:hover {
+    cursor: pointer;
 }

@@ -10,7 +10,9 @@ function EditEvent(props) {
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
-    const [editState,setEditState] = useState(true);
+    const [editState, setEditState] = useState(true);
+
+    const [previewImg, setPreviewImg] = useState();
 
     useEffect(() => {
         setEventData(props.editEventData);
@@ -131,16 +133,20 @@ function EditEvent(props) {
     function uploadImg(img, j) {
         let tempEditEventData = { ...eventData };
         tempEditEventData["receiptList"][j]["receiptImg"] = img;
+        // console.log(tempEditEventData["receiptList"][j]["receiptImg"]);
+        // console.log(tempEditEventData["receiptList"][j]["receiptImg"]["name"]);
+
+
         setEventData(tempEditEventData);
     }
 
-    function receiptTableAddButton(j){
+    function receiptTableAddButton(j) {
         let tempEditEventData = { ...eventData };
         tempEditEventData["receiptList"][j]["receiptDetailList"].push({
-                    "context": "",
-                    "price": "",
-                    "amount": "",
-                    "totalAmount": ""
+            "context": "",
+            "price": "",
+            "amount": "",
+            "totalAmount": ""
         })
         setEventData(tempEditEventData);
     }
@@ -172,28 +178,29 @@ function EditEvent(props) {
             "eventContext": eventData["eventContext"]
         }
 
-        let promise = new Promise ((resolve, reject)=>{
+        let promise = new Promise((resolve, reject) => {
             axios.patch("/event", payload)
-            .then((payload) => {
-                resolve("행사 이름, 행사 설명 수정 완료")
-            })
-            .catch((error) => {
-                reject("행사 이름, 행사 설명 수정 실패")
-            })
+                .then((payload) => {
+                    resolve("행사 이름, 행사 설명 수정 완료")
+                })
+                .catch((error) => {
+                    reject("행사 이름, 행사 설명 수정 실패")
+                })
         })
 
         promise
-        .then(value=>{
-            if (deleteReceiptList.length !== 0) {
-                deleteReceiptListAPI();}
-                else{
+            .then(value => {
+                if (deleteReceiptList.length !== 0) {
+                    deleteReceiptListAPI();
+                }
+                else {
                     sendReciept();
                 }
-        })
-        .catch((value=>{
-            alert(value)
-        }))
-        
+            })
+            .catch((value => {
+                alert(value)
+            }))
+
     }
 
     function deleteReceiptListAPI() {
@@ -205,24 +212,24 @@ function EditEvent(props) {
                 deleteReceiptListURL = deleteReceiptListURL + "," + deleteReceiptList[i];
             }
         }
-        let promise = new Promise ((resolve, reject)=>{
+        let promise = new Promise((resolve, reject) => {
             axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
-            .then((payload) => {
-                resolve("영수증 삭제 완료")
-            })
-            .catch((error) => {
-                reject("영수증 삭제 실패")
-            })
+                .then((payload) => {
+                    resolve("영수증 삭제 완료")
+                })
+                .catch((error) => {
+                    reject("영수증 삭제 실패")
+                })
         })
 
         promise
-        .then(value=>{
-            sendReciept();
-        })
-        .catch((value=>{
-            alert(value)
-        }))
-        
+            .then(value => {
+                sendReciept();
+            })
+            .catch((value => {
+                alert(value)
+            }))
+
     }
 
     function postReceipt(j) {
@@ -230,6 +237,9 @@ function EditEvent(props) {
         let payload = new FormData();
 
         let receiptData = eventData["receiptList"][j];
+
+        payload.append("receiptImgFile", receiptData["receiptImg"])
+        payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
 
         payload.append("eventNumber", eventData["eventNumber"]);
         payload.append("receiptTitle", receiptData["receiptTitle"]);
@@ -241,7 +251,7 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-        let promise = new Promise ((resolve, reject)=>{
+        let promise = new Promise((resolve, reject) => {
             axios.post(debugAPIURL + "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
@@ -253,15 +263,15 @@ function EditEvent(props) {
                 .catch((error) => {
                     reject("영수증 추가 실패")
                 })
-            })
+        })
 
         promise
-                .then(value=>{
-                })
-                .catch((value=>{
-                    alert(value)
-                    setEditState(false)
-                }))
+            .then(value => {
+            })
+            .catch((value => {
+                alert(value)
+                setEditState(false)
+            }))
 
     }
 
@@ -269,6 +279,9 @@ function EditEvent(props) {
 
         let payload = new FormData();
         let receiptData = eventData["receiptList"][j];
+
+        payload.append("receiptImgFile", receiptData["receiptImg"])
+        payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
 
         payload.append("receiptNumber", receiptData["receiptNumber"]);
         payload.append("receiptTitle", receiptData["receiptTitle"]);
@@ -280,39 +293,39 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-let promise = new Promise ((resolve, reject)=>{
-        axios.put(debugAPIURL + "/receipt", payload,
-            {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            }
-        )
-            .then((payload) => {
-                resolve("영수증 수정 완료")
-            })
-            .catch((error) => {
-                reject("영수증 수정 실패")
-            })
-             })
+        let promise = new Promise((resolve, reject) => {
+            axios.put(debugAPIURL + "/receipt", payload,
+                {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                }
+            )
+                .then((payload) => {
+                    resolve("영수증 수정 완료")
+                })
+                .catch((error) => {
+                    reject("영수증 수정 실패")
+                })
+        })
 
         promise
-                .then(value=>{
-                })
-                .catch((value=>{
-                    alert(value)
-                    setEditState(false)
-                }))
+            .then(value => {
+            })
+            .catch((value => {
+                alert(value)
+                setEditState(false)
+            }))
 
     }
     function sendReciept() {
         eventData["receiptList"].map((receipt, j) => {
-                if (receipt["receiptNumber"] === undefined) {
-                    postReceipt(j);
-                } else {
-                    putReceipt(j);
-                }
+            if (receipt["receiptNumber"] === undefined) {
+                postReceipt(j);
+            } else {
+                putReceipt(j);
             }
+        }
         )
-        if(editState===true) props.setEditEventState(false);
+        if (editState === true) props.setEditEventState(false);
     }
 
     return (
@@ -320,7 +333,7 @@ let promise = new Promise ((resolve, reject)=>{
         <div className="editEventBox">
             {
                 showImg
-                    ? <PreviewImg setShowImg={setShowImg}></PreviewImg>
+                    ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
                     : null
             }
             <div className="quarterData" style={{ marginTop: "0" }}>
@@ -431,10 +444,10 @@ let promise = new Promise ((resolve, reject)=>{
                                                                             {
                                                                                 receipt["receiptDetailList"].length === 0
                                                                                     ? (<><div>입력된 영수증 내역이 없습니다.</div>
-                                                                                    <button className='editSubmitButton' type='button'
-                                                                                        onClick={() => {
-                                                                                            receiptTableAddButton(j);
-                                                                                        }}><i class="fas fa-plus"></i></button>
+                                                                                        <button className='editSubmitButton' type='button'
+                                                                                            onClick={() => {
+                                                                                                receiptTableAddButton(j);
+                                                                                            }}><i class="fas fa-plus"></i></button>
                                                                                     </>)
                                                                                     : (<>
                                                                                         <table className="receiptTable" style={{ width: "400px" }}>
@@ -525,9 +538,10 @@ let promise = new Promise ((resolve, reject)=>{
                                                             <div className="uploadimg">
 
                                                                 {/* <label for='receiptImg'> */}
-                                                                <img src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                <img className= "receiptImg"
+                                                                    src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                     alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"} title='영수증 사진'
-                                                                    onClick={() => { setShowImg(true) }}
+                                                                    onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"]));}}
                                                                 />
 
                                                                 {/* </label> */}
