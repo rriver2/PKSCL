@@ -184,7 +184,11 @@ function EditEvent(props) {
 
         promise
         .then(value=>{
-            if (deleteReceiptList.length !== 0) deleteReceiptListAPI();
+            if (deleteReceiptList.length !== 0) {
+                deleteReceiptListAPI();}
+                else{
+                    sendReciept();
+                }
         })
         .catch((value=>{
             alert(value)
