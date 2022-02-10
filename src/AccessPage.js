@@ -247,44 +247,44 @@ function AccessPage(props) {
   };
 
   function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
-        document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-        document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-        document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-        document.documentElement.style.setProperty("--color-card", colorCard);
-        document.documentElement.style.setProperty("--color-background", colorBackground);
-    }
+    document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+    document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+    document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+    document.documentElement.style.setProperty("--color-card", colorCard);
+    document.documentElement.style.setProperty("--color-background", colorBackground);
+  }
 
-    function defineColor(quarter) {
-        if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
-        } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
-        } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
-        } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
-        }
+  function defineColor(quarter) {
+    if (quarter === "quarter1") {
+      setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
+    } else if (quarter === "quarter2") {
+      setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
+    } else if (quarter === "quarter3") {
+      setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
+    } else if (quarter === "quarter4") {
+      setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
     }
+  }
 
 
   return (
     <div className="accessContainer">
 
       <div className="left-panel">
-                <div class='wave -one'></div>
-                <div class='wave -two'></div>
-                <div class='wave -three'></div>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
         <div className="content">
-            
+
           <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p>
         </div>
-            <img src={logo} className="image" alt="PKSCL logo" />
+        <img src={logo} className="image" alt="PKSCL logo" />
         <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
           style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}></button>
-        </div>
+      </div>
       <Switch>
 
         <Route exact path="/signUp">
@@ -311,10 +311,13 @@ function AccessPage(props) {
                 personalInformationButton === false
                   ? (
                     <div style={{ width: "350px" }}>
-                      <div>환영합니다 :)
-                        <br />부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL와 이를 이용하는 온라인 장부를 이용할 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
-                        <br /> PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
+                      <div style={{ marginBottom: "10px" }}>
+                        부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL과 이를 이용하는 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
+                        PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
+
                       </div>
+
+
                       {/* <input class="InfoCheckedList" style={{ marginLeft: "16px", marginTop: "20px" }} type="checkbox"
                         onClick={() => { changePersonalInformation(0) }}
                       ></input>[필수] 부경대학교 재학생 또는 휴학생 입니다. */}
