@@ -251,7 +251,7 @@ function EditEvent(props) {
                     resolve("영수증 추가 완료")
                 })
                 .catch((error) => {
-                    reject("영수증 삭제 실패")
+                    reject("영수증 추가 실패")
                 })
             })
 
@@ -287,10 +287,10 @@ let promise = new Promise ((resolve, reject)=>{
             }
         )
             .then((payload) => {
-                resolve("영수증 추가 완료")
+                resolve("영수증 수정 완료")
             })
             .catch((error) => {
-                reject("영수증 삭제 실패")
+                reject("영수증 수정 실패")
             })
              })
 

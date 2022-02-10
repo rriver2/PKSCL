@@ -294,7 +294,8 @@ function EditMainPage(props) {
             .then((payload) => {
                 alert("장부를 추가하였습니다.");
 
-                let promise = new Promise ((resolve, reject)=>{
+                let eventListLength = quarter[currentQuarter]["eventList"].length;
+
                 let resetArray = [];
                 axios.get(debugAPIURL + '/ledger')
                     .then((payload) => {
@@ -312,6 +313,15 @@ function EditMainPage(props) {
                         setShowAllReceiptButton(resetArray);
                         GetDate();
                         resolve()
+
+                        let eventList = payload.data["quarter"][currentQuarter]["eventList"];
+                        console.log( "eventListLength" )
+                        console.log(eventListLength)
+
+                        let i = eventListLength;
+                        setEditEventState(true)
+                        setEditEventData(eventList[i]);
+                        setEditEventAmount(0);
                     })
                     .catch((error) => {
                         alert("학과 장부를 불러올 수 없습니다.");
@@ -320,35 +330,21 @@ function EditMainPage(props) {
                         setQuarter({ ...answer["quarter"] });
                         setList(answer["quarter"][currentQuarter]["eventList"]);
                         console.log(answer["quarter"][currentQuarter]["eventList"]);
-
                         for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
                             resetArray.push(false)
                         }
-
                         setShowAllReceiptButton(resetArray);
-                        
+
+                        console.log(quarter[currentQuarter]["eventList"].length)
                         reject()
                     })
-                })
-                promise
-                .then(()=>{
-                    console.log( Number(quarter[currentQuarter]["eventList"].length))
-                    let i = Number(quarter[currentQuarter]["eventList"].length);
-                    setEditEventState(true)
-                    setEditEventData(quarter[currentQuarter]["eventList"][i]);
-                    setEditEventAmount(eventAmount[i]);
-                })
-                .catch((value=>{
-                    alert(value)
-                }))
-                
-
             })
             .catch((error) => {
                 alert("장부 추가에 실패했습니다. code: " + error.response.status)
                 
             });
     }
+
 
     // function receiptAddButton(i) {
     //     const temp = { ...quarter };
@@ -503,8 +499,10 @@ function EditMainPage(props) {
         axios.patch(debugAPIURL + '/event-sequence', payload)
             .then((payload) => {
                 console.log("행사 순서가 수정되었습니다.");
+                setList(list)
                 getLedger();
             }).catch((error) => {
+                setList(quarter[currentQuarter]["eventList"]);
                 alert(error.response.data["errorMessage"]);
             })
     }
