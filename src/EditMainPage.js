@@ -231,14 +231,12 @@ function EditMainPage(props) {
     function eventDeleteButton(eventNumber, index) {
         let answer = window.confirm("삭제하면 되돌릴 수 없습니다.");
         if (answer) {
-            // alert("삭제 API추가해야함" + eventNumber);
             var tempQuarter = { ...quarter };
             tempQuarter[currentQuarter]["eventList"].splice(index, 1);
 
 
             const payload = { "eventNumber": eventNumber };
             console.log(payload);
-            // `/ledger/admin?${findMajorIndex}`)
             axios.delete(debugAPIURL + '/ledger/?eventNumber=' + eventNumber)
                 .then((payload) => {
                     switch (payload.status) {
@@ -248,7 +246,6 @@ function EditMainPage(props) {
                     }
                     getLedger();
                 }).catch((error) => {
-
                     alert("장부를 삭제하는데 실패했습니다.");
                 })
         } else {
@@ -502,9 +499,11 @@ function EditMainPage(props) {
         let payload = { "eventNumberList": [...eventNumberList] };
         axios.patch(debugAPIURL + '/event-sequence', payload)
             .then((payload) => {
+                setList(list)
                 console.log("행사 순서가 수정되었습니다.");
                 getLedger();
             }).catch((error) => {
+                setList(quarter[currentQuarter]["eventList"])
                 alert(error.response.data["errorMessage"]);
             })
     }
