@@ -311,7 +311,6 @@ let promise = new Promise ((resolve, reject)=>{
             }
         )
         if(editState===true) props.setEditEventState(false);
-
     }
 
     return (
