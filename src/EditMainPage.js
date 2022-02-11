@@ -128,7 +128,7 @@ function EditMainPage(props) {
                                  history.push('/main')
                             break;
                         }
-                alert("학과 장부를 불러올 수 없습니다.");
+                // alert("학과 장부를 불러올 수 없습니다.");
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });

@@ -42,19 +42,19 @@ function EditEvent(props) {
         // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
-    // function eventDeleteButton() {
-    //     axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
-    //         .then((payload) => {
-    //             switch (payload.status) {
-    //                 case 200:
-    //                     alert("행사 장부가 삭제되었습니다.");
-    //                     break;
-    //                 default: break;
-    //             }
-    //         }).catch((error) => {
-    //             alert("장부를 삭제하는데 실패했습니다.");
-    //         })
-    // }
+    function eventDeleteButton() {
+        axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
+            .then((payload) => {
+                switch (payload.status) {
+                    case 200:
+                        alert("행사 장부가 삭제되었습니다.");
+                        break;
+                    default: break;
+                }
+            }).catch((error) => {
+                alert("장부를 삭제하는데 실패했습니다.");
+            })
+    }
 
     function processImage(file) {
         if (file != null) {
@@ -240,7 +240,9 @@ function EditEvent(props) {
 
         let receiptData = eventData["receiptList"][j];
 
-        payload.append("receiptImgFile", receiptData["receiptImg"])
+        if (receiptData["receiptImg"]["name"] !== "") {
+            payload.append("receiptImgFile", receiptData["receiptImg"])
+        }
         payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
 
         payload.append("eventNumber", eventData["eventNumber"]);
@@ -282,8 +284,11 @@ function EditEvent(props) {
         let payload = new FormData();
         let receiptData = eventData["receiptList"][j];
 
-        payload.append("receiptImgFile", receiptData["receiptImg"])
-        payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
+        if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
+            payload.append("receiptImgFile", receiptData["receiptImg"])
+        }
+
+        // payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
 
         payload.append("receiptNumber", receiptData["receiptNumber"]);
         payload.append("receiptTitle", receiptData["receiptTitle"]);
@@ -324,10 +329,10 @@ function EditEvent(props) {
             eventData["receiptList"].map((receipt, j) => {
                     if (receipt["receiptNumber"] === undefined) {
                         postReceipt(j);
-                        console.log("postReceipt")
+                        alert("postReceipt")
                     } else {
                         putReceipt(j);
-                        console.log("putReceipt")
+                        alert("putReceipt")
                     }
                 })
                 resolve()
@@ -378,8 +383,8 @@ function EditEvent(props) {
 
 
                                         <div className="eventButtons">
-                                            {/* <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
-                                                <i class="far fa-trash-alt"></i> </button> */}
+                                            <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
+                                                <i class="far fa-trash-alt"></i> </button>
                                             <button onClick={() => {
                                                 editEventButton();
                                             }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>

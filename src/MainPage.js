@@ -296,7 +296,6 @@ function MainPage(props) {
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
             })
-
     }
 
     function adminGetDate(findMajorIndex) {
@@ -318,14 +317,14 @@ function MainPage(props) {
     }
 
     function getExPKSCL() {
-        axios.get(debugAPIURL + '/temp-ledger')
+                setTempQuarter(true);
+        axios.get(debugAPIURL + '/temp-major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
                 // reset(props.todayQuarter);
                 // defineColor(props.todayQuarter);
                 setChatbot(false);
-                setTempQuarter(true);
             })
             .catch((error) => {
                 alert("임시 장부를 불러올 수 없습니다.");
@@ -366,7 +365,7 @@ function MainPage(props) {
                     setChatbot(false);
                 })
                 .catch((error) => {
-                    alert("학과 장부를 불러올 수 없습니다.");
+                    // alert("학과 장부를 불러올 수 없습니다.");
                     //지우기
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
@@ -408,7 +407,7 @@ function MainPage(props) {
                     setChatbot(false);
                 })
                 .catch((error) => {
-                    alert("학과 장부를 불러올 수 없습니다.");
+                    // alert("학과 장부를 불러올 수 없습니다.");
                     axios.get('/status')
                         .then((payload) => {
                             if (payload.data["status"] === "refusal") {
@@ -524,10 +523,12 @@ function MainPage(props) {
                                         props.loginPosition === "president"
                                             ? (<>{
                                                 tempQuarter === true
-                                                ?<><div style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                ?<><div style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
+                                                <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                 <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>
                                                 :(<><div style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
-                                                <button className='submitButton' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button></>)
+                                                <button className='submitButton' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
+                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>)
                                             }
                                             </>)
                                             : (<><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
