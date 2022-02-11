@@ -106,7 +106,7 @@ function EditMainPage(props) {
 
     function getLedger() {
         let resetArray = [];
-        axios.get(debugAPIURL + '/ledger')
+        axios.get(debugAPIURL + '/major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
@@ -257,7 +257,6 @@ function EditMainPage(props) {
             })
             .catch((error) => {
                 alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
-                //지우기
                 setQuarterDate({ ...answerDate });
             })
     }
@@ -317,7 +316,7 @@ function EditMainPage(props) {
             closeDate: quarterDate[currentQuarter][1],
         }
 
-        // console.log(payload);
+
         axios.put(debugAPIURL + '/ledger-date', payload)
             .then((payload) => {
                 console.log("Success edit ledger-date");

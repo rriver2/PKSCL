@@ -573,7 +573,7 @@ function AccessPage(props) {
                         ?
                         <div className="input-field filebox">
                           <i className="fas fa-user-graduate" style={isCorrect[7] === true ? { color: "var(--color-quarter)" } : null}></i>
-                          <input className='uploadName' placeholder='학생증을 첨부해주세요' value={certFile.name} readOnly />
+                          <input className='uploadName' placeholder='학생증을 첨부해주세요.' value={certFile.name} readOnly />
                           <label htmlFor="certFile">찾기</label>
                           <input type="file" id='certFile' name="certFile" accept='image/*'
                             onChange={(e) => {

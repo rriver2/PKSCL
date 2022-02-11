@@ -276,7 +276,7 @@ function MainPage(props) {
     }
 
     function getAdminLedger(findMajorIndex) {
-        axios.get(debugAPIURL + `/ledger/admin?${findMajorIndex}`)
+        axios.get(debugAPIURL + `/major-info/admin?major-number=${findMajorIndex}`)
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
@@ -300,7 +300,7 @@ function MainPage(props) {
     }
 
     function adminGetDate(findMajorIndex) {
-        axios.get(debugAPIURL + `/ledger-date?${findMajorIndex}`)
+        axios.get(debugAPIURL + `/ledger-date?major-number=${findMajorIndex}`)
             .then((payload) => {
                 setQuarterDate({ ...payload.data });
                 showQuarter(props.todayQuarter);
@@ -357,7 +357,7 @@ function MainPage(props) {
                 })
 
         } else if (props.loginPosition === "president") {
-            axios.get(debugAPIURL + '/ledger')
+            axios.get(debugAPIURL + '/major-info')
                 .then((payload) => {
                     setStudentPresident({ ...payload.data["studentPresident"] });
                     setQuarter({ ...payload.data["quarter"] });
@@ -399,7 +399,7 @@ function MainPage(props) {
             reset(props.todayQuarter);
             defineColor(props.todayQuarter);
         } else if (props.loginPosition === "student") {
-            axios.get(debugAPIURL + '/ledger')
+            axios.get(debugAPIURL + '/major-info')
                 .then((payload) => {
                     setStudentPresident({ ...payload.data["studentPresident"] });
                     setQuarter({ ...payload.data["quarter"] });
