@@ -42,19 +42,19 @@ function EditEvent(props) {
         // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
-    function eventDeleteButton() {
-        axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
-            .then((payload) => {
-                switch (payload.status) {
-                    case 200:
-                        alert("행사 장부가 삭제되었습니다.");
-                        break;
-                    default: break;
-                }
-            }).catch((error) => {
-                alert("장부를 삭제하는데 실패했습니다.");
-            })
-    }
+    // function eventDeleteButton() {
+    //     axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
+    //         .then((payload) => {
+    //             switch (payload.status) {
+    //                 case 200:
+    //                     alert("행사 장부가 삭제되었습니다.");
+    //                     break;
+    //                 default: break;
+    //             }
+    //         }).catch((error) => {
+    //             alert("장부를 삭제하는데 실패했습니다.");
+    //         })
+    // }
 
     function processImage(file) {
         if (file != null) {
@@ -324,10 +324,10 @@ function EditEvent(props) {
             eventData["receiptList"].map((receipt, j) => {
                     if (receipt["receiptNumber"] === undefined) {
                         postReceipt(j);
-                        alert("postReceipt")
+                        console.log("postReceipt")
                     } else {
                         putReceipt(j);
-                        alert("putReceipt")
+                        console.log("putReceipt")
                     }
                 })
                 resolve()
@@ -378,8 +378,8 @@ function EditEvent(props) {
 
 
                                         <div className="eventButtons">
-                                            <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
-                                                <i class="far fa-trash-alt"></i> </button>
+                                            {/* <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
+                                                <i class="far fa-trash-alt"></i> </button> */}
                                             <button onClick={() => {
                                                 editEventButton();
                                             }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>

@@ -9,7 +9,6 @@ function AccessPage(props) {
   let debugAPIURL = "";
   // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
 
-  // let [signType, setSignType] =useState("signIn");
   const [position, setPosition] = useState("student");
 
   const [stdID, setStdID] = useState("");
@@ -627,7 +626,6 @@ function AccessPage(props) {
                 <input id="inputEmail" onChange={(e) => {
                   setEmail(e.target.value);
                   const emailType = e.target.value.substring(e.target.value.indexOf("@"));
-                  // console.log(emailType);
                   console.log(e.target.value);
                   if (e.target.value.indexOf('@') === 0) {
                     setEmailTypeState(emailTypeState => false);

@@ -130,11 +130,17 @@ function EditProfile(props) {
 
         if (props.loginPosition === "student") { //학생
             payload.append("major", major);
-            payload.append("certFile", certFile);
+           
+            if (!certFile["name"].includes("./static/studentCertFile/")) {
+                payload.append("certFile", certFile);
+            }
         }
         else if (props.loginPosition === "president") { //학생회장
             payload.append("phoneNumber", phoneNumber);
-            payload.append("majorLogo", majorLogo);
+
+           if (!majorLogo["name"].includes("./static/majarLogo/")) {
+                payload.append("majorLogo", majorLogo);
+            }
         }
 
         axios.put(debugAPIURL + "/profile/" + props.loginPosition, payload, {
@@ -446,7 +452,7 @@ function EditProfile(props) {
                                                 ? <div className="inputField">
                                                     <i className="fas fa-user-graduate" style={{ fontSize: "1.25rem" }}></i>
                                                     <label>학과로고</label>
-                                                    <input style={{ width: "200px" }} placeholder={majorLogo} readOnly></input>
+                                                    <input style={{ width: "200px" }} placeholder="학과로고를 첨부해주세요." value={majorLogo["name"]} readOnly></input>
                                                     <label className='fileButton' htmlFor="file" style={{ width: "60px" }}>찾기</label>
                                                     <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
                                                         onChange={(e) => {
@@ -466,7 +472,7 @@ function EditProfile(props) {
                                         <div className="inputField">
                                             <i className="fas fa-user-graduate"></i>
                                             <label>학생증</label>
-                                            <input style={{ width: "200px" }} placeholder={certFile} readOnly></input>
+                                            <input style={{ width: "200px" }} placeholder="학생증을 첨부해주세요" value={certFile["name"]} readOnly></input>
                                             <label className='fileButton' htmlFor="file">찾기</label>
                                             <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
                                                 onChange={(e) => {
@@ -613,7 +619,6 @@ function EditProfile(props) {
                                 </>
                                 : null
                 }
-
             </div>
         </div>
 

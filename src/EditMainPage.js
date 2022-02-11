@@ -277,7 +277,6 @@ function EditMainPage(props) {
                     }
                     getLedger();
                 }).catch((error) => {
-
                     alert("장부를 삭제하는데 실패했습니다.");
                 })
         } else {
