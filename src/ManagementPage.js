@@ -3,7 +3,7 @@ import { Navbar, Container } from 'react-bootstrap';
 import './css/ManagementPage.css';
 import axios from 'axios';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
-import CertFile from './CertFile';
+import PreviewImg from './PreviewImg';
 
 function ManagementPage(props) {
     let debugAPIURL = "";
@@ -73,8 +73,8 @@ function ManagementPage(props) {
 
     const [searchStudent, setSearchStudent] = useState("");
     const [searchButton, setSearchButton] = useState("search");
-    const [certFile, setCertFile] = useState(false);
-    const [certFileStudnet, setCertFileStudnet] = useState();
+    const [showImg, setShowImg] = useState(false);
+    const [previewImg, setPreviewImg] = useState();
 
     const changeHandler = (checked, studentInfo, setCheckedList, checkedList) => {
         if (checked) {
@@ -194,8 +194,8 @@ function ManagementPage(props) {
     return (
         <div className="ManagementPageContainer">
             {
-                certFile === true
-                    ? (<CertFile certFileStudnet={certFileStudnet} setCertFile={setCertFile}></CertFile>)
+                showImg === true
+                    ? (<PreviewImg previewImg={previewImg} setShowImg={setShowImg}></PreviewImg>)
                     : null
             }
             {
@@ -279,8 +279,8 @@ function ManagementPage(props) {
                                                                                 ? (<><td>{student.stdID}</td>
                                                                                     <td>{student.name}</td>
                                                                                     <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                        setCertFileStudnet(student);
-                                                                                        setCertFile(true);
+                                                                                        setPreviewImg(student);
+                                                                                        setShowImg(true);
                                                                                     }}>학생증</button></td>
                                                                                     <td ><input
                                                                                         id={student}
@@ -299,8 +299,8 @@ function ManagementPage(props) {
                                                                                         <td>{student.phoneNumber}</td>
                                                                                         <td>{student.email}</td>
                                                                                         <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                            setCertFileStudnet(student);
-                                                                                            setCertFile(true);
+                                                                                            setPreviewImg(student);
+                                                                                            setShowImg(true);
                                                                                         }}>학생증</button></td>
                                                                                     </tr>
                                                                                     <td style={{ width: "100px" }}><input
@@ -366,7 +366,7 @@ function ManagementPage(props) {
                                                                                 ? (<><td>{student.stdID}</td>
                                                                                     <td>{student.name}</td>
                                                                                     <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                        setCertFile(true);
+                                                                                        setShowImg(true);
                                                                                     }}>학생증</button></td>
                                                                                     <td ><input
                                                                                         id={student}
@@ -385,7 +385,7 @@ function ManagementPage(props) {
                                                                                         <td>{student.phoneNumber}</td>
                                                                                         <td>{student.email}</td>
                                                                                         <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                            setCertFile(true);
+                                                                                            setShowImg(true);
                                                                                         }}>학생증</button></td>
                                                                                     </tr>
                                                                                     <td style={{ width: "100px" }}><input

@@ -86,8 +86,6 @@ function EditMainPage(props) {
         "quarter4": ["2022-01-07", "2022-01-08"]
     }
 
-    // const [totalAmount, setTotalAmount] = useState([])
-
     const [studentPresident, setStudentPresident] = useState();
 
     const [quarter, setQuarter] = useState();
@@ -113,7 +111,6 @@ function EditMainPage(props) {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
                
-
                 if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined) {
                     for (let i = 0; i < payload.data["quarter"][currentQuarter]["eventList"].length; i++) {
                         resetArray.push(false)
@@ -135,15 +132,12 @@ function EditMainPage(props) {
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });
-                
                 console.log([...answer["quarter"][currentQuarter]["eventList"]]);
-
                 for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
                     resetArray.push(false)
                 }
                 GetDate();
                 setShowAllReceiptButton(resetArray);
-
                 setList([...answer["quarter"][currentQuarter]["eventList"]]);
             })
     }
@@ -155,7 +149,6 @@ function EditMainPage(props) {
                 resetArray.push(false)
             }
         }
-
         setShowAllReceiptButton(resetArray)
     }
 
@@ -170,7 +163,6 @@ function EditMainPage(props) {
         else {
             console.log("quarter === undefined");
         }
-        // window.scrollTo(0, 0);
     }
 
     function showQuarter(selectedQuarter) {
@@ -271,17 +263,13 @@ function EditMainPage(props) {
     }
 
     function eventDeleteButton(eventNumber, index) {
-        let answer = window.confirm("삭제하면 되돌릴 수 없습니다.");
-        if (answer) {
-            // alert("삭제 API추가해야함" + eventNumber);
+        if (window.confirm("삭제하면 되돌릴 수 없습니다.")) {
             var tempQuarter = { ...quarter };
             tempQuarter[currentQuarter]["eventList"].splice(index, 1);
 
-
             const payload = { "eventNumber": eventNumber };
             console.log(payload);
-            // `/ledger/admin?${findMajorIndex}`)
-            axios.delete(debugAPIURL + '/ledger/?eventNumber=' + eventNumber)
+            axios.delete(debugAPIURL + '/event?event-number=' + eventNumber)
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
@@ -298,43 +286,11 @@ function EditMainPage(props) {
         }
     }
 
-    // function eventFixButton(event) {
-    //     var payload = new FormData();
-
-    //     payload.append("event", event)
-    //     payload.append("quarter", currentQuarter);
-
-    //     console.log(payload);
-
-    //     axios.put(debugAPIURL + "/ledger", payload,
-    //         {
-    //             headers: { 'Content-Type': 'multipart/form-data' }
-    //         }
-    //     )
-    //         .then((payload) => {
-    //             switch (payload.status) {
-    //                 case 200:
-    //                     alert("장부를 수정하였습니다.");
-    //                     getLedger();
-    //                     break;
-    //                 default:
-    //                     alert("success code: " + payload.status);
-    //                     getLedger();
-    //                     break;
-
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             alert("장부 수정을 처리하지 못했습니다. code: " + error.response.status)
-    //         });
-    //     console.log(quarter);
-    // }
-
     function eventAddButton(currentQuarter) {
         let payload = { "quarter": currentQuarter }
 
         let promise = new Promise ((resolve, reject)=>{
-        axios.post(debugAPIURL + "/ledger", payload)
+        axios.post(debugAPIURL + "/event", payload)
             .then((payload) => {
                 resolve("장부를 추가하였습니다.");
             })
@@ -354,36 +310,6 @@ function EditMainPage(props) {
     }
 
 
-    // function receiptAddButton(i) {
-    //     const temp = { ...quarter };
-    //     temp[currentQuarter]["eventList"][i]["receiptList"].push({
-
-    //         "receiptTitle": "영수증 제목을 입력해주세요",
-    //         "receiptImg": { name: "" },
-    //         "receiptContext": "영수증 내용을 입력해주세요",
-    //         "receiptDetailList": [
-    //             {
-    //                 "context": "",
-    //                 "price": "",
-    //                 "amount": "",
-    //                 "totalAmount": ""
-
-    //             },
-    //         ]
-    //     })
-    //     setQuarter(temp);
-    // }
-
-    // function receiptDeleteButton(i, j) {
-    //     let answer = window.confirm("영수증을 삭제하시겠습니까?");
-    //     if (answer) {
-    //         const temp = { ...quarter };
-    //         temp[currentQuarter]["eventList"][i]["receiptList"].splice(j, 1);
-    //         setQuarter(temp);
-    //         alert("영수증이 삭제되었습니다.");
-    //     }
-    // }
-
     function putLedgerDate() {
         const payload = {
             quarter: currentQuarter,
@@ -400,14 +326,6 @@ function EditMainPage(props) {
             })
     }
 
-    // function uploadImg(img, i, j) {
-    //     console.log("I : " + i + "J : " + j);
-    //     const temp = { ...quarter };
-    //     temp[currentQuarter]["eventList"][i]["receiptList"][j]["receiptImg"] = img;
-    //     setQuarter(temp);
-    //     console.log(quarter);
-    // }
-
     function processImage(file) {
         if (file != null) {
             const imageFile = file;
@@ -418,47 +336,7 @@ function EditMainPage(props) {
                 return imageUrl;
             }
         }
-    }
-
-    // function changeEventTitle(value, i) {
-    //     var tempQuarter = { ...quarter };
-    //     tempQuarter[currentQuarter]["eventList"][i].eventTitle = value;
-    //     setQuarter(tempQuarter);
-    // }
-
-    // function changeEventContext(value, i) {
-    //     var tempQuarter = { ...quarter };
-    //     tempQuarter[currentQuarter]["eventList"][i].eventContext = value;
-    //     setQuarter(tempQuarter);
-    // }
-
-    // function changeReceiptTitle(value, i) {
-    //     var tempQuarter = { ...quarter };
-    //     tempQuarter[currentQuarter]["eventList"][i].receiptTitle = value;
-    //     setQuarter(tempQuarter);
-    // }
-
-    // function changeReceiptContext(value, i) {
-    //     var tempQuarter = { ...quarter };
-    //     tempQuarter[currentQuarter]["eventList"][i].receiptContext = value;
-    //     setQuarter(tempQuarter);
-    // }
-
-    // function changeItem(key, value, i, j, k) {
-    //     console.log("changeItem");
-    //     var tempQuarter = { ...quarter };
-    //     var item = tempQuarter[currentQuarter]["eventList"][i]["receiptList"][j]["receiptDetailList"][k];
-
-    //     item[key] = value;
-    //     item["totalAmount"] = item["price"] * item["amount"];
-    //     setQuarter(tempQuarter);
-    // var tempShowAllReceiptButton = [...showAllReceiptButton];
-    // tempShowAllReceiptButton[i] = true;
-    // console.log(tempShowAllReceiptButton);
-    // setShowAllReceiptButton(tempShowAllReceiptButton);
-    // }
-
-    
+    }    
 
     function eventSequenceButton() {
         let eventNumberList = [];
@@ -519,7 +397,6 @@ function EditMainPage(props) {
     }, [quarter])
 
 
-
     return (
         <div className="EditMainPageContainer">
              {
@@ -534,7 +411,6 @@ function EditMainPage(props) {
                         editProfileState
                             ?
                             <EditProfile loginPosition={props.loginPosition} setEditProfileState={setEditProfileState}></EditProfile>
-                            // <EditProfile editProfileState={editProfileState} loginPosition={"president"} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
                         {
@@ -552,20 +428,16 @@ function EditMainPage(props) {
                                 : (<>
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
-                                            <div className="quarterButton" style={{margin: "50px"}} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0);}}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" style={{marginTop: "50px"}} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0);}}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2"); window.scrollTo(0, 0);}}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3"); window.scrollTo(0, 0); }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
                                             <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4"); window.scrollTo(0, 0); }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                                         </div>
                                         
                                     </div>
-                                    {/* rightPanel */}
                                     <div className="rightPanel">
                                         <div className="nav">
                                             <div className="buttons">
-                                                {/* {
-                                                    console.log(quarterDate)
-                                                } */}
                                                 <div style={{display:"flex"}}>
                                                 <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
                                                 <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
@@ -601,7 +473,6 @@ function EditMainPage(props) {
                                             </div>
                                         </div>
 
-                                        {/* 장부 */}
                                         <div style={{ display: "flex" }}>
                                             <div className="quarterData">
                                                 <h2 className="quarterTotalAmount">
@@ -857,9 +728,6 @@ function EditMainPage(props) {
 
 
                                             </div>
-                                            {/* 장부 */}
-
-                                            {/* 2 */}
                                             <div className="remotePanel">
                                                 <div className="remotePanelBox" style={{ display: "flex" }}>
                                                     <div>
@@ -893,20 +761,14 @@ function EditMainPage(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* 2 */}
                                         </div>
                                     </div>
-
-                                    {/* rightPanel */}
                                 </>
                                 )
                         }</>)
             }
-
-
         </div >
     )
 }
-
 
 export default EditMainPage;

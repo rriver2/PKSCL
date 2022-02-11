@@ -7,8 +7,6 @@ function PreviewImg(props){
         <div style={{display : "flex", justifyContent: "flex-end", width: "100%"}}>
             <button className="previewImgButton" onClick={()=>{props.setShowImg(false)}}>
                 <i className="fas fa-times"></i></button>
-
-                
         </div>
         <div className="imgBox">
             <img src={props.previewImg} 

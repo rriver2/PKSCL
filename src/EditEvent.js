@@ -43,7 +43,7 @@ function EditEvent(props) {
     }
 
     function eventDeleteButton() {
-        axios.delete(debugAPIURL + '/ledger/?eventNumber=' + eventData["eventNumber"])
+        axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
@@ -199,6 +199,7 @@ function EditEvent(props) {
             })
             .catch((value => {
                 alert(value)
+                sendReciept();
             }))
 
     }
@@ -213,7 +214,7 @@ function EditEvent(props) {
             }
         }
         let promise = new Promise((resolve, reject) => {
-            axios.delete("/receipt?receiptNumber=" + deleteReceiptListURL)
+            axios.delete("/receipt?receipt-number=" + deleteReceiptListURL)
                 .then((payload) => {
                     resolve("영수증 삭제 완료")
                 })
@@ -228,6 +229,7 @@ function EditEvent(props) {
             })
             .catch((value => {
                 alert(value)
+                sendReciept();
             }))
 
     }
@@ -314,18 +316,30 @@ function EditEvent(props) {
                 alert(value)
                 setEditState(false)
             }))
-
     }
+
     function sendReciept() {
-        eventData["receiptList"].map((receipt, j) => {
-            if (receipt["receiptNumber"] === undefined) {
-                postReceipt(j);
-            } else {
-                putReceipt(j);
-            }
-        }
-        )
-        if (editState === true) props.setEditEventState(false);
+        
+        let promise = new Promise((resolve, reject) => {
+            eventData["receiptList"].map((receipt, j) => {
+                    if (receipt["receiptNumber"] === undefined) {
+                        postReceipt(j);
+                        alert("postReceipt")
+                    } else {
+                        putReceipt(j);
+                        alert("putReceipt")
+                    }
+                })
+                resolve()
+            })
+
+        promise
+            .then(value => {
+                 if (editState === true) props.setEditEventState(false);
+            })
+            .catch((value => {
+            }))
+       
     }
 
     return (
@@ -551,7 +565,6 @@ function EditEvent(props) {
                                                                 ></input>
                                                             </div>
                                                         </div>
-
                                                     )
                                                 })
                                             }

@@ -311,6 +311,7 @@ function MainPage(props) {
                 } else {
                     alert(`${major}의 장부 open, close 날짜를 불러올 수 없습니다.`);
                 }
+                //지우기
                 setQuarterDate({ ...answerDate });
                 showQuarter(props.todayQuarter);
             })
@@ -366,29 +367,33 @@ function MainPage(props) {
                 })
                 .catch((error) => {
                     alert("학과 장부를 불러올 수 없습니다.");
+                    //지우기
                     setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                
-                console.log([...answer["quarter"][currentQuarter]["eventList"]]);
-                    // axios.get('/status')
-                    //     .then((payload) => {
-                    //         if (payload.data["status"] === "refusal") {
-                    //             alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
-                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                    //         }
-                    //         else if (payload.data["status"] === "waiting") {
-                    //             alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                    //         }
-                    //         else if (payload.data["status"] === "approval") {
-                    //             alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
-                    //             if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
-                    //         }
-                    //         getExPKSCL();
-                    //     })
-                    //     .catch((error) => {
-                    //         alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
-                    //     })
+                    setQuarter({ ...answer["quarter"] });
+                    console.log([...answer["quarter"][currentQuarter]["eventList"]]);
+
+
+                    axios.get('/status')
+                        .then((payload) => {
+                            if (payload.data["status"] === "refusal") {
+                                alert("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                            }
+                            else if (payload.data["status"] === "waiting") {
+                                alert("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                            }
+                            else if (payload.data["status"] === "approval") {
+                                alert("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇으로 문제를 문의해주세요 :)");
+                                if (window.confirm('챗봇으로 이동하시겠습니까?')) window.open("http://pf.kakao.com/_hxnlXb")
+                            }
+                            getExPKSCL();
+                        })
+                        .catch((error) => {
+                            alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                            if (window.confirm('임시장부를 확인하시겠습니까?')) getExPKSCL();
+                            
+                        })
                 })
 
             reset(props.todayQuarter);
@@ -418,6 +423,7 @@ function MainPage(props) {
                         })
                         .catch((error) => {
                             alert("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
+                            if (window.confirm('임시장부를 확인하시겠습니까?')) getExPKSCL();
                         })
                 })
 
