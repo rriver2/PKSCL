@@ -20,6 +20,38 @@ function ManagementPage(props) {
                 "studentImgPath": "/img/time.png",
             },
             {
+                "major": "학과1",
+                "email": "aaaaa@naver.com",
+                "stdID": "111111111",
+                "name": "이름1",
+                "phoneNumber": "01011111111",
+                "studentImgPath": "/img/time.png",
+            },
+            {
+                "major": "학과1",
+                "email": "aaaaa@naver.com",
+                "stdID": "111111111",
+                "name": "이름1",
+                "phoneNumber": "01011111111",
+                "studentImgPath": "/img/time.png",
+            },
+            {
+                "major": "학과1",
+                "email": "aaaaa@naver.com",
+                "stdID": "111111111",
+                "name": "이름1",
+                "phoneNumber": "01011111111",
+                "studentImgPath": "/img/time.png",
+            },
+            {
+                "major": "학과1",
+                "email": "aaaaa@naver.com",
+                "stdID": "111111111",
+                "name": "이름1",
+                "phoneNumber": "01011111111",
+                "studentImgPath": "/img/time.png",
+            },
+            {
                 "major": "학과2",
                 "email": "bbbbb@naver.com",
                 "stdID": "22222222",
@@ -204,39 +236,45 @@ function ManagementPage(props) {
                     : (
                         <>
                             <div className="pageContainer">
-                                <Navbar expand="lg" style={{ padding: "30px 0" }}>
-                                    <Container fluid style={{ justifyContent: "center", backgroundColor: "none" }}>
-                                        <h2 style={{ margin: "0" }}>학생승인 현황</h2>
-                                        <div className="searchBar" >
-                                            <input onChange={(e) => {
-                                                setSearchStudent(e.target.value);
+                                <div className="nav">
+                                    <h2 style={{ margin: "0" }}>학생승인 현황</h2>
+                                    <div className="searchBar" >
+                                        <input onChange={(e) => {
+                                            setSearchStudent(e.target.value);
+                                            setSearchButton("search");
+                                            if (e.target.value === "") {
                                                 setSearchButton("search");
-                                                if (e.target.value === "") {
-                                                    setSearchButton("search");
-                                                    setLeftTable([...waiting]);
-                                                    setRightTable([...approval]);
+                                                setLeftTable([...waiting]);
+                                                setRightTable([...approval]);
+                                            }
+                                        }}
+                                            onKeyPress={(e) => {
+                                                if (e.key === "Enter") {
+                                                    pressSearchStudent()
                                                 }
                                             }}
-                                                onKeyPress={(e) => {
-                                                    if (e.key === "Enter") {
-                                                        pressSearchStudent()
-                                                    }
-                                                }}
-                                                name="q" value={searchStudent} type="search" placeholder="Search" ></input>
+                                            name="q" value={searchStudent} type="search" placeholder="Search" ></input>
 
-                                            <button onClick={() => {
-                                                pressSearchStudent()
-                                            }}
-                                                className='searchButton' type='button'>
-                                                {
-                                                    searchButton === "search"
-                                                        ? <i className="fas fa-search"></i>
-                                                        : <i className="fas fa-times"></i>
-                                                }
-                                            </button>
-                                        </div>
-                                    </Container>
-                                </Navbar>
+                                        <button onClick={() => {
+                                            pressSearchStudent()
+                                        }}
+                                            className='searchButton' type='button'>
+                                            {
+                                                searchButton === "search"
+                                                    ? <i className="fas fa-search"></i>
+                                                    : <i className="fas fa-times"></i>
+                                            }
+                                        </button>
+
+                                    </div>
+                                    <button className="submitButton" onClick={() => {
+                                        if (props.loginPosition === "admin") {
+                                            history.push('/main')
+                                        } else if (props.loginPosition === "president") {
+                                            history.push('/edit-main')
+                                        }
+                                    }}>장부 수정</button>
+                                </div>
                                 <div className='tables'>
                                     <div className="tableSet" >
                                         <div className="buttons">
@@ -408,15 +446,6 @@ function ManagementPage(props) {
                                         </table>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="managementPageBar">
-                                <i className="fas fa-chevron-left" onClick={() => {
-                                    if (props.loginPosition === "admin") {
-                                        history.push('/main')
-                                    } else if (props.loginPosition === "president") {
-                                        history.push('/edit-main')
-                                    }
-                                }}></i>
                             </div>
                         </>)}
         </div>

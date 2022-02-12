@@ -324,27 +324,27 @@ function EditEvent(props) {
     }
 
     function sendReciept() {
-        
+
         let promise = new Promise((resolve, reject) => {
             eventData["receiptList"].map((receipt, j) => {
-                    if (receipt["receiptNumber"] === undefined) {
-                        postReceipt(j);
-                        alert("postReceipt")
-                    } else {
-                        putReceipt(j);
-                        alert("putReceipt")
-                    }
-                })
-                resolve()
+                if (receipt["receiptNumber"] === undefined) {
+                    postReceipt(j);
+                    console.log("postReceipt")
+                } else {
+                    putReceipt(j);
+                    console.log("putReceipt")
+                }
             })
+            resolve()
+        })
 
         promise
             .then(value => {
-                 if (editState === true) props.setEditEventState(false);
+                if (editState === true) props.setEditEventState(false);
             })
             .catch((value => {
             }))
-       
+
     }
 
     return (
@@ -557,10 +557,10 @@ function EditEvent(props) {
                                                             <div className="uploadimg">
 
                                                                 {/* <label for='receiptImg'> */}
-                                                                <img className= "receiptImg"
+                                                                <img className="receiptImg"
                                                                     src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
                                                                     alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"} title='영수증 사진'
-                                                                    onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"]));}}
+                                                                    onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"])); }}
                                                                 />
 
                                                                 {/* </label> */}

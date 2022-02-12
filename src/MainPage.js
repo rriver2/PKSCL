@@ -29,7 +29,7 @@ function MainPage(props) {
                         "eventNumber": "12",
                         "eventTitle": "학과 OT2",
                         "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
+                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
                     },
                     { "eventNumber": "13", "eventTitle": "학과 새내기배움터 진행", "eventContext": "학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "11", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "콜라", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "참이슬", "price": "2731", "amount": "5", "totalAmount": "13655" }] }, { "receiptNumber": "12", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "컵", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "바구니", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "이어폰", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] },
                     { "eventNumber": "14", "eventTitle": "빛 축제", "eventContext": "빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.", "receiptList": [{ "receiptNumber": "13", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }, { "receiptNumber": "14", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "휴지", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "참이슬", "price": "2731", "amount": "4", "totalAmount": "10924" }] }] }]
@@ -51,7 +51,7 @@ function MainPage(props) {
                                 "receiptTitle": "기말고사 응원전 영수증 1번",
                                 "receiptImg": { "name": "./static/receiptImg/test2.png" },
                                 "receiptContext": "기말고사 응원전 영수증 1번",
-                                "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
+                                "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
                                 ]
                             }]
                     },
@@ -100,7 +100,7 @@ function MainPage(props) {
 
     const [chatbot, setChatbot] = useState(true);
 
-    const[tempQuarter, setTempQuarter]=useState(false);
+    const [tempQuarter, setTempQuarter] = useState(false);
 
     const [showImg, setShowImg] = useState(false);
     const [previewImg, setPreviewImg] = useState();
@@ -296,6 +296,7 @@ function MainPage(props) {
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
             })
+
     }
 
     function adminGetDate(findMajorIndex) {
@@ -317,7 +318,6 @@ function MainPage(props) {
     }
 
     function getExPKSCL() {
-                setTempQuarter(true);
         axios.get(debugAPIURL + '/temp-major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
@@ -325,6 +325,7 @@ function MainPage(props) {
                 // reset(props.todayQuarter);
                 // defineColor(props.todayQuarter);
                 setChatbot(false);
+                setTempQuarter(true);
             })
             .catch((error) => {
                 alert("임시 장부를 불러올 수 없습니다.");
@@ -365,7 +366,7 @@ function MainPage(props) {
                     setChatbot(false);
                 })
                 .catch((error) => {
-                    // alert("학과 장부를 불러올 수 없습니다.");
+                    alert("학과 장부를 불러올 수 없습니다.");
                     //지우기
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
@@ -391,7 +392,7 @@ function MainPage(props) {
                         .catch((error) => {
                             alert("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ")
                             if (window.confirm('임시장부를 확인하시겠습니까?')) getExPKSCL();
-                            
+
                         })
                 })
 
@@ -407,7 +408,10 @@ function MainPage(props) {
                     setChatbot(false);
                 })
                 .catch((error) => {
-                    // alert("학과 장부를 불러올 수 없습니다.");
+                    alert("학과 장부를 불러올 수 없습니다.");
+                    setStudentPresident({ ...answer["studentPresident"] });
+                    setQuarter({ ...answer["quarter"] });
+                    console.log([...answer["quarter"][currentQuarter]["eventList"]]);
                     axios.get('/status')
                         .then((payload) => {
                             if (payload.data["status"] === "refusal") {
@@ -474,12 +478,12 @@ function MainPage(props) {
                 quarter === undefined
                     ? null
                     : (<>
-                        <div className="leftPanel" id='leftPanel'>
+                        <div className="leftPanel" >
                             <div className="majorCard">
                                 <div className="presidentCard">
                                     <h2>{studentPresident["major"]}</h2>
                                     <p> 온라인 장부 입니다. </p>
-                                    <img src={studentPresident["majorLogo"]} alt="majorLogo" height={"150"} width={"10"} />
+                                    <img src={studentPresident["majorLogo"]["name"]} alt="majorLogo" height={"150"} width={"10"} />
                                     <h3>{studentPresident["name"]}</h3>
                                     <p>{studentPresident["phoneNumber"]}</p>
                                     <p>{studentPresident["email"]}</p>
@@ -521,15 +525,21 @@ function MainPage(props) {
                                     }
                                     {
                                         props.loginPosition === "president"
-                                            ? (<>{
-                                                tempQuarter === true
-                                                ?<><div style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
-                                                <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
-                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>
-                                                :(<><div style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
-                                                <button className='submitButton' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
-                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>)
-                                            }
+                                            ? (<>
+                                                {
+                                                    tempQuarter === true
+                                                        ?
+                                                        <>
+                                                            <div className="tempAlert" style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
+                                                            <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                            <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <div className="tempAlert" style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
+                                                            <button className='submitButton edit' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
+                                                        </>
+                                                }
                                             </>)
                                             : (<><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                 <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>)
@@ -549,7 +559,7 @@ function MainPage(props) {
                                                     ? <div>입력된 행사가 없습니다.</div>
                                                     : (quarter[currentQuarter]["eventList"].map((event, i) => {
                                                         return (
-                                                            <div style={{ display: "flex", alignItems: "flex-end" }}>
+                                                            <div className="eventCardBox" >
                                                                 <div className="eventCard" >
                                                                     <div className="cardContent">
                                                                         <div className="eventSource">
@@ -637,10 +647,10 @@ function MainPage(props) {
                                                                                             event["receiptList"].length === 0
                                                                                                 ? null
                                                                                                 :
-                                                                                                <img className= "receiptImg" src={event["receiptList"][0]["receiptImg"]["name"]} 
-                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} 
-                                                                                                alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"} 
-                                                                                                onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]);}}/>
+                                                                                                <img className="receiptImg" src={event["receiptList"][0]["receiptImg"]["name"]}
+                                                                                                    style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                    alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"}
+                                                                                                    onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]); }} />
                                                                                         }
                                                                                     </div>
                                                                                 </div>)
@@ -695,9 +705,9 @@ function MainPage(props) {
                                                                                                         event["receiptList"].length === 0
                                                                                                             ? null
                                                                                                             : <img src={receipt["receiptImg"]["name"]} alt={receipt["receiptImg"]["name"]}
-                                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"} 
-                                                                                                                className= "receiptImg"
-                                                                                                                onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]);}}/>
+                                                                                                                style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"}
+                                                                                                                className="receiptImg"
+                                                                                                                onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]); }} />
                                                                                                     }
                                                                                                 </div>
 
@@ -714,7 +724,7 @@ function MainPage(props) {
                                                                 </div>
                                                                 {
                                                                     event.receiptList.length > 1 && showAllReceiptButton[i] === false
-                                                                        ? <div><img src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px" }} /><div style={{ marginBottom: "50px", textAlign: "center" }}>end</div></div>
+                                                                        ? <div><img src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px" }} /><div style={{ marginBottom: "50px", textAlign: "center" }}></div></div>
                                                                         : null
                                                                 }
                                                             </div>

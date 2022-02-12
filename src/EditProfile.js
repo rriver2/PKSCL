@@ -16,7 +16,7 @@ function EditProfile(props) {
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [email, setEmail] = useState("");
-    const [certFile, setCertFile] = useState("");
+    const [certFile, setCertFile] = useState({ name: "" });
     const [majorLogo, setMajorLogo] = useState("");
     const [isCorrect, setIsCorrect] = useState(
         {
@@ -130,7 +130,9 @@ function EditProfile(props) {
 
         if (props.loginPosition === "student") { //학생
             payload.append("major", major);
-           
+
+            console.log(" if (!certFile['name'].includes('./static/studentCertFile/'))");
+            console.log(certFile["name"]);
             if (!certFile["name"].includes("./static/studentCertFile/")) {
                 payload.append("certFile", certFile);
             }
@@ -138,7 +140,10 @@ function EditProfile(props) {
         else if (props.loginPosition === "president") { //학생회장
             payload.append("phoneNumber", phoneNumber);
 
-           if (!majorLogo["name"].includes("./static/majarLogo/")) {
+            console.log(" if (!majorLogo['name'].includes('./static/majorLogo/'))");
+            console.log(majorLogo["name"]);
+
+            if (!majorLogo["name"].includes("./static/majorLogo/")) {
                 payload.append("majorLogo", majorLogo);
             }
         }
@@ -207,15 +212,16 @@ function EditProfile(props) {
 
     useEffect(() => {
         //debug
+        console.log("./static/studentCertFile/testimg.png".replace(/^.*\//, ''));
 
-        setStdID(() => "201892643");
-        setMajor(() => "1");
-        setName(() => "한준규");
-        setPhoneNumber(() => "010-0000-0000");
-        setEmail(() => "test1@pukyong.ac.kr");
+        // setStdID(() => "201892643");
+        // setMajor(() => "1");
+        // setName(() => "한준규");
+        // setPhoneNumber(() => "010-0000-0000");
+        // setEmail(() => "test1@pukyong.ac.kr");
         // setCertFile({ name: "학생증.jpg" });
-        setCertFile("");
-        setMajorLogo("");
+        // setCertFile("");
+        // setMajorLogo("");
 
         setIsCorrect(
             {
@@ -348,7 +354,7 @@ function EditProfile(props) {
                     boxState === "profile"
                         ? <>
                             <div className='boxTitle'>
-                                <h2 style={{ marginRight: "8px" }}><i className="fas fa-users" />프로필 편집</h2>
+                                <h2 style={{ marginRight: "8px", justifyContent: "center" }}><i className="fas fa-users" />프로필 편집</h2>
                                 <button className="btn btn-danger" style={{ fontWeight: "600" }} onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
                             </div>
 
@@ -452,7 +458,7 @@ function EditProfile(props) {
                                                 ? <div className="inputField">
                                                     <i className="fas fa-user-graduate" style={{ fontSize: "1.25rem" }}></i>
                                                     <label>학과로고</label>
-                                                    <input style={{ width: "200px" }} placeholder="학과로고를 첨부해주세요." value={majorLogo["name"]} readOnly></input>
+                                                    <input style={{ width: "200px" }} placeholder="학과로고를 첨부해주세요." value={majorLogo["name"].replace(/^.*\//, '')} readOnly></input>
                                                     <label className='fileButton' htmlFor="file" style={{ width: "60px" }}>찾기</label>
                                                     <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
                                                         onChange={(e) => {
@@ -468,27 +474,65 @@ function EditProfile(props) {
                                                 : null
                                             }
                                         </>
-                                        :
-                                        <div className="inputField">
-                                            <i className="fas fa-user-graduate"></i>
-                                            <label>학생증</label>
-                                            <input style={{ width: "200px" }} placeholder="학생증을 첨부해주세요" value={certFile["name"]} readOnly></input>
-                                            <label className='fileButton' htmlFor="file">찾기</label>
-                                            <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
-                                                onChange={(e) => {
-                                                    setCertFile(e.target.files[0]);
-                                                    if (e.target.value === "") {
-                                                        changeIsCorrect("certFile", false);
-                                                    } else {
-                                                        changeIsCorrect("certFile", true);
-                                                    }
+                                        : null
 
-                                                }}></input>
-                                        </div>
+
+                                }
+
+                                {
+                                    props.loginPosition === "student"
+                                        ?
+                                        <>
+                                            <div className="inputField">
+                                                <i className="fas fa-user-graduate"></i>
+                                                <label>학생증</label>
+                                                <input style={{ width: "200px" }} placeholder="학생증을 첨부해주세요." value={certFile["name"].replace(/^.*\//, '')} readOnly></input>
+                                                <label className='fileButton' htmlFor="file">찾기</label>
+                                                <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
+                                                    onChange={(e) => {
+                                                        setCertFile(e.target.files[0]);
+                                                        if (e.target.value === "") {
+                                                            changeIsCorrect("certFile", false);
+                                                        } else {
+                                                            changeIsCorrect("certFile", true);
+                                                        }
+
+                                                    }}></input>
+                                            </div>
+                                        </>
+                                        : null
+
                                 }
                             </div>
 
                             <div className="errorBtns">
+                                {
+                                    editButtonState
+                                        ?
+                                        <>
+                                            <button className="errorBtn" type="button" onClick={() => {
+                                                putProfile()
+                                                props.loginPosition === "student"
+                                                    ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
+                                                        ? putProfile()
+                                                        : alert("정보수정이 취소되었습니다. ")}</>)
+                                                    : (<>{
+                                                        props.loginPosition === "president"
+                                                            ? (<>{window.confirm('프로필 편집을 변경하실 경우 챗봇을 통하여 관리자에게 회장인증을 해야 합니다. 프로필을 편집하시겠습니까?')
+                                                                ? putProfile()
+                                                                : alert("정보수정이 취소되었습니다. ")}</>)
+                                                            : null
+                                                    }</>)
+                                            }}>저장하기</button>
+                                        </>
+                                        :
+                                        <>
+                                            <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                                onClick={() => { alert('정보를 모두 입력해주세요.'); }}>저장하기</button>
+                                        </>
+                                }
+
+                                {/* 
                                 <button className="errorBtn" type="button" onClick={() => {
                                     editButtonState ? putProfile() : alert('정보를 모두 입력해주세요.');
                                     props.loginPosition === "student"
@@ -502,16 +546,15 @@ function EditProfile(props) {
                                                     : alert("정보수정이 취소되었습니다. ")}</>)
                                                 : null
                                         }</>)
+                                }}>저장하기</button> */}
 
-
-                                }}>저장하기</button>
                                 <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
 
                             </div>
                         </>
                         : boxState === "withdrawal"
                             ? <>
-                                <div className='boxTitle'  >
+                                <div className='boxTitle' style={{ justifyContent: "center" }}  >
                                     <h2 ><i className="fas fa-users" style={{ color: "#dc3545" }} />회원 탈퇴</h2>
                                 </div>
 
@@ -554,14 +597,14 @@ function EditProfile(props) {
                             </>
                             : boxState === "newPassword"
                                 ? <>
-                                    <div className='boxTitle' >
+                                    <div className='boxTitle' style={{ justifyContent: "center" }} >
                                         <h2 ><i className="fas fa-users" />비밀번호 변경</h2>
                                     </div>
 
                                     <div className='editField' >
                                         <div className="inputField">
                                             <i className="fas fa-key"></i>
-                                            <label style={{ width: "80px" }}>비밀번호</label>
+                                            <label style={{ width: "160px" }}>비밀번호</label>
                                             {/* <empty style={{ width: "200px" }}></empty> */}
                                             <input type="password" onChange={(e) => {
                                                 setInputPassword(e.target.value)
@@ -575,7 +618,7 @@ function EditProfile(props) {
 
                                         <div className="inputField">
                                             <i className="fas fa-key"></i>
-                                            <label style={{ width: "80px" }}>새 비밀번호</label>
+                                            <label style={{ width: "160px" }}>새 비밀번호</label>
                                             {/* <empty style={{ width: "200px" }}></empty> */}
                                             <input type="password" onChange={(e) => {
                                                 setInputNewPassword(e.target.value)
@@ -589,7 +632,7 @@ function EditProfile(props) {
 
                                         <div className="inputField">
                                             <i className="fas fa-key"></i>
-                                            <label style={{ width: "80px" }} >새 비밀번호 확인</label>
+                                            <label style={{ width: "160px" }} >새 비밀번호 확인</label>
                                             {/* <empty style={{ width: "200px" }}></empty> */}
                                             <input type="password" onChange={(e) => {
                                                 setInputCheckNewPassword(e.target.value)
@@ -598,7 +641,7 @@ function EditProfile(props) {
                                                 } else {
                                                     changeIsCorrect("inputCheckNewPassword", true);
                                                 }
-                                            }} value={inputCheckNewPassword} placeholder='새 비밀번호를 다시 입력하세요.' />
+                                            }} value={inputCheckNewPassword} placeholder='비밀번호를 다시 입력하세요.' />
                                         </div>
                                     </div>
 
@@ -613,14 +656,16 @@ function EditProfile(props) {
 
                                         }
 
-                                        <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile"); reset(); }}>취소</button>
+                                        <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                            onClick={() => { setBoxState("profile"); reset(); }}>취소</button>
 
                                     </div>
                                 </>
                                 : null
                 }
+
             </div>
-        </div>
+        </div >
 
     );
 }

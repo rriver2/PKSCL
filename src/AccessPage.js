@@ -309,7 +309,7 @@ function AccessPage(props) {
               {
                 personalInformationButton === false
                   ? (
-                    <div style={{ width: "350px" }}>
+                    <div style={{ width: "90%" }}>
                       <div style={{ marginBottom: "10px" }}>
                         부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL과 이를 이용하는 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
                         PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
