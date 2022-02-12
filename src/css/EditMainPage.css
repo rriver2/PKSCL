@@ -246,6 +246,7 @@
     margin-bottom: 60px;
     background-color: white;
     border-radius: 20px;
+    width: 710px;
 }
 
 .EditMainPageContainer .quarterTotalAmount {
@@ -373,6 +374,7 @@
     object-fit: cover;
     border-radius: 5px;
     margin-left: 30px;
+    border: 1px solid var(--color-quarter);
 }
 
 /* .cardImg .pagenation {
@@ -423,9 +425,23 @@
 
 .sortTable {
     cursor: pointer;
+    max-height: 40vh;
+    overflow: overlay;
 }
+
+.sortTable::-webkit-scrollbar {
+    display: none;
+}
+
 
 .sortTable div:hover {
     transition: 0.5s;
     transform: scale(1.05);
+}
+
+.eventListBox {
+    background-color: var(--color-quarterCircle);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
 }

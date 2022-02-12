@@ -1,4 +1,3 @@
-import majorlogo from './img/majorlogo.png';
 import quarter1 from './img/quarter1.png';
 import quarter2 from './img/quarter2.png';
 import quarter3 from './img/quarter3.png';
@@ -19,58 +18,7 @@ function MainPage(props) {
 
     const history = useHistory();
 
-    let answer = {
-        "studentPresident": { "major": "영어영문학부", "name": "한준규", "phoneNumber": "010-3340-6496", "email": "hellllo3627@pukyong.ac.kr", "majorLogo": null },
-        "quarter": {
-            "quarter1": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "12",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    },
-                    { "eventNumber": "13", "eventTitle": "학과 새내기배움터 진행", "eventContext": "학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "11", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "콜라", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "참이슬", "price": "2731", "amount": "5", "totalAmount": "13655" }] }, { "receiptNumber": "12", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "컵", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "바구니", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "이어폰", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] },
-                    { "eventNumber": "14", "eventTitle": "빛 축제", "eventContext": "빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.", "receiptList": [{ "receiptNumber": "13", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }, { "receiptNumber": "14", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "휴지", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "참이슬", "price": "2731", "amount": "4", "totalAmount": "10924" }] }] }]
-            },
-            "quarter2": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "18", "eventTitle": "기말고사 응원전", "eventContext": "기말고사 응원전을 진행하였습니다.",
-                        "receiptList": [
-                            {
-                                "receiptNumber": "19",
-                                "receiptTitle": "기말고사 응원전 영수증 1번",
-                                "receiptImg": { "name": "./static/receiptImg/test2.png" },
-                                "receiptContext": "",
-                                "receiptDetailList": []
-                            }, {
-                                "receiptNumber": "19",
-                                "receiptTitle": "기말고사 응원전 영수증 1번",
-                                "receiptImg": { "name": "./static/receiptImg/test2.png" },
-                                "receiptContext": "기말고사 응원전 영수증 1번",
-                                "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
-                                ]
-                            }]
-                    },
-                    { "eventNumber": "19", "eventTitle": "기말고사 응원전2", "eventContext": "학생회비가 남게되어 기말고사응원전을 한번 더 진행하였습니다.", "receiptList": [{ "receiptNumber": "20", "receiptTitle": "기말고사 응원전 재영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "기말고사 응원전 재영수증 1번", "receiptDetailList": [{ "context": "돈까스", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }]
-            },
-            "quarter3": {
-                "status": "false",
-                "eventList": [
-                    { "eventNumber": "20", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "21", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "연필", "price": "2731", "amount": "3", "totalAmount": "8193" }] }] },
-                    { "eventNumber": "21", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "22", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "갈비", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] }]
-            },
-            "quarter4": {
-                "status": "false",
-                "eventList": [
-                    { "eventNumber": "22", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "23", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "대선", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] },
-                    { "eventNumber": "23", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "24", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }]
-            }
-        }
-    }
+    let answer = {"studentPresident":{"major":"국어국문학과","name":"박경수","phoneNumber":"010-8967-8093","email":"test1@pukyong.ac.kr","majorLogo":"./static/majorLogo/testlogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"141","eventTitle":"이헌도","eventContext":"우헤헤","receiptList":[{"receiptNumber":"152","receiptTitle":"영수증 1","receiptImg":{"name":"./static/receiptImg/20220211143900134.jpeg"},"receiptContext":"비고 ","receiptDetailList":[{"context":"1ㅇㄴㅁㄴㅇㅁ","price":"121","amount":"23123","totalAmount":"2797883"},{"context":"22","price":"32123","amount":"3212","totalAmount":"103179076"},{"context":"2312","price":"1222","amount":"2313","totalAmount":"2826486"},{"context":"1232","price":"32321","amount":"32123","totalAmount":"1038247483"},{"context":"ㅁㄴㅇㅇㅁㄴ","price":"1321","amount":"231321","totalAmount":"305575041"}]},{"receiptNumber":"153","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]},{"eventNumber":"115","eventTitle":"1분기 행사 2 입니다.","eventContext":"1분기 행사 2 비고 입니다.kkk","receiptList":[{"receiptNumber":"148","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220211121428763.jpeg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"149","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220211121500241.jpeg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"150","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220211121501647.jpeg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]},{"eventNumber":"112","eventTitle":"1분기 행사1 입니다","eventContext":"1분기 행사1 비고 입니다","receiptList":[{"receiptNumber":"112","receiptTitle":"행사 1 jnijnnjn 1","receiptImg":{"name":"./static/receiptImg/20220211115926110.jpeg"},"receiptContext":"영수증 비고입니다","receiptDetailList":[{"context":"물품1","price":"1000","amount":"2","totalAmount":"2000"},{"context":"물품2","price":"2000","amount":"2","totalAmount":"4000"},{"context":"물품3","price":"3000","amount":"4","totalAmount":"12000"}]},{"receiptNumber":"113","receiptTitle":"행사 1 영수증 2","receiptImg":{"name":"./static/receiptImg/20220211002441793.png"},"receiptContext":"영수증 비고입니다","receiptDetailList":[{"context":"물품1","price":"1000","amount":"2","totalAmount":"2000"}]}]}]},"quarter2":{"status":"true","eventList":[{"eventNumber":"58","eventTitle":"안녕하세요 PKSCL입니다.","eventContext":"온라인 장부를 이용하세요 ><","receiptList":[{"receiptNumber":"99","receiptTitle":"저는 영수증 입니다","receiptImg":{"name":"./static/receiptImg/20220210162318283.png"},"receiptContext":"영수증 비고 입니다.","receiptDetailList":[{"context":"품명1","price":"10001","amount":"2","totalAmount":"20002"},{"context":"품명2","price":"10000","amount":"3","totalAmount":"30000"}]},{"receiptNumber":"154","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]},{"eventNumber":"62","eventTitle":"1234","eventContext":"","receiptList":[]},{"eventNumber":"63","eventTitle":"","eventContext":"","receiptList":[]},{"eventNumber":"65","eventTitle":"","eventContext":"","receiptList":[]},{"eventNumber":"66","eventTitle":"","eventContext":"","receiptList":[]}]},"quarter3":{"status":"true","eventList":[{"eventNumber":"60","eventTitle":"","eventContext":"","receiptList":[{"receiptNumber":"89","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220212025356069.jpeg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"90","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]}]},"quarter4":{"status":"false","eventList":[{"eventNumber":"127","eventTitle":"기말고사 응원전","eventContext":"기말고사를 응원하기 위해서 응원전을 진행하였습니다 :) ","receiptList":[{"receiptNumber":"127","receiptTitle":"카카오톡 기프티콘","receiptImg":{"name":"./static/receiptImg/20220210160642755.png"},"receiptContext":"신청자를 추첨해 기프티콘 증정","receiptDetailList":[{"context":"BBQ치킨","price":"19900","amount":"3","totalAmount":"59700"},{"context":"도미노 피자","price":"14000","amount":"4","totalAmount":"56000"},{"context":"베스킨라빈스","price":"6400","amount":"5","totalAmount":"32000"}]},{"receiptNumber":"138","receiptTitle":"카카오톡 기프티콘 2","receiptImg":{"name":"./static/receiptImg/20220210152028949.png"},"receiptContext":"","receiptDetailList":[{"context":"암","price":"23132","amount":"2","totalAmount":"46264"}]}]}]}}}
 
 
     let answerDate = {
@@ -105,6 +53,11 @@ function MainPage(props) {
     const [showImg, setShowImg] = useState(false);
     const [previewImg, setPreviewImg] = useState();
 
+    const [showCurrentQuerter,setShowCurrentQuerter] = useState();
+
+
+    const [logoImgPath,setLogoImgPath] = useState();
+
     function resetShowAllReceiptButton() {
         let resetArray = [];
         if (quarter[currentQuarter]["eventList"] !== undefined) {
@@ -128,8 +81,13 @@ function MainPage(props) {
             if (quarter[selectedQuarter]["status"] === "true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
+                setLogoImgPath(`./img/${selectedQuarter}.png`);
+                setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             } else {
-                alert("현재 공개된 장부가 아닙니다 :)")
+                setCurrentQuarter(selectedQuarter);
+                defineColor(selectedQuarter);
+                setLogoImgPath(`./img/${selectedQuarter}.png`);
+                setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             }
         } else {
             setCurrentQuarter(selectedQuarter);
@@ -190,13 +148,13 @@ function MainPage(props) {
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
+            setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
         } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
+            setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
         } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
+            setColorProperty("#c18356", "#f9eee5", "#e9d8cd", "#fff5ed", "#fbf7f4");
         } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
+            setColorProperty("#6b8396", "#e0eaf3", "#d0dbe5", "#e6f1fb", "#f8fcff");
         }
     }
 
@@ -283,6 +241,7 @@ function MainPage(props) {
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
                 setChatbot(false);
+                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
             })
             .catch((error) => {
                 if (major === undefined) {
@@ -295,6 +254,7 @@ function MainPage(props) {
                 setQuarter({ ...answer["quarter"] });
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
+                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             })
 
     }
@@ -326,9 +286,18 @@ function MainPage(props) {
                 // defineColor(props.todayQuarter);
                 setChatbot(false);
                 setTempQuarter(true);
+                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
             })
             .catch((error) => {
                 alert("임시 장부를 불러올 수 없습니다.");
+                //지우기
+                setStudentPresident({ ...answer["studentPresident"] });
+                setQuarter({ ...answer["quarter"] });
+                reset(props.todayQuarter);
+                showQuarter(props.todayQuarter);
+                console.log(answer["quarter"][props.todayQuarter])
+                console.log(answer["quarter"][props.todayQuarter]["status"])
+                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             })
     }
 
@@ -352,10 +321,11 @@ function MainPage(props) {
                     setChatbot(false);
                 })
                 .catch((error) => {
-                    alert("장부를 불러올 수 없습니다.");
+                    alert("학과 리스트를 불러올 수 없습니다.");
                     getExPKSCL();
+                    //지우기
+                    adminGetDate(ledgerMajor)
                 })
-
         } else if (props.loginPosition === "president") {
             axios.get(debugAPIURL + '/major-info')
                 .then((payload) => {
@@ -364,14 +334,14 @@ function MainPage(props) {
                     // reset(props.todayQuarter);
                     // defineColor(props.todayQuarter);
                     setChatbot(false);
+                    setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 })
                 .catch((error) => {
                     alert("학과 장부를 불러올 수 없습니다.");
                     //지우기
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
-                    console.log([...answer["quarter"][currentQuarter]["eventList"]]);
-
+                    setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
 
                     axios.get('/status')
                         .then((payload) => {
@@ -406,12 +376,13 @@ function MainPage(props) {
                     // reset(props.todayQuarter);
                     // defineColor(props.todayQuarter);
                     setChatbot(false);
+                    setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 })
                 .catch((error) => {
                     alert("학과 장부를 불러올 수 없습니다.");
                     setStudentPresident({ ...answer["studentPresident"] });
                     setQuarter({ ...answer["quarter"] });
-                    console.log([...answer["quarter"][currentQuarter]["eventList"]]);
+                    setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
                     axios.get('/status')
                         .then((payload) => {
                             if (payload.data["status"] === "refusal") {
@@ -433,6 +404,7 @@ function MainPage(props) {
             reset(props.todayQuarter);
             defineColor(props.todayQuarter);
         }
+setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }, []);
 
 
@@ -461,7 +433,11 @@ function MainPage(props) {
 
 
     return (
+        <>{
+            props.loginPosition !== ""
+            ?(
         <div className="MainPageContainer">
+            
             {
                 showImg
                     ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
@@ -501,19 +477,17 @@ function MainPage(props) {
                                 <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
                                 <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                             </div>
-                            {
-                                props.loginPosition === "student" || props.loginPosition === "president"
-                                    ? null
-                                    : (<div className="managementPageBar">
-                                        <i className="fas fa-chevron-right" onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}></i>
-                                    </div>)
-                            }
                         </div>
 
                         <div className="rightPanel">
 
                             <div className="nav">
+                                <div className="logoNav">
+                                    <img src={logoImgPath} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
+                                </div>
                                 <div className="buttons">
+                                    
                                     {
                                         quarterDate !== undefined
                                             ? (props.loginPosition === "admin"
@@ -530,6 +504,13 @@ function MainPage(props) {
                                                     tempQuarter === true
                                                         ?
                                                         <>
+                                                            {
+                                                                props.loginPosition === "admin"
+                                                                    ? (
+                                                                        <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
+                                                                    )
+                                                                    : null
+                                                            }
                                                             <div className="tempAlert" style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
                                                             <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                             <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
@@ -541,14 +522,22 @@ function MainPage(props) {
                                                         </>
                                                 }
                                             </>)
-                                            : (<><button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                            : (<>
+                                            {
+                                                                props.loginPosition === "admin"
+                                                                    ? (
+                                                                        <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학과 관리</button>
+                                                                    )
+                                                                    : null
+                                                            }
+                                            <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
                                                 <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button></>)
                                     }
 
                                 </div>
                             </div>
                             {
-                                props.loginPosition === "admin" || quarter[currentQuarter]["status"] === "true"
+                                showCurrentQuerter==="true"
                                     ? (<>
                                         <div className="quarterData">
                                             <h2 className="quarterTotalAmount">
@@ -735,8 +724,10 @@ function MainPage(props) {
 
                                         </div>
                                     </>)
-                                    : <div className="quarterData" style={{ color: "red" }}>
-                                        {currentQuarter[currentQuarter.length - 1]}분기 장부는 학생회장이 아직 공개하지 않았습니다. <br />장부의 예시를 보고싶다면 아래 버튼을 눌러보시겡나?????
+                                    : <div className="quarterData" style={{ display:"flex", color: "red" }}>
+                                        {currentQuarter[currentQuarter.length - 1]}분기 장부는 학생회장이 아직 공개하지 않았습니다. 
+                                        <br />장부의 예시를 보고싶다면 기린을 눌러주세요 :)
+                                        <img onClick={()=>{getExPKSCL()}} src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px",marginLeft:"20px" }} />
                                     </div>
                             }
                         </div>
@@ -745,7 +736,9 @@ function MainPage(props) {
             }
 
         </div>
-    )
+            )
+            : <div className="MainPageContainer" style={{display:"flex",justifyContent: "center"}}><div>잘못된 접근입니다.</div></div>
+}</>)
 }
 
 export default MainPage;

@@ -36,20 +36,20 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
 function defineColor(quarter) {
   if (quarter === "quarter1") {
-    setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
+    setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
   } else if (quarter === "quarter2") {
-    setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
+    setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
   } else if (quarter === "quarter3") {
-    setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
+    setColorProperty("#c18356", "#f9eee5", "#e9d8cd", "#fff5ed", "#fbf7f4");
   } else if (quarter === "quarter4") {
-    setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
+    setColorProperty("#6b8396", "#e0eaf3", "#d0dbe5", "#e6f1fb", "#f8fcff");
   }
 }
 
 
 function App() {
 
-  const [loginPosition, setLoginPosition] = useState("student");
+  const [loginPosition, setLoginPosition] = useState("");
   const [todayQuarter, setTodatQuarter] = useState(selectseason);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function App() {
     <div>
       <Switch>
         <Route exact path='/manage'>
-          <ManagementPage loginPosition={loginPosition}></ManagementPage>
+          <ManagementPage loginPosition={loginPosition} todayQuarter={todayQuarter}></ManagementPage>
         </Route>
 
         <Route exact path='/edit-main'>
@@ -72,8 +72,8 @@ function App() {
           <MainPage loginPosition={loginPosition} todayQuarter={todayQuarter}></MainPage>
         </Route>
 
-        <Route path='/' >
-          <AccessPage setLoginPosition={setLoginPosition} todayQuarter={todayQuarter}> </AccessPage>
+        <Route path='/'>
+          <AccessPage loginPosition={loginPosition} setLoginPosition={setLoginPosition} todayQuarter={todayQuarter}> </AccessPage>
         </Route>
 
       </Switch>

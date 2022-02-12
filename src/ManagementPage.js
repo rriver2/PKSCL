@@ -13,39 +13,39 @@ function ManagementPage(props) {
         waiting:
             [{
                 "major": "학과1",
-                "email": "aaaaa@naver.com",
-                "stdID": "111111111",
+                "email": "srge@naver.com",
+                "stdID": "3123",
                 "name": "이름1",
                 "phoneNumber": "01011111111",
                 "studentImgPath": "/img/time.png",
             },
             {
                 "major": "학과1",
-                "email": "aaaaa@naver.com",
-                "stdID": "111111111",
+                "email": "fdssf@naver.com",
+                "stdID": "312231",
                 "name": "이름1",
                 "phoneNumber": "01011111111",
                 "studentImgPath": "/img/time.png",
             },
             {
                 "major": "학과1",
-                "email": "aaaaa@naver.com",
-                "stdID": "111111111",
+                "email": "aaaasdasaa@naver.com",
+                "stdID": "321313",
                 "name": "이름1",
                 "phoneNumber": "01011111111",
                 "studentImgPath": "/img/time.png",
             },
             {
                 "major": "학과1",
-                "email": "aaaaa@naver.com",
-                "stdID": "111111111",
+                "email": "asas@naver.com",
+                "stdID": "23322",
                 "name": "이름1",
                 "phoneNumber": "01011111111",
                 "studentImgPath": "/img/time.png",
             },
             {
                 "major": "학과1",
-                "email": "aaaaa@naver.com",
+                "email": "aaasadadaa@naver.com",
                 "stdID": "111111111",
                 "name": "이름1",
                 "phoneNumber": "01011111111",
@@ -108,6 +108,8 @@ function ManagementPage(props) {
     const [showImg, setShowImg] = useState(false);
     const [previewImg, setPreviewImg] = useState();
 
+    const [logoImgPath,setLogoImgPath] = useState();
+
     const changeHandler = (checked, studentInfo, setCheckedList, checkedList) => {
         if (checked) {
             setCheckedList([...checkedList, studentInfo]);
@@ -159,6 +161,7 @@ function ManagementPage(props) {
 
     useEffect(() => {
         getList();
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }, []);
 
     function getList() {
@@ -199,6 +202,7 @@ function ManagementPage(props) {
                     setRightTable([...임시리스트["approval"]]);
                 });
         }
+setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }
 
     function pressSearchStudent() {
@@ -224,6 +228,9 @@ function ManagementPage(props) {
     }
 
     return (
+        <>{
+            props.loginPosition !== ""
+            ?(
         <div className="ManagementPageContainer">
             {
                 showImg === true
@@ -236,8 +243,13 @@ function ManagementPage(props) {
                     : (
                         <>
                             <div className="pageContainer">
-                                <div className="nav">
-                                    <h2 style={{ margin: "0" }}>학생승인 현황</h2>
+                                <div className="nav" style={{display:"flex", justifyContent: "space-between"}}>
+                                          <div className="logoNav">
+                                    <img src={logoImgPath} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
+                                </div>
+                                <div style={{display:"flex",  alignItems: "center"}}>
+                                    <div style={{ fontSize:"25px" }}>학생승인 현황</div>
                                     <div className="searchBar" >
                                         <input onChange={(e) => {
                                             setSearchStudent(e.target.value);
@@ -267,7 +279,9 @@ function ManagementPage(props) {
                                         </button>
 
                                     </div>
-                                    <button className="submitButton" onClick={() => {
+                                    </div >
+                                    <button className="submitButton" 
+                                    onClick={() => {
                                         if (props.loginPosition === "admin") {
                                             history.push('/main')
                                         } else if (props.loginPosition === "president") {
@@ -307,7 +321,7 @@ function ManagementPage(props) {
                                                     {
                                                         leftTable.length === 0
                                                             ? <tr>
-                                                                <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
+                                                                <td style={{background:"white"}} colSpan={"3"}>승인대기 학생이 없습니다.</td>
                                                             </tr>
                                                             : leftTable.map((student, i) => {
                                                                 return (
@@ -329,19 +343,20 @@ function ManagementPage(props) {
                                                                                         checked={leftCheckedList.includes(student["email"]) ? true : false}
                                                                                     /></td>
                                                                                 </>)
-                                                                                : (<><tr>
+                                                                                : (<><tr style={{backgroundColor:"var(--color-tableEven)"}}>
                                                                                     <td>{student.major}</td>
                                                                                     <td>{student.name}</td>
                                                                                     <td>{student.stdID}</td>
-                                                                                </tr><tr>
-                                                                                        <td>{student.phoneNumber}</td>
-                                                                                        <td>{student.email}</td>
-                                                                                        <td><button className="certFileButton" type='button' onClick={() => {
+                                                                                </tr><tr style={{backgroundColor:"var(--color-tableEven)"}}>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.phoneNumber}</td>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.email}</td>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}><button className="certFileButton" type='button' onClick={() => {
                                                                                             setPreviewImg(student);
                                                                                             setShowImg(true);
                                                                                         }}>학생증</button></td>
                                                                                     </tr>
-                                                                                    <td style={{ width: "100px" }}><input
+                                                                                    <td style={{ width: "100px",backgroundColor:"var(--color-tableEven)",borderBottom:"1px solid var(--color-quarterCircle)"}}><
+                                                                                        input
                                                                                         id={student}
                                                                                         type="checkbox"
                                                                                         onChange={(e) => {
@@ -415,18 +430,18 @@ function ManagementPage(props) {
                                                                                         checked={rightCheckedList.includes(student["email"]) ? true : false}
                                                                                     /></td>
                                                                                 </>)
-                                                                                : (<><tr>
+                                                                                : (<><tr style={{backgroundColor:"var(--color-tableEven)"}}>
                                                                                     <td>{student.major}</td>
                                                                                     <td>{student.name}</td>
                                                                                     <td>{student.stdID}</td>
-                                                                                </tr><tr>
-                                                                                        <td>{student.phoneNumber}</td>
-                                                                                        <td>{student.email}</td>
-                                                                                        <td><button className="certFileButton" type='button' onClick={() => {
+                                                                                </tr><tr style={{backgroundColor:"var(--color-tableEven)"}}>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.phoneNumber}</td>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.email}</td>
+                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}><button className="certFileButton" type='button' onClick={() => {
                                                                                             setShowImg(true);
                                                                                         }}>학생증</button></td>
                                                                                     </tr>
-                                                                                    <td style={{ width: "100px" }}><input
+                                                                                    <td style={{ width: "100px",backgroundColor:"var(--color-tableEven)",borderBottom:"1px solid var(--color-quarterCircle)"}}><input
                                                                                         id={student}
                                                                                         type="checkbox"
                                                                                         onChange={(e) => {
@@ -449,7 +464,9 @@ function ManagementPage(props) {
                             </div>
                         </>)}
         </div>
-
+)
+            : <div className="ManagementPageContainer" style={{display:"flex",justifyContent: "center"}}><div>잘못된 접근입니다.</div></div>
+}</>
 
     )
 }

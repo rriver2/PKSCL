@@ -140,13 +140,9 @@ function AccessPage(props) {
           switch (payload.status) {
             case 200:
               alert("회원가입에 성공하였습니다 :)")
-              if (position === "president") {
-                if (window.confirm('학생회장 인증을 완료해야지 장부 업로드 및 학생 관리를 할 수 있습니다. 챗봇으로 이동하시겠습니까?'))
-                  window.location("http://pf.kakao.com/_hxnlXb")
-              }
               history.push('/');
               return;
-            default: alert("success: " + payload.status); return;
+            default: alert("success: " + payload.status); history.push('/'); return;
           }
         })
         .catch((error) => {
@@ -171,7 +167,6 @@ function AccessPage(props) {
     }
     else {
       let payload = { "email": email, "password": password };
-      console.log(position)
       axios.post(debugAPIURL + '/login/' + position, payload)
         .then((payload) => {
           props.setLoginPosition(position);
@@ -299,7 +294,8 @@ function AccessPage(props) {
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle" style={{ margin: "10px 0 0 0" }}><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />가입을 시작합니다!</h3>
+              <h3 className="accessTitle" style={{ margin: "10px 0 0 0" }}>
+                  <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />가입을 시작합니다!</h3>
               {
                 position === "student"
                   ? <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 이용하세요:) </div>
@@ -681,12 +677,6 @@ function AccessPage(props) {
         </Route >
 
         <Route exact path="/giraffe-admin">
-          {
-            console.log("ko")
-          }
-          {
-            console.log(position)
-          }
           <div className="right-panel">
             <form className="userForm">
               <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />관리자 로그인</h3>

@@ -33,6 +33,29 @@ function EditMainPage(props) {
                 "eventList": [
                     {
                         "eventNumber": "12",
+                        "eventTitle": "이거 글자수 어쩔까요?;ㅇ룽;니ㅜ리ㅜㅁㅇ러ㅣㅠㅣㅓㅏㄴ유ㅓㅏ류ㅣㄴ아ㅣ류ㅣㅏ뉴리ㅘㅠㅁ나ㅣ유ㅣㅏ머뉴ㅣㅏ뮤",
+                        "eventContext": "UX,UI 망가지는 거 마음 아프다...lkfnljkdslkafdjlfajlhfjlhlafljdfnalnfkjlakjlbjkbdalkbkldbkbasfbjhkdabsjk OT를 잘 마무리 하였습니다.",
+                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "얼른 px 뽀갠다.. 학과 sa;dslajfkjjlkdajkbfjlkabjfakblkbddb 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "ajhljdbdasfliuabijlblkajbslbdafulsuadasklndlsnaklnlsnlnfuiabflbalbsbfsbbs OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
+                    },{
+                        "eventNumber": "54654",
+                        "eventTitle": "학과 OT2",
+                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
+                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
+                    },
+                    {
+                        "eventNumber": "3342",
+                        "eventTitle": "학과 OT2",
+                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
+                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
+                    },
+                    {
+                        "eventNumber": "2131",
+                        "eventTitle": "학과 OT2",
+                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
+                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
+                    },
+                    {
+                        "eventNumber": "21231",
                         "eventTitle": "학과 OT2",
                         "eventContext": "학과 OT를 잘 마무리 하였습니다.",
                         "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
@@ -79,10 +102,10 @@ function EditMainPage(props) {
     }
 
     let answerDate = {
-        "quarter1": ["2022-01-01", "2022-01-02"],
-        "quarter2": ["2022-01-03", "2022-01-04"],
-        "quarter3": ["2022-01-05", "2022-01-06"],
-        "quarter4": ["2022-01-07", "2022-01-08"]
+        "quarter1": ["1111-01-01", "1111-01-02"],
+        "quarter2": ["1111-01-03", "1111-01-04"],
+        "quarter3": ["1111-01-05", "1111-01-06"],
+        "quarter4": ["1111-01-07", "1111-01-08"]
     }
 
     const [studentPresident, setStudentPresident] = useState();
@@ -103,6 +126,7 @@ function EditMainPage(props) {
     const [showImg, setShowImg] = useState(false);
     const [previewImg, setPreviewImg] = useState();
 
+    const [logoImgPath,setLogoImgPath] = useState();
 
     function getLedger() {
         let resetArray = [];
@@ -121,6 +145,7 @@ function EditMainPage(props) {
                 setShowAllReceiptButton(resetArray);
                 GetDate();
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
+                setLogoImgPath(`./img/${currentQuarter}.png`);
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -132,13 +157,13 @@ function EditMainPage(props) {
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
                 setQuarter({ ...answer["quarter"] });
-                console.log([...answer["quarter"][currentQuarter]["eventList"]]);
                 for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
                     resetArray.push(false)
                 }
                 GetDate();
                 setShowAllReceiptButton(resetArray);
                 setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                setLogoImgPath(`./img/${currentQuarter}.png`);
             })
     }
 
@@ -166,12 +191,15 @@ function EditMainPage(props) {
     }
 
     function showQuarter(selectedQuarter) {
-        if (props.loginPosition === "student") {
+        if (props.loginPosition === "student" || props.loginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
+                setLogoImgPath(`./img/${selectedQuarter}.png`);
             } else {
-                alert("현재 공개된 장부가 아닙니다 :)")
+                setCurrentQuarter(selectedQuarter);
+                defineColor(selectedQuarter);
+                setLogoImgPath(`./img/${selectedQuarter}.png`);
             }
         } else {
             setCurrentQuarter(selectedQuarter);
@@ -231,13 +259,13 @@ function EditMainPage(props) {
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
+            setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
         } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
+            setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
         } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
+            setColorProperty("#c18356", "#f9eee5", "#e9d8cd", "#fff5ed", "#fbf7f4");
         } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
+            setColorProperty("#6b8396", "#e0eaf3", "#d0dbe5", "#e6f1fb", "#f8fcff");
         }
     }
 
@@ -246,8 +274,7 @@ function EditMainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                console.log("error: " + error.response.status);
-
+                console.log("로그아웃 실패");
             })
     }
 
@@ -255,12 +282,36 @@ function EditMainPage(props) {
         axios.get("/ledger-date")
             .then((payload) => {
                 setQuarterDate({ ...payload.data });
+
+                let tempDate= { ...payload.data }
+                let quarter = ["quarter1","quarter2","quarter3","quarter4"]
+                 quarter.map((quarterName)=>{
+                    tempDate[quarterName].map((date,i)=>{
+                    if(date.substr(0,4)=== "1111"){
+                    let tempTempDate = { ...tempDate };
+                    tempTempDate[quarterName][i] = "";
+                    setQuarterDate({ ...tempTempDate });
+                }
+                })
+                })
             })
             .catch((error) => {
                 alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
-
                 //지우기
-                setQuarterDate({ ...answerDate });
+                 setQuarterDate({ ...answerDate });
+                 let quarter = ["quarter1","quarter2","quarter3","quarter4"]
+                    quarter.map((quarterName)=>{
+                        answerDate[quarterName].map((date,i)=>{
+                        if(date.substr(0,4)=== "1111"){
+                        let tempAnswerDate = { ...answerDate };
+                        tempAnswerDate[quarterName][i] = "";
+                        setQuarterDate({ ...tempAnswerDate });
+                    }
+                })
+                
+                 })
+                
+                
             })
     }
 
@@ -315,20 +366,41 @@ function EditMainPage(props) {
 
 
     function putLedgerDate() {
+
+        let open = quarterDate[currentQuarter][0];
+        let close = quarterDate[currentQuarter][1];
+        quarterDate[currentQuarter].map(()=>{
+        if(quarterDate[currentQuarter][0] === ""){
+            open = "1111-11-11";
+        }
+        if(quarterDate[currentQuarter][1] === ""){
+            close = "1111-11-11";
+        }
+        })
+        
         const payload = {
             quarter: currentQuarter,
-            openDate: quarterDate[currentQuarter][0],
-            closeDate: quarterDate[currentQuarter][1],
+            openDate: open,
+            closeDate: close
         }
 
-
-        axios.put(debugAPIURL + '/ledger-date', payload)
+        let promise = new Promise((resolve, reject) => {
+             axios.put(debugAPIURL + '/ledger-date', payload)
             .then((payload) => {
-                console.log("Success edit ledger-date");
-            }).catch((error) => {
-                alert(error.response.data["errorMessage"]);
+                resolve("장부 공개일이 변경되었습니다.");
 
+            }).catch((error) => {
+                reject("장부 공개일 변경 실패");
             })
+        })
+
+        promise
+            .then(value => {
+               GetDate();
+            })
+            .catch((value => {
+                alert(value)
+            }))
     }
 
     function processImage(file) {
@@ -374,11 +446,13 @@ function EditMainPage(props) {
 
 
     useEffect(() => {
+        if(props.loginPosition !== ""){
         getLedger();
+        }
     }, []);
 
     useEffect(() => {
-        if (editEventState === false) {
+        if (props.loginPosition !== "" && editEventState === false) {
             getLedger();
         }
     }, [editEventState]);
@@ -405,6 +479,9 @@ function EditMainPage(props) {
 
 
     return (
+        <>{
+            props.loginPosition !== ""
+            ?(
         <div className="EditMainPageContainer">
             {
                 showImg
@@ -423,7 +500,7 @@ function EditMainPage(props) {
                         {
                             editEventState
                                 ? (
-                                    <>{console.log(editEventData)}
+                                    <>
                                         <EditEvent setEditEventState={setEditEventState} editEventData={editEventData} editEventAmount={editEventAmount}></EditEvent>
                                     </>)
                                 : null
@@ -444,7 +521,12 @@ function EditMainPage(props) {
                                     </div>
                                     <div className="rightPanel">
                                         <div className="nav">
+
                                             <div className="buttons">
+                                <div className="logoNav">
+                                    <img src={logoImgPath} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
+                                </div>
                                                 <div style={{ display: "flex" }}>
                                                     <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
                                                     <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
@@ -452,11 +534,13 @@ function EditMainPage(props) {
                                                 {
                                                     quarterDate !== undefined
                                                         ? (
-                                                            <div style={{ display: "flex", alignItems: "center" }}>{currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 : <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
+                                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                                {currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 : 
+                                                                <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
                                                                 onChange={(e) => {
                                                                     let tempDateArray = { ...quarterDate }
                                                                     tempDateArray[currentQuarter][0] = e.target.value;
-                                                                    setQuarterDate(tempDateArray)
+                                                                    
                                                                     putLedgerDate();
                                                                 }}
                                                             ></input>~
@@ -465,7 +549,7 @@ function EditMainPage(props) {
                                                                     onChange={(e) => {
                                                                         let tempDateArray = { ...quarterDate }
                                                                         tempDateArray[currentQuarter][1] = e.target.value;
-                                                                        setQuarterDate(tempDateArray);
+                                                                        
                                                                         putLedgerDate();
 
                                                                     }}
@@ -495,7 +579,7 @@ function EditMainPage(props) {
                                                                         <div className="eventSource">
                                                                             <div style={{ width: "230px" }}>
                                                                                 <div className="eventTitle">
-                                                                                    <h4>{event["eventTitle"]}
+                                                                                    <h4 style={{width:"400px"}}>{event["eventTitle"]}
                                                                                     </h4>
                                                                                     <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
                                                                                 </div>
@@ -747,7 +831,7 @@ function EditMainPage(props) {
                                                                     <ReactSortable className="sortTable" tag="div" list={list} setList={setList}>
 
                                                                         {list.map((item, i) => (
-                                                                            <div style={{ marginLeft: "20px" }} key={item.eventNumber}>{i + 1}. {item.eventTitle}</div>
+                                                                            <div className="eventListBox" key={item.eventNumber}>{item.eventTitle}</div>
                                                                         ))}
 
                                                                     </ReactSortable>
@@ -775,6 +859,9 @@ function EditMainPage(props) {
                         }</>)
             }
         </div >
+        )
+            : <div className="EditMainPageContainer" style={{display:"flex",justifyContent: "center"}}><div>잘못된 접근입니다.</div></div>
+}</>
     )
 }
 

@@ -2,8 +2,8 @@
     font-family: "OTWelcomeRA";
     background-color: var(--color-background);
     width: 100%;
-    height: 100%;
     display: flex;
+    min-height: 100vh;
     justify-content: center;
 }
 
@@ -110,7 +110,7 @@ i {
 
 .tableSet table {
     margin: 0 30px;
-    width: 500px;
+    width: 40vw;
 }
 
 .tableSet thead {
@@ -165,7 +165,7 @@ i {
 .tableSet th,
 .tableSet td {
     text-align: left;
-    width: 500px;
+    width: 40vw;
     text-align: center;
 }
 
