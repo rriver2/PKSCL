@@ -178,11 +178,11 @@ function ManagementPage(props) {
                 axios.get('/status')
                     .then((payload) => {
                         if (payload.data["status"] === "refusal") {
-                                        setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                        setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
                                         setWrongApproach(true)
                                     }
                                     else if (payload.data["status"] === "waiting") {
-                                        setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                        setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                         setWrongApproach(true)
                                     }else if (payload.data["status"] === "approval") {
                                         getPresidentList();
@@ -286,8 +286,9 @@ function ManagementPage(props) {
                                     <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
                                     <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
                                 </div>
-                                                <div style={{ display: "flex" }}>
+                                                <div style={{ display: "flex",alignItems: "center"}}>
                                                     <button className='submitButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
+                                                    <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                 </div>
                                         </div>
             <div className="MainPageContainer" 
@@ -359,6 +360,7 @@ function ManagementPage(props) {
                                                                         history.push('/edit-main')
                                                                     }
                                                                 }}>장부 수정</button>
+                                                                <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                         </>
                                                         : null
                                                 }
@@ -375,6 +377,7 @@ function ManagementPage(props) {
                                                                         history.push('/edit-main')
                                                                     }
                                                                 }}>학과별 장부 확인 및 수정</button>
+                                                                <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                         </>
                                                         : null
                                                 }

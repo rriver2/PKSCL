@@ -580,7 +580,9 @@ function EditMainPage(props) {
                                                 {
                                                     editProfileButton=== true
                                                     ?( <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>
+                                                        <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}}></i></button>
+                                                        <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </div>)
                                                     :( <div style={{ display: "flex" }}>
@@ -670,8 +672,9 @@ function EditMainPage(props) {
                                                         : null
                                                 }
                                                 <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}><i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}}></i></button>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                    <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                 </div>
                                             </div>
                                         </div>
