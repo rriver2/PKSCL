@@ -140,7 +140,6 @@ function EditMainPage(props) {
 
     function getLedger() {
         let resetArray = [];
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
         axios.get(debugAPIURL + '/major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
@@ -158,6 +157,7 @@ function EditMainPage(props) {
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
             setWrongApproach(false)
             setEditProfileButton(false)
+            setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -165,6 +165,7 @@ function EditMainPage(props) {
                         setWrongApproachContext("장부를 열람할 권한이 없습니다.");
                         setWrongApproach(true)
                         setEditProfileButton(false)
+                        setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         break;
                     default :
                         setWrongApproachContext("서버 오류가 발생했습니다.");
@@ -512,12 +513,14 @@ function EditMainPage(props) {
                 setEditProfileButton(false);
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
                 setWrongApproach(true)
                 setEditProfileButton(false);
             })
+            
     }
 
     useEffect(() => {
@@ -601,9 +604,6 @@ function EditMainPage(props) {
                     : null
             }
             {
-                userLoginPosition!== "president"
-                    ? <div>잘못된 접근입니다.</div>
-                    : (<>{
                         editProfileState
                             ?
                             <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
@@ -968,8 +968,8 @@ function EditMainPage(props) {
                                     </div>
                                 </>
                                 )
-                        }</>)
-            }
+                        }
+            
         </div >)}</>
     )
 }

@@ -245,6 +245,7 @@ function MainPage(props) {
                 setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 setWrongApproach(false) 
                 setEditProfileButton(true);
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
                 if (major === undefined) {
@@ -299,6 +300,8 @@ function MainPage(props) {
                 setQuarter({ ...payload.data["quarter"] });
                 setTempQuarter(true);
                 setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
@@ -366,6 +369,7 @@ function MainPage(props) {
                                     setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                                     setWrongApproach(false)
                                     setEditProfileButton(false);
+                                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                                 })
                                 .catch((error) => {
                                     setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :)");
@@ -407,6 +411,7 @@ function MainPage(props) {
                                     setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                                     setWrongApproach(false)
                                     setEditProfileButton(false);
+                                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                                 })
                                 .catch((error) => {
                                     setWrongApproachContext("장부를 가져올 수 없습니다.")
