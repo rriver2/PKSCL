@@ -65,3 +65,9 @@ input {
 .receiptImg:hover {
     cursor: pointer;
 }
+
+.giraffe:hover {
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}

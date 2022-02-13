@@ -357,3 +357,9 @@ div .checkbox-form {
     flex-direction: column;
 
 }
+
+.giraffe:hover {
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}

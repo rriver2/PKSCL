@@ -46,8 +46,6 @@ function MainPage(props) {
 
     const [searchButton, setSearchButton] = useState("search");
 
-    const [chatbot, setChatbot] = useState(true);
-
     const [tempQuarter, setTempQuarter] = useState(false);
 
     const [showImg, setShowImg] = useState(false);
@@ -59,6 +57,9 @@ function MainPage(props) {
 
     const [wrongApproach,setWrongApproach] = useState(false);
     const [wrongApproachContext,setWrongApproachContext] = useState();
+    const [editProfileButton, setEditProfileButton] = useState(true);
+
+    const [userLoginPosition,setUserLoginPosition] = useState();
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -79,7 +80,7 @@ function MainPage(props) {
     }
 
     function showQuarter(selectedQuarter) {
-        if (props.loginPosition === "student" || props.loginPosition === "president") {
+        if (userLoginPosition === "student" || userLoginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
@@ -241,16 +242,19 @@ function MainPage(props) {
                 setQuarter({ ...payload.data["quarter"] });
                 reset(props.todayQuarter);
                 showQuarter(props.todayQuarter);
-                setChatbot(false);
                 setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
+                setWrongApproach(false) 
+                setEditProfileButton(true);
             })
             .catch((error) => {
                 if (major === undefined) {
                     setWrongApproachContext(`컴퓨터공학과 장부를 불러올 수 없습니다.`);
                     setWrongApproach(true)
+                    setEditProfileButton(false);
                 } else {
                     setWrongApproachContext(`${major} 장부를 불러올 수 없습니다.`);
                     setWrongApproach(true)
+                    setEditProfileButton(false);
                 }
                 //지우기
                 setStudentPresident({ ...answer["studentPresident"] });
@@ -267,14 +271,18 @@ function MainPage(props) {
             .then((payload) => {
                 setQuarterDate({ ...payload.data });
                 showQuarter(props.todayQuarter);
+                setWrongApproach(false)
+                setEditProfileButton(false);
             })
             .catch((error) => {
                 if (major === undefined) {
                     setWrongApproachContext(`컴퓨터공학과의 장부 open, close 날짜를 불러올 수 없습니다.`);
                     setWrongApproach(true)
+                    setEditProfileButton(false);
                 } else {
                     setWrongApproachContext(`${major}의 장부 open, close 날짜를 불러올 수 없습니다.`);
                     setWrongApproach(true)
+                    setEditProfileButton(false);
                 }
                 //지우기
                 setQuarterDate({ ...answerDate });
@@ -285,25 +293,25 @@ function MainPage(props) {
     function getExPKSCL() {
         axios.get(debugAPIURL + '/temp-major-info')
             .then((payload) => {
+                setWrongApproach(false)
+                setEditProfileButton(false);
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
-                // reset(props.todayQuarter);
-                // defineColor(props.todayQuarter);
-                setChatbot(false);
                 setTempQuarter(true);
                 setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
                 setWrongApproach(true)
-                //지우기
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                reset(props.todayQuarter);
-                showQuarter(props.todayQuarter);
-                console.log(answer["quarter"][props.todayQuarter])
-                console.log(answer["quarter"][props.todayQuarter]["status"])
-                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+                setEditProfileButton(false);
+                // //지우기
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // reset(props.todayQuarter);
+                // showQuarter(props.todayQuarter);
+                // console.log(answer["quarter"][props.todayQuarter])
+                // console.log(answer["quarter"][props.todayQuarter]["status"])
+                // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             })
     }
 
@@ -318,17 +326,18 @@ function MainPage(props) {
                         getAdminLedger(ledgerMajor);
                         adminGetDate(ledgerMajor);
                         defineColor(props.todayQuarter);
-                        setChatbot(false);
                     } else {
                         getAdminLedger(major);
                         adminGetDate(major);
                         defineColor(props.todayQuarter);
                     }
-                    
+                    setWrongApproach(false)
+                    setEditProfileButton(false);
                 })
                 .catch((error) => {
                     setWrongApproachContext("관리자 ) 학과 리스트를 불러올 수 없습니다.")
-                    setWrongApproach(true)
+                    setWrongApproach(false)
+                    setEditProfileButton(false);
                     //지우기
                     adminGetDate(ledgerMajor)
                     getExPKSCL();
@@ -342,11 +351,13 @@ function MainPage(props) {
                             if (payload.data["status"] === "refusal") {
                                 setWrongApproachContext("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                                 setWrongApproach(true)
+                                setEditProfileButton(true);
                                 //챗봇
                             }
                             else if (payload.data["status"] === "waiting") {
                                 setWrongApproachContext("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                 setWrongApproach(true)
+                                setEditProfileButton(true);
                                 //챗봇
                             }
                             else if (payload.data["status"] === "approval") {
@@ -354,12 +365,14 @@ function MainPage(props) {
                                 .then((payload) => {
                                     setStudentPresident({ ...payload.data["studentPresident"] });
                                     setQuarter({ ...payload.data["quarter"] });
-                                    setChatbot(false);
                                     setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
+                                    setWrongApproach(false)
+                                    setEditProfileButton(false);
                                 })
                                 .catch((error) => {
                                     setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                     setWrongApproach(true)
+                                    setEditProfileButton(true);
                                     //챗봇
                                 })
                             }
@@ -367,7 +380,9 @@ function MainPage(props) {
                         })
                         .catch((error) => {
                             setWrongApproachContext("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ");
+                            setEditProfileButton(false)
                             setWrongApproach(true)
+                            setEditProfileButton(false);
                         })
         
 
@@ -381,60 +396,80 @@ function MainPage(props) {
                             if (payload.data["status"] === "refusal") {
                                 setWrongApproachContext("사용자(학생)는 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
                                 setWrongApproach(true)
+                                setEditProfileButton(true);
                             }
                             else if (payload.data["status"] === "waiting") {
                                 setWrongApproachContext("사용자(학생)는 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
                                 setWrongApproach(true)
+                                setEditProfileButton(true);
                             }else if (payload.data["status"] === "approval") {
                                 axios.get(debugAPIURL + '/major-info')
                                 .then((payload) => {
                                     setStudentPresident({ ...payload.data["studentPresident"] });
                                     setQuarter({ ...payload.data["quarter"] });
-                                    setChatbot(false);
                                     setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
+                                    setWrongApproach(false)
+                                    setEditProfileButton(false);
                                 })
                                 .catch((error) => {
                                     setWrongApproachContext("장부를 가져올 수 없습니다.")
                                     setWrongApproach(true)
+                                    setEditProfileButton(true);
                                 })
                             }
                             getExPKSCL();
                         })
                         .catch((error) => {
                             setWrongApproachContext("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다.")
-                            setWrongApproach(true)
+                            setWrongApproach(false)
+                             setEditProfileButton(false);
                             //지우기
                             // setStudentPresident({ ...answer["studentPresident"] });
                             // setQuarter({ ...answer["quarter"] });
                             // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
                         })
-        
-
             reset(props.todayQuarter);
             defineColor(props.todayQuarter);
     }
 
     function reload(){
-        if (props.loginPosition === "admin") {
-            loginAdmin()
-        } else if (props.loginPosition === "president") {
-            loginPresident()
-        } else if (props.loginPosition === "student") {
-            loginStudent()
-        } else{
-            axios.get('/status').then((payload) => {
-                setWrongApproachContext("오류가 발생했습니다. 챗봇을 통해 문의해주세요.");
-                setWrongApproach(true) 
+        axios.get('/position')
+            .then((payload) => {
+                if (payload.data["position"] === "admin") {
+                    setWrongApproach(false)
+                    setEditProfileButton(true);
+                    loginAdmin()
+                } else if (payload.data["position"] === "president") {
+                    setWrongApproach(false)
+                    setEditProfileButton(true);
+                    loginPresident()
+                } else if (payload.data["position"] === "student") {
+                    setWrongApproach(false)
+                    setEditProfileButton(true);
+                    loginStudent()
+                } else{
+                    setWrongApproachContext("잘못된 접근입니다.");
+                    setEditProfileButton(false)
+                    setWrongApproach(false) 
+                }
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
-            setWrongApproachContext("잘못된 접근입니다.");
-            setWrongApproach(true) 
-        })}
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                           
+             })
     }
 
     useEffect(() => {
-        reload()
+        axios.get('/position')
+        .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+                reload()
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+                setEditProfileButton(false);         
+             })
     }, []);
 
 
@@ -464,7 +499,25 @@ function MainPage(props) {
 
     return (
         <>{wrongApproach===true
-            ?(
+            ?(<>
+                <div className="nav" style={{justifyContent: "space-between"}}>
+                                <div className="logoNav">
+                                    <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
+                                </div>
+                                                {
+                                                    editProfileButton=== true
+                                                    ?( <div style={{ display: "flex" }}>
+                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                </div>)
+                                                    :( <div style={{ display: "flex" }}>
+                                                    <button className='submitButton' type='button' onClick={() => {history.push('/');}}>로그인</button>
+                                                </div>)
+                                                }
+                                                
+                                               
+                                        </div>
             <div className="MainPageContainer" 
             style={{display:"flex",justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
                 {wrongApproachContext}<br />
@@ -473,7 +526,7 @@ function MainPage(props) {
             <img onClick={()=>{getExPKSCL()}} src={giraffe} className="image" alt="기린" 
             style={{ width: "70px", height: "70px",marginLeft:"20px" }} />
             <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{color:"black"}}>PKSCL 문의하기</a>
-            </div>)
+            </div></>)
             :(<div className="MainPageContainer">
             {
                 showImg
@@ -483,7 +536,7 @@ function MainPage(props) {
             {
                 editProfileState
                     ?
-                    <EditProfile loginPosition={props.loginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                    <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                     : null
             }
             {
@@ -526,7 +579,7 @@ function MainPage(props) {
                                     
                                     {
                                         quarterDate !== undefined
-                                            ? (props.loginPosition === "admin"
+                                            ? (userLoginPosition === "admin"
                                                 ? (<>
                                                     <div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div>
                                                     {adminButton()}</>)
@@ -534,14 +587,14 @@ function MainPage(props) {
                                             : null
                                     }
                                     {
-                                        props.loginPosition === "president"
+                                       userLoginPosition === "president"
                                             ? (<>
                                                 {
                                                     tempQuarter === true
                                                         ?
                                                         <>
                                                             {
-                                                                props.loginPosition === "admin"
+                                                                userLoginPosition === "admin"
                                                                     ? (
                                                                         <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
                                                                     )
@@ -560,7 +613,7 @@ function MainPage(props) {
                                             </>)
                                             : (<>
                                             {
-                                                                props.loginPosition === "admin"
+                                                                userLoginPosition === "admin"
                                                                     ? (
                                                                         <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학과 관리</button>
                                                                     )

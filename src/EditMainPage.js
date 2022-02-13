@@ -131,6 +131,9 @@ function EditMainPage(props) {
 
     const [wrongApproach,setWrongApproach] = useState(false);
     const [wrongApproachContext,setWrongApproachContext] = useState();
+    const [editProfileButton, setEditProfileButton] = useState(true);
+
+    const [userLoginPosition, setUserLoginPosition] = useState();
 
     function getLedger() {
         let resetArray = [];
@@ -150,16 +153,20 @@ function EditMainPage(props) {
                 setShowAllReceiptButton(resetArray);
                 GetDate();
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
+            setWrongApproach(false)
+            setEditProfileButton(false)
             })
             .catch((error) => {
                 switch (error.response.status) {
                     case 403:
                         setWrongApproachContext("장부를 열람할 권한이 없습니다.");
                         setWrongApproach(true)
+                        setEditProfileButton(false)
                         break;
                     default :
                         setWrongApproachContext("서버 오류가 발생했습니다.");
                         setWrongApproach(true)
+                        setEditProfileButton(false)
                     break;
                 }
                 // setStudentPresident({ ...answer["studentPresident"] });
@@ -198,7 +205,7 @@ function EditMainPage(props) {
     }
 
     function showQuarter(selectedQuarter) {
-        if (props.loginPosition === "student" || props.loginPosition === "president") {
+        if (userLoginPosition === "student" || userLoginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
@@ -302,10 +309,13 @@ function EditMainPage(props) {
                 }
                 })
                 })
+            setWrongApproach(false)
+            setEditProfileButton(false)
             })
             .catch((error) => {
                 setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
                 setWrongApproach(true)
+                setEditProfileButton(false)
                 //지우기
                 //  setQuarterDate({ ...answerDate });
                 //  let quarter = ["quarter1","quarter2","quarter3","quarter4"]
@@ -336,9 +346,12 @@ function EditMainPage(props) {
                             break;
                     }
                     getLedger();
+                    setWrongApproach(false);
+                    setEditProfileButton(false);
                 }).catch((error) => {
                     setWrongApproachContext("장부를 삭제하는데 실패했습니다.");
                     setWrongApproach(true)
+                    setEditProfileButton(false);
                 })
         } else {
             alert("삭제가 취소되었습니다.")
@@ -450,32 +463,72 @@ function EditMainPage(props) {
     function getUserStatus(){
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
-       if(props.loginPosition === "president"){
-        axios.get('/status')
+        axios.get('/position')
             .then((payload) => {
-                if (payload.data["status"] === "refusal") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
-                                setWrongApproach(true)
-                            }
-                            else if (payload.data["status"] === "waiting") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
-                                setWrongApproach(true)
-                            }else if (payload.data["status"] === "approval") {
-                                getLedger();
+                if(payload.data["position"] === "student"||payload.data["position"] === "admin"){
+                        setWrongApproachContext("잘못된 접근입니다.");
+                        setWrongApproach(true) 
+                        setEditProfileButton(false);
+                }
+                else if(payload.data["position"] === "president"){
+                axios.get('/status')
+                    .then((payload) => {
+                        if (payload.data["status"] === "refusal") {
+                                        setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                        setWrongApproach(true)
+                                        setEditProfileButton(false);
+                                    }
+                                    else if (payload.data["status"] === "waiting") {
+                                        setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                        setWrongApproach(true)
+                                        setEditProfileButton(false);
+                                    }else if (payload.data["status"] === "approval") {
+                                        getLedger();
+                                        setWrongApproach(false)
+                                        setEditProfileButton(false);
+                                    }
+                                })
+                                .catch((error) => {
+                                    setWrongApproachContext("잘못된 접근입니다.");
+                                    setWrongApproach(true) 
+                                    setEditProfileButton(false);
+                                })
                             }
             })
             .catch((error) => {
                 setWrongApproachContext("잘못된 접근입니다.");
                 setWrongApproach(true) 
-            })
-        }else{
-            setWrongApproachContext("잘못된 접근입니다.");
-            setWrongApproach(true) 
-        }
+                setEditProfileButton(false);
+             })
         
+    }
+    function getExPKSCL() {
+        axios.get(debugAPIURL + '/temp-major-info')
+            .then((payload) => {
+                setWrongApproach(false)
+                 setEditProfileButton(false);
+                setStudentPresident({ ...payload.data["studentPresident"] });
+                setQuarter({ ...payload.data["quarter"] });
+                setTempQuarter(true);
+                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
+            })
+            .catch((error) => {
+                setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
+                setWrongApproach(true)
+                 setEditProfileButton(false);
+            })
     }
 
     useEffect(() => {
+         axios.get('/position')
+        .then((payload) => {
+             setUserLoginPosition(payload.data["position"])
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+                setEditProfileButton(false);          
+             }) 
         getUserStatus();
     }, []);
 
@@ -506,16 +559,33 @@ function EditMainPage(props) {
 
     return (
         <>{wrongApproach===true
-            ?(
+            ?(<>
+                <div className="nav" style={{justifyContent: "space-between"}}>
+                                <div className="logoNav">
+                                    <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
+                                </div>
+                                                
+                                                
+                                                {
+                                                    editProfileButton=== true
+                                                    ?( <div style={{ display: "flex" }}>
+                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>프로필 편집</button>
+                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                </div>)
+                                                    :( <div style={{ display: "flex" }}>
+                                                    <button className='submitButton' type='button' onClick={() => {history.push('/');}}>로그인</button>
+                                                </div>)
+                                                }
+                                        </div>
             <div className="MainPageContainer" 
             style={{display:"flex",justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
                 {wrongApproachContext}<br />
             장부의 예시를 보고싶다면 기린을 눌러주세요 :)
-            
-            <img onClick={()=>{getExPKSCL()}} src={giraffe} className="image" alt="기린" 
+            <img onClick={()=>{getExPKSCL()}} src={giraffe} className="giraffe" alt="기린" 
             style={{ width: "70px", height: "70px",marginLeft:"20px" }} />
             <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{color:"black"}}>PKSCL 문의하기</a>
-            </div>)
+            </div></>)
             :(
         <div className="EditMainPageContainer">
             {
@@ -524,12 +594,12 @@ function EditMainPage(props) {
                     : null
             }
             {
-                props.loginPosition !== "president"
+                userLoginPosition!== "president"
                     ? <div>잘못된 접근입니다.</div>
                     : (<>{
                         editProfileState
                             ?
-                            <EditProfile loginPosition={props.loginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                            <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
                         {
