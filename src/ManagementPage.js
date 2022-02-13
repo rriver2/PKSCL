@@ -481,7 +481,7 @@ function ManagementPage(props) {
 
                                                 <div className='tableSet'>
                                                     <div className="buttons">
-                                                        {
+                                                        {/* {
                                                             userLoginPosition === "president"
                                                                 ? (<button className='submitButton' style={{ width: "110px" }} onClick={() => {
                                                                     if (rightCheckedList.length === 1) {
@@ -492,7 +492,7 @@ function ManagementPage(props) {
                                                                     }
                                                                 }}>회장권한위임</button>)
                                                                 : null
-                                                        }
+                                                        } */}
                                                         <button className='submitButton' onClick={() => {
                                                             setRightCheckedList([]);
                                                             if (rightCheckedList.length > 0) {

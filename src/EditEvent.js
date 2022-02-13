@@ -341,8 +341,11 @@ function EditEvent(props) {
         promise
             .then(value => {
                 if (editState === true) props.setEditEventState(false);
+                else if (editState === false) alert("행사 수정을 실패했습니다.")
             })
             .catch((value => {
+                if (editState === true) props.setEditEventState(false);
+                else if (editState === false) alert("행사 수정을 실패했습니다.")
             }))
 
     }
