@@ -339,8 +339,8 @@ function MainPage(props) {
                     setWrongApproach(false)
                     setEditProfileButton(false);
                     //지우기
-                    adminGetDate(ledgerMajor)
-                    getExPKSCL();
+                    // adminGetDate(ledgerMajor)
+                    // getExPKSCL();
                 })
     }
 
@@ -376,7 +376,6 @@ function MainPage(props) {
                                     //챗봇
                                 })
                             }
-                            getExPKSCL();
                         })
                         .catch((error) => {
                             setWrongApproachContext("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ");
@@ -417,10 +416,10 @@ function MainPage(props) {
                                     setEditProfileButton(true);
                                 })
                             }
-                            getExPKSCL();
                         })
                         .catch((error) => {
                             setWrongApproachContext("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다.")
+                            setEditProfileButton(false)
                             setWrongApproach(false)
                              setEditProfileButton(false);
                             //지우기

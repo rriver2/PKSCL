@@ -135,6 +135,9 @@ function EditMainPage(props) {
 
     const [userLoginPosition, setUserLoginPosition] = useState();
 
+    const [tempQuarter, setTempQuarter] = useState(false);
+    const [showCurrentQuerter,setShowCurrentQuerter] = useState();
+
     function getLedger() {
         let resetArray = [];
         setLogoImgPath(`./img/${props.todayQuarter}.png`);
@@ -506,16 +509,14 @@ function EditMainPage(props) {
         axios.get(debugAPIURL + '/temp-major-info')
             .then((payload) => {
                 setWrongApproach(false)
-                 setEditProfileButton(false);
+                setEditProfileButton(false);
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
-                setTempQuarter(true);
-                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
                 setWrongApproach(true)
-                 setEditProfileButton(false);
+                setEditProfileButton(false);
             })
     }
 
