@@ -476,12 +476,12 @@ function EditMainPage(props) {
                         if (payload.data["status"] === "refusal") {
                                         setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
                                         setWrongApproach(true)
-                                        setEditProfileButton(false);
+                                        setEditProfileButton(true);
                                     }
                                     else if (payload.data["status"] === "waiting") {
                                         setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
                                         setWrongApproach(true)
-                                        setEditProfileButton(false);
+                                        setEditProfileButton(true);
                                     }else if (payload.data["status"] === "approval") {
                                         getLedger();
                                         setWrongApproach(false)
