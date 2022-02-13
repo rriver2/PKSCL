@@ -352,13 +352,11 @@ function MainPage(props) {
                                 setWrongApproachContext("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
-                                //챗봇
                             }
                             else if (payload.data["status"] === "waiting") {
                                 setWrongApproachContext("사용자(학생회장)는 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
-                                //챗봇
                             }
                             else if (payload.data["status"] === "approval") {
                                 axios.get(debugAPIURL + '/major-info')
@@ -370,7 +368,7 @@ function MainPage(props) {
                                     setEditProfileButton(false);
                                 })
                                 .catch((error) => {
-                                    setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                                    setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :)");
                                     setWrongApproach(true)
                                     setEditProfileButton(true);
                                     //챗봇
@@ -499,6 +497,12 @@ function MainPage(props) {
     return (
         <>{wrongApproach===true
             ?(<>
+            {
+                        editProfileState
+                            ?
+                            <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                            : null
+                    }
                 <div className="nav" style={{justifyContent: "space-between"}}>
                                 <div className="logoNav">
                                     <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
@@ -522,7 +526,7 @@ function MainPage(props) {
                 {wrongApproachContext}<br />
             장부의 예시를 보고싶다면 기린을 눌러주세요 :)
             
-            <img onClick={()=>{getExPKSCL()}} src={giraffe} className="image" alt="기린" 
+            <img onClick={()=>{getExPKSCL()}} src={giraffe} className="giraffe" alt="기린" 
             style={{ width: "70px", height: "70px",marginLeft:"20px" }} />
             <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{color:"black"}}>PKSCL 문의하기</a>
             </div></>)

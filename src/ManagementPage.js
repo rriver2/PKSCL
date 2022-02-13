@@ -144,20 +144,20 @@ function ManagementPage(props) {
         if (userLoginPosition === "president") {
             axios.patch(debugAPIURL + '/student-list', payload)
                 .then((payload) => {
-                    getList();
+                    getPresidentList();
                 })
                 .catch((error) => {
                     alert("학생 전송에 실패했습니다 :)")
-                    getList();
+                    getPresidentList();
                 });
         } else if (userLoginPosition === "admin") {
             axios.patch(debugAPIURL + '/president-list', payload)
                 .then((payload) => {
-                    getList();
+                    getAdminList();
                 })
                 .catch((error) => {
                     alert("학과 전송에 실패했습니다 :)")
-                    getList();
+                    getAdminList();
                 });
         }
     }
@@ -185,16 +185,18 @@ function ManagementPage(props) {
                                         setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
                                         setWrongApproach(true)
                                     }else if (payload.data["status"] === "approval") {
-                                        getList();
+                                        getPresidentList();
                                     }
                     })
                     .catch((error) => {
                         setWrongApproachContext("잘못된 접근입니다.");
                         setWrongApproach(true) 
                     })
+                }else if (payload.data["position"]=== "admin"){
+                    getAdminList();
                 }else{
                     setWrongApproachContext("잘못된 접근입니다.");
-                    setWrongApproach(true) 
+                    setWrongApproach(true)     
                 }
             })
             .catch((error) => {
@@ -205,8 +207,7 @@ function ManagementPage(props) {
         
     }, []);
 
-    function getList() {
-        if (userLoginPosition === "president") {
+    function getPresidentList() {
             axios.get(debugAPIURL + '/student-list')
                 .then((payload) => {
                     console.log(payload)
@@ -215,7 +216,7 @@ function ManagementPage(props) {
                     setApproval([...payload.data["approval"]]);
                     setLeftTable([...payload.data["waiting"]]);
                     setRightTable([...payload.data["approval"]]);
-            setWrongApproach(false)
+                    setWrongApproach(false)
                 })
                 .catch((error) => {
                     setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
@@ -227,7 +228,10 @@ function ManagementPage(props) {
                     setLeftTable([...임시리스트["waiting"]]);
                     setRightTable([...임시리스트["approval"]]);
                 });
-        } else if (userLoginPosition === "admin") {
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        } 
+        
+        function getAdminList(){
             axios.get(debugAPIURL + '/president-list')
                 .then((payload) => {
                     console.log(payload)
@@ -248,9 +252,10 @@ function ManagementPage(props) {
                     setLeftTable([...임시리스트["waiting"]]);
                     setRightTable([...임시리스트["approval"]]);
                 });
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
         }
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
-    }
+        
+    
 
     function pressSearchStudent() {
         if (searchButton === "x") {
