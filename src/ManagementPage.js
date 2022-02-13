@@ -175,7 +175,6 @@ function ManagementPage(props) {
                                     setWrongApproach(true)
                                 }else if (payload.data["status"] === "approval") {
                                     getList();
-                                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                                 }
                 })
                 .catch((error) => {

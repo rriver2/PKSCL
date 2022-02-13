@@ -134,6 +134,7 @@ function EditMainPage(props) {
 
     function getLedger() {
         let resetArray = [];
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
         axios.get(debugAPIURL + '/major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
@@ -149,7 +150,6 @@ function EditMainPage(props) {
                 setShowAllReceiptButton(resetArray);
                 GetDate();
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-                setLogoImgPath(`./img/${currentQuarter}.png`);
             })
             .catch((error) => {
                 switch (error.response.status) {
