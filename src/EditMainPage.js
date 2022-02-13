@@ -14,6 +14,7 @@ import { useRef } from 'react';
 import { upload } from '@testing-library/user-event/dist/upload';
 import { ReactSortable } from "react-sortablejs";
 import EditEvent from './EditEvent';
+import giraffe from './img/giraffe.png';
 
 
 function EditMainPage(props) {
@@ -128,6 +129,9 @@ function EditMainPage(props) {
 
     const [logoImgPath,setLogoImgPath] = useState();
 
+    const [wrongApproach,setWrongApproach] = useState(false);
+    const [wrongApproachContext,setWrongApproachContext] = useState();
+
     function getLedger() {
         let resetArray = [];
         axios.get(debugAPIURL + '/major-info')
@@ -150,20 +154,23 @@ function EditMainPage(props) {
             .catch((error) => {
                 switch (error.response.status) {
                     case 403:
-                        history.push('/main')
+                        setWrongApproachContext("장부를 열람할 권한이 없습니다.");
+                        setWrongApproach(true)
                         break;
+                    default :
+                        setWrongApproachContext("서버 오류가 발생했습니다.");
+                        setWrongApproach(true)
+                    break;
                 }
-                // alert("학과 장부를 불러올 수 없습니다.");
-                //지우기
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                    resetArray.push(false)
-                }
-                GetDate();
-                setShowAllReceiptButton(resetArray);
-                setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                setLogoImgPath(`./img/${currentQuarter}.png`);
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                //     resetArray.push(false)
+                // }
+                // GetDate();
+                // setShowAllReceiptButton(resetArray);
+                // setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                // setLogoImgPath(`./img/${currentQuarter}.png`);
             })
     }
 
@@ -274,7 +281,8 @@ function EditMainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                console.log("로그아웃 실패");
+                console.log("로그아웃에 실패하였습니다.");
+                getLedger();
             })
     }
 
@@ -296,22 +304,20 @@ function EditMainPage(props) {
                 })
             })
             .catch((error) => {
-                alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
+                setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
+                setWrongApproach(true)
                 //지우기
-                 setQuarterDate({ ...answerDate });
-                 let quarter = ["quarter1","quarter2","quarter3","quarter4"]
-                    quarter.map((quarterName)=>{
-                        answerDate[quarterName].map((date,i)=>{
-                        if(date.substr(0,4)=== "1111"){
-                        let tempAnswerDate = { ...answerDate };
-                        tempAnswerDate[quarterName][i] = "";
-                        setQuarterDate({ ...tempAnswerDate });
-                    }
-                })
-                
-                 })
-                
-                
+                //  setQuarterDate({ ...answerDate });
+                //  let quarter = ["quarter1","quarter2","quarter3","quarter4"]
+                //     quarter.map((quarterName)=>{
+                //         answerDate[quarterName].map((date,i)=>{
+                //         if(date.substr(0,4)=== "1111"){
+                //         let tempAnswerDate = { ...answerDate };
+                //         tempAnswerDate[quarterName][i] = "";
+                //         setQuarterDate({ ...tempAnswerDate });
+                //     }
+                // })
+                //  })
             })
     }
 
@@ -331,8 +337,8 @@ function EditMainPage(props) {
                     }
                     getLedger();
                 }).catch((error) => {
-                    alert("장부를 삭제하는데 실패했습니다.");
-
+                    setWrongApproachContext("장부를 삭제하는데 실패했습니다.");
+                    setWrongApproach(true)
                 })
         } else {
             alert("삭제가 취소되었습니다.")
@@ -349,7 +355,6 @@ function EditMainPage(props) {
                 })
                 .catch((error) => {
                     reject("장부 추가에 실패했습니다. code: " + error.response.status)
-
                 });
         })
 
@@ -360,7 +365,6 @@ function EditMainPage(props) {
             .catch((value => {
                 alert(value)
                 getLedger();
-
             }))
     }
 
@@ -400,6 +404,7 @@ function EditMainPage(props) {
             })
             .catch((value => {
                 alert(value)
+                GetDate();
             }))
     }
 
@@ -429,7 +434,6 @@ function EditMainPage(props) {
                     resolve("행사 순서가 수정되었습니다.");
                 }).catch((error) => {
                     reject(error.response.data["errorMessage"]);
-
                 })
         })
 
@@ -439,22 +443,44 @@ function EditMainPage(props) {
             })
             .catch((value => {
                 getLedger();
-
             }))
 
     }
 
+    function getUserStatus(){
+        reset(props.todayQuarter);
+        defineColor(props.todayQuarter);
+       if(props.loginPosition === "president"){
+        axios.get('/status')
+            .then((payload) => {
+                if (payload.data["status"] === "refusal") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                setWrongApproach(true)
+                            }
+                            else if (payload.data["status"] === "waiting") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                setWrongApproach(true)
+                            }else if (payload.data["status"] === "approval") {
+                                getLedger();
+                            }
+            })
+            .catch((error) => {
+                setWrongApproachContext("잘못된 접근입니다.");
+                setWrongApproach(true) 
+            })
+        }else{
+            setWrongApproachContext("잘못된 접근입니다.");
+            setWrongApproach(true) 
+        }
+        
+    }
 
     useEffect(() => {
-        if(props.loginPosition !== ""){
-        getLedger();
-        }
+        getUserStatus();
     }, []);
 
     useEffect(() => {
-        if (props.loginPosition !== "" && editEventState === false) {
-            getLedger();
-        }
+        getUserStatus();
     }, [editEventState]);
 
     useEffect(() => {
@@ -479,9 +505,18 @@ function EditMainPage(props) {
 
 
     return (
-        <>{
-            props.loginPosition !== ""
+        <>{wrongApproach===true
             ?(
+            <div className="MainPageContainer" 
+            style={{display:"flex",justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+                {wrongApproachContext}<br />
+            장부의 예시를 보고싶다면 기린을 눌러주세요 :)
+            
+            <img onClick={()=>{getExPKSCL()}} src={giraffe} className="image" alt="기린" 
+            style={{ width: "70px", height: "70px",marginLeft:"20px" }} />
+            <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{color:"black"}}>PKSCL 문의하기</a>
+            </div>)
+            :(
         <div className="EditMainPageContainer">
             {
                 showImg
@@ -858,10 +893,7 @@ function EditMainPage(props) {
                                 )
                         }</>)
             }
-        </div >
-        )
-            : <div className="EditMainPageContainer" style={{display:"flex",justifyContent: "center"}}><div>잘못된 접근입니다.</div></div>
-}</>
+        </div >)}</>
     )
 }
 

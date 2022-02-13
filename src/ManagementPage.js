@@ -108,7 +108,10 @@ function ManagementPage(props) {
     const [showImg, setShowImg] = useState(false);
     const [previewImg, setPreviewImg] = useState();
 
-    const [logoImgPath,setLogoImgPath] = useState();
+    const [logoImgPath, setLogoImgPath] = useState();
+
+    const [wrongApproach,setWrongApproach] = useState(false);
+    const [wrongApproachContext,setWrongApproachContext] = useState();
 
     const changeHandler = (checked, studentInfo, setCheckedList, checkedList) => {
         if (checked) {
@@ -143,8 +146,8 @@ function ManagementPage(props) {
                     getList();
                 })
                 .catch((error) => {
-                    getList();
                     alert("학생 전송에 실패했습니다 :)")
+                    getList();
                 });
         } else if (props.loginPosition === "admin") {
             axios.patch(debugAPIURL + '/president-list', payload)
@@ -152,16 +155,38 @@ function ManagementPage(props) {
                     getList();
                 })
                 .catch((error) => {
-                    getList();
                     alert("학과 전송에 실패했습니다 :)")
+                    getList();
                 });
         }
     }
 
 
     useEffect(() => {
-        getList();
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        if(props.loginPosition === "president"){
+            axios.get('/status')
+                .then((payload) => {
+                    if (payload.data["status"] === "refusal") {
+                                    setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                    setWrongApproach(true)
+                                }
+                                else if (payload.data["status"] === "waiting") {
+                                    setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. 프로필 편집 기능을 통해 본인 정보가 올바르게 기입되었는지 우선 확인하고, 바르게 입력되었을 경우엔 신청하신 학과의 학생회장에게 문의해 주세요 :)");
+                                    setWrongApproach(true)
+                                }else if (payload.data["status"] === "approval") {
+                                    getList();
+                                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                                }
+                })
+                .catch((error) => {
+                    setWrongApproachContext("잘못된 접근입니다.");
+                    setWrongApproach(true) 
+                })
+        }else{
+            setWrongApproachContext("잘못된 접근입니다.");
+            setWrongApproach(true) 
+        }
+        
     }, []);
 
     function getList() {
@@ -176,7 +201,9 @@ function ManagementPage(props) {
                     setRightTable([...payload.data["approval"]]);
                 })
                 .catch((error) => {
-                    alert("학생리스트를 불러올 수 없습니다.");
+                    setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
+                    setWrongApproach(true)
+                    //삭제하기
                     setWaiting([...임시리스트["waiting"]]);
                     setRefusal([...임시리스트["refusal"]]);
                     setApproval([...임시리스트["approval"]]);
@@ -194,7 +221,9 @@ function ManagementPage(props) {
                     setRightTable([...payload.data["approval"]]);
                 })
                 .catch((error) => {
-                    alert("학과리스트를 불러올 수 없습니다.");
+                    setWrongApproachContext("학과리스트를 불러올 수 없습니다.");
+                    setWrongApproach(true)
+                    //삭제하기
                     setWaiting([...임시리스트["waiting"]]);
                     setRefusal([...임시리스트["refusal"]]);
                     setApproval([...임시리스트["approval"]]);
@@ -202,7 +231,7 @@ function ManagementPage(props) {
                     setRightTable([...임시리스트["approval"]]);
                 });
         }
-setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }
 
     function pressSearchStudent() {
@@ -228,246 +257,286 @@ setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }
 
     return (
-        <>{
-            props.loginPosition !== ""
+        <>{wrongApproach===true
             ?(
-        <div className="ManagementPageContainer">
-            {
-                showImg === true
-                    ? (<PreviewImg previewImg={previewImg} setShowImg={setShowImg}></PreviewImg>)
-                    : null
-            }
-            {
-                props.loginPosition === "student"
-                    ? <div>잘못된 접근입니다.</div>
-                    : (
-                        <>
-                            <div className="pageContainer">
-                                <div className="nav" style={{display:"flex", justifyContent: "space-between"}}>
-                                          <div className="logoNav">
-                                    <img src={logoImgPath} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
-                                    <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
-                                </div>
-                                <div style={{display:"flex",  alignItems: "center"}}>
-                                    <div style={{ fontSize:"25px" }}>학생승인 현황</div>
-                                    <div className="searchBar" >
-                                        <input onChange={(e) => {
-                                            setSearchStudent(e.target.value);
-                                            setSearchButton("search");
-                                            if (e.target.value === "") {
-                                                setSearchButton("search");
-                                                setLeftTable([...waiting]);
-                                                setRightTable([...approval]);
-                                            }
-                                        }}
-                                            onKeyPress={(e) => {
-                                                if (e.key === "Enter") {
-                                                    pressSearchStudent()
+            <div className="MainPageContainer" 
+            style={{display:"flex",justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+                {wrongApproachContext}<br />
+            <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{color:"black"}}>PKSCL 문의하기</a>
+            </div>)
+            :(
+                    <div className="ManagementPageContainer">
+                        {
+                            showImg === true
+                                ? (<PreviewImg previewImg={previewImg} setShowImg={setShowImg}></PreviewImg>)
+                                : null
+                        }
+                        {
+                            props.loginPosition === "student"
+                                ? <div>잘못된 접근입니다.</div>
+                                : (
+                                    <>
+                                        <div className="pageContainer">
+                                            <div className="nav" style={{ display: "flex", justifyContent: "space-between" }}>
+                                                <div className="logoNav" onClick={() => { history.push('/main') }}>
+                                                    <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                                    <div style={{ marginLeft: "5px", fontSize: "25px", fontFamily: "Work Sans", fontWeight: "bold" }}>PKSCL</div>
+                                                </div>
+                                                <div style={{ display: "flex", alignItems: "center" }}>
+                                                    <div style={{ fontSize: "25px" }}>학생승인 현황</div>
+                                                    <div className="searchBar" >
+                                                        <input onChange={(e) => {
+                                                            setSearchStudent(e.target.value);
+                                                            setSearchButton("search");
+                                                            if (e.target.value === "") {
+                                                                setSearchButton("search");
+                                                                setLeftTable([...waiting]);
+                                                                setRightTable([...approval]);
+                                                            }
+                                                        }}
+                                                            onKeyPress={(e) => {
+                                                                if (e.key === "Enter") {
+                                                                    pressSearchStudent()
+                                                                }
+                                                            }}
+                                                            name="q" value={searchStudent} type="search" placeholder="Search" ></input>
+
+                                                        <button onClick={() => {
+                                                            pressSearchStudent()
+                                                        }}
+                                                            className='searchButton' type='button'>
+                                                            {
+                                                                searchButton === "search"
+                                                                    ? <i className="fas fa-search"></i>
+                                                                    : <i className="fas fa-times"></i>
+                                                            }
+                                                        </button>
+
+                                                    </div>
+                                                </div >
+
+
+                                                {
+                                                    props.loginPosition === "president"
+                                                        ?
+                                                        <>
+                                                            <button className="submitButton"
+                                                                onClick={() => {
+                                                                    if (props.loginPosition === "admin") {
+                                                                        history.push('/main')
+                                                                    } else if (props.loginPosition === "president") {
+                                                                        history.push('/edit-main')
+                                                                    }
+                                                                }}>장부 수정</button>
+                                                        </>
+                                                        : null
                                                 }
-                                            }}
-                                            name="q" value={searchStudent} type="search" placeholder="Search" ></input>
 
-                                        <button onClick={() => {
-                                            pressSearchStudent()
-                                        }}
-                                            className='searchButton' type='button'>
-                                            {
-                                                searchButton === "search"
-                                                    ? <i className="fas fa-search"></i>
-                                                    : <i className="fas fa-times"></i>
-                                            }
-                                        </button>
-
-                                    </div>
-                                    </div >
-                                    <button className="submitButton" 
-                                    onClick={() => {
-                                        if (props.loginPosition === "admin") {
-                                            history.push('/main')
-                                        } else if (props.loginPosition === "president") {
-                                            history.push('/edit-main')
-                                        }
-                                    }}>장부 수정</button>
-                                </div>
-                                <div className='tables'>
-                                    <div className="tableSet" >
-                                        <div className="buttons">
-                                            <button className='submitButton' onClick={() => {
-                                                if (leftCheckedList.length === 0) {
-                                                    alert("승인할 학생을 1명 이상 선택하세요 :)")
-                                                } else {
-                                                    patchStudent("approval");
+                                                {
+                                                    props.loginPosition === "admin"
+                                                        ?
+                                                        <>
+                                                            <button className="submitButton" style={{ width: "auto" }}
+                                                                onClick={() => {
+                                                                    if (props.loginPosition === "admin") {
+                                                                        history.push('/main')
+                                                                    } else if (props.loginPosition === "president") {
+                                                                        history.push('/edit-main')
+                                                                    }
+                                                                }}>학과별 장부 확인 및 수정</button>
+                                                        </>
+                                                        : null
                                                 }
-                                                setLeftCheckedList([]);
-                                            }}>승인</button>
-                                            <button className='submitButton' onClick={() => {
-                                                console.log("거절")
-                                                setLeftCheckedList([]);
-                                                if (leftCheckedList.length > 0) {
-                                                    patchStudent("refusal");
-                                                } else {
-                                                    alert("거절할 학생을 1명 이상 선택하세요 :)")
-                                                }
-                                            }}>거절</button>
-                                        </div>
-                                        <table >
-                                            <thead>
-                                                <tr >
-                                                    <th colSpan={"3"} style={{ borderTopRightRadius: "20px", borderTopLeftRadius: "20px" }}>승인대기</th>
-                                                </tr>
-                                            </thead>
-                                            <div className="tableRadius" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
-                                                <tbody className="tableList" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
-                                                    {
-                                                        leftTable.length === 0
-                                                            ? <tr>
-                                                                <td style={{background:"white"}} colSpan={"3"}>승인대기 학생이 없습니다.</td>
-                                                            </tr>
-                                                            : leftTable.map((student, i) => {
-                                                                return (
-                                                                    <tr key={i}>
-                                                                        {
-                                                                            props.loginPosition === "president"
-                                                                                ? (<><td>{student.stdID}</td>
-                                                                                    <td>{student.name}</td>
-                                                                                    <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                        setPreviewImg(student);
-                                                                                        setShowImg(true);
-                                                                                    }}>학생증</button></td>
-                                                                                    <td ><input
-                                                                                        id={student}
-                                                                                        type="checkbox"
-                                                                                        onChange={(e) => {
-                                                                                            changeHandler(e.target.checked, student["email"], setLeftCheckedList, leftCheckedList)
-                                                                                        }}
-                                                                                        checked={leftCheckedList.includes(student["email"]) ? true : false}
-                                                                                    /></td>
-                                                                                </>)
-                                                                                : (<><tr style={{backgroundColor:"var(--color-tableEven)"}}>
-                                                                                    <td>{student.major}</td>
-                                                                                    <td>{student.name}</td>
-                                                                                    <td>{student.stdID}</td>
-                                                                                </tr><tr style={{backgroundColor:"var(--color-tableEven)"}}>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.phoneNumber}</td>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.email}</td>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}><button className="certFileButton" type='button' onClick={() => {
-                                                                                            setPreviewImg(student);
-                                                                                            setShowImg(true);
-                                                                                        }}>학생증</button></td>
-                                                                                    </tr>
-                                                                                    <td style={{ width: "100px",backgroundColor:"var(--color-tableEven)",borderBottom:"1px solid var(--color-quarterCircle)"}}><
-                                                                                        input
-                                                                                        id={student}
-                                                                                        type="checkbox"
-                                                                                        onChange={(e) => {
-                                                                                            changeHandler(e.target.checked, student["email"], setLeftCheckedList, leftCheckedList)
-                                                                                        }}
-                                                                                        checked={leftCheckedList.includes(student["email"]) ? true : false}
-                                                                                    /></td>
-                                                                                </>)
-                                                                        }
 
-                                                                    </tr>
-                                                                )
-                                                            })
-                                                    }
-                                                </tbody>
-                                            </div>
-                                        </table>
-                                    </div>
 
-                                    <div className='tableSet'>
-                                        <div className="buttons">
-                                            {
-                                                props.loginPosition === "president"
-                                                    ? (<button className='submitButton' style={{ width: "110px" }} onClick={() => {
-                                                        if (rightCheckedList.length === 1) {
-                                                            setRightCheckedList([]);
-                                                            patchStudent("delegating");
-                                                        } else {
-                                                            alert("학생회장 위임은 한명만 가능합니다.");
+
+                                                {/* <button className="submitButton"
+                                                    onClick={() => {
+                                                        if (props.loginPosition === "admin") {
+                                                            history.push('/main')
+                                                        } else if (props.loginPosition === "president") {
+                                                            history.push('/edit-main')
                                                         }
-                                                    }}>회장권한위임</button>)
-                                                    : null
-                                            }
-                                            <button className='submitButton' onClick={() => {
-                                                setRightCheckedList([]);
-                                                if (rightCheckedList.length > 0) {
-                                                    patchStudent("waiting");
-                                                }
-                                            }}
-                                            >대기</button>
-                                        </div>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th colSpan={"3"} style={{ borderTopRightRadius: "20px", borderTopLeftRadius: "20px" }}>승인완료</th>
-                                                </tr>
-                                            </thead>
-                                            <div className="tableRadius" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
-                                                <tbody className="tableList" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
-                                                    {
-                                                        rightTable.length === 0
-                                                            ? <tr>
-                                                                <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
-                                                            </tr>
-                                                            : rightTable.map((student, i) => {
-                                                                return (
-                                                                    <tr key={i}>
-                                                                        {
-                                                                            props.loginPosition === "president"
-                                                                                ? (<><td>{student.stdID}</td>
-                                                                                    <td>{student.name}</td>
-                                                                                    <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                        setShowImg(true);
-                                                                                    }}>학생증</button></td>
-                                                                                    <td ><input
-                                                                                        id={student}
-                                                                                        type="checkbox"
-                                                                                        onChange={(e) => {
-                                                                                            changeHandler(e.target.checked, student["email"], setRightCheckedList, rightCheckedList)
-                                                                                        }}
-                                                                                        checked={rightCheckedList.includes(student["email"]) ? true : false}
-                                                                                    /></td>
-                                                                                </>)
-                                                                                : (<><tr style={{backgroundColor:"var(--color-tableEven)"}}>
-                                                                                    <td>{student.major}</td>
-                                                                                    <td>{student.name}</td>
-                                                                                    <td>{student.stdID}</td>
-                                                                                </tr><tr style={{backgroundColor:"var(--color-tableEven)"}}>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.phoneNumber}</td>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}>{student.email}</td>
-                                                                                        <td style={{borderBottom:"1px solid var(--color-quarterCircle)"}}><button className="certFileButton" type='button' onClick={() => {
-                                                                                            setShowImg(true);
-                                                                                        }}>학생증</button></td>
-                                                                                    </tr>
-                                                                                    <td style={{ width: "100px",backgroundColor:"var(--color-tableEven)",borderBottom:"1px solid var(--color-quarterCircle)"}}><input
-                                                                                        id={student}
-                                                                                        type="checkbox"
-                                                                                        onChange={(e) => {
-                                                                                            changeHandler(e.target.checked, student["email"], setRightCheckedList, rightCheckedList)
-                                                                                        }}
-                                                                                        checked={rightCheckedList.includes(student["email"]) ? true : false}
-                                                                                    /></td>
-                                                                                </>)
-                                                                        }
-
-                                                                    </tr>
-                                                                )
-                                                            })
-                                                    }
-                                                </tbody>
+                                                    }}>장부 수정</button> */}
                                             </div>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </>)}
-        </div>
-)
-            : <div className="ManagementPageContainer" style={{display:"flex",justifyContent: "center"}}><div>잘못된 접근입니다.</div></div>
-}</>
+                                            <div className='tables'>
+                                                <div className="tableSet" >
+                                                    <div className="buttons">
+                                                        <button className='submitButton' onClick={() => {
+                                                            if (leftCheckedList.length === 0) {
+                                                                alert("승인할 학생을 1명 이상 선택하세요 :)")
+                                                            } else {
+                                                                patchStudent("approval");
+                                                            }
+                                                            setLeftCheckedList([]);
+                                                        }}>승인</button>
+                                                        <button className='submitButton' onClick={() => {
+                                                            console.log("거절")
+                                                            setLeftCheckedList([]);
+                                                            if (leftCheckedList.length > 0) {
+                                                                patchStudent("refusal");
+                                                            } else {
+                                                                alert("거절할 학생을 1명 이상 선택하세요 :)")
+                                                            }
+                                                        }}>거절</button>
+                                                    </div>
+                                                    <table >
+                                                        <thead>
+                                                            <tr >
+                                                                <th colSpan={"3"} style={{ borderTopRightRadius: "20px", borderTopLeftRadius: "20px" }}>승인대기</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <div className="tableRadius" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
+                                                            <tbody className="tableList" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
+                                                                {
+                                                                    leftTable.length === 0
+                                                                        ? <tr>
+                                                                            <td style={{ background: "white" }} colSpan={"3"}>승인대기 학생이 없습니다.</td>
+                                                                        </tr>
+                                                                        : leftTable.map((student, i) => {
+                                                                            return (
+                                                                                <tr key={i}>
+                                                                                    {
+                                                                                        props.loginPosition === "president"
+                                                                                            ? (<><td>{student.stdID}</td>
+                                                                                                <td>{student.name}</td>
+                                                                                                <td><button className="certFileButton" type='button' onClick={() => {
+                                                                                                    setPreviewImg(student.studentImgPath);
+                                                                                                    setShowImg(true);
+                                                                                                }}>학생증</button></td>
+                                                                                                <td ><input
+                                                                                                    id={student}
+                                                                                                    type="checkbox"
+                                                                                                    onChange={(e) => {
+                                                                                                        changeHandler(e.target.checked, student["email"], setLeftCheckedList, leftCheckedList)
+                                                                                                    }}
+                                                                                                    checked={leftCheckedList.includes(student["email"]) ? true : false}
+                                                                                                /></td>
+                                                                                            </>)
+                                                                                            : (<><tr style={{ backgroundColor: "var(--color-tableEven)" }}>
+                                                                                                <td>{student.major}</td>
+                                                                                                <td>{student.name}</td>
+                                                                                                <td>{student.stdID}</td>
+                                                                                            </tr><tr style={{ backgroundColor: "var(--color-tableEven)" }}>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.phoneNumber}</td>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.email}</td>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>
+                                                                                                        <button className="certFileButton" type='button' onClick={() => {
+                                                                                                            setPreviewImg(student.studentImgPath);
+                                                                                                            setShowImg(true);
+                                                                                                        }}>학생증</button>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <td style={{ width: "100px", backgroundColor: "var(--color-tableEven)", borderBottom: "1px solid var(--color-quarterCircle)" }}><
+                                                                                                    input
+                                                                                                    id={student}
+                                                                                                    type="checkbox"
+                                                                                                    onChange={(e) => {
+                                                                                                        changeHandler(e.target.checked, student["email"], setLeftCheckedList, leftCheckedList)
+                                                                                                    }}
+                                                                                                    checked={leftCheckedList.includes(student["email"]) ? true : false}
+                                                                                                /></td>
+                                                                                            </>)
+                                                                                    }
 
+                                                                                </tr>
+                                                                            )
+                                                                        })
+                                                                }
+                                                            </tbody>
+                                                        </div>
+                                                    </table>
+                                                </div>
+
+                                                <div className='tableSet'>
+                                                    <div className="buttons">
+                                                        {
+                                                            props.loginPosition === "president"
+                                                                ? (<button className='submitButton' style={{ width: "110px" }} onClick={() => {
+                                                                    if (rightCheckedList.length === 1) {
+                                                                        setRightCheckedList([]);
+                                                                        patchStudent("delegating");
+                                                                    } else {
+                                                                        alert("학생회장 위임은 한명만 가능합니다.");
+                                                                    }
+                                                                }}>회장권한위임</button>)
+                                                                : null
+                                                        }
+                                                        <button className='submitButton' onClick={() => {
+                                                            setRightCheckedList([]);
+                                                            if (rightCheckedList.length > 0) {
+                                                                patchStudent("waiting");
+                                                            }
+                                                        }}
+                                                        >대기</button>
+                                                    </div>
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th colSpan={"3"} style={{ borderTopRightRadius: "20px", borderTopLeftRadius: "20px" }}>승인완료</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <div className="tableRadius" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
+                                                            <tbody className="tableList" style={{ borderBottomRightRadius: "20px", borderBottomLeftRadius: "20px" }}>
+                                                                {
+                                                                    rightTable.length === 0
+                                                                        ? <tr>
+                                                                            <td colSpan={"3"}>승인대기 학생이 없습니다.</td>
+                                                                        </tr>
+                                                                        : rightTable.map((student, i) => {
+                                                                            return (
+                                                                                <tr key={i}>
+                                                                                    {
+                                                                                        props.loginPosition === "president"
+                                                                                            ? (<><td>{student.stdID}</td>
+                                                                                                <td>{student.name}</td>
+                                                                                                <td><button className="certFileButton" type='button' onClick={() => {
+                                                                                                    setShowImg(true);
+                                                                                                }}>학생증</button></td>
+                                                                                                <td ><input
+                                                                                                    id={student}
+                                                                                                    type="checkbox"
+                                                                                                    onChange={(e) => {
+                                                                                                        changeHandler(e.target.checked, student["email"], setRightCheckedList, rightCheckedList)
+                                                                                                    }}
+                                                                                                    checked={rightCheckedList.includes(student["email"]) ? true : false}
+                                                                                                /></td>
+                                                                                            </>)
+                                                                                            : (<><tr style={{ backgroundColor: "var(--color-tableEven)" }}>
+                                                                                                <td>{student.major}</td>
+                                                                                                <td>{student.name}</td>
+                                                                                                <td>{student.stdID}</td>
+                                                                                            </tr><tr style={{ backgroundColor: "var(--color-tableEven)" }}>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.phoneNumber}</td>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.email}</td>
+                                                                                                    <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}><button className="certFileButton" type='button' onClick={() => {
+                                                                                                        setShowImg(true);
+                                                                                                    }}>학생증</button></td>
+                                                                                                </tr>
+                                                                                                <td style={{ width: "100px", backgroundColor: "var(--color-tableEven)", borderBottom: "1px solid var(--color-quarterCircle)" }}><input
+                                                                                                    id={student}
+                                                                                                    type="checkbox"
+                                                                                                    onChange={(e) => {
+                                                                                                        changeHandler(e.target.checked, student["email"], setRightCheckedList, rightCheckedList)
+                                                                                                    }}
+                                                                                                    checked={rightCheckedList.includes(student["email"]) ? true : false}
+                                                                                                /></td>
+                                                                                            </>)
+                                                                                    }
+
+                                                                                </tr>
+                                                                            )
+                                                                        })
+                                                                }
+                                                            </tbody>
+                                                        </div>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>)}
+                    </div>
+            )}</>
     )
 }
 

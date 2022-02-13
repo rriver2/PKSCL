@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import logo from './img/logo.png';
+import logo from './img/logo1.png';
 import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -148,7 +148,11 @@ function AccessPage(props) {
         .catch((error) => {
           switch (error.response.status) {
             case 409: alert("이미 존재하는 이메일입니다 :)"); return;
-            case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
+            case 403:
+              alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) ");
+              setResendEmail(0);
+              changeIsCorrect(6, false);
+              return;
             default: alert("error: " + error.response.status); return;
           }
         })
@@ -178,7 +182,6 @@ function AccessPage(props) {
         })
         .catch((error) => {
           alert("로그인에 실패했습니다 :)")
-
         });
 
     }
@@ -212,18 +215,22 @@ function AccessPage(props) {
   };
 
   function certEmail() {
-    let payload = { "email": email };
-    axios.post(debugAPIURL + '/email/' + position, payload)
-      .then((payload) => {
-        alert("입력하신 이메일로 메일을 발송했습니다.");
-      })
-      .catch((error) => {
-        switch (error.response.status) {
-          case 409: alert("이미 존재하는 이메일입니다 :)"); return;
-          case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
-          default: alert("error: " + error.response.status); return;
-        }
-      });
+
+    if (window.confirm("입력하신 이메일로 인증 메일을 발송하시겠습니까?")) {
+      let payload = { "email": email };
+      axios.post(debugAPIURL + '/email/' + position, payload)
+        .then((payload) => {
+          // alert("입력하신 이메일로 메일을 발송했습니다.");
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 409: alert("이미 존재하는 이메일입니다 :)"); return;
+            // case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
+            default: alert("error: " + error.response.status); return;
+          }
+        });
+    }
+
   };
 
   function changeIsCorrect(i, type) {
@@ -269,15 +276,30 @@ function AccessPage(props) {
         <div class='wave -two'></div>
         <div class='wave -three'></div>
         <div className="content">
-
-          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}><h3>PKNU 온라인 장부</h3></button>
+          {/* <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
+            <h3>PKNU 온라인 장부</h3>
+          </button>
           <p>
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
-          </p>
+          </p> */}
+
+          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
+            <div>
+              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                <img src={logoImgPath} alt="logo" style={{}} width={"80px"} height={"80px"} />
+                <span style={{ fontSize: "50px" }}>PKSCL</span>
+              </div>
+              <div>PuKyong Student Council Ledger</div>
+            </div>
+          </button>
+
+
+
         </div>
         <img src={logo} className="image" alt="PKSCL logo" />
         <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
-          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}></button>
+          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
+        </button>
       </div>
       <Switch>
 
@@ -295,7 +317,7 @@ function AccessPage(props) {
                 </Nav>
               </div>
               <h3 className="accessTitle" style={{ margin: "10px 0 0 0" }}>
-                  <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />가입을 시작합니다!</h3>
+                <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />가입을 시작합니다!</h3>
               {
                 position === "student"
                   ? <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 이용하세요:) </div>
@@ -471,7 +493,7 @@ function AccessPage(props) {
                       <label htmlFor="majorList"></label>
                       <input type="text" list="majorList-options" id='major' name="major" placeholder="학과를 입력하세요."
                         onChange={(e) => {
-                          setMajor(majorList.indexOf(e.target.value) + 1);
+                          setMajor(majorList.indexOf(e.target.value));
                           if (majorList.includes(e.target.value)) {
                             changeIsCorrect(3, true);
                           } else {
@@ -594,7 +616,8 @@ function AccessPage(props) {
 
             </form>
             <div className='moveSignPage'>
-              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/'); }}>로그인</button>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button>
+              <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/'); }}>로그인</button>
             </div>
           </div>
 
@@ -720,7 +743,14 @@ function AccessPage(props) {
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />PKSCL</h3>
+              <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+                <h3 className="accessTitle" style={{ marginBottom: "2px" }}>
+                  <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />환영합니다</h3>
+
+                <p style={{ fontSize: "12px" }}>우리 학과의 장부를 분기 별로 확인할 수 있습니다.</p>
+              </div>
+
+
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
@@ -751,11 +781,6 @@ function AccessPage(props) {
 
       </Switch >
     </div >
-
-
-
-
-
   )
 }
 

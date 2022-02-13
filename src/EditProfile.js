@@ -104,13 +104,15 @@ function EditProfile(props) {
     }
 
     function newPassword() {
+
+
         const payload = { "inputPassword": inputPassword, "inputNewPassword": inputNewPassword, "inputCheckNewPassword": inputCheckNewPassword }
         axios.patch(debugAPIURL + '/password', payload)
             .then((payload) => {
                 switch (payload.status) {
                     case 200:
                         alert("비밀번호가 수정되었습니다.");
-                        setBoxState("profile");
+                        logout();
                         break;
                     default:
                         alert(payload.status);
@@ -181,6 +183,17 @@ function EditProfile(props) {
         setInputCheckNewPassword("");
     }
 
+    function logout() {
+        axios.post(debugAPIURL + '/logout')
+            .then((payload) => {
+                history.push('/');
+            }).catch((error) => {
+                console.log("error: " + error.response.status);
+                // 빼기
+                history.push('/');
+            })
+    }
+
     useEffect(() => {
         if (props.loginPosition === "president") {
             if (isCorrect.stdID && isCorrect.name && isCorrect.phoneNumber && isCorrect.majorLogo) {
@@ -212,7 +225,7 @@ function EditProfile(props) {
 
     useEffect(() => {
         //debug
-        console.log("./static/studentCertFile/testimg.png".replace(/^.*\//, ''));
+        console.log(props.loginPosition);
 
         // setStdID(() => "201892643");
         // setMajor(() => "1");
@@ -385,27 +398,46 @@ function EditProfile(props) {
                                 <div className="inputField">
                                     <i className="fas fa-book-open" style={{ fontSize: "0.85rem" }}></i>
                                     <label >학과</label>
-                                    <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
-                                        style={{ textColor: "black" }}
-                                        onChange={(e) => {
-                                            setMajor(majorList.indexOf(e.target.value) + 1);
 
-                                            if (majorList.includes(e.target.value)) {
-                                                changeIsCorrect("major", true);
-                                            } else {
-                                                changeIsCorrect("major", false);
-                                            }
-                                        }
-                                        } ></input>
-                                    <datalist id="majorList-options" >
-                                        {
-                                            majorList.map((majorName, i) => {
-                                                return (
-                                                    <option value={majorName} key={i} ></option>
-                                                )
-                                            })
-                                        }
-                                    </datalist>
+                                    {
+                                        props.loginPosition === "student"
+                                            ?
+                                            <>
+                                                <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                    style={{ textColor: "black" }}
+                                                    onChange={(e) => {
+                                                        setMajor(majorList.indexOf(e.target.value));
+
+                                                        if (majorList.includes(e.target.value)) {
+                                                            changeIsCorrect("major", true);
+                                                        } else {
+                                                            changeIsCorrect("major", false);
+                                                        }
+                                                    }
+                                                    } ></input>
+                                                <datalist id="majorList-options" >
+                                                    {
+                                                        majorList.map((majorName, i) => {
+                                                            return (
+                                                                <option value={majorName} key={i} ></option>
+                                                            )
+                                                        })
+                                                    }
+                                                </datalist>
+                                            </>
+                                            : null
+                                    }
+
+                                    {
+                                        props.loginPosition === "president"
+                                            ?
+                                            <>
+                                                <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                    style={{ textColor: "black" }} readOnly ></input>
+                                            </>
+                                            : null
+                                    }
+
 
                                 </div>
 
@@ -518,7 +550,7 @@ function EditProfile(props) {
                                                         : alert("정보수정이 취소되었습니다. ")}</>)
                                                     : (<>{
                                                         props.loginPosition === "president"
-                                                            ? (<>{window.confirm('프로필 편집을 변경하실 경우 챗봇을 통하여 관리자에게 회장인증을 해야 합니다. 프로필을 편집하시겠습니까?')
+                                                            ? (<>{window.confirm('프로필을 편집하시겠습니까?')
                                                                 ? putProfile()
                                                                 : alert("정보수정이 취소되었습니다. ")}</>)
                                                             : null
@@ -652,7 +684,14 @@ function EditProfile(props) {
                                                 <button className="errorBtn" type="button" onClick={() => { newPassword(); }}>변경</button>
                                                 :
                                                 <button className="errorBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
-                                                    onClick={() => { console.log(isCorrect.inputPassword + " " + isCorrect.inputNewPassword + " " + isCorrect.inputCheckNewPassword); }}>변경</button>
+                                                    onClick={() => {
+                                                        if (inputNewPassword !== inputPassword) {
+                                                            alert("새 비밀번호 값이 일치하지 않습니다.")
+                                                        } else {
+                                                            alert("빈칸을 모두 입력해주세요")
+                                                        }
+
+                                                    }}>변경</button>
 
                                         }
 
