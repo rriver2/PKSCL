@@ -152,6 +152,7 @@ function EditMainPage(props) {
                 }
                 reset(currentQuarter);
                 defineColor(currentQuarter);
+                showQuarter(currentQuarter);
                 setShowAllReceiptButton(resetArray);
                 GetDate();
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
@@ -575,8 +576,6 @@ function EditMainPage(props) {
                                     <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
                                     <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
                                 </div>
-                                                
-                                                
                                                 {
                                                     editProfileButton=== true
                                                     ?( <div style={{ display: "flex",alignItems: "center"}}>
