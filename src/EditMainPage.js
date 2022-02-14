@@ -557,10 +557,11 @@ function EditMainPage(props) {
 
     useEffect(() => {
         if (quarter !== undefined) {
-            reset(props.todayQuarter);
+            reset(currentQuarter);
             if (quarter[currentQuarter]["eventList"] !== undefined) {
                 setList(quarter[currentQuarter]["eventList"]);
             }
+            CalculateCurrentQuarterReceiptSumList(quarter[currentQuarter]["eventList"]);
         }
 
     }, [quarter])
