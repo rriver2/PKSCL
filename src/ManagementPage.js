@@ -311,7 +311,7 @@ function ManagementPage(props) {
                                         <div className="pageContainer">
                                             <div className="nav" style={{ display: "flex", justifyContent: "space-between" }}>
                                                 <div className="logoNav" onClick={() => { history.push('/main') }}>
-                                                    <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                                    <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
                                                     <div style={{ marginLeft: "5px", fontSize: "25px", fontFamily: "Work Sans", fontWeight: "bold" }}>PKSCL</div>
                                                 </div>
                                                 <div style={{ display: "flex", alignItems: "center" }}>

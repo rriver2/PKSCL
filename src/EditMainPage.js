@@ -546,6 +546,7 @@ function EditMainPage(props) {
         getUserStatus();
         //여기 한 줄 주석 해제 하면 local 가능
         // getLedger(); GetDate();
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
     }, []);
 
     useEffect(() => {
@@ -651,7 +652,7 @@ function EditMainPage(props) {
 
                                             <div className="buttons">
                                 <div className="logoNav">
-                                    <img src={logoImgPath} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
+                                    <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{marginLeft:"30px"}} width={"40px"} height={"40px"} />
                                     <div style={{marginLeft:"20px",fontSize:"25px"}}>PKSCL</div>
                                 </div>
                                                 <div style={{ display: "flex" }}>
