@@ -484,6 +484,7 @@ function EditMainPage(props) {
     }
 
     function getUserStatus(){
+        alert("getUserStatus")
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
         axios.get('/position')

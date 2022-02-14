@@ -223,6 +223,7 @@ function EditEvent(props) {
 
         promise
             .then(value => {
+                alert(value)
                 sendReciept();
             })
             .catch((value => {
@@ -269,6 +270,7 @@ function EditEvent(props) {
 
         promise
             .then(value => {
+                alert(value)
             })
             .catch((value => {
                 alert(value)
@@ -314,6 +316,7 @@ function EditEvent(props) {
 
         promise
             .then(value => {
+                alert(value)
             })
             .catch((value => {
                 alert(value)
@@ -327,10 +330,8 @@ function EditEvent(props) {
             eventData["receiptList"].map((receipt, j) => {
                 if (receipt["receiptNumber"] === undefined) {
                     postReceipt(j);
-                    alert("postReceipt")
                 } else {
                     putReceipt(j);
-                    alert("putReceipt")
                 }
             })
             resolve()
@@ -339,8 +340,6 @@ function EditEvent(props) {
         promise
             .then(value => {
                 if (editState === true){
-                    console.log("get ledger")
-                    alert("get ledger")
                     props.setEditEventState(false);}
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })
