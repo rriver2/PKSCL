@@ -671,8 +671,8 @@ function EditMainPage(props) {
                                                 }
                                                 <div style={{ display: "flex" ,alignItems: "center"}}>
                                                     <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
-                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                     <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
+                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </div>
                                             </div>
                                         </div>
