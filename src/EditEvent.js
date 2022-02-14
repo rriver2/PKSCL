@@ -329,10 +329,10 @@ function EditEvent(props) {
             eventData["receiptList"].map((receipt, j) => {
                 if (receipt["receiptNumber"] === undefined) {
                     postReceipt(j);
-                    console.log("postReceipt")
+                    alert("postReceipt")
                 } else {
                     putReceipt(j);
-                    console.log("putReceipt")
+                    alert("putReceipt")
                 }
             })
             resolve()
@@ -342,6 +342,7 @@ function EditEvent(props) {
             .then(value => {
                 if (editState === true){
                     console.log("get ledger")
+                    alert("get ledger")
                     props.setEditEventState(false);}
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })

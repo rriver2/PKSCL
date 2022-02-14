@@ -579,9 +579,8 @@ function EditMainPage(props) {
                                                 
                                                 {
                                                     editProfileButton=== true
-                                                    ?( <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}>
-                                                        <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}}></i></button>
+                                                    ?( <div style={{ display: "flex",alignItems: "center"}}>
+                                                        <i class="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{fontSize:"20px", marginRight:"10px"}}></i>
                                                         <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </div>)
@@ -671,8 +670,8 @@ function EditMainPage(props) {
                                                         )
                                                         : null
                                                 }
-                                                <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { setEditProfileState(true); }}><i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}}></i></button>
+                                                <div style={{ display: "flex" ,alignItems: "center"}}>
+                                                    <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                     <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                 </div>
