@@ -156,11 +156,14 @@ function EditMainPage(props) {
                 setWrongApproach(false)
                 setEditProfileButton(false)
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
-
-                GetDate();
-                reset(currentQuarter);
+                console.log("여기임 eventList")
+                console.log([...payload.data["quarter"][currentQuarter]["eventList"]])
+                CalculateCurrentQuarterReceiptSumList([...payload.data["quarter"][currentQuarter]["eventList"]]);
+                setList([...payload.data["quarter"][quarterData]["eventList"]]);
+                resetShowAllReceiptButton();
                 defineColor(currentQuarter);
-                showQuarter(currentQuarter);
+                GetDate();
+                
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -260,6 +263,8 @@ function EditMainPage(props) {
         if (eventList === undefined) {
             setQuarterAmount(0);
         } else {
+            console.log("여기임 CalculateSum...")
+
             let eventSum = [];
             for (let i = 0; i < eventList.length; i++) {
                 eventSum.push(sumEvent(eventList[i]["receiptList"]));
@@ -271,6 +276,10 @@ function EditMainPage(props) {
                 quarterSum = quarterSum + eventSum[i];
             }
             setQuarterAmount(quarterSum);
+            console.log("eventSum")
+            console.log(eventSum)
+            console.log("quarterSum")
+             console.log(quarterSum)
         }
     }
 
@@ -561,7 +570,6 @@ function EditMainPage(props) {
             if (quarter[currentQuarter]["eventList"] !== undefined) {
                 setList(quarter[currentQuarter]["eventList"]);
             }
-            CalculateCurrentQuarterReceiptSumList(quarter[currentQuarter]["eventList"]);
         }
 
     }, [quarter])
