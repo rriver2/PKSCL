@@ -15,6 +15,8 @@ import { upload } from '@testing-library/user-event/dist/upload';
 import { ReactSortable } from "react-sortablejs";
 import EditEvent from './EditEvent';
 import giraffe from './img/giraffe.png';
+import PreviewImg from './PreviewImg';
+
 
 
 function EditMainPage(props) {
@@ -144,21 +146,21 @@ function EditMainPage(props) {
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
-
                 if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined) {
                     for (let i = 0; i < payload.data["quarter"][currentQuarter]["eventList"].length; i++) {
                         resetArray.push(false)
                     }
                 }
+                setShowAllReceiptButton(resetArray);
+                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
+                setWrongApproach(false)
+                setEditProfileButton(false)
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+
+                GetDate();
                 reset(currentQuarter);
                 defineColor(currentQuarter);
                 showQuarter(currentQuarter);
-                setShowAllReceiptButton(resetArray);
-                GetDate();
-                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-            setWrongApproach(false)
-            setEditProfileButton(false)
-            setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -174,15 +176,19 @@ function EditMainPage(props) {
                         setEditProfileButton(false)
                     break;
                 }
-                // setStudentPresident({ ...answer["studentPresident"] });
-                // setQuarter({ ...answer["quarter"] });
-                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                //     resetArray.push(false)
-                // }
-                // GetDate();
-                // setShowAllReceiptButton(resetArray);
-                // setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                // setLogoImgPath(`./img/${currentQuarter}.png`);
+                //지우기
+                        setStudentPresident({ ...answer["studentPresident"] });
+                        setQuarter({ ...answer["quarter"] });
+                        for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                            resetArray.push(false)
+                        }
+                        GetDate();
+                        setShowAllReceiptButton(resetArray);
+                        setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                        setLogoImgPath(`./img/${currentQuarter}.png`);
+                        setWrongApproach(false)
+                        setEditProfileButton(false)
+                //
             })
     }
 
@@ -322,17 +328,20 @@ function EditMainPage(props) {
                 setWrongApproach(true)
                 setEditProfileButton(false)
                 //지우기
-                //  setQuarterDate({ ...answerDate });
-                //  let quarter = ["quarter1","quarter2","quarter3","quarter4"]
-                //     quarter.map((quarterName)=>{
-                //         answerDate[quarterName].map((date,i)=>{
-                //         if(date.substr(0,4)=== "1111"){
-                //         let tempAnswerDate = { ...answerDate };
-                //         tempAnswerDate[quarterName][i] = "";
-                //         setQuarterDate({ ...tempAnswerDate });
-                //     }
-                // })
-                //  })
+                            setQuarterDate({ ...answerDate });
+                            let quarter = ["quarter1","quarter2","quarter3","quarter4"]
+                                quarter.map((quarterName)=>{
+                                    answerDate[quarterName].map((date,i)=>{
+                                    if(date.substr(0,4)=== "1111"){
+                                    let tempAnswerDate = { ...answerDate };
+                                    tempAnswerDate[quarterName][i] = "";
+                                    setQuarterDate({ ...tempAnswerDate });
+                                }
+                            })
+                            })
+                            setWrongApproach(false)
+                            setEditProfileButton(false)
+                //
             })
     }
 
@@ -501,7 +510,7 @@ function EditMainPage(props) {
                             }
             })
             .catch((error) => {
-                setWrongApproachContext("잘못된 접근입니다.");
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
                 setWrongApproach(true) 
                 setEditProfileButton(false);
              })
@@ -525,19 +534,14 @@ function EditMainPage(props) {
     }
 
     useEffect(() => {
-         axios.get('/position')
-        .then((payload) => {
-             setUserLoginPosition(payload.data["position"])
-            })
-            .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);          
-             }) 
+        //여기 한 줄 지우고
         getUserStatus();
+        //여기 한 줄 주석 해제 하면 local 가능
+        // getLedger();
     }, []);
 
     useEffect(() => {
+        //여기 한 줄 지우면 local 가능
         getUserStatus();
     }, [editEventState]);
 
@@ -838,12 +842,12 @@ function EditMainPage(props) {
                                                                                                                 ? <div>입력된 영수증이 없습니다.</div>
                                                                                                                 : (<>
                                                                                                                     <div className="receiptTitle">
-                                                                                                                        <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
+                                                                                                                        <h5>{receipt["receiptTitle"]}</h5>
                                                                                                                         {
-                                                                                                                            event["receiptList"][0]["receiptDetailList"].length === 0
+                                                                                                                            receipt["receiptDetailList"].length === 0
                                                                                                                                 ? null
                                                                                                                                 : (<div>
-                                                                                                                                    1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
+                                                                                                                                    {j+1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
                                                                                                                                 </div>)
                                                                                                                         }
 

@@ -13,10 +13,8 @@ function EditEvent(props) {
     const [editState, setEditState] = useState(true);
 
     const [previewImg, setPreviewImg] = useState();
+    const [eventAmount,setEventAmount] = useState();
 
-    useEffect(() => {
-        setEventData(props.editEventData);
-    }, []);
 
     function changeEventItem(value, item) {
         let tempEditEventData = { ...eventData };
@@ -350,8 +348,29 @@ function EditEvent(props) {
                 if (editState === true) props.setEditEventState(false);
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             }))
-
     }
+
+    function CalculateCurrentQuarterReceiptSumList(eventList) {
+        let amountReceipt=0;
+        console.log(eventData)
+        if(eventData!== undefined){
+            for(let i = 0 ; i < eventData["receiptList"].length ; i++){
+                amountReceipt = amountReceipt + sumReceipt(eventData["receiptList"][i]["receiptDetailList"])
+            }
+            setEventAmount(amountReceipt)
+        }
+    }
+    
+
+    useEffect(()=>{
+        setEventAmount(props.editEventAmount);
+        setEventData(props.editEventData);
+    },[])
+
+
+    useEffect(() => {
+        CalculateCurrentQuarterReceiptSumList(); 
+    }, [eventData]);
 
     return (
         // <div className="editEventContainer">
@@ -382,7 +401,7 @@ function EditEvent(props) {
                                                             }}></input>
 
                                                 </h4>
-                                                <div style={{ width: "500px" }}> 행사 총 금액 : {props.editEventAmount}원</div>
+                                                <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount}원</div>
                                             </div>
 
                                         </div>
@@ -433,7 +452,7 @@ function EditEvent(props) {
                                                                                     </span>
                                                                                     <input type="text" style={{ border: "transparent", textAlign: "left", width: "350px" }}
                                                                                         placeholder={"영수증 제목을 입력하세요"}
-                                                                                        value={eventData["receiptList"][j]["receiptTitle"]}
+                                                                                        value={receipt["receiptTitle"]}
 
                                                                                         onInput={
                                                                                             (e) => {
@@ -442,10 +461,10 @@ function EditEvent(props) {
 
                                                                                 </h5>
                                                                                 {
-                                                                                    eventData["receiptList"][j]["receiptDetailList"].length === 0
+                                                                                    receipt["receiptDetailList"].length === 0
                                                                                         ? null
                                                                                         : (<div>
-                                                                                            {j + 1}번째 영수증 금액 : {sumReceipt(eventData["receiptList"][j]["receiptDetailList"])}원
+                                                                                            {j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
                                                                                         </div>)
                                                                                 }
 
@@ -490,7 +509,9 @@ function EditEvent(props) {
                                                                                                     return (
                                                                                                         <tr key={k}>
                                                                                                             <td style={{ width: "40px" }}>
-                                                                                                                <span onClick={() => { receiptDetailDeleteButton(j, k); }}>
+                                                                                                                <span onClick={() => { 
+                                                                                                                    receiptDetailDeleteButton(j, k); 
+                                                                                                                    }}>
                                                                                                                     <i className="far fa-trash-alt"></i>
                                                                                                                 </span>
                                                                                                             </td>

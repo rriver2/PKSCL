@@ -515,9 +515,8 @@ function MainPage(props) {
                                 </div>
                                                 {
                                                     editProfileButton=== true
-                                                    ?( <div style={{ display: "flex" }}>
+                                                    ?( <div style={{ display: "flex" ,alignItems: "center"}}>;
                                                         <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
-                                                   
                                                     <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </div>)
@@ -602,7 +601,7 @@ function MainPage(props) {
                                                 {
                                                     tempQuarter === true
                                                         ?
-                                                        <div style={{alignItems: "center"}}>
+                                                        <div>
                                                             {
                                                                 userLoginPosition === "admin"
                                                                     ? (
@@ -611,8 +610,10 @@ function MainPage(props) {
                                                                     : null
                                                             }
                                                             <div className="tempAlert" style={{ color: "red" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
-                                                            <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
-                                                            <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
+                                                            <div style={{alignItems: "center"}}>
+                                                                <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
+                                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
+                                                            </div>
                                                         </div>
                                                         :
                                                         <>
