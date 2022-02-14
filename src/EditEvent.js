@@ -270,7 +270,6 @@ function EditEvent(props) {
 
         promise
             .then(value => {
-                alert(value)
             })
             .catch((value => {
                 alert(value)
@@ -316,7 +315,6 @@ function EditEvent(props) {
 
         promise
             .then(value => {
-                alert(value)
             })
             .catch((value => {
                 alert(value)
@@ -340,6 +338,7 @@ function EditEvent(props) {
         promise
             .then(value => {
                 if (editState === true){
+                    alert("행사 수정 끗.")
                     props.setEditEventState(false);}
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })
@@ -351,7 +350,6 @@ function EditEvent(props) {
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
         let amountReceipt=0;
-        console.log(eventData)
         if(eventData!== undefined){
             for(let i = 0 ; i < eventData["receiptList"].length ; i++){
                 amountReceipt = amountReceipt + sumReceipt(eventData["receiptList"][i]["receiptDetailList"])

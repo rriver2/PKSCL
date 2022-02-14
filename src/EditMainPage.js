@@ -156,14 +156,10 @@ function EditMainPage(props) {
                 setWrongApproach(false)
                 setEditProfileButton(false)
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                console.log("여기임 eventList")
-                console.log([...payload.data["quarter"][currentQuarter]["eventList"]])
                 CalculateCurrentQuarterReceiptSumList([...payload.data["quarter"][currentQuarter]["eventList"]]);
                 setList([...payload.data["quarter"][quarterData]["eventList"]]);
                 resetShowAllReceiptButton();
                 defineColor(currentQuarter);
-                GetDate();
-                
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -263,8 +259,6 @@ function EditMainPage(props) {
         if (eventList === undefined) {
             setQuarterAmount(0);
         } else {
-            console.log("여기임 CalculateSum...")
-
             let eventSum = [];
             for (let i = 0; i < eventList.length; i++) {
                 eventSum.push(sumEvent(eventList[i]["receiptList"]));
@@ -276,10 +270,6 @@ function EditMainPage(props) {
                 quarterSum = quarterSum + eventSum[i];
             }
             setQuarterAmount(quarterSum);
-            console.log("eventSum")
-            console.log(eventSum)
-            console.log("quarterSum")
-             console.log(quarterSum)
         }
     }
 
@@ -308,8 +298,9 @@ function EditMainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                console.log("로그아웃에 실패하였습니다.");
+                alert("로그아웃에 실패하였습니다.");
                 getLedger();
+                GetDate();
             })
     }
 
@@ -360,7 +351,6 @@ function EditMainPage(props) {
             tempQuarter[currentQuarter]["eventList"].splice(index, 1);
 
             const payload = { "eventNumber": eventNumber };
-            console.log(payload);
             axios.delete(debugAPIURL + '/event?event-number=' + eventNumber)
                 .then((payload) => {
                     switch (payload.status) {
@@ -369,6 +359,7 @@ function EditMainPage(props) {
                             break;
                     }
                     getLedger();
+                GetDate();
                     setWrongApproach(false);
                     setEditProfileButton(false);
                 }).catch((error) => {
@@ -397,10 +388,14 @@ function EditMainPage(props) {
         promise
             .then(value => {
                 getLedger();
+
+                GetDate();
             })
             .catch((value => {
                 alert(value)
                 getLedger();
+
+                GetDate();
             }))
     }
 
@@ -476,9 +471,11 @@ function EditMainPage(props) {
         promise
             .then(value => {
                 getLedger();
+                GetDate();
             })
             .catch((value => {
                 getLedger();
+                GetDate();
             }))
 
     }
@@ -508,6 +505,7 @@ function EditMainPage(props) {
                                         setEditProfileButton(true);
                                     }else if (payload.data["status"] === "approval") {
                                         getLedger();
+                GetDate();
                                         setWrongApproach(false)
                                         setEditProfileButton(false);
                                     }
@@ -547,12 +545,15 @@ function EditMainPage(props) {
         //여기 한 줄 지우고
         getUserStatus();
         //여기 한 줄 주석 해제 하면 local 가능
-        // getLedger();
+        // getLedger(); GetDate();
     }, []);
 
     useEffect(() => {
         //여기 한 줄 지우면 local 가능
-        getUserStatus();
+        if( editEventState === false){
+            alert("leger 요청.. 보낸다 !!")
+            getUserStatus();
+        }
     }, [editEventState]);
 
     useEffect(() => {
