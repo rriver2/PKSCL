@@ -486,6 +486,7 @@ function EditMainPage(props) {
         defineColor(props.todayQuarter);
         axios.get('/position')
             .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
                 if(payload.data["position"] === "student"||payload.data["position"] === "admin"){
                         setWrongApproachContext("잘못된 접근입니다.");
                         setWrongApproach(true) 
@@ -505,7 +506,7 @@ function EditMainPage(props) {
                                         setEditProfileButton(true);
                                     }else if (payload.data["status"] === "approval") {
                                         getLedger();
-                GetDate();
+                                        GetDate();
                                         setWrongApproach(false)
                                         setEditProfileButton(false);
                                     }
