@@ -138,6 +138,7 @@ function EditProfile(props) {
             if (!certFile["name"].includes("./static/studentCertFile/")) {
                 payload.append("certFile", certFile);
             }
+            
         }
         else if (props.loginPosition === "president") { //학생회장
             payload.append("phoneNumber", phoneNumber);
@@ -543,7 +544,6 @@ function EditProfile(props) {
                                         ?
                                         <>
                                             <button className="errorBtn" type="button" onClick={() => {
-                                                putProfile()
                                                 props.loginPosition === "student"
                                                     ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
                                                         ? putProfile()
@@ -552,7 +552,7 @@ function EditProfile(props) {
                                                         props.loginPosition === "president"
                                                             ? (<>{window.confirm('프로필을 편집하시겠습니까?')
                                                                 ? putProfile()
-                                                                : alert("정보수정이 취소되었습니다. ")}</>)
+                                                                : alert("정보수정이 취소되었습니다.")}</>)
                                                             : null
                                                     }</>)
                                             }}>저장하기</button>

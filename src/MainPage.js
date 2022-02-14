@@ -515,7 +515,7 @@ function MainPage(props) {
                                 </div>
                                                 {
                                                     editProfileButton=== true
-                                                    ?( <div style={{ display: "flex" ,alignItems: "center"}}>;
+                                                    ?( <div style={{ display: "flex" ,alignItems: "center"}}>
                                                         <i class="fas fa-user" style={{fontSize:"20px", marginRight:"10px"}} onClick={() => { setEditProfileState(true); }}></i>
                                                     <i class="fas fa-headset" style={{fontSize:"20px", marginRight:"10px"}} onClick={()=>{window.open("http://pf.kakao.com/_hxnlXb")}}></i>
                                                     <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
