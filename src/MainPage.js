@@ -305,7 +305,8 @@ function MainPage(props) {
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
-                // setWrongApproach(true)/
+                setWrongApproach(true)
+                setEditProfileButton(false);
                 // //지우기
                 // setStudentPresident({ ...answer["studentPresident"] });
                 // setQuarter({ ...answer["quarter"] });
@@ -461,16 +462,25 @@ function MainPage(props) {
     }
 
     useEffect(() => {
-        axios.get('/position')
-            .then((payload) => {
-                setUserLoginPosition(payload.data["position"])
-                reload()
-            })
-            .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-            })
+        // axios.get('/position')
+        //     .then((payload) => {
+        //         setUserLoginPosition(payload.data["position"])
+        //         reload()
+        //     })
+        //     .catch((error) => {
+        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+        //         setWrongApproach(true)
+        //         setEditProfileButton(false);
+        //     })
+
+
+        setStudentPresident({ ...answer["studentPresident"] });
+                setQuarter({ ...answer["quarter"] });
+                reset(props.todayQuarter);
+                showQuarter(props.todayQuarter);
+                console.log(answer["quarter"][props.todayQuarter])
+                console.log(answer["quarter"][props.todayQuarter]["status"])
+                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
     }, []);
 
 
@@ -510,7 +520,7 @@ function MainPage(props) {
                 <div className="nav" style={{ justifyContent: "space-between" }}>
                     <div className="logoNav">
                         <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
-                        <div style={{ marginLeft: "5px", fontSize: "25px", fontWeight: 'bold' }}>PKSCL</div>
+                        <div className="PKSCL" >PKSCL</div>
                     </div>
                     {
                         editProfileButton === true
@@ -581,7 +591,13 @@ function MainPage(props) {
                                 <div className="nav">
                                     <div className="logoNav">
                                         <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
-                                        <div style={{ marginLeft: "5px", fontSize: "25px" }}>PKSCL</div>
+                                         <div className="PKSCL" >PKSCL</div>
+                                        <div className="quarterSelecter">
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2</div><img src={quarter2} alt="quarter2" ></img></div>
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3</div><img src={quarter3} alt="quarter3" ></img></div>
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4</div><img src={quarter4} alt="quarter4" ></img></div>
+                                </div>
                                     </div>
                                     <div className="buttons">
 
@@ -815,7 +831,7 @@ function MainPage(props) {
                                                                     </div>
                                                                     {
                                                                         event.receiptList.length > 1 && showAllReceiptButton[i] === false
-                                                                            ? <div><img src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px" }} /><div style={{ marginBottom: "50px", textAlign: "center" }}></div></div>
+                                                                            ? <div className="giraffeDiv"><img src={giraffe} className="image" alt="" style={{ width: "70px", height: "70px" }} /><div style={{ marginBottom: "50px", textAlign: "center" }}></div></div>
                                                                             : null
                                                                     }
                                                                 </div>

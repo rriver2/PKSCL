@@ -28,81 +28,7 @@ function EditMainPage(props) {
     const history = useHistory();
     const el = useRef();
 
-    let answer = {
-        "studentPresident": { "major": "영어영문학부", "name": "한준규", "phoneNumber": "010-3340-6496", "email": "hellllo3627@pukyong.ac.kr", "majorLogo": null },
-        "quarter": {
-            "quarter1": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "12",
-                        "eventTitle": "이거 글자수 어쩔까요?;ㅇ룽;니ㅜ리ㅜㅁㅇ러ㅣㅠㅣㅓㅏㄴ유ㅓㅏ류ㅣㄴ아ㅣ류ㅣㅏ뉴리ㅘㅠㅁ나ㅣ유ㅣㅏ머뉴ㅣㅏ뮤",
-                        "eventContext": "UX,UI 망가지는 거 마음 아프다...lkfnljkdslkafdjlfajlhfjlhlafljdfnalnfkjlakjlbjkbdalkbkldbkbasfbjhkdabsjk OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "얼른 px 뽀갠다.. 학과 sa;dslajfkjjlkdajkbfjlkabjfakblkbddb 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "ajhljdbdasfliuabijlblkajbslbdafulsuadasklndlsnaklnlsnlnfuiabflbalbsbfsbbs OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    }, {
-                        "eventNumber": "54654",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    },
-                    {
-                        "eventNumber": "3342",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    },
-                    {
-                        "eventNumber": "2131",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    },
-                    {
-                        "eventNumber": "21231",
-                        "eventTitle": "학과 OT2",
-                        "eventContext": "학과 OT를 잘 마무리 하였습니다.",
-                        "receiptList": [{ "receiptNumber": "9", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "참이슬", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "프라이팬", "price": "2000", "amount": "5", "totalAmount": "10000" }, { "context": "돈까스", "price": "2500", "amount": "6", "totalAmount": "15000" }] }, { "receiptNumber": "10", "receiptTitle": "학과 OT2 영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 OT2 영수증 1번입니다. ", "receiptDetailList": [{ "context": "대선", "price": "1500", "amount": "1", "totalAmount": "1500" }, { "context": "갈비", "price": "2500", "amount": "4", "totalAmount": "10000" }, { "context": "참이슬", "price": "3500", "amount": "1", "totalAmount": "3500" }, { "context": "초콜렛", "price": "5000", "amount": "2", "totalAmount": "10000" }, { "context": "연필", "price": "2000", "amount": "2", "totalAmount": "4000" }] }]
-                    },
-                    { "eventNumber": "13", "eventTitle": "학과 새내기배움터 진행", "eventContext": "학과 새내기배움터를 진행하였고 이상없이 마무리 하였습니다.", "receiptList": [{ "receiptNumber": "11", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "콜라", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "참이슬", "price": "2731", "amount": "5", "totalAmount": "13655" }] }, { "receiptNumber": "12", "receiptTitle": "학과 새내기배움터 진행 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "학과 새내기배움터 진행 영수증1", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "컵", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "바구니", "price": "2731", "amount": "3", "totalAmount": "8193" }, { "context": "이어폰", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] },
-                    { "eventNumber": "14", "eventTitle": "빛 축제", "eventContext": "빛 축제를 진행하였습니다. 해당 영수증은 아래와 같습니다.", "receiptList": [{ "receiptNumber": "13", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }, { "receiptNumber": "14", "receiptTitle": "빛 축제 영수증 1", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "빛 축제 영수증 1 영수증입니다.", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "휴지", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "참이슬", "price": "2731", "amount": "4", "totalAmount": "10924" }] }] }]
-            },
-            "quarter2": {
-                "status": "true",
-                "eventList": [
-                    {
-                        "eventNumber": "18", "eventTitle": "기말고사 응원전", "eventContext": "기말고사 응원전을 진행하였습니다.",
-                        "receiptList": [
-                            {
-                                "receiptNumber": "19",
-                                "receiptTitle": "기말고사 응원전 영수증 1번",
-                                "receiptImg": { "name": "./static/receiptImg/test2.png" },
-                                "receiptContext": "",
-                                "receiptDetailList": []
-                            }, {
-                                "receiptNumber": "19",
-                                "receiptTitle": "기말고사 응원전 영수증 1번",
-                                "receiptImg": { "name": "./static/receiptImg/test2.png" },
-                                "receiptContext": "기말고사 응원전 영수증 1번",
-                                "receiptDetailList": [{ "context": "휴지", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" },
-                                ]
-                            }]
-                    },
-                    { "eventNumber": "19", "eventTitle": "기말고사 응원전2", "eventContext": "학생회비가 남게되어 기말고사응원전을 한번 더 진행하였습니다.", "receiptList": [{ "receiptNumber": "20", "receiptTitle": "기말고사 응원전 재영수증 1번", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "기말고사 응원전 재영수증 1번", "receiptDetailList": [{ "context": "돈까스", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "프라이팬", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }]
-            },
-            "quarter3": {
-                "status": "false",
-                "eventList": [
-                    { "eventNumber": "20", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "21", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "갈비", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "연필", "price": "2731", "amount": "3", "totalAmount": "8193" }] }] },
-                    { "eventNumber": "21", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "22", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "프라이팬", "price": "2731", "amount": "4", "totalAmount": "10924" }, { "context": "갈비", "price": "2731", "amount": "5", "totalAmount": "13655" }] }] }]
-            },
-            "quarter4": {
-                "status": "false",
-                "eventList": [
-                    { "eventNumber": "22", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "23", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "1", "totalAmount": "2731" }, { "context": "대선", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] },
-                    { "eventNumber": "23", "eventTitle": "공개일 X", "eventContext": "데이터 O", "receiptList": [{ "receiptNumber": "24", "receiptTitle": "데이터 O", "receiptImg": { "name": "./static/receiptImg/test2.png" }, "receiptContext": "데이터 O", "receiptDetailList": [{ "context": "바구니", "price": "2731", "amount": "2", "totalAmount": "5462" }, { "context": "과자", "price": "2731", "amount": "2", "totalAmount": "5462" }] }] }]
-            }
-        }
-    }
+    let answer = {"studentPresident":{"major":"기린학과","name":"이가은","phoneNumber":"010-5792-5915","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/testlogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"164","eventTitle":"기린학과 임시 장부임~~~~","eventContext":"우헤헤 기린학과엔 기린이 몇마리일기린?","receiptList":[{"receiptNumber":"177","receiptTitle":"기린기린기린","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"기린 퀴즈","receiptDetailList":[{"context":"다리","price":"4","amount":"3","totalAmount":"12"},{"context":"심장","price":"1","amount":"3","totalAmount":"3"},{"context":"꼬리","price":"1","amount":"3","totalAmount":"3"}]}]}]},"quarter2":{"status":"true"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]}]},"quarter4":{"status":"true"}}}
 
     let answerDate = {
         "quarter1": ["1111-01-01", "1111-01-02"],
@@ -541,23 +467,24 @@ function EditMainPage(props) {
 
     useEffect(() => {
         //여기 세 줄 지우고
-        getUserStatus();
-        reset(props.todayQuarter);
-        defineColor(props.todayQuarter);
+        // getUserStatus();
+        // reset(props.todayQuarter);
+        // defineColor(props.todayQuarter);
+
         //여기 한 줄 주석 해제 하면 local 가능
-        // getLedger(); GetDate();
+        getLedger(); GetDate();
+
         setLogoImgPath(`./img/${props.todayQuarter}.png`);
 
     }, []);
 
     useEffect(() => {
         //여기 세 줄 지우면 local 가능
-        if (editEventState === false) {
-            // alert("leger 요청.. 보낸다 !!")
-            getUserStatus();
-            reset(currentQuarter);
-            defineColor(currentQuarter);
-        }
+        // if (editEventState === false) {
+        //     getUserStatus();
+        //     reset(currentQuarter);
+        //     defineColor(currentQuarter);
+        // }
     }, [editEventState]);
 
     useEffect(() => {
@@ -582,7 +509,8 @@ function EditMainPage(props) {
 
 
     return (
-        <>{wrongApproach === true
+        <>
+        {wrongApproach === true
             ? (<>
                 {
                     editProfileState
@@ -662,10 +590,11 @@ function EditMainPage(props) {
                                                 <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
                                                 <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
                                             </div>
+                                            
                                             {
                                                 quarterDate !== undefined
                                                     ? (
-                                                        <div style={{ display: "flex", alignItems: "center" }}>
+                                                        <div className="quarterDateNav" style={{ display: "flex", alignItems: "center" }}>
                                                             {currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 :
                                                             <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
                                                                 onChange={(e) => {
@@ -695,7 +624,8 @@ function EditMainPage(props) {
                                             </div>
                                         </div>
                                     </div>
-
+                                            <div className="MobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.</div>
+                                           
                                     <div style={{ display: "flex" }}>
                                         <div className="quarterData">
                                             <h2 className="quarterTotalAmount" style={{ fontWeight: "bold" }}>
