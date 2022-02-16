@@ -147,15 +147,20 @@ function EditMainPage(props) {
     function showQuarter(selectedQuarter) {
         if (userLoginPosition === "student" || userLoginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
+                setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
+                 
             } else {
+                setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
+                 
             }
         } else {
+             setQuarterAmount(0)
             setCurrentQuarter(selectedQuarter);
             setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);

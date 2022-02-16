@@ -82,17 +82,20 @@ function MainPage(props) {
     function showQuarter(selectedQuarter) {
         if (userLoginPosition === "student" || userLoginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
+                setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             } else {
+                 setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             }
         } else if(userLoginPosition === "admin"){
+             setQuarterAmount(0)
             setCurrentQuarter(selectedQuarter);
             setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);
