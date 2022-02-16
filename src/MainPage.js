@@ -572,7 +572,7 @@ function MainPage(props) {
 
                                 <div className="nav">
                                     <div className="logoNav">
-                                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                        <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
                                          <div className="PKSCL" >PKSCL</div>
                                         <div className="quarterSelecter">
                                     <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
