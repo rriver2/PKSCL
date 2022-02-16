@@ -574,7 +574,7 @@
     }
 
     .quarterSelecter .quarterButton:nth-child(1) {
-        margin-left: 3vw !important;
+        margin-left: 0 !important;
         width: 8vw;
         height: 8vw;
         margin: 10px auto;
