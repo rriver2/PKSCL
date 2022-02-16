@@ -13,7 +13,7 @@ function EditEvent(props) {
     const [editState, setEditState] = useState(true);
 
     const [previewImg, setPreviewImg] = useState();
-    const [eventAmount,setEventAmount] = useState();
+    const [eventAmount, setEventAmount] = useState();
 
 
     function changeEventItem(value, item) {
@@ -154,7 +154,7 @@ function EditEvent(props) {
         tempEditEventData["receiptList"].push({
 
             "receiptTitle": "",
-            "receiptImg": { name: "" },
+            "receiptImg": { name: "./static/receiptImg/defaultReceiptImg.jpg" },
             "receiptContext": "",
             "receiptDetailList": [
                 {
@@ -239,7 +239,7 @@ function EditEvent(props) {
 
         let receiptData = eventData["receiptList"][j];
 
-        if (receiptData["receiptImg"]["name"] !== "") {
+        if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
             payload.append("receiptImgFile", receiptData["receiptImg"])
         }
         payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
@@ -282,6 +282,8 @@ function EditEvent(props) {
 
         let payload = new FormData();
         let receiptData = eventData["receiptList"][j];
+
+
 
         if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
             payload.append("receiptImgFile", receiptData["receiptImg"])
@@ -337,9 +339,10 @@ function EditEvent(props) {
 
         promise
             .then(value => {
-                if (editState === true){
+                if (editState === true) {
                     alert("행사 수정 끗.")
-                    props.setEditEventState(false);}
+                    props.setEditEventState(false);
+                }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })
             .catch((value => {
@@ -349,24 +352,24 @@ function EditEvent(props) {
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
-        let amountReceipt=0;
-        if(eventData!== undefined){
-            for(let i = 0 ; i < eventData["receiptList"].length ; i++){
+        let amountReceipt = 0;
+        if (eventData !== undefined) {
+            for (let i = 0; i < eventData["receiptList"].length; i++) {
                 amountReceipt = amountReceipt + sumReceipt(eventData["receiptList"][i]["receiptDetailList"])
             }
             setEventAmount(amountReceipt)
         }
     }
-    
-
-    useEffect(()=>{
-        setEventAmount(props.editEventAmount);
-        setEventData(props.editEventData);
-    },[])
 
 
     useEffect(() => {
-        CalculateCurrentQuarterReceiptSumList(); 
+        setEventAmount(props.editEventAmount);
+        setEventData(props.editEventData);
+    }, [])
+
+
+    useEffect(() => {
+        CalculateCurrentQuarterReceiptSumList();
     }, [eventData]);
 
     return (
@@ -405,8 +408,8 @@ function EditEvent(props) {
 
 
                                         <div className="eventButtons">
-                                            <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
-                                                <i class="far fa-trash-alt"></i> </button>
+                                            {/* <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
+                                                <i class="far fa-trash-alt"></i> </button> */}
                                             <button onClick={() => {
                                                 editEventButton();
                                             }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>
@@ -506,9 +509,9 @@ function EditEvent(props) {
                                                                                                     return (
                                                                                                         <tr key={k}>
                                                                                                             <td style={{ width: "40px" }}>
-                                                                                                                <span onClick={() => { 
-                                                                                                                    receiptDetailDeleteButton(j, k); 
-                                                                                                                    }}>
+                                                                                                                <span onClick={() => {
+                                                                                                                    receiptDetailDeleteButton(j, k);
+                                                                                                                }}>
                                                                                                                     <i className="far fa-trash-alt"></i>
                                                                                                                 </span>
                                                                                                             </td>
@@ -590,7 +593,9 @@ function EditEvent(props) {
                                                                 {/* </label> */}
 
                                                                 <input type="file" id="receiptImg" accept="image/*"
-                                                                    onChange={(e) => { uploadImg(e.target.files[0], j); }}
+                                                                    onChange={(e) => {
+                                                                        uploadImg(e.target.files[0], j);
+                                                                    }}
                                                                 ></input>
                                                             </div>
                                                         </div>

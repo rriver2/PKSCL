@@ -175,17 +175,17 @@ function AccessPage(props) {
         .then((payload) => {
           props.setLoginPosition(position);
           if (position === "president") {
-              axios.get('/status')
-                .then((payload) => {
-                    if (payload.data["status"] === "approval") {
-                        history.push('/edit-main');
-                    }else if (payload.data["status"] === "waiting"||payload.data["status"] === "refusal") {
-                        history.push('/main');
-                    }
-                })
-                .catch((error) => {        
-                    alert("error"+error.response.status)
-                }) 
+            axios.get('/status')
+              .then((payload) => {
+                if (payload.data["status"] === "approval") {
+                  history.push('/edit-main');
+                } else if (payload.data["status"] === "waiting" || payload.data["status"] === "refusal") {
+                  history.push('/main');
+                }
+              })
+              .catch((error) => {
+                alert("error" + error.response.status)
+              })
           } else if (position === "admin" || position === "student") {
             history.push('/main');
           }
@@ -204,22 +204,26 @@ function AccessPage(props) {
       )
     }
     else {
-      let payload = { "email": email, "stdID": stdID, "name": name };
-      axios.post(debugAPIURL + '/newpwd/' + position, payload)
-        .then((payload) => {
-          console.log(payload);
-          if (window.confirm('입력하신 이메일로 임시 비밀번호를 발급하였습니다.')) {
-            history.push('/');
-          }
-          else {
-            history.push('/newpwd');
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("입력하신 정보를 찾을 수 없습니다.");
+      if (window.confirm('입력하신 이메일로 임시 비밀번호를 발급하시겠습니까?')) {
 
-        });
+        let payload = { "email": email, "stdID": stdID, "name": name };
+        axios.post(debugAPIURL + '/newpwd/' + position, payload)
+          .then((payload) => {
+            alert("입력하신 이메일로 임시 비밀번호를 발급하였습니다.");
+            history.push('/');
+
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("입력하신 정보를 찾을 수 없습니다.");
+
+          });
+      }
+      else {
+        history.push('/newpwd');
+      }
+
+
 
     }
   };

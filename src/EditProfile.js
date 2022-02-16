@@ -138,7 +138,7 @@ function EditProfile(props) {
             if (!certFile["name"].includes("./static/studentCertFile/")) {
                 payload.append("certFile", certFile);
             }
-            
+
         }
         else if (props.loginPosition === "president") { //학생회장
             payload.append("phoneNumber", phoneNumber);
@@ -159,6 +159,7 @@ function EditProfile(props) {
             switch (payload.status) {
                 case 200:
                     alert("정보가 변경되었습니다.");
+                    props.setEditProfileState(false);
                     break;
                 default: alert("success: " + payload.status); break;
             }
@@ -419,9 +420,11 @@ function EditProfile(props) {
                                                 <datalist id="majorList-options" >
                                                     {
                                                         majorList.map((majorName, i) => {
-                                                            return (
-                                                                <option value={majorName} key={i} ></option>
-                                                            )
+                                                            if (i !== 0) {
+                                                                return (
+                                                                    <option value={majorName} key={i} ></option>
+                                                                )
+                                                            }
                                                         })
                                                     }
                                                 </datalist>
