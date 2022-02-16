@@ -102,17 +102,17 @@ function EditMainPage(props) {
                         break;
                 }
                 //지우기
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                    resetArray.push(false)
-                }
-                GetDate();
-                setShowAllReceiptButton(resetArray);
-                setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                setLogoImgPath(`./img/${currentQuarter}.png`);
-                setWrongApproach(false)
-                setEditProfileButton(false)
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                //     resetArray.push(false)
+                // }
+                // GetDate();
+                // setShowAllReceiptButton(resetArray);
+                // setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                // setLogoImgPath(`./img/${currentQuarter}.png`);
+                // setWrongApproach(false)
+                // setEditProfileButton(false)
                 //
             })
     }
@@ -254,19 +254,19 @@ function EditMainPage(props) {
                 setWrongApproach(true)
                 setEditProfileButton(false)
                 //지우기
-                setQuarterDate({ ...answerDate });
-                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-                quarter.map((quarterName) => {
-                    answerDate[quarterName].map((date, i) => {
-                        if (date.substr(0, 4) === "9999") {
-                            let tempAnswerDate = { ...answerDate };
-                            tempAnswerDate[quarterName][i] = "";
-                            setQuarterDate({ ...tempAnswerDate });
-                        }
-                    })
-                })
-                setWrongApproach(false)
-                setEditProfileButton(false)
+                // setQuarterDate({ ...answerDate });
+                // let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
+                // quarter.map((quarterName) => {
+                //     answerDate[quarterName].map((date, i) => {
+                //         if (date.substr(0, 4) === "9999") {
+                //             let tempAnswerDate = { ...answerDate };
+                //             tempAnswerDate[quarterName][i] = "";
+                //             setQuarterDate({ ...tempAnswerDate });
+                //         }
+                //     })
+                // })
+                // setWrongApproach(false)
+                // setEditProfileButton(false)
                 //
             })
     }
@@ -467,12 +467,12 @@ function EditMainPage(props) {
 
     useEffect(() => {
         //여기 세 줄 지우고
-        // getUserStatus();
-        // reset(props.todayQuarter);
-        // defineColor(props.todayQuarter);
+        getUserStatus();
+        reset(props.todayQuarter);
+        defineColor(props.todayQuarter);
 
         //여기 한 줄 주석 해제 하면 local 가능
-        getLedger(); GetDate();
+        // getLedger(); GetDate();
 
         setLogoImgPath(`./img/${props.todayQuarter}.png`);
 
@@ -480,11 +480,11 @@ function EditMainPage(props) {
 
     useEffect(() => {
         //여기 세 줄 지우면 local 가능
-        // if (editEventState === false) {
-        //     getUserStatus();
-        //     reset(currentQuarter);
-        //     defineColor(currentQuarter);
-        // }
+        if (editEventState === false) {
+            getUserStatus();
+            reset(currentQuarter);
+            defineColor(currentQuarter);
+        }
     }, [editEventState]);
 
     useEffect(() => {
@@ -520,7 +520,7 @@ function EditMainPage(props) {
                 }
                 <div className="nav" style={{ justifyContent: "space-between" }}>
                     <div className="logoNav">
-                        <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
                         <div style={{ marginLeft: "5px", fontSize: "25px" }}>PKSCL</div>
                     </div>
                     {
@@ -583,7 +583,7 @@ function EditMainPage(props) {
 
                                         <div className="buttons">
                                             <div className="logoNav">
-                                                <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                                <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
                                                 <div style={{ marginLeft: "5px", fontSize: "25px" }}>PKSCL</div>
                                             </div>
                                             <div style={{ display: "flex" }}>

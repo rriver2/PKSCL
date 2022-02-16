@@ -92,8 +92,9 @@ function MainPage(props) {
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             }
-        } else {
+        } else if(userLoginPosition === "admin"){
             setCurrentQuarter(selectedQuarter);
+            setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);
         }
     }
@@ -258,11 +259,11 @@ function MainPage(props) {
                     setEditProfileButton(false);
                 }
                 //지우기
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                reset(props.todayQuarter);
-                showQuarter(props.todayQuarter);
-                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // reset(props.todayQuarter);
+                // showQuarter(props.todayQuarter);
+                // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             })
 
     }
@@ -286,8 +287,8 @@ function MainPage(props) {
                     setEditProfileButton(false);
                 }
                 //지우기
-                setQuarterDate({ ...answerDate });
-                showQuarter(props.todayQuarter);
+                // setQuarterDate({ ...answerDate });
+                // showQuarter(props.todayQuarter);
             })
     }
 
@@ -375,7 +376,6 @@ function MainPage(props) {
                             setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :)");
                             setWrongApproach(true)
                             setEditProfileButton(true);
-                            //챗봇
                         })
                 }
             })
@@ -462,37 +462,30 @@ function MainPage(props) {
     }
 
     useEffect(() => {
-        // axios.get('/position')
-        //     .then((payload) => {
-        //         setUserLoginPosition(payload.data["position"])
-        //         reload()
-        //     })
-        //     .catch((error) => {
-        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-        //         setWrongApproach(true)
-        //         setEditProfileButton(false);
-        //     })
 
+        // push 할때 주석 풀기
+        axios.get('/position')
+            .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+               setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                reload()
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+            })
 
-        setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                reset(props.todayQuarter);
-                showQuarter(props.todayQuarter);
-                console.log(answer["quarter"][props.todayQuarter])
-                console.log(answer["quarter"][props.todayQuarter]["status"])
-                setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+        // push 할때 주석 넣기
+        // setStudentPresident({ ...answer["studentPresident"] });
+        //         setQuarter({ ...answer["quarter"] });
+        //         reset(props.todayQuarter);
+        //         showQuarter(props.todayQuarter);
+        //         console.log(answer["quarter"][props.todayQuarter])
+        //         console.log(answer["quarter"][props.todayQuarter]["status"])
+        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        //         setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
     }, []);
-
-
-    useEffect(() => {
-        // // console.log(document.getElementById("leftPanel")[0].style.position);
-        // if (editProfileState) {
-        //     document.getElementsByClassName("leftPanel")[0].setProperty("position", "none");
-        // } else {
-
-        // }
-    }, [editProfileState])
-
 
     useEffect(() => {
         if (quarter !== undefined) {
@@ -519,7 +512,7 @@ function MainPage(props) {
                 }
                 <div className="nav" style={{ justifyContent: "space-between" }}>
                     <div className="logoNav">
-                        <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
                         <div className="PKSCL" >PKSCL</div>
                     </div>
                     {
@@ -590,7 +583,7 @@ function MainPage(props) {
 
                                 <div className="nav">
                                     <div className="logoNav">
-                                        <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
                                          <div className="PKSCL" >PKSCL</div>
                                         <div className="quarterSelecter">
                                     <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
