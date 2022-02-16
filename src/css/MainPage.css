@@ -557,6 +557,7 @@
     }
 
     .logoNav img {
+        margin: 0;
         width: 10vw !important;
         height: 10vw !important;
     }

@@ -634,7 +634,7 @@ function EditMainPage(props) {
                                     </div>
                                             <div className="mobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
                                                 <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
+                                                    <button className='submitButton' style={{fontSize:"25vw"}} type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
                                                 </div>
                                             </div>
 

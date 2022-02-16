@@ -217,7 +217,7 @@ i {
     /* box-shadow: 0 0 0 white; */
 }
 
-.EditMainPageContainer .mobileVersion {
+.mobileVersion {
     display: none;
 }
 
@@ -227,7 +227,7 @@ i {
         display: none;
     }
 
-    .mobileVersion {
+    .ManagementPageContainer .mobileVersion {
         display: flex;
         flex-direction: column;
         align-items: center;
