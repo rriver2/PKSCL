@@ -217,70 +217,22 @@ i {
     /* box-shadow: 0 0 0 white; */
 }
 
+.EditMainPageContainer .mobileVersion {
+    display: none;
+}
+
 @media (hover: none) and (pointer: coarse) {
 
-    /* .ManagementPageContainer {
-        background-color: aqua;
-    } */
-
-    .ManagementPageContainer .nav h2 {
-        font-size: 1rem;
+    .PCVersion {
+        display: none;
     }
 
-    .searchBar {
-        width: 40%;
-        margin-left: 10px;
-        height: 50%;
-    }
-
-    .searchBar input {
-        width: 90%;
-    }
-
-    .tables {
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 8vh;
-    }
-
-    .ManagementPageContainer table {
-        width: 90%;
-        font-size: 0.8rem;
-        margin: 0;
-    }
-
-    .ManagementPageContainer .tableSet {
-        margin: 0;
+    .mobileVersion {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .ManagementPageContainer .tableSet:last-child {
-        margin-bottom: 50px;
-    }
-
-    .ManagementPageContainer .tableSet th,
-    .ManagementPageContainer .tableSet td {
-        font-size: 0.8rem;
-    }
-
-    .ManagementPageContainer .submitButton {
-        font-size: 0.3rem;
-        width: 15vw;
-    }
-
-    .ManagementPageContainer .buttons {
-        margin: 0;
-    }
-
-    .tableSet:nth-child(1) {
-        margin-bottom: 20px;
-    }
-
-    .ManagementPageContainer .tableSet tr {
-        height: 40px;
+        height: 100vh;
+        justify-content: center;
     }
 
 }

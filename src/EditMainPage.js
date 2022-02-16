@@ -543,13 +543,14 @@ function EditMainPage(props) {
                     }
                 </div>
                 <div className="MainPageContainer"
-                    style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                    style={{  display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                        <div className="errorGiraffe">
                     {wrongApproachContext}<br />
                     장부의 예시를 보고싶다면 기린을 눌러주세요 :)
                     <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
                         style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
                     <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                </div></>)
+                </div></div></>)
             : (
                 <div className="EditMainPageContainer">
                     {
@@ -631,9 +632,8 @@ function EditMainPage(props) {
                                             </div>
                                         </div>
                                     </div>
-                                            <div className="MobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
+                                            <div className="mobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
                                                 <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
                                                     <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
                                                 </div>
                                             </div>

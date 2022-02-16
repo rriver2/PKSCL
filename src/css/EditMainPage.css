@@ -446,7 +446,7 @@
     padding: 10px;
 }
 
-.EditMainPageContainer .MobileVersion {
+.EditMainPageContainer .mobileVersion {
     display: none;
 }
 
@@ -463,7 +463,7 @@
         display: none !important;
     }
 
-    .EditMainPageContainer .MobileVersion {
+    .EditMainPageContainer .mobileVersion {
         display: flex;
         flex-direction: column;
         align-items: center;

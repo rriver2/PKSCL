@@ -163,6 +163,68 @@ function ManagementPage(props) {
     }
 
 
+
+    function getPresidentList() {
+        axios.get(debugAPIURL + '/student-list')
+            .then((payload) => {
+                console.log(payload)
+                setWaiting([...payload.data["waiting"]]);
+                setRefusal([...payload.data["refusal"]]);
+                setApproval([...payload.data["approval"]]);
+                setLeftTable([...payload.data["waiting"]]);
+                setRightTable([...payload.data["approval"]]);
+                setWrongApproach(false)
+            })
+            .catch((error) => {
+                setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
+                setWrongApproach(true)
+            });
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+    }
+
+    function getAdminList() {
+        axios.get(debugAPIURL + '/president-list')
+            .then((payload) => {
+                console.log(payload)
+                setWaiting([...payload.data["waiting"]]);
+                setRefusal([...payload.data["refusal"]]);
+                setApproval([...payload.data["approval"]]);
+                setLeftTable([...payload.data["waiting"]]);
+                setRightTable([...payload.data["approval"]]);
+                setWrongApproach(false)
+            })
+            .catch((error) => {
+                setWrongApproachContext("학과리스트를 불러올 수 없습니다.");
+                setWrongApproach(true)
+            });
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+    }
+
+
+
+    function pressSearchStudent() {
+        if (searchButton === "x") {
+            setSearchStudent("");
+            setSearchButton("search");
+            setLeftTable([...waiting]);
+            setRightTable([...approval]);
+        } else {
+            if (searchStudent === "") {
+                alert("검색명을 입력해주세요 :)");
+            } else {
+                setSearchButton("x");
+
+                let left = waiting.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
+                let right = approval.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
+
+                setLeftTable(left);
+                setRightTable(right);
+            }
+
+        }
+    }
+
+
     useEffect(() => {
         axios.get('/position')
             .then((payload) => {
@@ -204,83 +266,17 @@ function ManagementPage(props) {
                 setWrongApproach(true)
             })
 
+                // setWaiting([...임시리스트["waiting"]]);
+                // setRefusal([...임시리스트["refusal"]]);
+                // setApproval([...임시리스트["approval"]]);
+                // setLeftTable([...임시리스트["waiting"]]);
+                // setRightTable([...임시리스트["approval"]]);
 
     }, []);
 
-    function getPresidentList() {
-        axios.get(debugAPIURL + '/student-list')
-            .then((payload) => {
-                console.log(payload)
-                setWaiting([...payload.data["waiting"]]);
-                setRefusal([...payload.data["refusal"]]);
-                setApproval([...payload.data["approval"]]);
-                setLeftTable([...payload.data["waiting"]]);
-                setRightTable([...payload.data["approval"]]);
-                setWrongApproach(false)
-            })
-            .catch((error) => {
-                setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
-                setWrongApproach(true)
-                //삭제하기
-                setWaiting([...임시리스트["waiting"]]);
-                setRefusal([...임시리스트["refusal"]]);
-                setApproval([...임시리스트["approval"]]);
-                setLeftTable([...임시리스트["waiting"]]);
-                setRightTable([...임시리스트["approval"]]);
-            });
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
-    }
-
-    function getAdminList() {
-        axios.get(debugAPIURL + '/president-list')
-            .then((payload) => {
-                console.log(payload)
-                setWaiting([...payload.data["waiting"]]);
-                setRefusal([...payload.data["refusal"]]);
-                setApproval([...payload.data["approval"]]);
-                setLeftTable([...payload.data["waiting"]]);
-                setRightTable([...payload.data["approval"]]);
-                setWrongApproach(false)
-            })
-            .catch((error) => {
-                setWrongApproachContext("학과리스트를 불러올 수 없습니다.");
-                setWrongApproach(true)
-                //삭제하기
-                setWaiting([...임시리스트["waiting"]]);
-                setRefusal([...임시리스트["refusal"]]);
-                setApproval([...임시리스트["approval"]]);
-                setLeftTable([...임시리스트["waiting"]]);
-                setRightTable([...임시리스트["approval"]]);
-            });
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
-    }
-
-
-
-    function pressSearchStudent() {
-        if (searchButton === "x") {
-            setSearchStudent("");
-            setSearchButton("search");
-            setLeftTable([...waiting]);
-            setRightTable([...approval]);
-        } else {
-            if (searchStudent === "") {
-                alert("검색명을 입력해주세요 :)");
-            } else {
-                setSearchButton("x");
-
-                let left = waiting.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
-                let right = approval.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
-
-                setLeftTable(left);
-                setRightTable(right);
-            }
-
-        }
-    }
-
     return (
-        <>{wrongApproach === true
+        <>
+        {wrongApproach === true
             ? (<><div className="nav" style={{ justifyContent: "space-between" }}>
                 <div className="logoNav">
                     <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
@@ -299,6 +295,50 @@ function ManagementPage(props) {
                 </div></>)
             : (
                 <div className="ManagementPageContainer">
+                    <div className="mobileVersion"> PKSCL 학생관리는 PC로만 가능합니다.
+                        <div className="nav" style={{ display: "flex", justifyContent: "space-between" }}>
+                                            <div className="logoNav" onClick={() => { history.push('/main') }}>
+                                                <img src={`./img/${props.todayQuarter}.png`} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
+                                                <div style={{ marginLeft: "5px", fontSize: "25px", fontFamily: "Work Sans", fontWeight: "bold" }}>PKSCL</div>
+                                            </div>
+                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                {
+                                                    userLoginPosition === "president"
+                                                    ?<button className="submitButton" onClick={() => {history.push('/edit-main')}}>장부 수정</button>
+                                                    :null
+                                                }
+                                                {
+                                                    userLoginPosition === "admin"
+                                                    ?<button className="submitButton" onClick={() => {history.push('/main')}}>장부 확인</button>
+                                                    :null
+                                                }
+                                            </div >
+
+
+                                            {
+                                                userLoginPosition === "president"
+                                                    ?
+                                                    <>
+                                                        <div>
+                                                            <button className="submitButton"
+                                                                onClick={() => {
+                                                                    if (userLoginPosition === "admin") {
+                                                                        history.push('/main')
+                                                                    } else if (userLoginPosition === "president") {
+                                                                        history.push('/edit-main')
+                                                                    }
+                                                                }}>장부 수정</button>
+                                                            <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_hxnlXb") }}></i>
+                                                        </div>
+                                                    </>
+                                                    : null
+                                            }
+
+                                            
+                                        </div>
+                    </div>
+                    <div className="PCVersion">
+                                
                     {
                         showImg === true
                             ? (<PreviewImg previewImg={previewImg} setShowImg={setShowImg}></PreviewImg>)
@@ -574,7 +614,7 @@ function ManagementPage(props) {
                                         </div>
                                     </div>
                                 </>)}
-                </div>
+                </div></div>
             )}</>
     )
 }

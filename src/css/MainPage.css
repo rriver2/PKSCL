@@ -341,7 +341,7 @@
 .receiptTable tbody {
     display: block;
     overflow-y: auto;
-    height: 200px;
+    max-height: 200px;
     width: fit-content;
 }
 
@@ -448,7 +448,7 @@
     }
 
     .MainPageContainer .leftPanel {
-        /* display: none; */
+        display: none;
     }
 
     .MainPageContainer .majorCard {
@@ -462,43 +462,6 @@
 
     .PKSCL {
         display: none;
-    }
-
-    .quarterSelecter {
-        display: flex;
-    }
-
-    .quarterSelecter .quarterButton {
-        width: 8vw;
-        height: 8vw;
-        margin: 10px auto;
-        position: relative;
-    }
-
-    .quarterSelecter .quarterButton:nth-child(1) {
-        margin-left: 3vw !important;
-        width: 8vw;
-        height: 8vw;
-        margin: 10px auto;
-        position: relative;
-    }
-
-    .quarterSelecter .quarterButton img {
-        padding: 0;
-        width: 8vw;
-        height: 8vw;
-        filter: drop-shadow(3px 5px 3px white);
-    }
-
-    .quarterSelecter .quarterButton div {
-        z-index: 20;
-        padding: 5px 10px;
-        text-align: center;
-        position: absolute;
-        width: 8vw;
-        height: 8vw;
-        line-height: 5vw;
-        color: white;
     }
 
     .leftPanel .quarterButton {
@@ -593,5 +556,49 @@
         font-size: 12px !important;
     }
 
+    .logoNav img {
+        width: 10vw !important;
+        height: 10vw !important;
+    }
 
+    .quarterSelecter {
+        display: flex;
+    }
+
+    .quarterSelecter .quarterButton {
+        width: 8vw;
+        height: 8vw;
+        margin: 10px auto;
+        position: relative;
+    }
+
+    .quarterSelecter .quarterButton:nth-child(1) {
+        margin-left: 3vw !important;
+        width: 8vw;
+        height: 8vw;
+        margin: 10px auto;
+        position: relative;
+    }
+
+    .quarterSelecter .quarterButton img {
+        padding: 0;
+        width: 8vw !important;
+        height: 8vw !important;
+        filter: drop-shadow(3px 5px 3px white);
+    }
+
+    .quarterSelecter .quarterButton div {
+        z-index: 20;
+        padding: 5px 10px;
+        text-align: center;
+        position: absolute;
+        width: 8vw;
+        height: 8vw;
+        line-height: 5vw;
+        color: white;
+    }
+
+    .MainPageContainer .tempAlert {
+        width: 20vw;
+    }
 }
