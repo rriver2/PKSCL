@@ -40,19 +40,19 @@ function EditEvent(props) {
         // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
 
-    function eventDeleteButton() {
-        axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
-            .then((payload) => {
-                switch (payload.status) {
-                    case 200:
-                        alert("행사 장부가 삭제되었습니다.");
-                        break;
-                    default: break;
-                }
-            }).catch((error) => {
-                alert("장부를 삭제하는데 실패했습니다.");
-            })
-    }
+    // function eventDeleteButton() {
+    //     axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
+    //         .then((payload) => {
+    //             switch (payload.status) {
+    //                 case 200:
+    //                     alert("행사 장부가 삭제되었습니다.");
+    //                     break;
+    //                 default: break;
+    //             }
+    //         }).catch((error) => {
+    //             alert("장부를 삭제하는데 실패했습니다.");
+    //         })
+    // }
 
     function processImage(file) {
         if (file != null) {
@@ -67,7 +67,7 @@ function EditEvent(props) {
     }
 
     function receiptDeleteButton(j) {
-        let answer = window.confirm("영수증을 삭제하시겠습니까?");
+        let answer = window.confirm("영수증을 삭제하면 되돌릴 수 없습니다.");
         if (answer) {
             if (eventData["receiptList"][j]["receiptNumber"] !== undefined) {
                 SetDeleteReceiptList([...deleteReceiptList, eventData["receiptList"][j]["receiptNumber"]])
@@ -83,7 +83,7 @@ function EditEvent(props) {
                         })
             }
             setEventData(tempEditEventData);
-            alert("영수증이 삭제되었습니다.");
+            // alert("영수증이 삭제되었습니다.");
         }
     }
 
@@ -182,7 +182,7 @@ function EditEvent(props) {
                     resolve("행사 이름, 행사 설명 수정 완료")
                 })
                 .catch((error) => {
-                    reject("행사 이름, 행사 설명 수정 실패")
+                    reject(`행사 이름, 행사 설명 수정을 실패하였습니다. error: ${error.response.status}`)
                 })
         })
 
@@ -217,13 +217,12 @@ function EditEvent(props) {
                     resolve("영수증 삭제 완료")
                 })
                 .catch((error) => {
-                    reject("영수증 삭제 실패")
+                    reject(`영수증 삭제가 실패하였습니다. error: ${error.response.status}`)
                 })
         })
 
         promise
             .then(value => {
-                alert(value)
                 sendReciept();
             })
             .catch((value => {
@@ -264,7 +263,7 @@ function EditEvent(props) {
                     resolve("영수증 추가 완료")
                 })
                 .catch((error) => {
-                    reject("영수증 추가 실패")
+                    reject(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
                 })
         })
 
@@ -311,7 +310,7 @@ function EditEvent(props) {
                     resolve("영수증 수정 완료")
                 })
                 .catch((error) => {
-                    reject("영수증 수정 실패")
+                    reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`)
                 })
         })
 
@@ -340,7 +339,7 @@ function EditEvent(props) {
         promise
             .then(value => {
                 if (editState === true) {
-                    alert("행사 수정 끗.")
+                    // alert("행사 수정 끗.")
                     props.setEditEventState(false);
                 }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
@@ -416,7 +415,7 @@ function EditEvent(props) {
                                             <button onClick={() => {
                                                 if (window.confirm("행사 수정을 취소하시겠습니까?")) {
                                                     props.setEditEventState(false)
-                                                    alert("취소되었습니다.")
+                                                    // alert("취소되었습니다.")
                                                 }
 
                                             }} style={{ marginRight: "15px" }}><i class="fas fa-times"></i> </button>

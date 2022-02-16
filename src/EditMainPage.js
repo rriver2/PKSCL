@@ -346,7 +346,7 @@ function EditMainPage(props) {
     }
 
     function eventDeleteButton(eventNumber, index) {
-        if (window.confirm("삭제하면 되돌릴 수 없습니다.")) {
+        if (window.confirm("행사를 삭제하면 되돌릴 수 없습니다.")) {
             var tempQuarter = { ...quarter };
             tempQuarter[currentQuarter]["eventList"].splice(index, 1);
 
@@ -355,7 +355,7 @@ function EditMainPage(props) {
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
-                            alert("행사 장부가 삭제되었습니다.");
+                            // alert("행사 장부가 삭제되었습니다.");
                             break;
                     }
                     getLedger();
@@ -553,7 +553,7 @@ function EditMainPage(props) {
     useEffect(() => {
         //여기 세 줄 지우면 local 가능
         if (editEventState === false) {
-            alert("leger 요청.. 보낸다 !!")
+            // alert("leger 요청.. 보낸다 !!")
             getUserStatus();
             reset(currentQuarter);
             defineColor(currentQuarter);
