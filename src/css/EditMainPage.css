@@ -87,14 +87,52 @@
     align-items: center;
 }
 
-
 .EditMainPageContainer .nav {
     top: 0;
     width: 100%;
-    justify-content: flex-end;
     position: fixed;
     height: 20px;
     left: 0;
+    height: 8vh;
+    background: rgb(255 255 255 / 90%);
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 1px 1px 1px 0 rgb(207 206 206);
+    align-items: center;
+    font-size: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.EditMainPageContainer i {
+    color: var(--color-quarter);
+}
+
+.EditMainPageContainer .buttonNav {
+    display: flex;
+    align-items: center;
+}
+
+.EditMainPageContainer .navButton {
+    background-color: var(--color-quarter);
+    border: none;
+    outline: none;
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: inherit;
+    border-radius: 20px;
+    margin: 0 5px 0 5px;
+    padding: 5px 15px 5px 15px;
+    transition: 0.5s;
+}
+
+.EditMainPageContainer .buttonNav i {
+    margin: 10px;
+    font-size: inherit;
 }
 
 .EditMainPageContainer .majorList {
@@ -113,7 +151,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     margin-top: 15px;
-    font-size: 15px;
+    font-size: inherit;
     border: none;
     width: 200px;
     caret-color: black;
@@ -131,7 +169,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     margin-top: 15px;
-    font-size: 15px;
+    font-size: inherit;
 }
 
 .EditMainPageContainer .mainSearchBar input {
@@ -162,19 +200,6 @@
     font-size: 20px;
 }
 
-.EditMainPageContainer .buttons {
-    align-items: center;
-    display: flex;
-    height: 8vh;
-    background: rgb(255 255 255 / 90%);
-    width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-    z-index: 1;
-    justify-content: space-around;
-    box-shadow: 1px 1px 1px 0 rgb(207 206 206);
-}
-
 .EditMainPageContainer .submitButton {
     background-color: var(--color-quarter);
     border: none;
@@ -191,9 +216,9 @@
 
 
 .EditMainPageContainer .quarterData {
-    margin-top: 100px;
     width: 700px;
     margin-right: 0;
+    margin-top: 12vh;
 }
 
 .EditMainPageContainer .eventTitle {
@@ -377,17 +402,6 @@
     border: 1px solid var(--color-quarter);
 }
 
-/* .cardImg .pagenation {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.cardImg .pagenationItem {
-    color: var(--color-quarter);
-} */
-
 .EditMainPageContainer .remotePanel {
     width: 1px;
     height: 100%;
@@ -459,6 +473,11 @@
         align-items: flex-start;
     }
 
+    .EditMainPageContainer .nav {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .EditMainPageContainer .PCVersion {
         display: none !important;
     }
@@ -494,11 +513,6 @@
         display: none;
     }
 
-    .EditMainPageContainer .nav {
-        width: 100%;
-        left: 0;
-    }
-
     .PKSCL {
         display: none;
     }
@@ -507,14 +521,14 @@
         display: flex;
     }
 
-    .quarterSelecter .quarterButton {
+    .EditMainPageContainer .quarterSelecter .quarterButton {
         width: 8vw;
         height: 8vw;
         margin: 10px auto;
         position: relative;
     }
 
-    .quarterSelecter .quarterButton:nth-child(1) {
+    .EditMainPageContainer .quarterSelecter .quarterButton:nth-child(1) {
         margin-left: 3vw !important;
         width: 8vw;
         height: 8vw;
@@ -522,14 +536,14 @@
         position: relative;
     }
 
-    .quarterSelecter .quarterButton img {
+    .EditMainPageContainer .quarterSelecter .quarterButton img {
         padding: 0;
         width: 8vw;
         height: 8vw;
         filter: drop-shadow(3px 5px 3px white);
     }
 
-    .quarterSelecter .quarterButton div {
+    .EditMainPageContainer .quarterSelecter .quarterButton div {
         z-index: 20;
         padding: 5px 10px;
         text-align: center;
@@ -540,7 +554,7 @@
         color: white;
     }
 
-    .leftPanel .quarterButton {
+    .EditMainPageContainer .leftPanel .quarterButton {
         display: none;
     }
 
@@ -549,10 +563,6 @@
         font-size: 20px !important;
     }
 
-    .EditMainPageContainer .submitButton {
-        font-size: 10px;
-        width: 15vw;
-    }
 
     .EditMainPageContainer .quarterData {
         left: 0;
@@ -621,7 +631,7 @@
     }
 
     .EditMainPageContainer .tempAlert {
-        font-size: 8px !important;
+        font-size: inherit !important;
     }
 
     .EditMainPageContainer .edit {
@@ -630,6 +640,17 @@
 
     .EditMainPageContainer .receiptTable {
         font-size: 12px !important;
+    }
+
+    .EditMainPageContainer .submitButton {
+        width: auto !important;
+        padding: 5px 15px 5px 15px;
+        font-size: inherit;
+    }
+
+    .EditMainPageContainer .logoNav img {
+        height: 30px !important;
+        width: 30px !important;
     }
 
 }

@@ -13,12 +13,10 @@ import PreviewImg from './PreviewImg';
 
 
 function MainPage(props) {
-    let debugAPIURL = "";
-    // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
 
     const history = useHistory();
 
-    let answer = { "studentPresident": { "major": "국어국문학과", "name": "박경수", "phoneNumber": "010-8967-8093", "email": "test1@pukyong.ac.kr", "majorLogo": "./static/majorLogo/testlogo.jpg" }, "quarter": { "quarter1": { "status": "true", "eventList": [{ "eventNumber": "141", "eventTitle": "이헌도", "eventContext": "우헤헤", "receiptList": [{ "receiptNumber": "152", "receiptTitle": "영수증 1", "receiptImg": { "name": "./static/receiptImg/20220211143900134.jpeg" }, "receiptContext": "비고 ", "receiptDetailList": [{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" }, { "context": "22", "price": "32123", "amount": "3212", "totalAmount": "103179076" }, { "context": "2312", "price": "1222", "amount": "2313", "totalAmount": "2826486" }, { "context": "1232", "price": "32321", "amount": "32123", "totalAmount": "1038247483" }, { "context": "ㅁㄴㅇㅇㅁㄴ", "price": "1321", "amount": "231321", "totalAmount": "305575041" }] }, { "receiptNumber": "153", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "115", "eventTitle": "1분기 행사 2 입니다.", "eventContext": "1분기 행사 2 비고 입니다.kkk", "receiptList": [{ "receiptNumber": "148", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121428763.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "149", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121500241.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "150", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121501647.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "112", "eventTitle": "1분기 행사1 입니다", "eventContext": "1분기 행사1 비고 입니다", "receiptList": [{ "receiptNumber": "112", "receiptTitle": "행사 1 jnijnnjn 1", "receiptImg": { "name": "./static/receiptImg/20220211115926110.jpeg" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "물품2", "price": "2000", "amount": "2", "totalAmount": "4000" }, { "context": "물품3", "price": "3000", "amount": "4", "totalAmount": "12000" }] }, { "receiptNumber": "113", "receiptTitle": "행사 1 영수증 2", "receiptImg": { "name": "./static/receiptImg/20220211002441793.png" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }] }] }] }, "quarter2": { "status": "true", "eventList": [{ "eventNumber": "58", "eventTitle": "안녕하세요 PKSCL입니다.", "eventContext": "온라인 장부를 이용하세요 ><", "receiptList": [{ "receiptNumber": "99", "receiptTitle": "저는 영수증 입니다", "receiptImg": { "name": "./static/receiptImg/20220210162318283.png" }, "receiptContext": "영수증 비고 입니다.", "receiptDetailList": [{ "context": "품명1", "price": "10001", "amount": "2", "totalAmount": "20002" }, { "context": "품명2", "price": "10000", "amount": "3", "totalAmount": "30000" }] }, { "receiptNumber": "154", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "62", "eventTitle": "1234", "eventContext": "", "receiptList": [] }, { "eventNumber": "63", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "65", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "66", "eventTitle": "", "eventContext": "", "receiptList": [] }] }, "quarter3": { "status": "true", "eventList": [{ "eventNumber": "60", "eventTitle": "", "eventContext": "", "receiptList": [{ "receiptNumber": "89", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220212025356069.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "90", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }] }, "quarter4": { "status": "false", "eventList": [{ "eventNumber": "127", "eventTitle": "기말고사 응원전", "eventContext": "기말고사를 응원하기 위해서 응원전을 진행하였습니다 :) ", "receiptList": [{ "receiptNumber": "127", "receiptTitle": "카카오톡 기프티콘", "receiptImg": { "name": "./static/receiptImg/20220210160642755.png" }, "receiptContext": "신청자를 추첨해 기프티콘 증정", "receiptDetailList": [{ "context": "BBQ치킨", "price": "19900", "amount": "3", "totalAmount": "59700" }, { "context": "도미노 피자", "price": "14000", "amount": "4", "totalAmount": "56000" }, { "context": "베스킨라빈스", "price": "6400", "amount": "5", "totalAmount": "32000" }] }, { "receiptNumber": "138", "receiptTitle": "카카오톡 기프티콘 2", "receiptImg": { "name": "./static/receiptImg/20220210152028949.png" }, "receiptContext": "", "receiptDetailList": [{ "context": "암", "price": "23132", "amount": "2", "totalAmount": "46264" }] }] }] } } }
+    let answer = { "studentPresident": { "major": "국어국문학과", "name": "박경수", "phoneNumber": "010-8967-8093", "email": "test1@pukyong.ac.kr", "majorLogo": "./static/majorLogo/testlogo.jpg" }, "quarter": { "quarter1": { "status": "true", "eventList": [{ "eventNumber": "141", "eventTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "eventContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "receiptList": [{ "receiptNumber": "152", "receiptTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 1", "receiptImg": { "name": "./static/receiptImg/20220211143900134.jpeg" }, "receiptContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 ", "receiptDetailList": [{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" }, { "context": "22", "price": "32123", "amount": "3212", "totalAmount": "103179076" }, { "context": "2312", "price": "1222", "amount": "2313", "totalAmount": "2826486" }, { "context": "1232", "price": "32321", "amount": "32123", "totalAmount": "1038247483" }, { "context": "ㅁㄴㅇㅇㅁㄴ", "price": "1321", "amount": "231321", "totalAmount": "305575041" }] }, { "receiptNumber": "153", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "115", "eventTitle": "1분기 행사 2 입니다.", "eventContext": "1분기 행사 2 비고 입니다.kkk", "receiptList": [{ "receiptNumber": "148", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121428763.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "149", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121500241.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "150", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121501647.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "112", "eventTitle": "1분기 행사1 입니다", "eventContext": "1분기 행사1 비고 입니다", "receiptList": [{ "receiptNumber": "112", "receiptTitle": "행사 1 jnijnnjn 1", "receiptImg": { "name": "./static/receiptImg/20220211115926110.jpeg" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "물품2", "price": "2000", "amount": "2", "totalAmount": "4000" }, { "context": "물품3", "price": "3000", "amount": "4", "totalAmount": "12000" }] }, { "receiptNumber": "113", "receiptTitle": "행사 1 영수증 2", "receiptImg": { "name": "./static/receiptImg/20220211002441793.png" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }] }] }] }, "quarter2": { "status": "true", "eventList": [{ "eventNumber": "58", "eventTitle": "안녕하세요 PKSCL입니다.", "eventContext": "온라인 장부를 이용하세요 ><", "receiptList": [{ "receiptNumber": "99", "receiptTitle": "저는 영수증 입니다", "receiptImg": { "name": "./static/receiptImg/20220210162318283.png" }, "receiptContext": "영수증 비고 입니다.", "receiptDetailList": [{ "context": "품명1", "price": "10001", "amount": "2", "totalAmount": "20002" }, { "context": "품명2", "price": "10000", "amount": "3", "totalAmount": "30000" }] }, { "receiptNumber": "154", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "62", "eventTitle": "1234", "eventContext": "", "receiptList": [] }, { "eventNumber": "63", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "65", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "66", "eventTitle": "", "eventContext": "", "receiptList": [] }] }, "quarter3": { "status": "true", "eventList": [{ "eventNumber": "60", "eventTitle": "", "eventContext": "", "receiptList": [{ "receiptNumber": "89", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220212025356069.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "90", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }] }, "quarter4": { "status": "false", "eventList": [{ "eventNumber": "127", "eventTitle": "기말고사 응원전", "eventContext": "기말고사를 응원하기 위해서 응원전을 진행하였습니다 :) ", "receiptList": [{ "receiptNumber": "127", "receiptTitle": "카카오톡 기프티콘", "receiptImg": { "name": "./static/receiptImg/20220210160642755.png" }, "receiptContext": "신청자를 추첨해 기프티콘 증정", "receiptDetailList": [{ "context": "BBQ치킨", "price": "19900", "amount": "3", "totalAmount": "59700" }, { "context": "도미노 피자", "price": "14000", "amount": "4", "totalAmount": "56000" }, { "context": "베스킨라빈스", "price": "6400", "amount": "5", "totalAmount": "32000" }] }, { "receiptNumber": "138", "receiptTitle": "카카오톡 기프티콘 2", "receiptImg": { "name": "./static/receiptImg/20220210152028949.png" }, "receiptContext": "", "receiptDetailList": [{ "context": "암", "price": "23132", "amount": "2", "totalAmount": "46264" }] }] }] } } }
 
 
     let answerDate = {
@@ -28,7 +26,7 @@ function MainPage(props) {
         "quarter4": ["2022-01-07", "2022-01-08"]
     }
 
-    let answerMajorList = { "majorList": ["기린학과", "국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"] }
+    let answerMajorList = ["기린학과", "국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"] 
 
     const [studentPresident, setStudentPresident] = useState();
 
@@ -88,14 +86,14 @@ function MainPage(props) {
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             } else {
-                 setQuarterAmount(0)
+                setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             }
-        } else if(userLoginPosition === "admin"){
-             setQuarterAmount(0)
+        } else if (userLoginPosition === "admin") {
+            setQuarterAmount(0)
             setCurrentQuarter(selectedQuarter);
             setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);
@@ -166,11 +164,11 @@ function MainPage(props) {
     }
 
     function logout() {
-        axios.post(debugAPIURL + '/logout')
+        axios.post(  '/logout')
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                console.log("로그아웃에 실패하였습니다.");
+                alert("로그아웃에 실패하였습니다.")
                 reload();
             })
     }
@@ -228,7 +226,7 @@ function MainPage(props) {
             if (major === "") {
                 alert("검색명을 입력해주세요 :)");
             } else if ((majorList.includes(ledgerMajor))) {
-                let findMajorIndex = majorList.indexOf(ledgerMajor) + 1
+                let findMajorIndex = majorList.indexOf(ledgerMajor)
                 getAdminLedger(findMajorIndex);
                 adminGetDate(findMajorIndex);
                 setMajor("");
@@ -240,7 +238,7 @@ function MainPage(props) {
     }
 
     function getAdminLedger(findMajorIndex) {
-        axios.get(debugAPIURL + `/major-info/admin?major-number=${findMajorIndex}`)
+        axios.get(  `/major-info/admin?major-number=${findMajorIndex}`)
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
@@ -266,7 +264,7 @@ function MainPage(props) {
     }
 
     function adminGetDate(findMajorIndex) {
-        axios.get(debugAPIURL + `/ledger-date?major-number=${findMajorIndex}`)
+        axios.get(  `/ledger-date?major-number=${findMajorIndex}`)
             .then((payload) => {
                 setQuarterDate({ ...payload.data });
                 showQuarter(props.todayQuarter);
@@ -287,7 +285,7 @@ function MainPage(props) {
     }
 
     function getExPKSCL() {
-        axios.get(debugAPIURL + '/temp-major-info')
+        axios.get(  '/temp-major-info')
             .then((payload) => {
                 setWrongApproach(false)
                 setEditProfileButton(false);
@@ -302,20 +300,12 @@ function MainPage(props) {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
                 setWrongApproach(true)
                 setEditProfileButton(false);
-                // //지우기
-                // setStudentPresident({ ...answer["studentPresident"] });
-                // setQuarter({ ...answer["quarter"] });
-                // reset(props.todayQuarter);
-                // showQuarter(props.todayQuarter);
-                // console.log(answer["quarter"][props.todayQuarter])
-                // console.log(answer["quarter"][props.todayQuarter]["status"])
-                // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             })
     }
 
     function loginAdmin() {
         let ledgerMajor;
-        axios.get(debugAPIURL + '/major-list')
+        axios.get(  '/major-list')
             .then((payload) => {
                 setMajorList([...payload.data["majorList"]]);
                 if (major === undefined) {
@@ -354,7 +344,7 @@ function MainPage(props) {
                     setEditProfileButton(true);
                 }
                 else if (payload.data["status"] === "approval") {
-                    axios.get(debugAPIURL + '/major-info')
+                    axios.get(  '/major-info')
                         .then((payload) => {
                             setStudentPresident({ ...payload.data["studentPresident"] });
                             setQuarter({ ...payload.data["quarter"] });
@@ -395,7 +385,7 @@ function MainPage(props) {
                     setWrongApproach(true)
                     setEditProfileButton(true);
                 } else if (payload.data["status"] === "approval") {
-                    axios.get(debugAPIURL + '/major-info')
+                    axios.get(  '/major-info')
                         .then((payload) => {
                             setStudentPresident({ ...payload.data["studentPresident"] });
                             setQuarter({ ...payload.data["quarter"] });
@@ -416,7 +406,7 @@ function MainPage(props) {
                 setEditProfileButton(false)
                 setWrongApproach(false)
                 setEditProfileButton(false);
-                
+
             })
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
@@ -452,27 +442,29 @@ function MainPage(props) {
     useEffect(() => {
 
         // push 할때 주석 풀기
-        axios.get('/position')
-            .then((payload) => {
-                setUserLoginPosition(payload.data["position"])
-               setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                reload()
-            })
-            .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-            })
+        // axios.get('/position')
+        //     .then((payload) => {
+        //         setUserLoginPosition(payload.data["position"])
+        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        //         reload()
+        //     })
+        //     .catch((error) => {
+        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+        //         setWrongApproach(true)
+        //         setEditProfileButton(false);
+        //     })
 
         // push 할때 주석 넣기
-        // setStudentPresident({ ...answer["studentPresident"] });
-        //         setQuarter({ ...answer["quarter"] });
-        //         reset(props.todayQuarter);
-        //         showQuarter(props.todayQuarter);
-        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
-        //         setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
-        //         setStudentPresident({ ...answer["studentPresident"] });
-        //         setQuarterDate({ ...answerDate });
+            setStudentPresident({ ...answer["studentPresident"] });
+            setQuarter({ ...answer["quarter"] });
+            reset(props.todayQuarter);
+            showQuarter(props.todayQuarter);
+            setLogoImgPath(`./img/${props.todayQuarter}.png`);
+            setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+            setStudentPresident({ ...answer["studentPresident"] });
+            setQuarterDate({ ...answerDate });
+            setUserLoginPosition("president")
+            setMajorList([...answerMajorList]);
     }, []);
 
     useEffect(() => {
@@ -498,35 +490,44 @@ function MainPage(props) {
                         <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
-                <div className="nav" style={{ justifyContent: "space-between" }}>
+                <div className="nav" >
                     <div className="logoNav">
-                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
-                        <div className="PKSCL" >PKSCL</div>
+                        <img  src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
+                        <div className="PksclNav PCVersion" >PKSCL</div>
                     </div>
                     {
                         editProfileButton === true
-                            ? (<div style={{ display: "flex", alignItems: "center" }}>
-                                <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_hxnlXb") }}></i>
-                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
-                            </div>)
-                            : (<div style={{ display: "flex" }}>
-                                <button className='submitButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
+                            ? (<>{
+                                userLoginPosition === "admin"
+                                    ? (<div className="buttonNav">
+                                        <i class="fas fa-headset" onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                        <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                    </div>)
+                                    : (
+                                        <div className="buttonNav">
+                                            <i class="fas fa-user"  onClick={() => { setEditProfileState(true); }}></i>
+                                            <i class="fas fa-headset"  onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                            <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                        </div>)
+                            }</>
+                            )
+                            : (<div className="buttonNav">
+                                <button className='navButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
                             </div>)
                     }
 
 
                 </div>
                 <div className="MainPageContainer"
-                    style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-                        <div className="errorGiraffe">
-                    {wrongApproachContext}<br />
-                    장부의 예시를 보고싶다면 기린을 눌러주세요 :)
+                    style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                    <div className="errorGiraffe">
+                        {wrongApproachContext}<br />
+                        장부의 예시를 보고싶다면 기린을 눌러주세요 :)
 
-                    <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
-                        style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
-                    <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                </div></div></>)
+                        <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
+                            style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
+                        <a href="http://pf.kakao.com/_tRxcJb " target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
+                    </div></div></>)
             : (<div className="MainPageContainer">
                 {
                     showImg
@@ -555,7 +556,7 @@ function MainPage(props) {
                                     </div>
                                     <div className="cogExplanation">
                                         안녕하세요 {studentPresident["major"]} 회장 {studentPresident["name"]}입니다.
-                                        PKCOG 온라인 장부를 통해 학과 장부를 분기별로 확인하세요 :)
+                                        PKSCL 온라인 장부를 통해 학과 장부를 분기별로 확인하세요 :)
                                         장부 확인 중 문의 사항이 있으시다면 이메일로 연락주십시오.
                                         <div style={{ color: "#d32c2c" }}>※ 학과의 장부를 외부로 유출 시 발생하는 문제의 책임은 학생 본인에게 있습니다.</div>
                                     </div>
@@ -572,75 +573,71 @@ function MainPage(props) {
 
                                 <div className="nav">
                                     <div className="logoNav">
-                                        <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
-                                         <div className="PKSCL" >PKSCL</div>
+                                        <img src={logoImgPath} alt="logo" width={"30px"} height={"30px"} />
+                                        <div className="PksclNav PCVersion" >PKSCL</div>
                                         <div className="quarterSelecter">
-                                    <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
-                                    <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2</div><img src={quarter2} alt="quarter2" ></img></div>
-                                    <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3</div><img src={quarter3} alt="quarter3" ></img></div>
-                                    <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4</div><img src={quarter4} alt="quarter4" ></img></div>
-                                </div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2</div><img src={quarter2} alt="quarter2" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3</div><img src={quarter3} alt="quarter3" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4</div><img src={quarter4} alt="quarter4" ></img></div>
+                                        </div>
                                     </div>
-                                    <div className="buttons">
-
-                                        {
-                                            quarterDate !== undefined
-                                                ? (userLoginPosition === "admin"
-                                                    ? (<>
-                                                        <div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div>
-                                                        {adminButton()}</>)
-                                                    : null)
-                                                : null
-                                        }
                                         {
                                             userLoginPosition === "president"
                                                 ? (<>
                                                     {
                                                         tempQuarter === true
-                                                            ?
-                                                            <div>
-                                                                {
-                                                                    userLoginPosition === "admin"
-                                                                        ? (
-                                                                            <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
-                                                                        )
-                                                                        : null
-                                                                }
-
-                                                                <div style={{ alignItems: "center" }}>
-                                                                    <span className="tempAlert" style={{ color: "red", marginRight: "10px" }}>회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</span>
-                                                                    <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
-                                                                </div>
+                                                            ?<>
+                                                            <div className='buttonNav' >
+                                                                    <div className="tempAlert PCVersion" >회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
+                                                                    <i class="fas fa-user" onClick={() => { setEditProfileState(true); }}></i>
+                                                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
+                                                                    
                                                             </div>
-                                                            :
-                                                            <>
-                                                                <div className="tempAlert" style={{ color: "red" }}>현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
-                                                                <button className='submitButton edit' style={{ width: "130px" }} type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
+                                                            {/* <div className="tempAlert mobileVersion" >회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div> */}
+                                                            </>
+                                                            :<>
+                                                            <div className='buttonNav' >
+                                                                <div className="tempAlert PCVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
+                                                                <button className='navButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
+                                                                <button className='navButton edit'  type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
+                                                            </div>
+                                                            {/* <div className="tempAlert mobileVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div> */}
                                                             </>
                                                     }
                                                 </>)
-                                                : (<div style={{ alignItems: "center" }}>
-                                                    {
+                                                : (<>
+{
                                                         userLoginPosition === "admin"
                                                             ? (
-                                                                <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학과 관리</button>
-                                                            )
+                                                                <div  className='buttonNav' >
+                                                                <button className='navButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학과 관리</button>
+                                                            </div>)
                                                             : null
                                                     }
-                                                    <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                                    <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_hxnlXb") }}></i>
-                                                    <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
-                                                </div>)
+                                        {
+                                                        quarterDate !== undefined && userLoginPosition === "admin"
+                                                            ? (<div className='adminNav' >
+                                                                    <div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div>
+                                                                    {adminButton()}</div>)
+                                                                : null
+                                                    }
+                                                    <div  className='buttonNav' >
+                                                    <i class="fas fa-user"  onClick={() => { setEditProfileState(true); }}></i>
+                                                    <i class="fas fa-headset" onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                                    
+                                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button></div>
+                                                    
+                                                </>)
                                         }
 
-                                    </div>
                                 </div>
                                 {
                                     showCurrentQuerter === "true"
                                         ? (<>
                                             <div className="quarterData">
-                                                <h2 className="quarterTotalAmount">
+                                              
+                                                <h2 className="quarterTotalAmount" style={{ fontWeight: "bold" }}>
                                                     {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
                                                 </h2>
                                                 {
@@ -653,10 +650,10 @@ function MainPage(props) {
                                                                         <div className="cardContent">
                                                                             <div className="eventSource">
                                                                                 <div>
-                                                                                    <h4 >{event["eventTitle"]}</h4>
+                                                                                    <h4 className="titleLimitation">{event["eventTitle"]}</h4>
                                                                                     <div style={{ color: "var(--color-quarter)" }}>행사 총 금액 : {eventAmount[i]}원</div>
 
-                                                                                    <div>{event["eventContext"]}  </div>
+                                                                                    <div className="contextLimitation">{event["eventContext"]}  </div>
                                                                                 </div>
                                                                                 <div className="eventButtons">
                                                                                     {
@@ -686,7 +683,7 @@ function MainPage(props) {
 
                                                                             {
                                                                                 showAllReceiptButton[i] === true
-                                                                                    ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
+                                                                                    ? (<div id="receiptContent" style={{ height: "440px", overflowY: "hidden" }}>
 
                                                                                         <div className="receiptCard">
                                                                                             <div className="receiptResource">
@@ -694,7 +691,7 @@ function MainPage(props) {
                                                                                                     event["receiptList"].length === 0
                                                                                                         ? <div>입력된 영수증이 없습니다.</div>
                                                                                                         : (<>
-                                                                                                            <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
+                                                                                                            <h5 className="titleLimitation">{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                             {
                                                                                                                 event["receiptList"][0]["receiptDetailList"].length === 0
                                                                                                                     ? null
@@ -702,7 +699,7 @@ function MainPage(props) {
                                                                                                             }
 
 
-                                                                                                            <div>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                            <div className="contextLimitation">{event["receiptList"][0]["receiptContext"]}</div>
 
 
 
@@ -737,8 +734,8 @@ function MainPage(props) {
                                                                                                     ? null
                                                                                                     :
                                                                                                     <img className="receiptImg" src={event["receiptList"][0]["receiptImg"]["name"]}
-                                                                                                        style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                        alt={event["receiptList"][0]["receiptImg"]["name"]} height={"150"} width={"100"}
+                                                                                                        style={{ backgroundColor: "var(--color-leftPanel)" }} width="400px"
+                                                                                                        alt={event["receiptList"][0]["receiptImg"]["name"]}
                                                                                                         onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]); }} />
                                                                                             }
                                                                                         </div>
@@ -753,13 +750,13 @@ function MainPage(props) {
                                                                                                                 event["receiptList"].length === 0
                                                                                                                     ? <div>입력된 영수증이 없습니다.</div>
                                                                                                                     : (<>
-                                                                                                                        <h5>{receipt["receiptTitle"]}</h5>
+                                                                                                                        <h5 className="titleLimitation">{receipt["receiptTitle"]}</h5>
                                                                                                                         {
                                                                                                                             receipt["receiptDetailList"].length === 0
                                                                                                                                 ? null
                                                                                                                                 : <div style={{ color: "var(--color-quarter)" }}>{j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원</div>
                                                                                                                         }
-                                                                                                                        <div>{receipt["receiptContext"]}</div>
+                                                                                                                        <div className="contextLimitation">{receipt["receiptContext"]}</div>
                                                                                                                         {
                                                                                                                             receipt["receiptDetailList"].length === 0
                                                                                                                                 ? <div>입력된 영수증 내역이 없습니다.</div>
@@ -794,7 +791,7 @@ function MainPage(props) {
                                                                                                             event["receiptList"].length === 0
                                                                                                                 ? null
                                                                                                                 : <img src={receipt["receiptImg"]["name"]} alt={receipt["receiptImg"]["name"]}
-                                                                                                                    style={{ backgroundColor: "var(--color-leftPanel)" }} height={"150"} width={"100"}
+                                                                                                                    style={{ backgroundColor: "var(--color-leftPanel)" }} width="400px"
                                                                                                                     className="receiptImg"
                                                                                                                     onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]); }} />
                                                                                                         }

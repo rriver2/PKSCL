@@ -81,6 +81,35 @@ i:hover {
 .errorGiraffe {
     width: 90vw;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
+}
+
+.tempAlert {
+    margin-right: 20px;
+}
+
+.PksclNav {
+    margin-left: 5px;
+    font-size: 20px;
+    font-family: "Work Sans";
+    font-weight: bold;
+}
+
+.mobileVersion {
+    display: none;
+}
+
+.PCVersion {
+    display: block;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .mobileVersion {
+        display: block;
+    }
+
+    .PCVersion {
+        display: none;
+    }
 }

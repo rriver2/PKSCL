@@ -4,8 +4,6 @@ import './css/EditEvent.css'
 import PreviewImg from './PreviewImg';
 
 function EditEvent(props) {
-    let debugAPIURL = "";
-    // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
 
     const [eventData, setEventData] = useState();
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
@@ -34,25 +32,7 @@ function EditEvent(props) {
         item[key] = value;
         item["totalAmount"] = item["price"] * item["amount"];
         setEventData(tempEditEventData);
-        // var tempShowAllReceiptButton = [...showAllReceiptButton];
-        // tempShowAllReceiptButton[i] = true;
-        // console.log(tempShowAllReceiptButton);
-        // setShowAllReceiptButton(tempShowAllReceiptButton);
     }
-
-    // function eventDeleteButton() {
-    //     axios.delete(debugAPIURL + '/event?event-number=' + eventData["eventNumber"])
-    //         .then((payload) => {
-    //             switch (payload.status) {
-    //                 case 200:
-    //                     alert("행사 장부가 삭제되었습니다.");
-    //                     break;
-    //                 default: break;
-    //             }
-    //         }).catch((error) => {
-    //             alert("장부를 삭제하는데 실패했습니다.");
-    //         })
-    // }
 
     function processImage(file) {
         if (file != null) {
@@ -131,9 +111,6 @@ function EditEvent(props) {
     function uploadImg(img, j) {
         let tempEditEventData = { ...eventData };
         tempEditEventData["receiptList"][j]["receiptImg"] = img;
-        // console.log(tempEditEventData["receiptList"][j]["receiptImg"]);
-        // console.log(tempEditEventData["receiptList"][j]["receiptImg"]["name"]);
-
 
         setEventData(tempEditEventData);
     }
@@ -254,7 +231,7 @@ function EditEvent(props) {
         }
 
         let promise = new Promise((resolve, reject) => {
-            axios.post(debugAPIURL + "/receipt", payload,
+            axios.post( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
@@ -301,7 +278,7 @@ function EditEvent(props) {
         }
 
         let promise = new Promise((resolve, reject) => {
-            axios.put(debugAPIURL + "/receipt", payload,
+            axios.put( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
@@ -391,7 +368,7 @@ function EditEvent(props) {
                                             <div className="eventTitle">
                                                 <h4>
 
-                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "400px" }}
+                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "400px" }} maxLength="25"
                                                         placeholder={"행사 제목을 입력하세요"}
                                                         value={eventData["eventTitle"]}
                                                         onInput={
@@ -423,7 +400,7 @@ function EditEvent(props) {
                                     </div>
 
                                     <div>
-                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }}
+                                        <input type="text" style={{ border: "transparent", textAlign: "left", width: "650px" }} maxLength="40"
                                             placeholder={"행사 비고를 입력하세요"}
                                             value={eventData["eventContext"]}
                                             onInput={
@@ -449,7 +426,7 @@ function EditEvent(props) {
                                                                                     <span onClick={() => { receiptDeleteButton(j); }}>
                                                                                         <i className="far fa-trash-alt"></i>
                                                                                     </span>
-                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "350px" }}
+                                                                                    <input type="text" style={{ border: "transparent", textAlign: "left", width: "350px" }} maxLength="30"
                                                                                         placeholder={"영수증 제목을 입력하세요"}
                                                                                         value={receipt["receiptTitle"]}
 
@@ -473,7 +450,7 @@ function EditEvent(props) {
                                                                             <div>
 
 
-                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }}
+                                                                                <input type="text" style={{ border: "transparent", textAlign: "right", width: "400px" }} maxLength="40"
                                                                                     placeholder={"영수증 비고를 입력하세요"}
                                                                                     value={eventData["receiptList"][j]["receiptContext"]}
                                                                                     onInput={

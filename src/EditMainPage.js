@@ -22,13 +22,10 @@ import PreviewImg from './PreviewImg';
 function EditMainPage(props) {
     const [list, setList] = useState([]);
 
-    let debugAPIURL = "";
-    // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
-
     const history = useHistory();
     const el = useRef();
 
-    let answer = {"studentPresident":{"major":"기린학과","name":"이가은","phoneNumber":"010-5792-5915","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/testlogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"164","eventTitle":"기린학과 임시 장부임~~~~","eventContext":"우헤헤 기린학과엔 기린이 몇마리일기린?","receiptList":[{"receiptNumber":"177","receiptTitle":"기린기린기린","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"기린 퀴즈","receiptDetailList":[{"context":"다리","price":"4","amount":"3","totalAmount":"12"},{"context":"심장","price":"1","amount":"3","totalAmount":"3"},{"context":"꼬리","price":"1","amount":"3","totalAmount":"3"}]}]}]},"quarter2":{"status":"true"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]}]},"quarter4":{"status":"true"}}}
+    let answer = { "studentPresident": { "major": "기린학과", "name": "이가은", "phoneNumber": "010-5792-5915", "email": "cherisher20@pukyong.ac.kr", "majorLogo": "./static/majorLogo/testlogo.jpg" }, "quarter": { "quarter1": { "status": "true", "eventList": [{ "eventNumber": "164", "eventTitle": "기린학과 임시 장부임~~~~", "eventContext": "우헤헤 기린학과엔 기린이 몇마리일기린?", "receiptList": [{ "receiptNumber": "177", "receiptTitle": "기린기린기린", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "기린 퀴즈", "receiptDetailList": [{ "context": "다리", "price": "4", "amount": "3", "totalAmount": "12" }, { "context": "심장", "price": "1", "amount": "3", "totalAmount": "3" }, { "context": "꼬리", "price": "1", "amount": "3", "totalAmount": "3" }] }] }] }, "quarter2": { "status": "true" }, "quarter3": { "status": "true", "eventList": [{ "eventNumber": "170", "eventTitle": "기린의 목덜미", "eventContext": "", "receiptList": [{ "receiptNumber": "180", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }] }, "quarter4": { "status": "true" } } }
 
     let answerDate = {
         "quarter1": ["1111-01-01", "1111-01-02"],
@@ -68,7 +65,7 @@ function EditMainPage(props) {
 
     function getLedger() {
         let resetArray = [];
-        axios.get(debugAPIURL + '/major-info')
+        axios.get( '/major-info')
             .then((payload) => {
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
@@ -104,20 +101,6 @@ function EditMainPage(props) {
                         setEditProfileButton(false)
                         break;
                 }
-                //지우기
-                // setStudentPresident({ ...answer["studentPresident"] });
-                // setQuarter({ ...answer["quarter"] });
-                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                //     resetArray.push(false)
-                // }
-                // GetDate();
-                // setShowAllReceiptButton(resetArray);
-                // setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                // defineColor(currentQuarter);
-                // setLogoImgPath(`./img/${currentQuarter}.png`);
-                // setWrongApproach(false)
-                // setEditProfileButton(false)
-                //
             })
     }
 
@@ -139,9 +122,6 @@ function EditMainPage(props) {
                 resetShowAllReceiptButton();
             }
         }
-        else {
-            console.log("quarter === undefined");
-        }
     }
 
     function showQuarter(selectedQuarter) {
@@ -151,16 +131,16 @@ function EditMainPage(props) {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
-                 
+
             } else {
                 setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
-                 
+
             }
         } else {
-             setQuarterAmount(0)
+            setQuarterAmount(0)
             setCurrentQuarter(selectedQuarter);
             setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);
@@ -263,21 +243,6 @@ function EditMainPage(props) {
                 setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
                 setWrongApproach(true)
                 setEditProfileButton(false)
-                //지우기
-                // setQuarterDate({ ...answerDate });
-                // let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-                // quarter.map((quarterName) => {
-                //     answerDate[quarterName].map((date, i) => {
-                //         if (date.substr(0, 4) === "9999") {
-                //             let tempAnswerDate = { ...answerDate };
-                //             tempAnswerDate[quarterName][i] = "";
-                //             setQuarterDate({ ...tempAnswerDate });
-                //         }
-                //     })
-                // })
-                // setWrongApproach(false)
-                // setEditProfileButton(false)
-                //
             })
     }
 
@@ -287,7 +252,7 @@ function EditMainPage(props) {
             tempQuarter[currentQuarter]["eventList"].splice(index, 1);
 
             const payload = { "eventNumber": eventNumber };
-            axios.delete(debugAPIURL + '/event?event-number=' + eventNumber)
+            axios.delete( '/event?event-number=' + eventNumber)
                 .then((payload) => {
                     switch (payload.status) {
                         case 200:
@@ -312,7 +277,7 @@ function EditMainPage(props) {
         let payload = { "quarter": currentQuarter }
 
         let promise = new Promise((resolve, reject) => {
-            axios.post(debugAPIURL + "/event", payload)
+            axios.post( "/event", payload)
                 .then((payload) => {
                     resolve("장부를 추가하였습니다.");
                 })
@@ -356,7 +321,7 @@ function EditMainPage(props) {
         }
 
         let promise = new Promise((resolve, reject) => {
-            axios.put(debugAPIURL + '/ledger-date', payload)
+            axios.put( '/ledger-date', payload)
                 .then((payload) => {
                     resolve("장부 공개일이 변경되었습니다.");
 
@@ -396,7 +361,7 @@ function EditMainPage(props) {
         let payload = { "eventNumberList": [...eventNumberList] };
 
         let promise = new Promise((resolve, reject) => {
-            axios.patch(debugAPIURL + '/event-sequence', payload)
+            axios.patch( '/event-sequence', payload)
                 .then((payload) => {
                     resolve("행사 순서가 수정되었습니다.");
                 }).catch((error) => {
@@ -459,7 +424,7 @@ function EditMainPage(props) {
 
     }
     function getExPKSCL() {
-        axios.get(debugAPIURL + '/temp-major-info')
+        axios.get(  '/temp-major-info')
             .then((payload) => {
                 setWrongApproach(false)
                 setEditProfileButton(false);
@@ -469,34 +434,56 @@ function EditMainPage(props) {
                 defineColor(props.todayQuarter);
             })
             .catch((error) => {
-                setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
-                // setWrongApproach(true)
-                // setEditProfileButton(false);
+                alert(`임시 장부를 불러올 수 없습니다.`);
             })
 
     }
 
     useEffect(() => {
-        // push 시 주석 삭제
-        getUserStatus();
-        reset(props.todayQuarter);
-        defineColor(props.todayQuarter);
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        // getUserStatus();
+        // reset(props.todayQuarter);
+        // defineColor(props.todayQuarter);
+        // setLogoImgPath(`./img/${props.todayQuarter}.png`);
 
-        //push 시 주석
-        // getLedger(); GetDate();
-        
-        
+
+        setUserLoginPosition("president")
+        setStudentPresident({ ...answer["studentPresident"] });
+                setQuarter({ ...answer["quarter"] });
+                let resetArray=[]
+                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                    resetArray.push(false)
+                }
+                setShowAllReceiptButton(resetArray);
+                setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                defineColor(currentQuarter);
+                setLogoImgPath(`./img/${currentQuarter}.png`);
+                setWrongApproach(false)
+                setEditProfileButton(false)
+                setQuarterDate({ ...answerDate });
+                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
+                quarter.map((quarterName) => {
+                    answerDate[quarterName].map((date, i) => {
+                        if (date.substr(0, 4) === "9999") {
+                            let tempAnswerDate = { ...answerDate };
+                            tempAnswerDate[quarterName][i] = "";
+                            setQuarterDate({ ...tempAnswerDate });
+                        }
+                    })
+                })
+                setWrongApproach(false)
+                setEditProfileButton(false)
+
+
     }, []);
 
     useEffect(() => {
         // push 시 주석 삭제
-        if (editEventState === false) {
-            getUserStatus();
-            reset(currentQuarter);
-            defineColor(currentQuarter);
-            setLogoImgPath(`./img/${currentQuarter}.png`);
-        }
+        // if (editEventState === false) {
+        //     getUserStatus();
+        //     reset(currentQuarter);
+        //     defineColor(currentQuarter);
+        //     setLogoImgPath(`./img/${currentQuarter}.png`);
+        // }
     }, [editEventState]);
 
     useEffect(() => {
@@ -522,424 +509,424 @@ function EditMainPage(props) {
 
     return (
         <>
-        {wrongApproach === true
-            ? (<>
-                {
-                    editProfileState
-                        ?
-                        <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
-                        : null
-                }
-                <div className="nav" style={{ justifyContent: "space-between" }}>
-                    <div className="logoNav">
-                        <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
-                        <div style={{ marginLeft: "5px", fontSize: "25px" }}>PKSCL</div>
-                    </div>
-                    {
-                        editProfileButton === true
-                            ? (<div style={{ display: "flex", alignItems: "center" }}>
-                                <i class="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{ fontSize: "20px", marginRight: "10px" }}></i>
-                                <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_hxnlXb") }}></i>
-                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
-                            </div>)
-                            : (<div style={{ display: "flex" }}>
-                                <button className='submitButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
-                            </div>)
-                    }
-                </div>
-                <div className="MainPageContainer"
-                    style={{  display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-                        <div className="errorGiraffe">
-                    {wrongApproachContext}<br />
-                    장부의 예시를 보고싶다면 기린을 눌러주세요 :)
-                    <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
-                        style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
-                    <a href="http://pf.kakao.com/_hxnlXb" target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                </div></div></>)
-            : (
-                <div className="EditMainPageContainer">
-                    {
-                        showImg
-                            ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
-                            : null
-                    }
+            {wrongApproach === true
+                ? (<>
                     {
                         editProfileState
                             ?
                             <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
-                    {
-                        editEventState
-                            ? (
-                                <>
-                                    <EditEvent setEditEventState={setEditEventState} editEventData={editEventData} editEventAmount={editEventAmount}></EditEvent>
-                                </>)
-                            : null
-                    }
+                    <div className="nav" >
+                        <div className="logoNav">
+                            <img src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
+                            <div className="PksclNav">PKSCL</div>
+                        </div>
+                        {
+                            editProfileButton === true
+                                ? (<div className="buttonNav">
+                                    <i class="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{ fontSize: "20px", marginRight: "10px" }}></i>
+                                    <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                </div>)
+                                : (<div className="buttonNav">
+                                    <button className='navButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
+                                </div>)
+                        }
+                    </div>
+                    <div className="MainPageContainer"
+                        style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                        <div className="errorGiraffe">
+                            {wrongApproachContext}<br />
+                            장부의 예시를 보고싶다면 기린을 눌러주세요 :)
+                            <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
+                                style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
+                            <a href="http://pf.kakao.com/_tRxcJb " target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
+                        </div></div></>)
+                : (
+                    <div className="EditMainPageContainer">
+                        {
+                            showImg
+                                ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
+                                : null
+                        }
+                        {
+                            editProfileState
+                                ?
+                                <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                                : null
+                        }
+                        {
+                            editEventState
+                                ? (
+                                    <>
+                                        <EditEvent setEditEventState={setEditEventState} editEventData={editEventData} editEventAmount={editEventAmount}></EditEvent>
+                                    </>)
+                                : null
+                        }
 
-                    {
-                        quarter === undefined
-                            ? null
-                            : (<>
-                                <div className="leftPanel" id='leftPanel'>
-                                    <div className="quarter">
-                                        <div className="quarterButton" style={{ marginTop: "50px" }} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0); }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
-                                        <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2"); window.scrollTo(0, 0); }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
-                                        <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3"); window.scrollTo(0, 0); }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
-                                        <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4"); window.scrollTo(0, 0); }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
+                        {
+                            quarter === undefined
+                                ? null
+                                : (<>
+                                    <div className="leftPanel" id='leftPanel'>
+                                        <div className="quarter">
+                                            <div className="quarterButton" style={{ marginTop: "50px" }} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0); }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2"); window.scrollTo(0, 0); }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3"); window.scrollTo(0, 0); }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
+                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4"); window.scrollTo(0, 0); }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
+                                        </div>
+
                                     </div>
+                                    <div className="rightPanel">
+                                        <div className="nav">
 
-                                </div>
-                                <div className="rightPanel">
-                                    <div className="nav">
+                                                <div className="logoNav">
+                                                    <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
+                                                    <div className="PksclNav">PKSCL</div>
+                                                </div>
+                                                <div className="PCVersion buttonNav">
+                                                    <button className='navButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
+                                                    <button className='navButton' type='button' 
+                                                    onClick={() => { history.push('/main') }}>학생 공개용 장부</button>
+                                                </div>
 
-                                        <div className="buttons">
-                                            <div className="logoNav">
-                                                <img src={logoImgPath} alt="logo" style={{ marginLeft: "30px" }} width={"40px"} height={"40px"} />
-                                                <div style={{ marginLeft: "5px", fontSize: "25px" }}>PKSCL</div>
-                                            </div>
-                                            <div className ="PCVersion" style={{ display: "flex" }}>
-                                                <button className='submitButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
-                                                <button className='submitButton' type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
-                                            </div>
-                                            
-                                            {
-                                                quarterDate !== undefined
-                                                    ? (
-                                                        <div className="quarterDateNav" style={{ display: "flex", alignItems: "center" }}>
-                                                            {currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 :
-                                                            <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
-                                                                onChange={(e) => {
-                                                                    let tempDateArray = { ...quarterDate }
-                                                                    tempDateArray[currentQuarter][0] = e.target.value;
+                                                {
+                                                    quarterDate !== undefined
+                                                        ? (
+                                                            <div className="quarterDateNav" style={{ display: "flex", alignItems: "center" }}>
+                                                                {currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 :
+                                                                <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
+                                                                    onChange={(e) => {
+                                                                        let tempDateArray = { ...quarterDate }
+                                                                        tempDateArray[currentQuarter][0] = e.target.value;
 
-                                                                    putLedgerDate();
-                                                                }}
-                                                            ></input>~
-                                                            <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][1]}
-                                                                style={{ marginLeft: "10px" }}
-                                                                onChange={(e) => {
-                                                                    let tempDateArray = { ...quarterDate }
-                                                                    tempDateArray[currentQuarter][1] = e.target.value;
+                                                                        putLedgerDate();
+                                                                    }}
+                                                                ></input>~
+                                                                <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][1]}
+                                                                    style={{ marginLeft: "10px" }}
+                                                                    onChange={(e) => {
+                                                                        let tempDateArray = { ...quarterDate }
+                                                                        tempDateArray[currentQuarter][1] = e.target.value;
 
-                                                                    putLedgerDate();
+                                                                        putLedgerDate();
 
-                                                                }}
-                                                            ></input></div>
-                                                    )
-                                                    : null
-                                            }
-                                            <div style={{ display: "flex", alignItems: "center" }}>
-                                                <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                                <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_hxnlXb") }}></i>
-                                                <button className='submitButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                                    }}
+                                                                ></input></div>
+                                                        )
+                                                        : null
+                                                }
+                                                <div style={{ display: "flex", alignItems: "center" }}>
+                                                    <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
+                                                    <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+                                                </div>
+                                        </div>
+                                        <div className="mobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
+                                            <div style={{ display: "flex" }}>
+                                                <button className='submitButton' style={{ width: "25vw" }} type='button' 
+                                                onClick={() => { history.push('/main') }}>학생 공개용 장부</button>
                                             </div>
                                         </div>
-                                    </div>
-                                            <div className="mobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
-                                                <div style={{ display: "flex" }}>
-                                                    <button className='submitButton' style={{width:"25vw"}} type='button' onClick={() => { history.push('/main') }}>학생 입장 장부</button>
-                                                </div>
-                                            </div>
 
-                                             <div className ="PCVersion">
-                                        <div style={{ display: "flex" }}>
-                                            <div className="quarterData">
-                                                <h2 className="quarterTotalAmount" style={{ fontWeight: "bold" }}>
-                                                    {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
-                                                </h2>
-                                                {
-                                                    quarter[currentQuarter]["eventList"] === undefined
-                                                        ? <div>입력된 행사가 없습니다.</div>
-                                                        : (quarter[currentQuarter]["eventList"].map((event, i) => {
-                                                            return (
-                                                                <div className="eventCard" key={i} >
-                                                                    <div className="cardContent">
-                                                                        <div className="eventSource">
-                                                                            <div style={{ width: "230px" }}>
-                                                                                <div className="eventTitle">
-                                                                                    <h4 style={{ width: "400px" }}>{event["eventTitle"]}
-                                                                                    </h4>
-                                                                                    <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
+                                        <div className="PCVersion">
+                                            <div style={{ display: "flex" }}>
+                                                <div className="quarterData">
+                                                    <h2 className="quarterTotalAmount" style={{ fontWeight: "bold" }}>
+                                                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
+                                                    </h2>
+                                                    {
+                                                        quarter[currentQuarter]["eventList"] === undefined
+                                                            ? <div>입력된 행사가 없습니다.</div>
+                                                            : (quarter[currentQuarter]["eventList"].map((event, i) => {
+                                                                return (
+                                                                    <div className="eventCard" key={i} >
+                                                                        <div className="cardContent">
+                                                                            <div className="eventSource">
+                                                                                <div style={{ width: "230px" }}>
+                                                                                    <div className="eventTitle">
+                                                                                        <h4 style={{ width: "400px" }}>{event["eventTitle"]}
+                                                                                        </h4>
+                                                                                        <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
+                                                                                    </div>
+
                                                                                 </div>
 
+
+                                                                                <div className="eventButtons">
+                                                                                    <button onClick={() => {
+                                                                                        eventDeleteButton(event["eventNumber"], i);
+                                                                                    }} style={{ marginRight: "15px" }}>
+                                                                                        <i class="far fa-trash-alt"></i></button>
+                                                                                    <button onClick={() => {
+                                                                                        setEditEventState(true)
+                                                                                        setEditEventData(quarter[currentQuarter]["eventList"][i]);
+                                                                                        setEditEventAmount(eventAmount[i]);
+                                                                                    }} style={{ marginRight: "15px" }}><i class="fas fa-wrench"></i></button>
+
+                                                                                    {
+                                                                                        event.receiptList.length <= 1
+                                                                                            ? null
+                                                                                            : (
+                                                                                                showAllReceiptButton[i] === true
+                                                                                                    ? (
+                                                                                                        <button onClick={() => {
+                                                                                                            let array = [...showAllReceiptButton];
+                                                                                                            array[i] = !showAllReceiptButton[i];
+                                                                                                            setShowAllReceiptButton(array);
+                                                                                                        }}><i class="fas fa-angle-double-up"></i></button>
+                                                                                                    )
+                                                                                                    : (
+                                                                                                        <button onClick={() => {
+                                                                                                            let array = [...showAllReceiptButton];
+                                                                                                            array[i] = !showAllReceiptButton[i];
+                                                                                                            setShowAllReceiptButton(array);
+                                                                                                        }}><i class="fas fa-angle-double-down"></i></button>
+                                                                                                    )
+                                                                                            )
+
+                                                                                    }
+                                                                                </div>
                                                                             </div>
 
+                                                                            <div>{event["eventContext"]}</div>
 
-                                                                            <div className="eventButtons">
-                                                                                <button onClick={() => {
-                                                                                    eventDeleteButton(event["eventNumber"], i);
-                                                                                }} style={{ marginRight: "15px" }}>
-                                                                                    <i class="far fa-trash-alt"></i></button>
-                                                                                <button onClick={() => {
-                                                                                    setEditEventState(true)
-                                                                                    setEditEventData(quarter[currentQuarter]["eventList"][i]);
-                                                                                    setEditEventAmount(eventAmount[i]);
-                                                                                }} style={{ marginRight: "15px" }}><i class="fas fa-wrench"></i></button>
+                                                                            {
+                                                                                showAllReceiptButton[i] === false
+                                                                                    ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
 
-                                                                                {
-                                                                                    event.receiptList.length <= 1
-                                                                                        ? null
-                                                                                        : (
-                                                                                            showAllReceiptButton[i] === true
-                                                                                                ? (
-                                                                                                    <button onClick={() => {
-                                                                                                        let array = [...showAllReceiptButton];
-                                                                                                        array[i] = !showAllReceiptButton[i];
-                                                                                                        setShowAllReceiptButton(array);
-                                                                                                    }}><i class="fas fa-angle-double-up"></i></button>
-                                                                                                )
-                                                                                                : (
-                                                                                                    <button onClick={() => {
-                                                                                                        let array = [...showAllReceiptButton];
-                                                                                                        array[i] = !showAllReceiptButton[i];
-                                                                                                        setShowAllReceiptButton(array);
-                                                                                                    }}><i class="fas fa-angle-double-down"></i></button>
-                                                                                                )
-                                                                                        )
+                                                                                        <div className="receiptCard">
 
-                                                                                }
-                                                                            </div>
-                                                                        </div>
+                                                                                            <div className="receiptResource">
+                                                                                                {
+                                                                                                    event["receiptList"].length === 0
+                                                                                                        ? <div>입력된 영수증이 없습니다.</div>
+                                                                                                        : (<>
 
-                                                                        <div>{event["eventContext"]}</div>
+                                                                                                            <div className="receiptTitle">
+                                                                                                                <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
+                                                                                                                {
+                                                                                                                    event["receiptList"][0]["receiptDetailList"].length === 0
+                                                                                                                        ? null
+                                                                                                                        : (<div>
+                                                                                                                            1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
+                                                                                                                        </div>)
+                                                                                                                }
 
-                                                                        {
-                                                                            showAllReceiptButton[i] === false
-                                                                                ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
 
-                                                                                    <div className="receiptCard">
+                                                                                                            </div>
+                                                                                                            <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
 
-                                                                                        <div className="receiptResource">
-                                                                                            {
-                                                                                                event["receiptList"].length === 0
-                                                                                                    ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                    : (<>
-
-                                                                                                        <div className="receiptTitle">
-                                                                                                            <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
                                                                                                             {
                                                                                                                 event["receiptList"][0]["receiptDetailList"].length === 0
-                                                                                                                    ? null
-                                                                                                                    : (<div>
-                                                                                                                        1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
-                                                                                                                    </div>)
+                                                                                                                    ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
+                                                                                                                    : (<><table className="receiptTable"><thead>
+                                                                                                                        <tr>
+                                                                                                                            <th>품명</th>
+                                                                                                                            <th>단가</th>
+                                                                                                                            <th>수량</th>
+                                                                                                                            <th>가격</th>
+                                                                                                                        </tr>
+                                                                                                                    </thead>
+                                                                                                                        <tbody>
+                                                                                                                            {event["receiptList"][0]["receiptDetailList"].map((item, k) => {
+                                                                                                                                return (
+                                                                                                                                    <tr key={k}>
+                                                                                                                                        <td>
+                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
+
+                                                                                                                                        </td>
+
+                                                                                                                                        <td>
+                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
+
+
+                                                                                                                                        </td>
+
+                                                                                                                                        <td>
+                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
+
+
+                                                                                                                                        </td>
+                                                                                                                                        <td>{item["totalAmount"]}</td>
+                                                                                                                                    </tr>
+                                                                                                                                )
+                                                                                                                            }
+                                                                                                                            )}
+                                                                                                                        </tbody>
+
+
+                                                                                                                    </table>
+
+
+                                                                                                                    </>)
                                                                                                             }
+                                                                                                        </>
+                                                                                                        )
+                                                                                                }
 
-
-                                                                                                        </div>
-                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
-
-                                                                                                        {
-                                                                                                            event["receiptList"][0]["receiptDetailList"].length === 0
-                                                                                                                ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
-                                                                                                                : (<><table className="receiptTable"><thead>
-                                                                                                                    <tr>
-                                                                                                                        <th>품명</th>
-                                                                                                                        <th>단가</th>
-                                                                                                                        <th>수량</th>
-                                                                                                                        <th>가격</th>
-                                                                                                                    </tr>
-                                                                                                                </thead>
-                                                                                                                    <tbody>
-                                                                                                                        {event["receiptList"][0]["receiptDetailList"].map((item, k) => {
-                                                                                                                            return (
-                                                                                                                                <tr key={k}>
-                                                                                                                                    <td>
-                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
-
-                                                                                                                                    </td>
-
-                                                                                                                                    <td>
-                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-
-
-                                                                                                                                    </td>
-
-                                                                                                                                    <td>
-                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-
-
-                                                                                                                                    </td>
-                                                                                                                                    <td>{item["totalAmount"]}</td>
-                                                                                                                                </tr>
-                                                                                                                            )
-                                                                                                                        }
-                                                                                                                        )}
-                                                                                                                    </tbody>
-
-
-                                                                                                                </table>
-
-
-                                                                                                                </>)
-                                                                                                        }
-                                                                                                    </>
-                                                                                                    )
+                                                                                            </div>
+                                                                                            {
+                                                                                                event["receiptList"].length === 0
+                                                                                                    ? null
+                                                                                                    :
+                                                                                                    <img className="receiptImg" src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                        alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"}
+                                                                                                        onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
                                                                                             }
 
                                                                                         </div>
-                                                                                        {
-                                                                                            event["receiptList"].length === 0
-                                                                                                ? null
-                                                                                                :
-                                                                                                <img className="receiptImg" src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                    alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"}
-                                                                                                    onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
-                                                                                        }
+
 
                                                                                     </div>
+                                                                                    )
+                                                                                    : (<div id="receiptContent" >
+                                                                                        {
+                                                                                            event["receiptList"].map((receipt, j) => {
+                                                                                                return (
+                                                                                                    <div className="receiptCard" key={j}>
+                                                                                                        <div className="receiptResource">
+                                                                                                            {
+                                                                                                                event["receiptList"].length === 0
+                                                                                                                    ? <div>입력된 영수증이 없습니다.</div>
+                                                                                                                    : (<>
+                                                                                                                        <div className="receiptTitle">
+                                                                                                                            <h5>{receipt["receiptTitle"]}</h5>
+                                                                                                                            {
+                                                                                                                                receipt["receiptDetailList"].length === 0
+                                                                                                                                    ? null
+                                                                                                                                    : (<div>
+                                                                                                                                        {j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
+                                                                                                                                    </div>)
+                                                                                                                            }
 
 
-                                                                                </div>
-                                                                                )
-                                                                                : (<div id="receiptContent" >
-                                                                                    {
-                                                                                        event["receiptList"].map((receipt, j) => {
-                                                                                            return (
-                                                                                                <div className="receiptCard" key={j}>
-                                                                                                    <div className="receiptResource">
-                                                                                                        {
-                                                                                                            event["receiptList"].length === 0
-                                                                                                                ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                                : (<>
-                                                                                                                    <div className="receiptTitle">
-                                                                                                                        <h5>{receipt["receiptTitle"]}</h5>
+                                                                                                                        </div>
+                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+
                                                                                                                         {
                                                                                                                             receipt["receiptDetailList"].length === 0
-                                                                                                                                ? null
-                                                                                                                                : (<div>
-                                                                                                                                    {j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
-                                                                                                                                </div>)
+                                                                                                                                ? <div>입력된 영수증 내역이 없습니다.</div>
+                                                                                                                                : (<>
+                                                                                                                                    <table className="receiptTable">
+                                                                                                                                        <thead>
+                                                                                                                                            <tr>
+                                                                                                                                                <th>품명</th>
+                                                                                                                                                <th>단가</th>
+                                                                                                                                                <th>수량</th>
+                                                                                                                                                <th>가격</th>
+                                                                                                                                            </tr>
+                                                                                                                                        </thead>
+                                                                                                                                        <tbody>
+                                                                                                                                            {receipt["receiptDetailList"].map((item, k) => {
+                                                                                                                                                return (
+                                                                                                                                                    <tr key={k}>
+                                                                                                                                                        <td>
+                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
+
+                                                                                                                                                        </td>
+
+                                                                                                                                                        <td>
+
+                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
+
+                                                                                                                                                        </td>
+
+                                                                                                                                                        <td>
+
+                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
+
+                                                                                                                                                        </td>
+
+                                                                                                                                                        <td>
+                                                                                                                                                            {item["totalAmount"]}
+                                                                                                                                                        </td>
+                                                                                                                                                    </tr>)
+                                                                                                                                            })
+                                                                                                                                            }
+                                                                                                                                        </tbody>
+
+                                                                                                                                    </table>
+
+                                                                                                                                </>
+                                                                                                                                )
                                                                                                                         }
 
 
-                                                                                                                    </div>
-                                                                                                                    <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                                    </>)}
+                                                                                                        </div>
 
-                                                                                                                    {
-                                                                                                                        receipt["receiptDetailList"].length === 0
-                                                                                                                            ? <div>입력된 영수증 내역이 없습니다.</div>
-                                                                                                                            : (<>
-                                                                                                                                <table className="receiptTable">
-                                                                                                                                    <thead>
-                                                                                                                                        <tr>
-                                                                                                                                            <th>품명</th>
-                                                                                                                                            <th>단가</th>
-                                                                                                                                            <th>수량</th>
-                                                                                                                                            <th>가격</th>
-                                                                                                                                        </tr>
-                                                                                                                                    </thead>
-                                                                                                                                    <tbody>
-                                                                                                                                        {receipt["receiptDetailList"].map((item, k) => {
-                                                                                                                                            return (
-                                                                                                                                                <tr key={k}>
-                                                                                                                                                    <td>
-                                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
+                                                                                                        <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                            alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"}
+                                                                                                            className="receiptImg"
+                                                                                                            onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
 
-                                                                                                                                                    </td>
-
-                                                                                                                                                    <td>
-
-                                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-
-                                                                                                                                                    </td>
-
-                                                                                                                                                    <td>
-
-                                                                                                                                                        <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-
-                                                                                                                                                    </td>
-
-                                                                                                                                                    <td>
-                                                                                                                                                        {item["totalAmount"]}
-                                                                                                                                                    </td>
-                                                                                                                                                </tr>)
-                                                                                                                                        })
-                                                                                                                                        }
-                                                                                                                                    </tbody>
-
-                                                                                                                                </table>
-
-                                                                                                                            </>
-                                                                                                                            )
-                                                                                                                    }
-
-
-                                                                                                                </>)}
                                                                                                     </div>
 
-                                                                                                    <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                        alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"}
-                                                                                                        className="receiptImg"
-                                                                                                        onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
+                                                                                                )
+                                                                                            })
+                                                                                        }
+                                                                                    </div>)
+                                                                            }
 
-                                                                                                </div>
-
-                                                                                            )
-                                                                                        })
-                                                                                    }
-                                                                                </div>)
-                                                                        }
+                                                                        </div>
+                                                                        <div className="cardImg"></div>
 
                                                                     </div>
-                                                                    <div className="cardImg"></div>
-
-                                                                </div>
+                                                                )
+                                                            })
                                                             )
-                                                        })
-                                                        )
-                                                }
-                                                <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
-                                                    <button className="editButton" onClick={() => {
-                                                        eventAddButton(currentQuarter);
-                                                    }} > <i class="fas fa-plus"></i> </button>
+                                                    }
+                                                    <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
+                                                        <button className="editButton" onClick={() => {
+                                                            eventAddButton(currentQuarter);
+                                                        }} > <i class="fas fa-plus"></i> </button>
+                                                    </div>
+
+
                                                 </div>
+                                                <div className="remotePanel">
+                                                    <div className="remotePanelBox" style={{ display: "flex" }}>
+                                                        <div>
+                                                            <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚 행사 목록 📚</h5>
+                                                            <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 바꾸고 <br />순서 변경 버튼을 눌러주세요 !</p>
 
+                                                            {
+                                                                list !== undefined
+                                                                    ? <>
+                                                                        <ReactSortable className="sortTable" tag="div" list={list} setList={setList}>
 
-                                            </div>
-                                            <div className="remotePanel">
-                                                <div className="remotePanelBox" style={{ display: "flex" }}>
-                                                    <div>
-                                                        <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚 행사 목록 📚</h5>
-                                                        <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 바꾸고 <br />순서 변경 버튼을 눌러주세요 !</p>
+                                                                            {list.map((item, i) => (
+                                                                                <div className="eventListBox" key={item.eventNumber}>{item.eventTitle}</div>
+                                                                            ))}
 
-                                                        {
-                                                            list !== undefined
-                                                                ? <>
-                                                                    <ReactSortable className="sortTable" tag="div" list={list} setList={setList}>
+                                                                        </ReactSortable>
+                                                                        {
+                                                                            <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
+                                                                                <button className='submitButton' type='button' onClick={() => {
+                                                                                    eventSequenceButton();
+                                                                                }}> 순서 변경 </button>
+                                                                            </div>
+                                                                        }
+                                                                    </>
+                                                                    : <span>등록된 행사가 없습니다.</span>
+                                                            }
 
-                                                                        {list.map((item, i) => (
-                                                                            <div className="eventListBox" key={item.eventNumber}>{item.eventTitle}</div>
-                                                                        ))}
-
-                                                                    </ReactSortable>
-                                                                    {
-                                                                        <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
-                                                                            <button className='submitButton' type='button' onClick={() => {
-                                                                                eventSequenceButton();
-                                                                            }}> 순서 변경 </button>
-                                                                        </div>
-                                                                    }
-                                                                </>
-                                                                : <span>등록된 행사가 없습니다.</span>
-                                                        }
-
-                                                        <div style={{ color: "#d32c2c" }}>
-                                                            ※ 장부를 잘못 기입해서 문제가 발생할 경우의 책임은 학생회장 본인에게 있습니다.
+                                                            <div style={{ color: "#d32c2c" }}>
+                                                                ※ 장부를 잘못 기입해서 문제가 발생할 경우의 책임은 학생회장 본인에게 있습니다.
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </>
-                            )
-                    }
+                                </>
+                                )
+                        }
 
-                </div >)}</>
+                    </div >)}</>
     )
 }
 

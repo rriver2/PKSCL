@@ -6,8 +6,6 @@ import axios from 'axios';
 import './css/AccessPage.scss';
 
 function AccessPage(props) {
-  let debugAPIURL = "";
-  // debugAPIURL = "https://cors-jhs.herokuapp.com/https://pkscl.kro.kr";
 
   const [position, setPosition] = useState("student");
 
@@ -52,7 +50,7 @@ function AccessPage(props) {
   }, [email]);
 
   useEffect(() => {
-    axios.get(debugAPIURL + '/major-list')
+    axios.get('/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);
       })
@@ -64,7 +62,6 @@ function AccessPage(props) {
   }, []);
 
   useEffect(() => {
-    console.log(isCorrect);
     if (position === "president") {
       for (let i = 0; i < 7; i++) {
         if (isCorrect[i] === false) {
@@ -127,11 +124,7 @@ function AccessPage(props) {
       else if (position === "president")
         payload.append("phoneNumber", phoneNumber);
 
-      for (let value of payload.values()) {
-        console.log(value);
-      }
-
-      axios.post(debugAPIURL + "/signup/" + position, payload,
+      axios.post( "/signup/" + position, payload,
         {
           headers: { 'Content-Type': 'multipart/form-data' }
         }
@@ -171,7 +164,7 @@ function AccessPage(props) {
     }
     else {
       let payload = { "email": email, "password": password };
-      axios.post(debugAPIURL + '/login/' + position, payload)
+      axios.post('/login/' + position, payload)
         .then((payload) => {
           props.setLoginPosition(position);
           if (position === "president") {
@@ -207,14 +200,13 @@ function AccessPage(props) {
       if (window.confirm('입력하신 이메일로 임시 비밀번호를 발급하시겠습니까?')) {
 
         let payload = { "email": email, "stdID": stdID, "name": name };
-        axios.post(debugAPIURL + '/newpwd/' + position, payload)
+        axios.post('/newpwd/' + position, payload)
           .then((payload) => {
             alert("입력하신 이메일로 임시 비밀번호를 발급하였습니다.");
             history.push('/');
 
           })
           .catch((error) => {
-            console.log(error);
             alert("입력하신 정보를 찾을 수 없습니다.");
 
           });
@@ -232,7 +224,7 @@ function AccessPage(props) {
 
     if (window.confirm("입력하신 이메일로 인증 메일을 발송하시겠습니까?")) {
       let payload = { "email": email };
-      axios.post(debugAPIURL + '/email/' + position, payload)
+      axios.post( '/email/' + position, payload)
         .then((payload) => {
           // alert("입력하신 이메일로 메일을 발송했습니다.");
         })
@@ -449,7 +441,6 @@ function AccessPage(props) {
                       <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
                         <button type="button" className="SignInBtn" onClick={() => {
                           function personInfomationAgreeNow() {
-                            console.log(personalInformation);
                             if (personalInformation.includes(false)) {
                               alert("PKSCL 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요 :)");
                               return false;
@@ -473,35 +464,44 @@ function AccessPage(props) {
                         } else {
                           changeIsCorrect(0, false);
                         }
-                        console.log(isCorrect[0]);
                       }
                       } name="stdID" value={stdID} maxLength="9" placeholder="학번" type="text" />
                     </div>
                     <div className="input-field">
                       <i className="fas fa-key" style={isCorrect[1] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <input onChange={(e) => {
-                        console.log(e.target.value);
                         setPassword(e.target.value);
-                        if (e.target.value.length !== 0) {
+                        // if (e.target.value.length !== 0) {
+                        if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
                           changeIsCorrect(1, true);
                         } else {
                           changeIsCorrect(1, false);
                         }
 
                       }} name="password" value={password} type="password" placeholder="비밀번호" />
+                      {
+                        isCorrect[1]
+                          ? null
+                          : <span style={{ fontSize: "1px", color: "red" }}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
+                      }
+
+
                     </div>
+
                     <div className="input-field">
                       <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <input onChange={(e) => {
                         setCheckPassword(e.target.value)
-                        if (password !== e.target.value || password === "") {
-                          changeIsCorrect(2, false);
-                        } else if (password === e.target.value) {
+                        if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/) && password === e.target.value) {
                           changeIsCorrect(2, true);
+                        } else {
+                          changeIsCorrect(2, false);
                         }
                       }
                       } name="checkPassword" value={checkPassword} type="password" placeholder="비밀번호 재확인" />
                     </div>
+
+
                     <div className="input-field" style={{ fontSize: "80%" }}>
                       <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <label htmlFor="majorList"></label>
@@ -571,7 +571,6 @@ function AccessPage(props) {
                                   setEmail(e.target.value);
                                   const emailType = e.target.value.substring(e.target.value.indexOf("@"));
 
-                                  console.log(e.target.value.indexOf('@'));
                                   if (e.target.value.indexOf('@') === 0) {
                                     setEmailTypeState(false);
                                   } else if (emailType === "@pukyong.ac.kr") {
@@ -581,7 +580,6 @@ function AccessPage(props) {
                                   }
                                 }} name="email" value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
                               <label className="certEmail" onClick={() => {
-                                console.log(emailTypeState);
                                 if (emailTypeState) {
                                   certEmail();
                                   setResendEmail(1);
@@ -659,19 +657,15 @@ function AccessPage(props) {
                 <input id="inputEmail" onChange={(e) => {
                   setEmail(e.target.value);
                   const emailType = e.target.value.substring(e.target.value.indexOf("@"));
-                  console.log(e.target.value);
                   if (e.target.value.indexOf('@') === 0) {
                     setEmailTypeState(emailTypeState => false);
                     changeIsCorrect(5, false);
-                    console.log("case 1");
                   } else if (emailType === "@pukyong.ac.kr") {
                     setEmailTypeState(emailTypeState => true);
                     changeIsCorrect(5, true);
-                    console.log("case 2");
                   } else {
                     setEmailTypeState(emailTypeState => false);
                     changeIsCorrect(5, false);
-                    console.log("case 3");
                   }
                 }} name="email" value={email} type="text" placeholder="학교 이메일 @pukyong.ac.kr" />
               </div>
@@ -790,9 +784,7 @@ function AccessPage(props) {
               <button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/newpwd') }}>비밀번호 찾기</button><button style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { reset(); history.push('/signUp'); }}>회원가입</button>
             </div>
           </div>
-
         </Route>
-
       </Switch >
     </div >
   )
