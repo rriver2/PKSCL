@@ -288,11 +288,6 @@
     justify-content: space-between;
 }
 
-.eventSource div,
-.eventSource h4 {
-    margin-left: 10px;
-    text-align: left;
-}
 
 
 .eventSource button {
@@ -475,18 +470,69 @@
 
 .contextLimitation {
     width: 90%;
-    max-height: 40px;
-    overflow-y: auto;
     display: flex;
     margin-bottom: 10px;
 }
 
+/* .eventSource div,
+.eventSource h4 {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.eventSource div {
+    width: 100%;
+    justify-content: flex-end;
+} */
+
+.eventSourceBox {
+    width: 100%;
+    margin-left: 10px;
+}
+
+
 .titleLimitation {
     width: 90%;
-    max-height: 40px;
-    overflow-y: auto;
     display: flex;
     margin-bottom: 10px;
+}
+
+.titleLimitation::-webkit-scrollbar {
+    width: 8px;
+}
+
+.titleLimitation::-webkit-scrollbar-track-piece {
+    background-color: var(--color-tableOdd);
+    border-radius: 100px;
+    width: 10px;
+}
+
+.titleLimitation::-webkit-scrollbar-thumb {
+    background-color: var(--color-quarter);
+    border-radius: 100px;
+}
+
+.titleLimitation::-webkit-scrollbar-track-piece:end {
+    background-color: none;
+}
+
+.contextLimitation::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contextLimitation::-webkit-scrollbar-track-piece {
+    background-color: var(--color-tableOdd);
+    border-radius: 100px;
+    width: 10px;
+}
+
+.contextLimitation::-webkit-scrollbar-thumb {
+    background-color: var(--color-leftPanel);
+    border-radius: 100px;
+}
+
+.contextLimitation::-webkit-scrollbar-track-piece:end {
+    background-color: none;
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -548,7 +594,6 @@
         align-items: center;
     }
 
-
     .MainPageContainer .navButton {
         font-size: 10px;
     }
@@ -568,7 +613,7 @@
     }
 
     .MainPageContainer .cardContent {
-        width: 90vw;
+        width: 93%;
         margin: 10px 10px;
         align-items: center;
     }
@@ -596,7 +641,6 @@
     .MainPageContainer #receiptContent {
         width: 100%;
         height: 100% !important;
-        overflow-y: auto !important;
     }
 
     .MainPageContainer #receiptContent table {

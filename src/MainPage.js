@@ -442,29 +442,29 @@ function MainPage(props) {
     useEffect(() => {
 
         // push 할때 주석 풀기
-        axios.get('/position')
-            .then((payload) => {
-                setUserLoginPosition(payload.data["position"])
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                reload()
-            })
-            .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-            })
+        // axios.get('/position')
+        //     .then((payload) => {
+        //         setUserLoginPosition(payload.data["position"])
+        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        //         reload()
+        //     })
+        //     .catch((error) => {
+        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+        //         setWrongApproach(true)
+        //         setEditProfileButton(false);
+        //     })
 
         // push 할때 주석 넣기
-            // setStudentPresident({ ...answer["studentPresident"] });
-            // setQuarter({ ...answer["quarter"] });
-            // reset(props.todayQuarter);
-            // showQuarter(props.todayQuarter);
-            // setLogoImgPath(`./img/${props.todayQuarter}.png`);
-            // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
-            // setStudentPresident({ ...answer["studentPresident"] });
-            // setQuarterDate({ ...answerDate });
-            // setUserLoginPosition("president")
-            // setMajorList([...answerMajorList]);
+            setStudentPresident({ ...answer["studentPresident"] });
+            setQuarter({ ...answer["quarter"] });
+            reset(props.todayQuarter);
+            showQuarter(props.todayQuarter);
+            setLogoImgPath(`./img/${props.todayQuarter}.png`);
+            setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+            setStudentPresident({ ...answer["studentPresident"] });
+            setQuarterDate({ ...answerDate });
+            setUserLoginPosition("president")
+            setMajorList([...answerMajorList]);
     }, []);
 
     useEffect(() => {
@@ -650,7 +650,7 @@ function MainPage(props) {
                                                                     <div className="eventCard" >
                                                                         <div className="cardContent">
                                                                             <div className="eventSource">
-                                                                                <div>
+                                                                                <div className="eventSourceBox">
                                                                                     <h4 className="titleLimitation">{event["eventTitle"]}</h4>
                                                                                     <div style={{ color: "var(--color-quarter)" }}>행사 총 금액 : {eventAmount[i]}원</div>
 
