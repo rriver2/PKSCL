@@ -104,6 +104,8 @@ i:hover {
     display: block;
 }
 
+
+
 @media (hover: none) and (pointer: coarse) {
     .mobileVersion {
         display: block;

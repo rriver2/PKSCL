@@ -442,29 +442,29 @@ function MainPage(props) {
     useEffect(() => {
 
         // push 할때 주석 풀기
-        // axios.get('/position')
-        //     .then((payload) => {
-        //         setUserLoginPosition(payload.data["position"])
-        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
-        //         reload()
-        //     })
-        //     .catch((error) => {
-        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-        //         setWrongApproach(true)
-        //         setEditProfileButton(false);
-        //     })
+        axios.get('/position')
+            .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                reload()
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+            })
 
         // push 할때 주석 넣기
-            setStudentPresident({ ...answer["studentPresident"] });
-            setQuarter({ ...answer["quarter"] });
-            reset(props.todayQuarter);
-            showQuarter(props.todayQuarter);
-            setLogoImgPath(`./img/${props.todayQuarter}.png`);
-            setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
-            setStudentPresident({ ...answer["studentPresident"] });
-            setQuarterDate({ ...answerDate });
-            setUserLoginPosition("president")
-            setMajorList([...answerMajorList]);
+            // setStudentPresident({ ...answer["studentPresident"] });
+            // setQuarter({ ...answer["quarter"] });
+            // reset(props.todayQuarter);
+            // showQuarter(props.todayQuarter);
+            // setLogoImgPath(`./img/${props.todayQuarter}.png`);
+            // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+            // setStudentPresident({ ...answer["studentPresident"] });
+            // setQuarterDate({ ...answerDate });
+            // setUserLoginPosition("president")
+            // setMajorList([...answerMajorList]);
     }, []);
 
     useEffect(() => {
@@ -490,7 +490,10 @@ function MainPage(props) {
                         <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
-                <div className="nav" >
+               
+                <div className="MainPageContainer"
+                    style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+                         <div className="nav" >
                     <div className="logoNav">
                         <img  src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
                         <div className="PksclNav PCVersion" >PKSCL</div>
@@ -518,8 +521,6 @@ function MainPage(props) {
 
 
                 </div>
-                <div className="MainPageContainer"
-                    style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
                     <div className="errorGiraffe">
                         {wrongApproachContext}<br />
                         장부의 예시를 보고싶다면 기린을 눌러주세요 :)

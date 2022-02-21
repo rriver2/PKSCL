@@ -30,60 +30,6 @@ function AccessPage(props) {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (phoneNumber.length === 10) {
-      setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
-    }
-    if (phoneNumber.length === 13) {
-      setPhoneNumber(phoneNumber.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
-    }
-  }, [phoneNumber]);
-
-  useEffect(() => {
-    if (email.length === 1) { //첫글자 입력시
-      setEmail(email + "@pukyong.ac.kr");
-    } else if (email.includes("@pukyong.ac.kr")) {
-      let input = document.getElementById('inputEmail');
-      input.focus();
-      input.setSelectionRange(email.length - 14, email.length - 14);
-    }
-  }, [email]);
-
-  useEffect(() => {
-    axios.get('/major-list')
-      .then((payload) => {
-        setMajorList([...payload.data.majorList]);
-      })
-      .catch((error) => {
-        alert("학과리스트를 불러올 수 없습니다.");
-      })
-
-    defineColor(props.todayQuarter);
-  }, []);
-
-  useEffect(() => {
-    if (position === "president") {
-      for (let i = 0; i < 7; i++) {
-        if (isCorrect[i] === false) {
-          setSignUpButtonState(false);
-          return
-        }
-      }
-      setSignUpButtonState(true);
-    }
-
-    if (position === "student") {
-      for (let i = 0; i < 8; i++) {
-        if (i === 5) continue;
-
-        if (isCorrect[i] === false) {
-          setSignUpButtonState(false);
-          return
-        }
-      }
-      setSignUpButtonState(true);
-    }
-  }, [isCorrect]);
 
   function reset() {
     setStdID("");
@@ -274,6 +220,64 @@ function AccessPage(props) {
   }
 
 
+  useEffect(() => {
+    if (phoneNumber.length === 10) {
+      setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    }
+    if (phoneNumber.length === 13) {
+      setPhoneNumber(phoneNumber.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+    }
+  }, [phoneNumber]);
+
+  useEffect(() => {
+    if (email.length === 1) { //첫글자 입력시
+      setEmail(email + "@pukyong.ac.kr");
+    } else if (email.includes("@pukyong.ac.kr")) {
+      let input = document.getElementById('inputEmail');
+      input.focus();
+      input.setSelectionRange(email.length - 14, email.length - 14);
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (position === "president") {
+      for (let i = 0; i < 7; i++) {
+        if (isCorrect[i] === false) {
+          setSignUpButtonState(false);
+          return
+        }
+      }
+      setSignUpButtonState(true);
+    }
+
+    if (position === "student") {
+      for (let i = 0; i < 8; i++) {
+        if (i === 5) continue;
+
+        if (isCorrect[i] === false) {
+          setSignUpButtonState(false);
+          return
+        }
+      }
+      setSignUpButtonState(true);
+    }
+  }, [isCorrect]);
+
+
+
+  useEffect(() => {
+    axios.get('/major-list')
+      .then((payload) => {
+        setMajorList([...payload.data.majorList]);
+      })
+      .catch((error) => {
+        alert("학과리스트를 불러올 수 없습니다.");
+      })
+
+    defineColor(props.todayQuarter);
+  }, []);
+
+
   return (
     <div className="accessContainer">
 
@@ -281,6 +285,10 @@ function AccessPage(props) {
         <div class='wave -one'></div>
         <div class='wave -two'></div>
         <div class='wave -three'></div>
+
+          <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
+          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
+        </button>
         <div className="content">
           {/* <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
             <h3>PKNU 온라인 장부</h3>
@@ -289,13 +297,14 @@ function AccessPage(props) {
             우리 학과의 장부를 분기 별로 확인할 수 있습니다.
           </p> */}
 
+
           <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
             <div>
-              <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
-                <img src={logoImgPath} alt="logo" style={{}} width={"80px"} height={"80px"} />
-                <span style={{ fontSize: "50px" }}>PKSCL</span>
+              <div className="PKSCLMainLogo" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <img src={logoImgPath} alt="logo"  />
+                <span className="tracking-in-expand" >PKSCL</span>
               </div>
-              <div>PuKyong Student Council Ledger</div>
+              <div className="tracking-in-expand" >PuKyong Student Council Ledger</div>
             </div>
           </button>
 
@@ -303,14 +312,14 @@ function AccessPage(props) {
 
         </div>
         <img src={logo} className="image" alt="PKSCL logo" />
-        <button type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
+        <button className="adminbutton PCVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
           style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
         </button>
       </div>
       <Switch>
 
         <Route exact path="/signUp">
-          <div className="right-panel" id="signup" style={{ marginTop: "20px" }}>
+          <div className="right-panel" id="signup">
             <form className="userForm" >
               <div id="nav" >
                 <Nav fill variant="tabs" defaultActiveKey="link-1">

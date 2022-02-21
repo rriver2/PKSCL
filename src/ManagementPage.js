@@ -240,52 +240,52 @@ function ManagementPage(props) {
 
 
     useEffect(() => {
-        // axios.get('/position')
-        //     .then((payload) => {
-        //         setUserLoginPosition(payload.data["position"])
-        //     })
-        //     .catch((error) => {
-        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-        //         setWrongApproach(true)
-        //     })
-        // axios.get('/position')
-        //     .then((payload) => {
-        //         if (payload.data["position"] === "president") {
-        //             axios.get('/status')
-        //                 .then((payload) => {
-        //                     if (payload.data["status"] === "refusal") {
-        //                         setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
-        //                         setWrongApproach(true)
-        //                     }
-        //                     else if (payload.data["status"] === "waiting") {
-        //                         setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-        //                         setWrongApproach(true)
-        //                     } else if (payload.data["status"] === "approval") {
-        //                         getPresidentList();
-        //                     }
-        //                 })
-        //                 .catch((error) => {
-        //                     setWrongApproachContext("잘못된 접근입니다.");
-        //                     setWrongApproach(true)
-        //                 })
-        //         } else if (payload.data["position"] === "admin") {
-        //             getAdminList();
-        //         } else {
-        //             setWrongApproachContext("잘못된 접근입니다.");
-        //             setWrongApproach(true)
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         setWrongApproachContext("잘못된 접근입니다.");
-        //         setWrongApproach(true)
-        //     })
+        axios.get('/position')
+            .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+            })
+        axios.get('/position')
+            .then((payload) => {
+                if (payload.data["position"] === "president") {
+                    axios.get('/status')
+                        .then((payload) => {
+                            if (payload.data["status"] === "refusal") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                                setWrongApproach(true)
+                            }
+                            else if (payload.data["status"] === "waiting") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                                setWrongApproach(true)
+                            } else if (payload.data["status"] === "approval") {
+                                getPresidentList();
+                            }
+                        })
+                        .catch((error) => {
+                            setWrongApproachContext("잘못된 접근입니다.");
+                            setWrongApproach(true)
+                        })
+                } else if (payload.data["position"] === "admin") {
+                    getAdminList();
+                } else {
+                    setWrongApproachContext("잘못된 접근입니다.");
+                    setWrongApproach(true)
+                }
+            })
+            .catch((error) => {
+                setWrongApproachContext("잘못된 접근입니다.");
+                setWrongApproach(true)
+            })
 
-        setWaiting([...임시리스트["waiting"]]);
-        setRefusal([...임시리스트["refusal"]]);
-        setApproval([...임시리스트["approval"]]);
-        setLeftTable([...임시리스트["waiting"]]);
-        setRightTable([...임시리스트["approval"]]);
-        setUserLoginPosition("president")
+        // setWaiting([...임시리스트["waiting"]]);
+        // setRefusal([...임시리스트["refusal"]]);
+        // setApproval([...임시리스트["approval"]]);
+        // setLeftTable([...임시리스트["waiting"]]);
+        // setRightTable([...임시리스트["approval"]]);
+        // setUserLoginPosition("president")
 
     }, []);
 
@@ -302,7 +302,7 @@ function ManagementPage(props) {
     return (
         <>
             {wrongApproach === true
-                ? (<><div className="nav">
+                ? (<div className="ManagementPageContainer"><div className="nav">
                     <div className="logoNav">
                         <img src={`./img/managementLogo.png`} alt="logo" width={"40px"} height={"40px"} />
                         <div className="PksclNav">PKSCL</div>
@@ -316,7 +316,7 @@ function ManagementPage(props) {
                         style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
                         {wrongApproachContext}<br />
                         <a href="http://pf.kakao.com/_tRxcJb " target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                    </div></>)
+                    </div></div>)
                 : (
                     <div className="ManagementPageContainer">
                         <div className="mobileVersion"> {

@@ -440,50 +440,50 @@ function EditMainPage(props) {
     }
 
     useEffect(() => {
-        // getUserStatus();
-        // reset(props.todayQuarter);
-        // defineColor(props.todayQuarter);
-        // setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        getUserStatus();
+        reset(props.todayQuarter);
+        defineColor(props.todayQuarter);
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
 
 
-        setUserLoginPosition("president")
-        setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                let resetArray=[]
-                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                    resetArray.push(false)
-                }
-                setShowAllReceiptButton(resetArray);
-                setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                defineColor(currentQuarter);
-                setLogoImgPath(`./img/${currentQuarter}.png`);
-                setWrongApproach(false)
-                setEditProfileButton(false)
-                setQuarterDate({ ...answerDate });
-                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-                quarter.map((quarterName) => {
-                    answerDate[quarterName].map((date, i) => {
-                        if (date.substr(0, 4) === "9999") {
-                            let tempAnswerDate = { ...answerDate };
-                            tempAnswerDate[quarterName][i] = "";
-                            setQuarterDate({ ...tempAnswerDate });
-                        }
-                    })
-                })
-                setWrongApproach(false)
-                setEditProfileButton(false)
+        // setUserLoginPosition("president")
+        // setStudentPresident({ ...answer["studentPresident"] });
+        //         setQuarter({ ...answer["quarter"] });
+        //         let resetArray=[]
+        //         for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+        //             resetArray.push(false)
+        //         }
+        //         setShowAllReceiptButton(resetArray);
+        //         setList([...answer["quarter"][currentQuarter]["eventList"]]);
+        //         defineColor(currentQuarter);
+        //         setLogoImgPath(`./img/${currentQuarter}.png`);
+        //         setWrongApproach(false)
+        //         setEditProfileButton(false)
+        //         setQuarterDate({ ...answerDate });
+        //         let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
+        //         quarter.map((quarterName) => {
+        //             answerDate[quarterName].map((date, i) => {
+        //                 if (date.substr(0, 4) === "9999") {
+        //                     let tempAnswerDate = { ...answerDate };
+        //                     tempAnswerDate[quarterName][i] = "";
+        //                     setQuarterDate({ ...tempAnswerDate });
+        //                 }
+        //             })
+        //         })
+        //         setWrongApproach(false)
+        //         setEditProfileButton(false)
 
 
     }, []);
 
     useEffect(() => {
         // push 시 주석 삭제
-        // if (editEventState === false) {
-        //     getUserStatus();
-        //     reset(currentQuarter);
-        //     defineColor(currentQuarter);
-        //     setLogoImgPath(`./img/${currentQuarter}.png`);
-        // }
+        if (editEventState === false) {
+            getUserStatus();
+            reset(currentQuarter);
+            defineColor(currentQuarter);
+            setLogoImgPath(`./img/${currentQuarter}.png`);
+        }
     }, [editEventState]);
 
     useEffect(() => {
@@ -510,7 +510,7 @@ function EditMainPage(props) {
     return (
         <>
             {wrongApproach === true
-                ? (<>
+                ? (<div className="MainPageContainer">
                     {
                         editProfileState
                             ?
@@ -542,7 +542,7 @@ function EditMainPage(props) {
                             <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
                                 style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
                             <a href="http://pf.kakao.com/_tRxcJb " target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                        </div></div></>)
+                        </div></div></div>)
                 : (
                     <div className="EditMainPageContainer">
                         {
