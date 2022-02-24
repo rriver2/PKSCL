@@ -26,7 +26,7 @@ function AccessPage(props) {
   const [personalInformationButton, setPersonalInformationButton] = useState(false);
   const [personalInformation, setPersonalInformation] = useState([false, false, false]);
 
-  let logoImgPath = `./img/${props.todayQuarter}.png`
+  let logoImgPath = `./img/managementLogo.png`
 
   const history = useHistory();
 
@@ -78,7 +78,7 @@ function AccessPage(props) {
         .then((payload) => {
           switch (payload.status) {
             case 200:
-              alert("회원가입에 성공하였습니다 :)")
+              alert("회원가입에 성공하였습니다.")
               history.push('/');
               return;
             default: alert("success: " + payload.status); history.push('/'); return;
@@ -86,9 +86,9 @@ function AccessPage(props) {
         })
         .catch((error) => {
           switch (error.response.status) {
-            case 409: alert("이미 존재하는 이메일입니다 :)"); return;
+            case 409: alert("이미 존재하는 이메일입니다."); return;
             case 403:
-              alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) ");
+              alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요. ");
               setResendEmail(0);
               changeIsCorrect(6, false);
               return;
@@ -105,7 +105,7 @@ function AccessPage(props) {
   function login() {
     if (email === "" || password === "") {
       return (
-        alert("이메일과 비밀번호를 모두 입력하세요 :)")
+        alert("이메일과 비밀번호를 모두 입력하세요.")
       )
     }
     else {
@@ -130,7 +130,7 @@ function AccessPage(props) {
           }
         })
         .catch((error) => {
-          alert("로그인에 실패했습니다 :)")
+          alert("로그인에 실패했습니다.")
         });
 
     }
@@ -139,7 +139,7 @@ function AccessPage(props) {
   function findPassword() {
     if (email === "" || stdID === "" || name === "") {
       return (
-        alert("빈칸을 모두 입력해주세요 :)")
+        alert("빈칸을 모두 입력해주세요.")
       )
     }
     else {
@@ -176,8 +176,8 @@ function AccessPage(props) {
         })
         .catch((error) => {
           switch (error.response.status) {
-            case 409: alert("이미 존재하는 이메일입니다 :)"); return;
-            // case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요 :) "); return;
+            case 409: alert("이미 존재하는 이메일입니다."); return;
+            // case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요. "); return;
             default: alert("error: " + error.response.status); return;
           }
         });
@@ -198,27 +198,6 @@ function AccessPage(props) {
     PersonalInformation[index] = !personalInformation[index];
     setPersonalInformation([...PersonalInformation]);
   };
-
-  function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
-    document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-    document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-    document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-    document.documentElement.style.setProperty("--color-card", colorCard);
-    document.documentElement.style.setProperty("--color-background", colorBackground);
-  }
-
-  function defineColor(quarter) {
-    if (quarter === "quarter1") {
-      setColorProperty("#db8f8e", "#efbebc", "#f5dede", "#fff5ed", "#fbf6f6");
-    } else if (quarter === "quarter2") {
-      setColorProperty("#649d67", "#cedbcf", "#cedbcf", "#dee7df", "#f6f7f6");
-    } else if (quarter === "quarter3") {
-      setColorProperty("#c18356", "#efdccd", "#e9d8cd", "#fff5ed", "#fff5ee");
-    } else if (quarter === "quarter4") {
-      setColorProperty("#6b8396", "#d0dbe5", "#d0dbe5", "#e6f1fb", "#f5faff");
-    }
-  }
-
 
   useEffect(() => {
     if (phoneNumber.length === 10) {
@@ -264,8 +243,16 @@ function AccessPage(props) {
   }, [isCorrect]);
 
 
+//   function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
+//     document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+//     document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+//     document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+//     document.documentElement.style.setProperty("--color-card", colorCard);
+//     document.documentElement.style.setProperty("--color-background", colorBackground);
+//   }
 
   useEffect(() => {
+   
     axios.get('/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);
@@ -274,7 +261,6 @@ function AccessPage(props) {
         alert("학과리스트를 불러올 수 없습니다.");
       })
 
-    defineColor(props.todayQuarter);
   }, []);
 
 
@@ -331,18 +317,18 @@ function AccessPage(props) {
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle" style={{ margin: "10px 0 0 0" }}>
-                <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />가입을 시작합니다!</h3>
+              <h3 className="accessTitle" >
+                가입을 시작합니다!</h3>
               {
                 position === "student"
-                  ? <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 이용하세요:) </div>
-                  : <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 관리하세요:) </div>
+                  ? <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 이용하세요. </div>
+                  : <div style={{ marginBottom: "10px" }}>PKSCL로 편리하고 투명하게 장부를 관리하세요. </div>
               }
               {/* 추가 */}
               {
                 personalInformationButton === false
                   ? (
-                    <div style={{ width: "90%" }}>
+                    <div style={{ width: "80%" }}>
                       <div style={{ marginBottom: "10px" }}>
                         부경대학교 온라인 장부 PKSCL 서비스를 이용해 주셔서 감사합니다. 본 약관은 온라인 장부 서비스의 이용과 관련하여 서비스를 제공하는 PKSCL과 이를 이용하는 사용자들과의 관계를 설명하며, 아울러 여러분의 PKSCL 서비스 이용에 도움이 될 수 있는 정보를 포함하고 있습니다.
                         PKSCL 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 동의해야 하기 때문에, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다.
@@ -451,7 +437,7 @@ function AccessPage(props) {
                         <button type="button" className="SignInBtn" onClick={() => {
                           function personInfomationAgreeNow() {
                             if (personalInformation.includes(false)) {
-                              alert("PKSCL 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요 :)");
+                              alert("PKSCL 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.");
                               return false;
                             } else return true;
                           }
@@ -658,7 +644,7 @@ function AccessPage(props) {
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />비밀번호 찾기</h3>
+              <h3 className="accessTitle" style={{marginBottom:"15px"}}>비밀번호 찾기</h3>
 
 
               <div className="input-field">
@@ -719,7 +705,7 @@ function AccessPage(props) {
         <Route exact path="/giraffe-admin">
           <div className="right-panel">
             <form className="userForm">
-              <h3 className="accessTitle" ><img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />관리자 로그인</h3>
+              <h3 className="accessTitle" >관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
@@ -761,10 +747,9 @@ function AccessPage(props) {
                 </Nav>
               </div>
               <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-                <h3 className="accessTitle" style={{ marginBottom: "2px" }}>
-                  <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />환영합니다</h3>
-
-                <p style={{ fontSize: "12px" }}>우리 학과의 장부를 분기 별로 확인할 수 있습니다.</p>
+                <h3 className="accessTitle">
+                  환영합니다</h3>
+                <div style={{marginBottom: "10px"}}>우리 학과의 장부를 분기 별로 확인할 수 있습니다.</div>
               </div>
 
 

@@ -43,18 +43,15 @@ function defineColor(quarter) {
     setColorProperty("#c18356", "#f9eee5", "#e9d8cd", "#fff5ed", "#fbf7f4");
   } else if (quarter === "quarter4") {
     setColorProperty("#6b8396", "#e0eaf3", "#d0dbe5", "#e6f1fb", "#f8fcff");
-  }
+  } 
 }
 
-
 function App() {
-
   const [loginPosition, setLoginPosition] = useState("");
-  const [todayQuarter, setTodayQuarter] = useState(selectseason);
+  const [todayQuarter, setTodayQuarter] = useState(selectseason());
 
   useEffect(() => {
-    let quarter = selectseason();
-    defineColor(quarter);
+    setColorProperty("#59577b", "#7c7a9a", "#cdc9e6", "#ebeaee", "#f8f6fb");
   }, [])
 
   return (
@@ -73,7 +70,7 @@ function App() {
         </Route>
 
         <Route path='/'>
-          <AccessPage loginPosition={loginPosition} setLoginPosition={setLoginPosition} todayQuarter={todayQuarter}> </AccessPage>
+          <AccessPage loginPosition={loginPosition} setLoginPosition={setLoginPosition} > </AccessPage>
         </Route>
 
       </Switch>

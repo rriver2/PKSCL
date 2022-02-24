@@ -80,7 +80,7 @@ function EditMainPage(props) {
                 setEditProfileButton(false)
                 setLogoImgPath(`./img/${currentQuarter}.png`);
                 CalculateCurrentQuarterReceiptSumList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-                setList([...payload.data["quarter"][quarterData]["eventList"]]);
+                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
                 resetShowAllReceiptButton();
                 defineColor(currentQuarter);
             })
@@ -90,15 +90,15 @@ function EditMainPage(props) {
                         setWrongApproachContext("장부를 열람할 권한이 없습니다.");
                         setWrongApproach(true)
                         setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
                         setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                        defineColor(props.todayQuarter);
                         break;
                     default:
                         setWrongApproachContext("서버 오류가 발생했습니다.");
                         setWrongApproach(true)
-                        defineColor(props.todayQuarter);
                         setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         setEditProfileButton(false)
+                        defineColor(props.todayQuarter);
                         break;
                 }
             })
@@ -131,7 +131,6 @@ function EditMainPage(props) {
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
-
             } else {
                 setQuarterAmount(0)
                 setCurrentQuarter(selectedQuarter);
@@ -198,6 +197,7 @@ function EditMainPage(props) {
     }
 
     function defineColor(quarter) {
+        // alert("quarter : "+quarter)
         if (quarter === "quarter1") {
             setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
         } else if (quarter === "quarter2") {
@@ -243,6 +243,7 @@ function EditMainPage(props) {
                 setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
                 setWrongApproach(true)
                 setEditProfileButton(false)
+                defineColor(props.todayQuarter);
             })
     }
 
@@ -267,6 +268,7 @@ function EditMainPage(props) {
                     setWrongApproachContext("장부를 삭제하는데 실패했습니다.");
                     setWrongApproach(true)
                     setEditProfileButton(false);
+                    defineColor(props.todayQuarter);
                 })
         } else {
             alert("삭제가 취소되었습니다.")
@@ -389,6 +391,7 @@ function EditMainPage(props) {
                     setWrongApproachContext("잘못된 접근입니다.");
                     setWrongApproach(true)
                     setEditProfileButton(false);
+                    defineColor(props.todayQuarter);
                 }
                 else if (payload.data["position"] === "president") {
                     axios.get('/status')
@@ -397,11 +400,13 @@ function EditMainPage(props) {
                                 setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
+                                defineColor(props.todayQuarter);
                             }
                             else if (payload.data["status"] === "waiting") {
                                 setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
+                                defineColor(props.todayQuarter);
                             } else if (payload.data["status"] === "approval") {
                                 getLedger();
                                 GetDate();
@@ -413,6 +418,7 @@ function EditMainPage(props) {
                             setWrongApproachContext("잘못된 접근입니다.");
                             setWrongApproach(true)
                             setEditProfileButton(false);
+                            defineColor(props.todayQuarter);
                         })
                 }
             })
@@ -420,6 +426,7 @@ function EditMainPage(props) {
                 setWrongApproachContext(`사용자의 승인 상태를 알 수 없습니다.`);
                 setWrongApproach(true)
                 setEditProfileButton(false);
+                defineColor(props.todayQuarter);
             })
 
     }
@@ -439,51 +446,61 @@ function EditMainPage(props) {
 
     }
 
+      function clickedButon(selectedQuarter,buttonColor){
+        showQuarter(selectedQuarter);
+        document.documentElement.style.setProperty("--color-clickedButton", buttonColor);
+        let className = "."+selectedQuarter;
+        document.querySelector(".quarter1").classList.remove('clicked');
+        document.querySelector(".quarter2").classList.remove('clicked');
+        document.querySelector(".quarter3").classList.remove('clicked');
+        document.querySelector(".quarter4").classList.remove('clicked');
+        document.querySelector(className).className += " clicked"
+    }
+
+
     useEffect(() => {
-        getUserStatus();
-        reset(props.todayQuarter);
-        defineColor(props.todayQuarter);
-        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        // getUserStatus();
+        // reset(props.todayQuarter);
+        // setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        // defineColor(props.todayQuarter);
 
-
-        // setUserLoginPosition("president")
-        // setStudentPresident({ ...answer["studentPresident"] });
-        //         setQuarter({ ...answer["quarter"] });
-        //         let resetArray=[]
-        //         for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-        //             resetArray.push(false)
-        //         }
-        //         setShowAllReceiptButton(resetArray);
-        //         setList([...answer["quarter"][currentQuarter]["eventList"]]);
-        //         defineColor(currentQuarter);
-        //         setLogoImgPath(`./img/${currentQuarter}.png`);
-        //         setWrongApproach(false)
-        //         setEditProfileButton(false)
-        //         setQuarterDate({ ...answerDate });
-        //         let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-        //         quarter.map((quarterName) => {
-        //             answerDate[quarterName].map((date, i) => {
-        //                 if (date.substr(0, 4) === "9999") {
-        //                     let tempAnswerDate = { ...answerDate };
-        //                     tempAnswerDate[quarterName][i] = "";
-        //                     setQuarterDate({ ...tempAnswerDate });
-        //                 }
-        //             })
-        //         })
-        //         setWrongApproach(false)
-        //         setEditProfileButton(false)
-
-
+        // push 할때 주석 하기
+                setUserLoginPosition("president")
+                setStudentPresident({ ...answer["studentPresident"] });
+                setQuarter({ ...answer["quarter"] });
+                let resetArray=[]
+                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                    resetArray.push(false)
+                }
+                setShowAllReceiptButton(resetArray);
+                setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                setLogoImgPath(`./img/${currentQuarter}.png`);
+                setWrongApproach(false)
+                setEditProfileButton(false)
+                setQuarterDate({ ...answerDate });
+                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
+                quarter.map((quarterName) => {
+                    answerDate[quarterName].map((date, i) => {
+                        if (date.substr(0, 4) === "9999") {
+                            let tempAnswerDate = { ...answerDate };
+                            tempAnswerDate[quarterName][i] = "";
+                            setQuarterDate({ ...tempAnswerDate });
+                        }
+                    })
+                })
+                setWrongApproach(false)
+                setEditProfileButton(false)
     }, []);
 
     useEffect(() => {
-        // push 시 주석 삭제
-        if (editEventState === false) {
-            getUserStatus();
-            reset(currentQuarter);
-            defineColor(currentQuarter);
-            setLogoImgPath(`./img/${currentQuarter}.png`);
-        }
+        // push 할때 주석 삭제
+        // if (editEventState === false) {
+        //     getUserStatus();
+        //     reset(currentQuarter);
+        //     console.log(currentQuarter)
+        //     defineColor(currentQuarter);
+        //     setLogoImgPath(`./img/${currentQuarter}.png`);
+        // }
     }, [editEventState]);
 
     useEffect(() => {
@@ -509,6 +526,9 @@ function EditMainPage(props) {
 
     return (
         <>
+        {
+            defineColor(currentQuarter)
+        }
             {wrongApproach === true
                 ? (<div className="MainPageContainer">
                     {
@@ -525,8 +545,8 @@ function EditMainPage(props) {
                         {
                             editProfileButton === true
                                 ? (<div className="buttonNav">
-                                    <i class="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{ fontSize: "20px", marginRight: "10px" }}></i>
-                                    <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                    <i className="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{ fontSize: "20px", marginRight: "10px" }}></i>
+                                    <i className="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
                                     <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                 </div>)
                                 : (<div className="buttonNav">
@@ -571,10 +591,11 @@ function EditMainPage(props) {
                                 : (<>
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
-                                            <div className="quarterButton" style={{ marginTop: "50px" }} onClick={() => { setList(quarter["quarter1"]["eventList"]); showQuarter("quarter1"); window.scrollTo(0, 0); }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
-                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter2"]["eventList"]); showQuarter("quarter2"); window.scrollTo(0, 0); }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
-                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter3"]["eventList"]); showQuarter("quarter3"); window.scrollTo(0, 0); }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
-                                            <div className="quarterButton" onClick={() => { setList(quarter["quarter4"]["eventList"]); showQuarter("quarter4"); window.scrollTo(0, 0); }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
+
+                                    <div className="quarterButton quarter1" onClick={() => { clickedButon("quarter1","#db8f8e") }} style={{border: "15px solid #db8f8e"}}><div>1분기</div></div>
+                                    <div className="quarterButton quarter2" onClick={() => { clickedButon("quarter2","#649d67") }} style={{border: "15px solid #649d67"}}><div>2분기</div></div>
+                                    <div className="quarterButton quarter3" onClick={() => { clickedButon("quarter3","#c18356") }} style={{border: "15px solid #c18356"}}><div>3분기</div></div>
+                                    <div className="quarterButton quarter4" onClick={() => { clickedButon("quarter4","#6b8396") }} style={{border: "15px solid #6b8396"}}><div>4분기</div></div>
                                         </div>
 
                                     </div>
@@ -618,8 +639,8 @@ function EditMainPage(props) {
                                                         : null
                                                 }
                                                 <div style={{ display: "flex", alignItems: "center" }}>
-                                                    <i class="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                                    <i class="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
+                                                    <i className="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
+                                                    <i className="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
                                                     <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </div>
                                         </div>
@@ -658,12 +679,12 @@ function EditMainPage(props) {
                                                                                     <button onClick={() => {
                                                                                         eventDeleteButton(event["eventNumber"], i);
                                                                                     }} style={{ marginRight: "15px" }}>
-                                                                                        <i class="far fa-trash-alt"></i></button>
+                                                                                        <i className="far fa-trash-alt"></i></button>
                                                                                     <button onClick={() => {
                                                                                         setEditEventState(true)
                                                                                         setEditEventData(quarter[currentQuarter]["eventList"][i]);
                                                                                         setEditEventAmount(eventAmount[i]);
-                                                                                    }} style={{ marginRight: "15px" }}><i class="fas fa-wrench"></i></button>
+                                                                                    }} style={{ marginRight: "15px" }}><i className="fas fa-wrench"></i></button>
 
                                                                                     {
                                                                                         event.receiptList.length <= 1
@@ -675,14 +696,14 @@ function EditMainPage(props) {
                                                                                                             let array = [...showAllReceiptButton];
                                                                                                             array[i] = !showAllReceiptButton[i];
                                                                                                             setShowAllReceiptButton(array);
-                                                                                                        }}><i class="fas fa-angle-double-up"></i></button>
+                                                                                                        }}><i className="fas fa-angle-double-up"></i></button>
                                                                                                     )
                                                                                                     : (
                                                                                                         <button onClick={() => {
                                                                                                             let array = [...showAllReceiptButton];
                                                                                                             array[i] = !showAllReceiptButton[i];
                                                                                                             setShowAllReceiptButton(array);
-                                                                                                        }}><i class="fas fa-angle-double-down"></i></button>
+                                                                                                        }}><i className="fas fa-angle-double-down"></i></button>
                                                                                                     )
                                                                                             )
 
@@ -881,7 +902,7 @@ function EditMainPage(props) {
                                                     <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
                                                         <button className="editButton" onClick={() => {
                                                             eventAddButton(currentQuarter);
-                                                        }} > <i class="fas fa-plus"></i> </button>
+                                                        }} > <i className="fas fa-plus"></i> </button>
                                                     </div>
 
 
@@ -910,7 +931,7 @@ function EditMainPage(props) {
                                                                             </div>
                                                                         }
                                                                     </>
-                                                                    : <span>등록된 행사가 없습니다.</span>
+                                                                    : <span style={{ marginBottom: "5px"}}>등록된 행사가 없습니다.</span>
                                                             }
 
                                                             <div style={{ color: "#d32c2c" }}>

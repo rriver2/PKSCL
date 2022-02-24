@@ -112,7 +112,7 @@ input::-webkit-search-results-decoration {
 }
 
 .ManagementPageContainer i {
-    color: #464646;
+    color: #59577b;
 }
 
 .ManagementPageContainer .buttonNav {
@@ -188,7 +188,7 @@ input::-webkit-search-results-decoration {
 }
 
 .tableSet th {
-    background-color: #464646;
+    background-color: #59577b;
     color: var(--color-white);
 }
 
@@ -208,7 +208,7 @@ input::-webkit-search-results-decoration {
 }
 
 .submitButton {
-    background-color: #727272;
+    background-color: #7c7a9a;
     border: none;
     outline: none;
     color: var(--color-white);
@@ -221,8 +221,12 @@ input::-webkit-search-results-decoration {
     transition: 0.5s;
 }
 
+.boxUser {
+    margin-right: 15px;
+}
+
 .ManagementPageContainer .navButton {
-    background-color: #727272;
+    background-color: #7c7a9a;
     border: none;
     outline: none;
     color: var(--color-white);
@@ -247,7 +251,7 @@ input::-webkit-search-results-decoration {
 }
 
 .tableSet .pagenationItem {
-    color: #464646;
+    color: #59577b;
     margin: 4px;
 }
 
@@ -292,7 +296,7 @@ i {
 }
 
 .alertEmailField {
-    border: 7px solid #464646;
+    border: 7px solid #59577b;
     border-radius: 20px;
     color: black;
     width: 80%;

@@ -350,8 +350,9 @@ function EditProfile(props) {
                     boxState === "profile"
                         ? <>
                             <div className='boxTitle'>
-                                <h2 style={{ marginRight: "8px", justifyContent: "center" }}><i className="fas fa-users" />프로필 편집</h2>
-                                <button className="btn btn-danger" onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
+                                {/* <i className="fas fa-user" /> */}
+                                <div className="profileEditTitle">프로필 편집</div>
+                                <button className="btn btn-danger dangerButton" onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
                             </div>
 
                             <div className='editField'>
@@ -571,7 +572,7 @@ function EditProfile(props) {
                         : boxState === "withdrawal"
                             ? <>
                                 <div className='boxTitle' style={{ justifyContent: "center" }}  >
-                                    <h2 ><i className="fas fa-users" style={{ color: "#dc3545" }} />회원탈퇴</h2>
+                                    <h2 ><i className="fas fa-user" style={{ color: "#dc3545" }} />회원탈퇴</h2>
                                 </div>
 
                                 <div className='editField' style={{ borderColor: "#dc3545" }}>
@@ -613,7 +614,7 @@ function EditProfile(props) {
                             : boxState === "newPassword"
                                 ? <>
                                     <div className='boxTitle'  >
-                                        <h2 ><i className="fas fa-users" />비밀번호 변경</h2>
+                                        <h2 ><i className="fas fa-user" />비밀번호 변경</h2>
                                     </div>
 
                                     <div className='editField' >
