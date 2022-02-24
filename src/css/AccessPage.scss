@@ -343,8 +343,8 @@ div .checkbox-form {
 
 
     .accessContainer {
-        -webkit-animation: color-change-3x 3s linear infinite alternate both;
-        animation: color-change-3x 3s linear infinite alternate both;
+        -webkit-animation: color-change-3x 7s linear infinite alternate both;
+        animation: color-change-3x 7s linear infinite alternate both;
     }
 
 
@@ -358,7 +358,7 @@ div .checkbox-form {
         }
 
         100% {
-            background: var(--color-quarterCircle);
+            background: var(--color-card);
         }
     }
 
