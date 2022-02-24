@@ -242,17 +242,16 @@ function AccessPage(props) {
     }
   }, [isCorrect]);
 
-
-//   function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
-//     document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-//     document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-//     document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-//     document.documentElement.style.setProperty("--color-card", colorCard);
-//     document.documentElement.style.setProperty("--color-background", colorBackground);
-//   }
+function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
+  document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+  document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+  document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+  document.documentElement.style.setProperty("--color-card", colorCard);
+  document.documentElement.style.setProperty("--color-background", colorBackground);
+}
 
   useEffect(() => {
-   
+   setColorProperty("#59577b", "#7c7a9a", "#cdc9e6", "#ebeaee", "#f8f6fb");
     axios.get('/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);

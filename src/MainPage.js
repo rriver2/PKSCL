@@ -477,41 +477,38 @@ function MainPage(props) {
     useEffect(() => {
 
         // push 할때 주석 풀기
-        // axios.get('/position')
-        //     .then((payload) => {
-        //         setUserLoginPosition(payload.data["position"])
-        //         setLogoImgPath(`./img/${props.todayQuarter}.png`);
-        //         reload()
-        //         defineColor(props.todayQuarter);
-        //     })
-        //     .catch((error) => {
-        //         setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-        //         setWrongApproach(true)
-        //         setEditProfileButton(false);
-        //         defineColor(props.todayQuarter);
-        //     })
+        axios.get('/position')
+            .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                reload()
+                defineColor(props.todayQuarter);
+            })
+            .catch((error) => {
+                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+                defineColor(props.todayQuarter);
+            })
 
         // push 할때 주석 넣기
-            setStudentPresident({ ...answer["studentPresident"] });
-            setQuarter({ ...answer["quarter"] });
-            reset(props.todayQuarter);
-            showQuarter(props.todayQuarter);
-            setLogoImgPath(`./img/${props.todayQuarter}.png`);
-            setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
-            setStudentPresident({ ...answer["studentPresident"] });
-            setQuarterDate({ ...answerDate });
-            setUserLoginPosition("student")
-            setMajorList([...answerMajorList]);
-            defineColor(props.todayQuarter);
-
-
+            // setStudentPresident({ ...answer["studentPresident"] });
+            // setQuarter({ ...answer["quarter"] });
+            // reset(props.todayQuarter);
+            // showQuarter(props.todayQuarter);
+            // setLogoImgPath(`./img/${props.todayQuarter}.png`);
+            // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
+            // setStudentPresident({ ...answer["studentPresident"] });
+            // setQuarterDate({ ...answerDate });
+            // setUserLoginPosition("student")
+            // setMajorList([...answerMajorList]);
+            // defineColor(props.todayQuarter);
     }, []);
 
     useEffect(() => {
         if (quarter !== undefined) {
             reset(currentQuarter);
         }
-
     }, [currentQuarter])
 
     useEffect(() => {

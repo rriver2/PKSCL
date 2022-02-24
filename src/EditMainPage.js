@@ -194,6 +194,7 @@ function EditMainPage(props) {
         document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
         document.documentElement.style.setProperty("--color-card", colorCard);
         document.documentElement.style.setProperty("--color-background", colorBackground);
+         document.documentElement.style.setProperty("--color-clickedButton", colorQuarter);
     }
 
     function defineColor(quarter) {
@@ -459,48 +460,48 @@ function EditMainPage(props) {
 
 
     useEffect(() => {
-        // getUserStatus();
-        // reset(props.todayQuarter);
-        // setLogoImgPath(`./img/${props.todayQuarter}.png`);
-        // defineColor(props.todayQuarter);
+        getUserStatus();
+        reset(props.todayQuarter);
+        setLogoImgPath(`./img/${props.todayQuarter}.png`);
+        defineColor(props.todayQuarter);
 
         // push 할때 주석 하기
-                setUserLoginPosition("president")
-                setStudentPresident({ ...answer["studentPresident"] });
-                setQuarter({ ...answer["quarter"] });
-                let resetArray=[]
-                for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-                    resetArray.push(false)
-                }
-                setShowAllReceiptButton(resetArray);
-                setList([...answer["quarter"][currentQuarter]["eventList"]]);
-                setLogoImgPath(`./img/${currentQuarter}.png`);
-                setWrongApproach(false)
-                setEditProfileButton(false)
-                setQuarterDate({ ...answerDate });
-                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-                quarter.map((quarterName) => {
-                    answerDate[quarterName].map((date, i) => {
-                        if (date.substr(0, 4) === "9999") {
-                            let tempAnswerDate = { ...answerDate };
-                            tempAnswerDate[quarterName][i] = "";
-                            setQuarterDate({ ...tempAnswerDate });
-                        }
-                    })
-                })
-                setWrongApproach(false)
-                setEditProfileButton(false)
+                // setUserLoginPosition("president")
+                // setStudentPresident({ ...answer["studentPresident"] });
+                // setQuarter({ ...answer["quarter"] });
+                // let resetArray=[]
+                // for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
+                //     resetArray.push(false)
+                // }
+                // setShowAllReceiptButton(resetArray);
+                // setList([...answer["quarter"][currentQuarter]["eventList"]]);
+                // setLogoImgPath(`./img/${currentQuarter}.png`);
+                // setWrongApproach(false)
+                // setEditProfileButton(false)
+                // setQuarterDate({ ...answerDate });
+                // let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
+                // quarter.map((quarterName) => {
+                //     answerDate[quarterName].map((date, i) => {
+                //         if (date.substr(0, 4) === "9999") {
+                //             let tempAnswerDate = { ...answerDate };
+                //             tempAnswerDate[quarterName][i] = "";
+                //             setQuarterDate({ ...tempAnswerDate });
+                //         }
+                //     })
+                // })
+                // setWrongApproach(false)
+                // setEditProfileButton(false)
     }, []);
 
     useEffect(() => {
         // push 할때 주석 삭제
-        // if (editEventState === false) {
-        //     getUserStatus();
-        //     reset(currentQuarter);
-        //     console.log(currentQuarter)
-        //     defineColor(currentQuarter);
-        //     setLogoImgPath(`./img/${currentQuarter}.png`);
-        // }
+        if (editEventState === false) {
+            getUserStatus();
+            reset(currentQuarter);
+            console.log(currentQuarter)
+            defineColor(currentQuarter);
+            setLogoImgPath(`./img/${currentQuarter}.png`);
+        }
     }, [editEventState]);
 
     useEffect(() => {
@@ -592,7 +593,7 @@ function EditMainPage(props) {
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
 
-                                    <div className="quarterButton quarter1" onClick={() => { clickedButon("quarter1","#db8f8e") }} style={{border: "15px solid #db8f8e"}}><div>1분기</div></div>
+                                    <div className="quarterButton quarter1 clicked" onClick={() => { clickedButon("quarter1","#db8f8e") }} style={{border: "15px solid #db8f8e"}}><div>1분기</div></div>
                                     <div className="quarterButton quarter2" onClick={() => { clickedButon("quarter2","#649d67") }} style={{border: "15px solid #649d67"}}><div>2분기</div></div>
                                     <div className="quarterButton quarter3" onClick={() => { clickedButon("quarter3","#c18356") }} style={{border: "15px solid #c18356"}}><div>3분기</div></div>
                                     <div className="quarterButton quarter4" onClick={() => { clickedButon("quarter4","#6b8396") }} style={{border: "15px solid #6b8396"}}><div>4분기</div></div>
