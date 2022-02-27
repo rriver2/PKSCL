@@ -344,8 +344,8 @@ function EditEvent(props) {
 	// }, Promise.resolve())
 
             eventData["receiptList"].reduce((previous, current,currentIndex) => {
-                return previous.then(async () => {
-                    await receiptAPI(current,currentIndex)
+                return previous.then(() => {
+                    receiptAPI(current,currentIndex)
                 })
             }, Promise.resolve())
             .then(() => {
