@@ -215,9 +215,8 @@ function EditMainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                alert("로그아웃에 실패하였습니다.");
-                getLedger();
-                GetDate();
+                alert("로그아웃에 실패하였습니다."); 
+                history.push('/');
             })
     }
 
@@ -292,14 +291,14 @@ function EditMainPage(props) {
         promise
             .then(value => {
                 getLedger();
-
                 GetDate();
+                resetShowAllReceiptButton();
             })
             .catch((value => {
-                alert(value)
-                getLedger();
-
-                GetDate();
+                setWrongApproachContext(value);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+                defineColor(props.todayQuarter);
             }))
     }
 
@@ -338,8 +337,10 @@ function EditMainPage(props) {
                 GetDate();
             })
             .catch((value => {
-                alert(value)
-                GetDate();
+                setWrongApproachContext(value);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+                defineColor(props.todayQuarter);
             }))
     }
 
@@ -368,7 +369,7 @@ function EditMainPage(props) {
                 .then((payload) => {
                     resolve("행사 순서가 수정되었습니다.");
                 }).catch((error) => {
-                    reject(error.response.data["errorMessage"]);
+                    reject("행사 순서가 수정에 실패했습니다. error: "+error.response.data["errorMessage"]);
                 })
         })
 
@@ -378,8 +379,10 @@ function EditMainPage(props) {
                 GetDate();
             })
             .catch((value => {
-                getLedger();
-                GetDate();
+                setWrongApproachContext(value);
+                setWrongApproach(true)
+                setEditProfileButton(false);
+                defineColor(props.todayQuarter);
             }))
 
     }

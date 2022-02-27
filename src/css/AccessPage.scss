@@ -284,6 +284,10 @@ div .checkbox-form {
     text-indent: .3em;
 }
 
+.PKSCLMainLogo {
+    color: black !important;
+}
+
 .PKSCLMainLogo img {
     width: 80px;
     height: 80px;
@@ -333,7 +337,8 @@ div .checkbox-form {
 
     .accessContainer {
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
+        height: 100%;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -343,8 +348,8 @@ div .checkbox-form {
 
 
     .accessContainer {
-        -webkit-animation: color-change-3x 7s linear infinite alternate both;
-        animation: color-change-3x 7s linear infinite alternate both;
+        -webkit-animation: color-change-3x 15s linear infinite alternate both;
+        animation: color-change-3x 15s linear infinite alternate both;
     }
 
 
@@ -376,6 +381,9 @@ div .checkbox-form {
         display: none;
     }
 
+    .PKSCLMainLogo {
+        margin-top: 10%;
+    }
 
     .PKSCLMainLogo img {
         width: 50px;
@@ -421,6 +429,7 @@ div .checkbox-form {
     .moveSignPage {
         display: flex;
         font-size: 0.8rem;
+        margin-bottom: 10%;
     }
 
     .SignInBtn {

@@ -318,6 +318,10 @@ i {
         display: none;
     }
 
+    .mobileVersion {
+        display: block;
+    }
+
     .ManagementPageContainer .mobileVersion {
         display: flex;
         flex-direction: column;

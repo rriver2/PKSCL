@@ -270,7 +270,6 @@ function EditEvent(props) {
     function sendReciept() {
                         Promise.all(
                             eventData["receiptList"].map(async receipt => {
-                                // HTTP 요청
                                 if (receipt["receiptNumber"] === undefined) {
                                     return await postReceipt(receipt);
                                 } else {

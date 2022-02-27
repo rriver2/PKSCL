@@ -211,10 +211,6 @@
     align-items: center;
 }
 
-.eventCardBox {
-    display: flex;
-}
-
 .mainSearchBar {
     height: 32px;
     border-radius: 20px;
@@ -692,10 +688,10 @@
     }
 
     .quarterButton div {
-        top: 50%;
         width: 30px;
+        height: 30px;
         text-align: center;
-        transform: translateY(-50%);
+        line-height: 25px;
     }
 
     .MainPageContainer .nav {

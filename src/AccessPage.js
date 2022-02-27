@@ -271,18 +271,8 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         <div class='wave -two'></div>
         <div class='wave -three'></div>
 
-          <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
-          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
-        </button>
+        
         <div className="content">
-          {/* <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
-            <h3>PKNU 온라인 장부</h3>
-          </button>
-          <p>
-            우리 학과의 장부를 분기 별로 확인할 수 있습니다.
-          </p> */}
-
-
           <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
             <div>
               <div className="PKSCLMainLogo" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -704,7 +694,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         <Route exact path="/giraffe-admin">
           <div className="right-panel">
             <form className="userForm">
-              <h3 className="accessTitle" >관리자 로그인</h3>
+              <h3 className="accessTitle" style={{marginBottom: "10px"}} >관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
@@ -779,6 +769,10 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
           </div>
         </Route>
       </Switch >
+
+          <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
+          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
+        </button>
     </div >
   )
 }

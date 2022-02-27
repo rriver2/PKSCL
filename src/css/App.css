@@ -106,9 +106,45 @@ i:hover {
     display: block;
 }
 
+@media (hover: hover) and (pointer: fine) and (max-width: 1200px) {
+
+    .majorCard {
+        display: none !important;
+    }
+
+    .remotePanelBox {
+        display: none !important;
+    }
+
+    .leftPanel {
+        min-width: 20vw !important;
+    }
+
+    .EditMainPageContainer .leftPanel {
+        display: none !important;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 800px) {
+
+    .leftPanel {
+        display: none !important;
+    }
+
+    .MainPageContainer {
+        justify-content: center !important;
+    }
+
+    .quarterData {
+        margin-right: 0 !important;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 710px) {}
+
 @media (hover: none) and (pointer: coarse) {
     .mobileVersion {
-        display: block;
+        display: block !important;
     }
 
     .PCVersion {
