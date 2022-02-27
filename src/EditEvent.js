@@ -246,6 +246,7 @@ function EditEvent(props) {
 
         promise
             .then(value => {
+                 console.log(value)
             })
             .catch((value => {
                 alert(value)
@@ -293,6 +294,7 @@ function EditEvent(props) {
 
         promise
             .then(value => {
+                console.log(value)
             })
             .catch((value => {
                 alert(value)
@@ -317,7 +319,8 @@ function EditEvent(props) {
             .then(value => {
                 if (editState === true) {
                     // alert("행사 수정 끗.")
-                    setTimeout(() => {props.setEditEventState(false)}, 500);
+                    console.log("props.setEditEventState(false)")
+                    props.setEditEventState(false);
                 }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })

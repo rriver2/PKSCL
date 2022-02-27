@@ -388,6 +388,7 @@ function EditMainPage(props) {
         axios.get('/position')
             .then((payload) => {
                 setUserLoginPosition(payload.data["position"])
+                console.log("axios.get('/position')")
                 if (payload.data["position"] === "student" || payload.data["position"] === "admin") {
                     setWrongApproachContext("잘못된 접근입니다.");
                     setWrongApproach(true)
