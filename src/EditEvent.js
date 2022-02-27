@@ -238,20 +238,20 @@ function EditEvent(props) {
                         //     });
                         // };
 
-            axios.post( "/receipt", payload,
+           const Axios =  axios.post( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
-                .then((payload) => {
-                    console.log("영수증 추가 완료")
-                })
-                .catch((error) => {
-                    alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
-                    setEditState(false)
-                })
+                // .then((payload) => {
+                //     console.log("영수증 추가 완료")
+                // })
+                // .catch((error) => {
+                //     alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
+                //     setEditState(false)
+                // })
 
-     return;
+     return Axios;
 
     }
 
@@ -276,20 +276,20 @@ function EditEvent(props) {
         }
 
 
-            axios.put( "/receipt", payload,
+        const Axios = axios.put( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
-                .then((payload) => {
-                    console.log("영수증 수정 완료")
-                })
-                .catch((error) => {
-                    alert(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
-                    setEditState(false)
-                })
+                // .then((payload) => {
+                //     console.log("영수증 수정 완료")
+                // })
+                // .catch((error) => {
+                //     alert(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
+                //     setEditState(false)
+                // })
 
-        return;
+         return Axios;
     }
 
     function sendReciept() {
@@ -376,55 +376,41 @@ function EditEvent(props) {
                         // Promise.all(promises).then(() => console.log('All promise resolved'));
                         // };
 
-                        const promiseAll = () => {
-                        const promises = eventData["receiptList"].map((receiptData,j) => 
-                           { 
-                            console.log(j);
-                            if (receiptData === undefined) {
-                                let payload = new FormData();
+                        // eventData["receiptList"].map((receiptData,j) => 
+                        //    { 
+                        //     console.log(j);
+                        //     if (receiptData === undefined) {
+                        //         postReceipt(receiptData);
+                        //     } else {
+                        //        putReceipt(receiptData);
+                        //     }
+                        // });
 
+                        // const promiseAll = () => {
+                        // const promises = 
 
-                            if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
-                                payload.append("receiptImgFile", receiptData["receiptImg"])
-                            }
-                            payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
+                        // Promise.all(promises)
+                        //     .then(() => { 
+                        //         console.log('행사 수정을 성공했습니다'); 
+                        //         props.setEditEventState(false)})
+                        //     .catch(() => console.log('행사 수정을 실패했습니다'))
+                        // };
 
-                            payload.append("eventNumber", eventData["eventNumber"]);
-                            payload.append("receiptTitle", receiptData["receiptTitle"]);
-                            payload.append("receiptContext", receiptData["receiptContext"]);
+                        // promiseAll();
 
-                            for (var i = 0; i < receiptData["receiptDetailList"].length; i++) {
-                                payload.append(`context[${i}]`, receiptData["receiptDetailList"][i]["context"]);
-                                payload.append(`price[${i}]`, receiptData["receiptDetailList"][i]["price"]);
-                                payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
-                            }
-
-                            axios.post( "/receipt", payload,
-                                {
-                                    headers: { 'Content-Type': 'multipart/form-data' }
+                        Promise.all(
+                            eventData["receiptList"].map(async receipt => {
+                                // HTTP 요청
+                                if (receipt === undefined) {
+                                    return await postReceipt(receipt);
+                                } else {
+                                    return await putReceipt(receipt);
                                 }
-                            )
-                                .then((payload) => {
-                                    console.log("영수증 추가 완료")
-                                })
-                                .catch((error) => {
-                                    alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
-                                    setEditState(false)
-                                })
-                                
-                            } else {
-                               return putReceipt(receiptData);
-                            }
-                        });
-
-                        Promise.all(promises)
-                            .then(() => { 
+                            })
+                            ).then(() => { 
                                 console.log('행사 수정을 성공했습니다'); 
                                 props.setEditEventState(false)})
                             .catch(() => console.log('행사 수정을 실패했습니다'))
-                        };
-
-                        promiseAll();
 
                         // for(let i = 0 ; i<eventData["receiptList"].length; i++){
                         //     let result = receiptAPI(eventData["receiptList"][i],i);
