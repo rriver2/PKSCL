@@ -209,11 +209,10 @@ function EditEvent(props) {
 
     }
 
-    function postReceipt(j) {
+    function postReceipt(receiptData) {
 
         let payload = new FormData();
 
-        let receiptData = eventData["receiptList"][j];
 
         if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
             payload.append("receiptImgFile", receiptData["receiptImg"])
@@ -230,35 +229,35 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
+        // const samplePromise = (n) => {
+                        // console.log(`Promise=${n} Start`);
+                        //     return new Promise((resolve, reject) => {
+                        //         setTimeout(() => {
+                        //             resolve(`Promise=${n} Resolve`);
+                        //         }, n * 1000);
+                        //     });
+                        // };
 
-        return new Promise((resolve, reject) => {
             axios.post( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
                 .then((payload) => {
-                    resolve("영수증 추가 완료")
+                    console.log("영수증 추가 완료")
                 })
                 .catch((error) => {
-                    reject(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
+                    alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
+                    setEditState(false)
                 })
-        }).then(value => {
-                 console.log(value)
-            })
-            .catch((value => {
-                alert(value)
-                setEditState(false)
-            }))
+
+     return;
 
     }
 
-    function putReceipt(j) {
+    function putReceipt(receiptData) {
 
         let payload = new FormData();
-        let receiptData = eventData["receiptList"][j];
-
-
 
         if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
             payload.append("receiptImgFile", receiptData["receiptImg"])
@@ -277,25 +276,20 @@ function EditEvent(props) {
         }
 
 
-        return new Promise((resolve, reject) => {
             axios.put( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
                 .then((payload) => {
-                    resolve("영수증 수정 완료")
+                    console.log("영수증 수정 완료")
                 })
                 .catch((error) => {
-                    reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
+                    alert(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
+                    setEditState(false)
                 })
-        }).then(value => {
-                console.log(value)
-            })
-            .catch((value => {
-                alert(value)
-                setEditState(false)
-            }))
+
+        return;
     }
 
     function sendReciept() {
@@ -384,14 +378,19 @@ function EditEvent(props) {
 
                         const promiseAll = () => {
                         const promises = eventData["receiptList"].map((receipt,j) => 
-                           { if (receipt === undefined) {
-                                postReceipt(j);
+                           { 
+                            console.log(j);
+                            if (receipt === undefined) {
+                               return postReceipt(receipt);
                             } else {
-                                putReceipt(j);
+                               return putReceipt(receipt);
                             }
                         });
+                        
                         Promise.all(promises)
-                            .then(() => props.setEditEventState(false))
+                            .then(() => { 
+                                console.log('행사 수정을 성공했습니다'); 
+                                props.setEditEventState(false)})
                             .catch(() => console.log('행사 수정을 실패했습니다'))
                         };
 
