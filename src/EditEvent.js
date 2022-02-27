@@ -377,16 +377,46 @@ function EditEvent(props) {
                         // };
 
                         const promiseAll = () => {
-                        const promises = eventData["receiptList"].map((receipt,j) => 
+                        const promises = eventData["receiptList"].map((receiptData,j) => 
                            { 
                             console.log(j);
-                            if (receipt === undefined) {
-                               return postReceipt(receipt);
+                            if (receiptData === undefined) {
+                                let payload = new FormData();
+
+
+                            if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
+                                payload.append("receiptImgFile", receiptData["receiptImg"])
+                            }
+                            payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
+
+                            payload.append("eventNumber", eventData["eventNumber"]);
+                            payload.append("receiptTitle", receiptData["receiptTitle"]);
+                            payload.append("receiptContext", receiptData["receiptContext"]);
+
+                            for (var i = 0; i < receiptData["receiptDetailList"].length; i++) {
+                                payload.append(`context[${i}]`, receiptData["receiptDetailList"][i]["context"]);
+                                payload.append(`price[${i}]`, receiptData["receiptDetailList"][i]["price"]);
+                                payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
+                            }
+
+                            axios.post( "/receipt", payload,
+                                {
+                                    headers: { 'Content-Type': 'multipart/form-data' }
+                                }
+                            )
+                                .then((payload) => {
+                                    console.log("영수증 추가 완료")
+                                })
+                                .catch((error) => {
+                                    alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
+                                    setEditState(false)
+                                })
+                                
                             } else {
-                               return putReceipt(receipt);
+                               return putReceipt(receiptData);
                             }
                         });
-                        
+
                         Promise.all(promises)
                             .then(() => { 
                                 console.log('행사 수정을 성공했습니다'); 
