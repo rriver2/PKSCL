@@ -288,21 +288,21 @@ function EditEvent(props) {
             )
                 .then((payload) => {
                     resolve("영수증 수정 완료")
-                    return true;
                 })
                 .catch((error) => {
                     reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
-                    return false;
                 })
         })
 
         promise
             .then(value => {
                 console.log(value)
+                return true;
             })
             .catch((value => {
                 alert(value)
                 setEditState(false)
+                return false;
             }))
     }
 
@@ -351,11 +351,13 @@ function EditEvent(props) {
 
 
             function receiptAPI(receipt,j){
+                let result;
                 if (receipt === undefined) {
-                    postReceipt(j);
+                   result =  postReceipt(j);
                 } else {
-                    putReceipt(j);
+                   result =  putReceipt(j);
                 }
+                return result;
             }
 
                     const fixReceipt = receipts => {
@@ -364,7 +366,7 @@ function EditEvent(props) {
                                 return receiptAPI(receipt,j) 
                             })
                         );
-
+                        console.log("result: "+ result);
                         return result; 
                     }
 
@@ -374,6 +376,8 @@ function EditEvent(props) {
                                     props.setEditEventState(false)
                                 }
                                 else if (editState === false) alert("행사 수정을 실패했습니다.")
+                            }).catch(()=>{
+                                alert("행사 수정을 실패했습니다.")
                             })
     }
 
