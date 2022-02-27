@@ -229,27 +229,11 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-        // const samplePromise = (n) => {
-                        // console.log(`Promise=${n} Start`);
-                        //     return new Promise((resolve, reject) => {
-                        //         setTimeout(() => {
-                        //             resolve(`Promise=${n} Resolve`);
-                        //         }, n * 1000);
-                        //     });
-                        // };
-
            const Axios =  axios.post( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
-                // .then((payload) => {
-                //     console.log("영수증 추가 완료")
-                // })
-                // .catch((error) => {
-                //     alert(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
-                //     setEditState(false)
-                // })
 
      return Axios;
 
@@ -262,8 +246,6 @@ function EditEvent(props) {
         if (!receiptData["receiptImg"]["name"].includes("./static/receiptImg/")) {
             payload.append("receiptImgFile", receiptData["receiptImg"])
         }
-
-        // payload.append("receiptImgPath", "./static/receiptImg/" + receiptData["receiptImg"]["name"])
 
         payload.append("receiptNumber", receiptData["receiptNumber"]);
         payload.append("receiptTitle", receiptData["receiptTitle"]);
@@ -281,127 +263,15 @@ function EditEvent(props) {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 }
             )
-                // .then((payload) => {
-                //     console.log("영수증 수정 완료")
-                // })
-                // .catch((error) => {
-                //     alert(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
-                //     setEditState(false)
-                // })
 
          return Axios;
     }
 
     function sendReciept() {
-
-        // Promise.all(
-        //     eventData["receiptList"].map(async (receipt, j) => {
-        //         if (receipt["receiptNumber"] === undefined) {
-        //             postReceipt(j);
-        //         } else {
-        //             putReceipt(j);
-        //         }
-        //     })
-        //     ).then(result => {
-        //         if (editState === true) {
-        //             // alert("행사 수정 끗.")
-        //             console.log("props.setEditEventState(false)")
-        //             props.setEditEventState(false);
-        //         }
-        //         else if (editState === false) alert("행사 수정을 실패했습니다.")
-        //     }).catch(e => {
-        //         if (editState === true){
-        //                 props.setEditEventState(false)
-        //             }
-        //             else if (editState === false) alert("행사 수정을 실패했습니다.")
-        //     });
-
-
-            // eventData["receiptList"].reduce((previous, current,currentIndex) => {
-            //     return previous.then(() => {
-            //         receiptAPI(current,currentIndex)
-            //     })
-            // }, Promise.resolve())
-            // .then(() => {
-            //             if (editState === true) {
-            //                 console.log("props.setEditEventState(false)")
-            //                 props.setEditEventState(false);
-            //             }
-            //             else if (editState === false) alert("행사 수정을 실패했습니다.")
-            //         }).catch(() => {
-            //             if (editState === true){
-            //                     props.setEditEventState(false)
-            //                 }
-            //                 else if (editState === false) alert("행사 수정을 실패했습니다.")
-            //         });
-
-
-            function receiptAPI(receipt,j){
-                let result;
-                if (receipt === undefined) {
-                   result =  postReceipt(j);
-                } else {
-                   result =  putReceipt(j);
-                }
-                console.log("receiptAPI"+result)
-                return result;
-            }
-
-                    // const fixReceipt = receipts => {
-                    //     const result = Promise.all( 
-                    //         receipts.map((receipt,j) => { 
-                    //             return receiptAPI(receipt,j) 
-                    //         })
-                    //     );
-                    //     console.log("result: "+ result);
-                    //     return result; 
-                    // }
-
-                        // eventData["receiptList"].map((receipt,j) => {
-                        //     receiptAPI(receipt,j)
-                        // })
-
-                        // const samplePromise = (n) => {
-                        // console.log(`Promise=${n} Start`);
-                        //     return new Promise((resolve, reject) => {
-                        //         setTimeout(() => {
-                        //             resolve(`Promise=${n} Resolve`);
-                        //         }, n * 1000);
-                        //     });
-                        // };
-
-                        // const promiseAll1 = () => {
-                        // const dataArray = [0, 1, 2, 3, 4, 5];
-                        // const promises = dataArray.map((el) => samplePromise(el).then(console.log));
-                        // Promise.all(promises).then(() => console.log('All promise resolved'));
-                        // };
-
-                        // eventData["receiptList"].map((receiptData,j) => 
-                        //    { 
-                        //     console.log(j);
-                        //     if (receiptData === undefined) {
-                        //         postReceipt(receiptData);
-                        //     } else {
-                        //        putReceipt(receiptData);
-                        //     }
-                        // });
-
-                        // const promiseAll = () => {
-                        // const promises = 
-
-                        // Promise.all(promises)
-                        //     .then(() => { 
-                        //         console.log('행사 수정을 성공했습니다'); 
-                        //         props.setEditEventState(false)})
-                        //     .catch(() => console.log('행사 수정을 실패했습니다'))
-                        // };
-
-                        // promiseAll();
-
                         Promise.all(
                             eventData["receiptList"].map(async receipt => {
                                 // HTTP 요청
-                                if (receipt === undefined) {
+                                if (receipt["receiptNumber"] === undefined) {
                                     return await postReceipt(receipt);
                                 } else {
                                     return await putReceipt(receipt);
@@ -410,20 +280,7 @@ function EditEvent(props) {
                             ).then(() => { 
                                 console.log('행사 수정을 성공했습니다'); 
                                 props.setEditEventState(false)})
-                            .catch(() => console.log('행사 수정을 실패했습니다'))
-
-                        // for(let i = 0 ; i<eventData["receiptList"].length; i++){
-                        //     let result = receiptAPI(eventData["receiptList"][i],i);
-                        //     console.log(i+") "+result)
-                        //     if(result === false){
-                        //          alert("행사 수정을 실패했습니다.")
-                        //     }
-                        // }
-                        // console.log("end 요청")
-                        //         if (editState === true){
-                        //             props.setEditEventState(false)
-                        //         }
-                        //         else if (editState === false) alert("행사 수정을 실패했습니다.")
+                            .catch(() => alert('행사 수정을 실패했습니다'))
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
