@@ -303,33 +303,28 @@ function EditEvent(props) {
     }
 
     function sendReciept() {
-
-        let promise = new Promise((resolve, reject) => {
-            eventData["receiptList"].map((receipt, j) => {
+        
+        Promise.all(
+            eventData["receiptList"].map(async (receipt, j) => {
                 if (receipt["receiptNumber"] === undefined) {
                     postReceipt(j);
                 } else {
                     putReceipt(j);
                 }
             })
-            resolve()
-        })
-
-        promise
-            .then(value => {
+            ).then(result => {
                 if (editState === true) {
                     // alert("행사 수정 끗.")
                     console.log("props.setEditEventState(false)")
                     props.setEditEventState(false);
                 }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
-            })
-            .catch((value => {
+            }).catch(e => {
                 if (editState === true){
-                    props.setEditEventState(false)
-                }
-                else if (editState === false) alert("행사 수정을 실패했습니다.")
-            }))
+                        props.setEditEventState(false)
+                    }
+                    else if (editState === false) alert("행사 수정을 실패했습니다.")
+            });
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
