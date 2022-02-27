@@ -303,28 +303,63 @@ function EditEvent(props) {
     }
 
     function sendReciept() {
-        
-        Promise.all(
-            eventData["receiptList"].map(async (receipt, j) => {
-                if (receipt["receiptNumber"] === undefined) {
+
+        // Promise.all(
+        //     eventData["receiptList"].map(async (receipt, j) => {
+        //         if (receipt["receiptNumber"] === undefined) {
+        //             postReceipt(j);
+        //         } else {
+        //             putReceipt(j);
+        //         }
+        //     })
+        //     ).then(result => {
+        //         if (editState === true) {
+        //             // alert("행사 수정 끗.")
+        //             console.log("props.setEditEventState(false)")
+        //             props.setEditEventState(false);
+        //         }
+        //         else if (editState === false) alert("행사 수정을 실패했습니다.")
+        //     }).catch(e => {
+        //         if (editState === true){
+        //                 props.setEditEventState(false)
+        //             }
+        //             else if (editState === false) alert("행사 수정을 실패했습니다.")
+        //     });
+
+
+            function receiptAPI(receipt,j){
+                if (receipt === undefined) {
                     postReceipt(j);
                 } else {
                     putReceipt(j);
                 }
-            })
-            ).then(result => {
-                if (editState === true) {
-                    // alert("행사 수정 끗.")
-                    console.log("props.setEditEventState(false)")
-                    props.setEditEventState(false);
-                }
-                else if (editState === false) alert("행사 수정을 실패했습니다.")
-            }).catch(e => {
-                if (editState === true){
-                        props.setEditEventState(false)
-                    }
-                    else if (editState === false) alert("행사 수정을 실패했습니다.")
-            });
+            }
+    //         const data = [1,2,3,4,5]
+
+	// data.reduce((previous, current) => {
+	// 	return previous.then(async () => {
+	// 		await axios.get('api/test', current)
+	// 		console.log("response")
+	// 	})
+	// }, Promise.resolve())
+
+            eventData["receiptList"].reduce((previous, current,currentIndex) => {
+                return previous.then(async () => {
+                    await receiptAPI(current,currentIndex)
+                })
+            }, Promise.resolve())
+            .then(() => {
+                        if (editState === true) {
+                            console.log("props.setEditEventState(false)")
+                            props.setEditEventState(false);
+                        }
+                        else if (editState === false) alert("행사 수정을 실패했습니다.")
+                    }).catch(() => {
+                        if (editState === true){
+                                props.setEditEventState(false)
+                            }
+                            else if (editState === false) alert("행사 수정을 실패했습니다.")
+                    });
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
