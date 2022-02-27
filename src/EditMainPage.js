@@ -528,7 +528,7 @@ function EditMainPage(props) {
                             : null
                     }
                     <div className="nav" >
-                        <div className="logoNav">
+                        <div className="logoNav" onClick={()=>{history.push('/main')}}>
                             <img src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
                             <div className="PksclNav">PKSCL</div>
                         </div>
@@ -598,7 +598,7 @@ function EditMainPage(props) {
                                     <div className="rightPanel">
                                         <div className="nav">
 
-                                                <div className="logoNav">
+                                                <div className="logoNav" onClick={()=>{history.push('/main')}}>
                                                     <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
                                                     <div className="PksclNav">PKSCL</div>
                                                 </div>

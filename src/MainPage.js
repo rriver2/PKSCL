@@ -592,7 +592,7 @@ function MainPage(props) {
                             <div className="rightPanel">
 
                                 <div className="nav">
-                                    <div className="logoNav">
+                                    <div className="logoNav" onClick={()=>{history.push('/main')}}>
                                         <img src={logoImgPath} alt="logo" width={"30px"} height={"30px"} />
                                         <div className="PksclNav PCVersion" >PKSCL</div>
                                         <div className="quarterSelecter">

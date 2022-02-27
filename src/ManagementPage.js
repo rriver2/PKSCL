@@ -304,7 +304,7 @@ function ManagementPage(props) {
         <>
             {wrongApproach === true
                 ? (<div className="ManagementPageContainer"><div className="nav">
-                    <div className="logoNav">
+                    <div className="logoNav" onClick={()=>{history.push('/main')}}>
                         <img src={`./img/managementLogo.png`} alt="logo" width={"40px"} height={"40px"} />
                         <div className="PksclNav">PKSCL</div>
                     </div>

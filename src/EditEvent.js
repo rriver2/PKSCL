@@ -357,28 +357,36 @@ function EditEvent(props) {
                 } else {
                    result =  putReceipt(j);
                 }
+                console.log("receiptAPI"+result)
                 return result;
             }
 
-                    const fixReceipt = receipts => {
-                        const result = Promise.all( 
-                            receipts.map((receipt,j) => { 
-                                return receiptAPI(receipt,j) 
-                            })
-                        );
-                        console.log("result: "+ result);
-                        return result; 
-                    }
+                    // const fixReceipt = receipts => {
+                    //     const result = Promise.all( 
+                    //         receipts.map((receipt,j) => { 
+                    //             return receiptAPI(receipt,j) 
+                    //         })
+                    //     );
+                    //     console.log("result: "+ result);
+                    //     return result; 
+                    // }
 
-                        fixReceipt(eventData["receiptList"])
-                            .then(() => {
+                        // eventData["receiptList"].map((receipt,j) => {
+                        //     receiptAPI(receipt,j)
+                        // })
+
+                        for(let i = 0 ; i<eventData["receiptList"].length; i++){
+                            let result = receiptAPI(eventData["receiptList"][i],i);
+                            console.log(i+") "+result)
+                            if(result === false){
+                                 alert("행사 수정을 실패했습니다.")
+                            }
+                        }
+                        console.log("end 요청")
                                 if (editState === true){
                                     props.setEditEventState(false)
                                 }
                                 else if (editState === false) alert("행사 수정을 실패했습니다.")
-                            }).catch(()=>{
-                                alert("행사 수정을 실패했습니다.")
-                            })
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
