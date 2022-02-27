@@ -230,7 +230,8 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-        let promise = new Promise((resolve, reject) => {
+
+        return new Promise((resolve, reject) => {
             axios.post( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
@@ -242,17 +243,12 @@ function EditEvent(props) {
                 .catch((error) => {
                     reject(`영수증 추가를 실패하였습니다. error: ${error.response.status}`)
                 })
-        })
-
-        promise
-            .then(value => {
+        }).then(value => {
                  console.log(value)
-                 return true;
             })
             .catch((value => {
                 alert(value)
                 setEditState(false)
-                return false;
             }))
 
     }
@@ -280,7 +276,8 @@ function EditEvent(props) {
             payload.append(`amount[${i}]`, receiptData["receiptDetailList"][i]["amount"]);
         }
 
-        let promise = new Promise((resolve, reject) => {
+
+        return new Promise((resolve, reject) => {
             axios.put( "/receipt", payload,
                 {
                     headers: { 'Content-Type': 'multipart/form-data' }
@@ -292,17 +289,12 @@ function EditEvent(props) {
                 .catch((error) => {
                     reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
                 })
-        })
-
-        promise
-            .then(value => {
+        }).then(value => {
                 console.log(value)
-                return true;
             })
             .catch((value => {
                 alert(value)
                 setEditState(false)
-                return false;
             }))
     }
 
@@ -375,18 +367,48 @@ function EditEvent(props) {
                         //     receiptAPI(receipt,j)
                         // })
 
-                        for(let i = 0 ; i<eventData["receiptList"].length; i++){
-                            let result = receiptAPI(eventData["receiptList"][i],i);
-                            console.log(i+") "+result)
-                            if(result === false){
-                                 alert("행사 수정을 실패했습니다.")
+                        // const samplePromise = (n) => {
+                        // console.log(`Promise=${n} Start`);
+                        //     return new Promise((resolve, reject) => {
+                        //         setTimeout(() => {
+                        //             resolve(`Promise=${n} Resolve`);
+                        //         }, n * 1000);
+                        //     });
+                        // };
+
+                        // const promiseAll1 = () => {
+                        // const dataArray = [0, 1, 2, 3, 4, 5];
+                        // const promises = dataArray.map((el) => samplePromise(el).then(console.log));
+                        // Promise.all(promises).then(() => console.log('All promise resolved'));
+                        // };
+
+                        const promiseAll = () => {
+                        const promises = eventData["receiptList"].map((receipt,j) => 
+                           { if (receipt === undefined) {
+                                postReceipt(j);
+                            } else {
+                                putReceipt(j);
                             }
-                        }
-                        console.log("end 요청")
-                                if (editState === true){
-                                    props.setEditEventState(false)
-                                }
-                                else if (editState === false) alert("행사 수정을 실패했습니다.")
+                        });
+                        Promise.all(promises)
+                            .then(() => props.setEditEventState(false))
+                            .catch(() => console.log('행사 수정을 실패했습니다'))
+                        };
+
+                        promiseAll();
+
+                        // for(let i = 0 ; i<eventData["receiptList"].length; i++){
+                        //     let result = receiptAPI(eventData["receiptList"][i],i);
+                        //     console.log(i+") "+result)
+                        //     if(result === false){
+                        //          alert("행사 수정을 실패했습니다.")
+                        //     }
+                        // }
+                        // console.log("end 요청")
+                        //         if (editState === true){
+                        //             props.setEditEventState(false)
+                        //         }
+                        //         else if (editState === false) alert("행사 수정을 실패했습니다.")
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
