@@ -68,6 +68,7 @@
     margin-left: 20px;
 }
 
+.quarterButton div:hover,
 .quarterButton:hover {
     transition: 0.5s;
     transform: scale(1.05);
@@ -75,41 +76,28 @@
 }
 
 .quarterButton {
-    width: 18vh;
     height: 18vh;
+    width: 18vh;
     margin: 10px auto;
-    background-color: rgb(253 246 243);
     position: relative;
-    border-radius: 50%;
-    border: 15px solid var(--color-clickedButton);
 }
 
-.clicked {
-    animation: startGradation 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+.quarterButton img {
+    padding: 0;
+    height: 18vh;
+    width: 18vh;
+    filter: drop-shadow(3px 5px 3px gray);
 }
-
-@keyframes startGradation {
-    0% {
-        opacity: 0;
-    }
-
-    40% {
-        opacity: 0.6;
-    }
-
-    100% {
-        background-color: var(--color-clickedButton);
-        color: white;
-        opacity: 1;
-    }
-}
-
 
 .quarterButton div {
-    position: relative;
-    top: 50%;
+    z-index: 20;
+    padding: 5px 10px;
     text-align: center;
-    transform: translateY(-50%);
+    position: absolute;
+    height: 18vh;
+    width: 18vh;
+    line-height: 18vh;
+    color: white;
 }
 
 .quarterButton:nth-child(1) {
@@ -118,7 +106,6 @@
     margin-top: 50px;
     position: relative;
 }
-
 
 .fa-chevron-right {
     cursor: pointer;
@@ -697,31 +684,18 @@
         position: relative;
     }
 
+    .quarterButton img {
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        filter: drop-shadow(3px 5px 3px gray);
+    }
+
     .quarterButton div {
-        position: relative;
         top: 50%;
+        width: 30px;
         text-align: center;
         transform: translateY(-50%);
-    }
-
-    .clicked {
-        animation: startGradation 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-    }
-
-    @keyframes startGradation {
-        0% {
-            opacity: 0;
-        }
-
-        40% {
-            opacity: 0.6;
-        }
-
-        100% {
-            background-color: var(--color-clickedButton);
-            color: white;
-            opacity: 1;
-        }
     }
 
     .MainPageContainer .nav {

@@ -452,28 +452,6 @@ function MainPage(props) {
             })
     }
 
-    function clickedButon(selectedQuarter,buttonColor){
-        showQuarter(selectedQuarter);
-        document.documentElement.style.setProperty("--color-clickedButton", buttonColor);
-        let className = "."+selectedQuarter;
-        document.querySelector(".quarter1").classList.remove('clicked');
-        document.querySelector(".quarter2").classList.remove('clicked');
-        document.querySelector(".quarter3").classList.remove('clicked');
-        document.querySelector(".quarter4").classList.remove('clicked');
-        document.querySelector(className).className += " clicked"
-    }
-
-     function clickedButonMobile(selectedQuarter,buttonColor){
-        showQuarter(selectedQuarter);
-        document.documentElement.style.setProperty("--color-clickedButton", buttonColor);
-        let className = "."+selectedQuarter+"Mobile";
-        document.querySelector(".quarter1Mobile").classList.remove('clicked');
-        document.querySelector(".quarter2Mobile").classList.remove('clicked');
-        document.querySelector(".quarter3Mobile").classList.remove('clicked');
-        document.querySelector(".quarter4Mobile").classList.remove('clicked');
-        document.querySelector(className).className += " clicked"
-    }
-
     useEffect(() => {
 
         // push 할때 주석 풀기
@@ -604,15 +582,10 @@ function MainPage(props) {
                                     </div>
                                 </div>
                                 <div className="quarter">
-                                    <div className="quarterButton quarter1 clicked" onClick={() => { clickedButon("quarter1","#db8f8e") }} style={{border: "15px solid #db8f8e"}}><div>1분기</div></div>
-                                    <div className="quarterButton quarter2" onClick={() => { clickedButon("quarter2","#649d67") }} style={{border: "15px solid #649d67"}}><div>2분기</div></div>
-                                    <div className="quarterButton quarter3" onClick={() => { clickedButon("quarter3","#c18356") }} style={{border: "15px solid #c18356"}}><div>3분기</div></div>
-                                    <div className="quarterButton quarter4" onClick={() => { clickedButon("quarter4","#6b8396") }} style={{border: "15px solid #6b8396"}}><div>4분기</div></div>
-
-                                    {/* <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
                                     <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
                                     <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
-                                    <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div> */}
+                                    <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
                                 </div>
                             </div>
 
@@ -623,10 +596,10 @@ function MainPage(props) {
                                         <img src={logoImgPath} alt="logo" width={"30px"} height={"30px"} />
                                         <div className="PksclNav PCVersion" >PKSCL</div>
                                         <div className="quarterSelecter">
-                                           <div className="quarterButton quarter1Mobile clicked" onClick={() => { clickedButonMobile("quarter1","#db8f8e") }} style={{border: "2px solid #db8f8e"}}><div>1</div></div>
-                                    <div className="quarterButton quarter2Mobile" onClick={() => { clickedButonMobile("quarter2","#649d67") }} style={{border: "2px solid #649d67"}}><div>2</div></div>
-                                    <div className="quarterButton quarter3Mobile" onClick={() => { clickedButonMobile("quarter3","#c18356") }} style={{border: "2px solid #c18356"}}><div>3</div></div>
-                                    <div className="quarterButton quarter4Mobile" onClick={() => { clickedButonMobile("quarter4","#6b8396") }} style={{border: "2px solid #6b8396"}}><div>4</div></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2</div><img src={quarter2} alt="quarter2" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3</div><img src={quarter3} alt="quarter3" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4</div><img src={quarter4} alt="quarter4" ></img></div>
                                         </div>
                                     </div>
                                         {

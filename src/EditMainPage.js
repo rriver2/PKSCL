@@ -447,18 +447,6 @@ function EditMainPage(props) {
 
     }
 
-      function clickedButon(selectedQuarter,buttonColor){
-        showQuarter(selectedQuarter);
-        document.documentElement.style.setProperty("--color-clickedButton", buttonColor);
-        let className = "."+selectedQuarter;
-        document.querySelector(".quarter1").classList.remove('clicked');
-        document.querySelector(".quarter2").classList.remove('clicked');
-        document.querySelector(".quarter3").classList.remove('clicked');
-        document.querySelector(".quarter4").classList.remove('clicked');
-        document.querySelector(className).className += " clicked"
-    }
-
-
     useEffect(() => {
         getUserStatus();
         reset(props.todayQuarter);
@@ -592,11 +580,17 @@ function EditMainPage(props) {
                                 : (<>
                                     <div className="leftPanel" id='leftPanel'>
                                         <div className="quarter">
-
+{/* 
                                     <div className="quarterButton quarter1 clicked" onClick={() => { clickedButon("quarter1","#db8f8e") }} style={{border: "15px solid #db8f8e"}}><div>1분기</div></div>
                                     <div className="quarterButton quarter2" onClick={() => { clickedButon("quarter2","#649d67") }} style={{border: "15px solid #649d67"}}><div>2분기</div></div>
                                     <div className="quarterButton quarter3" onClick={() => { clickedButon("quarter3","#c18356") }} style={{border: "15px solid #c18356"}}><div>3분기</div></div>
-                                    <div className="quarterButton quarter4" onClick={() => { clickedButon("quarter4","#6b8396") }} style={{border: "15px solid #6b8396"}}><div>4분기</div></div>
+                                    <div className="quarterButton quarter4" onClick={() => { clickedButon("quarter4","#6b8396") }} style={{border: "15px solid #6b8396"}}><div>4분기</div></div> */}
+                              
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
+                                            <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
+                                      
                                         </div>
 
                                     </div>

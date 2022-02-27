@@ -317,12 +317,14 @@ function EditEvent(props) {
             .then(value => {
                 if (editState === true) {
                     // alert("행사 수정 끗.")
-                    props.setEditEventState(false);
+                    setTimeout(() => {props.setEditEventState(false)}, 500);
                 }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             })
             .catch((value => {
-                if (editState === true) props.setEditEventState(false);
+                if (editState === true){
+                    props.setEditEventState(false)
+                }
                 else if (editState === false) alert("행사 수정을 실패했습니다.")
             }))
     }
