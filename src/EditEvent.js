@@ -247,10 +247,12 @@ function EditEvent(props) {
         promise
             .then(value => {
                  console.log(value)
+                 return true;
             })
             .catch((value => {
                 alert(value)
                 setEditState(false)
+                return false;
             }))
 
     }
@@ -286,9 +288,11 @@ function EditEvent(props) {
             )
                 .then((payload) => {
                     resolve("영수증 수정 완료")
+                    return true;
                 })
                 .catch((error) => {
-                    reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`)
+                    reject(`영수증 수정을 실패하였습니다. error: ${error.response.status}`);
+                    return false;
                 })
         })
 
@@ -327,6 +331,25 @@ function EditEvent(props) {
         //     });
 
 
+            // eventData["receiptList"].reduce((previous, current,currentIndex) => {
+            //     return previous.then(() => {
+            //         receiptAPI(current,currentIndex)
+            //     })
+            // }, Promise.resolve())
+            // .then(() => {
+            //             if (editState === true) {
+            //                 console.log("props.setEditEventState(false)")
+            //                 props.setEditEventState(false);
+            //             }
+            //             else if (editState === false) alert("행사 수정을 실패했습니다.")
+            //         }).catch(() => {
+            //             if (editState === true){
+            //                     props.setEditEventState(false)
+            //                 }
+            //                 else if (editState === false) alert("행사 수정을 실패했습니다.")
+            //         });
+
+
             function receiptAPI(receipt,j){
                 if (receipt === undefined) {
                     postReceipt(j);
@@ -334,32 +357,24 @@ function EditEvent(props) {
                     putReceipt(j);
                 }
             }
-    //         const data = [1,2,3,4,5]
 
-	// data.reduce((previous, current) => {
-	// 	return previous.then(async () => {
-	// 		await axios.get('api/test', current)
-	// 		console.log("response")
-	// 	})
-	// }, Promise.resolve())
+                    const fixReceipt = receipts => {
+                        const result = Promise.all( 
+                            receipts.map((receipt,j) => { 
+                                return receiptAPI(receipt,j) 
+                            })
+                        );
 
-            eventData["receiptList"].reduce((previous, current,currentIndex) => {
-                return previous.then(() => {
-                    receiptAPI(current,currentIndex)
-                })
-            }, Promise.resolve())
-            .then(() => {
-                        if (editState === true) {
-                            console.log("props.setEditEventState(false)")
-                            props.setEditEventState(false);
-                        }
-                        else if (editState === false) alert("행사 수정을 실패했습니다.")
-                    }).catch(() => {
-                        if (editState === true){
-                                props.setEditEventState(false)
-                            }
-                            else if (editState === false) alert("행사 수정을 실패했습니다.")
-                    });
+                        return result; 
+                    }
+
+                        fixReceipt(eventData["receiptList"])
+                            .then(() => {
+                                if (editState === true){
+                                    props.setEditEventState(false)
+                                }
+                                else if (editState === false) alert("행사 수정을 실패했습니다.")
+                            })
     }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
