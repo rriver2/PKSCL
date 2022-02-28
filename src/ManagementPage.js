@@ -227,10 +227,15 @@ function ManagementPage(props) {
                 alert("검색명을 입력해주세요 :)");
             } else {
                 setSearchButton("x");
-
-                let left = waiting.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
-                let right = approval.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
-
+                let left;
+                let right ;
+                if(userLoginPosition === "president"){
+                    left = waiting.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
+                    right = approval.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)));
+                }else if(userLoginPosition === "admin"){
+                    left = waiting.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)||item.major.includes(searchStudent)||item.email.includes(searchStudent)||item.phoneNumber.includes(searchStudent)));
+                    right = approval.filter((item) => (item.name.includes(searchStudent) || item.stdID.includes(searchStudent)||item.major.includes(searchStudent)||item.email.includes(searchStudent)||item.phoneNumber.includes(searchStudent)));
+                }
                 setLeftTable(left);
                 setRightTable(right);
             }
@@ -286,7 +291,7 @@ function ManagementPage(props) {
         // setApproval([...임시리스트["approval"]]);
         // setLeftTable([...임시리스트["waiting"]]);
         // setRightTable([...임시리스트["approval"]]);
-        // setUserLoginPosition("president")
+        // setUserLoginPosition("admin")
 
     }, []);
 

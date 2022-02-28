@@ -4,7 +4,6 @@ import quarter1 from './img/quarter1.png';
 import quarter2 from './img/quarter2.png';
 import quarter3 from './img/quarter3.png';
 import quarter4 from './img/quarter4.png';
-import receiptImg from './img/receipt.png';
 import EditProfile from './EditProfile';
 import './css/EditMainPage.css';
 import { useEffect, useState } from 'react';
@@ -128,18 +127,20 @@ function EditMainPage(props) {
         if (userLoginPosition === "student" || userLoginPosition === "president") {
             if (quarter[selectedQuarter]["status"] === "true") {
                 setQuarterAmount(0)
+                reset(selectedQuarter);
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
             } else {
                 setQuarterAmount(0)
+                reset(selectedQuarter);
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
                 setLogoImgPath(`./img/${selectedQuarter}.png`);
-
             }
         } else {
             setQuarterAmount(0)
+            reset(selectedQuarter);
             setCurrentQuarter(selectedQuarter);
             setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);

@@ -4,6 +4,7 @@ import { Nav } from 'react-bootstrap';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './css/AccessPage.scss';
+import PKSCLInfo from './PKSCLInfo';
 
 function AccessPage(props) {
 
@@ -25,6 +26,7 @@ function AccessPage(props) {
 
   const [personalInformationButton, setPersonalInformationButton] = useState(false);
   const [personalInformation, setPersonalInformation] = useState([false, false, false]);
+  const [PKSCLInfoButton,setPKSCLInfoButton] = useState(false);
 
   let logoImgPath = `./img/managementLogo.png`
 
@@ -265,6 +267,11 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
   return (
     <div className="accessContainer">
+        {
+            PKSCLInfoButton === true
+            ?<PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
+            :null
+        }
 
       <div className="left-panel">
         <div class='wave -one'></div>
@@ -772,6 +779,9 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
           <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
           style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
+        </button>
+        <button className="PKSCLInfoButton" type="button" onClick={() => { setPKSCLInfoButton(true) }}>
+            <i className="fas fa-question" ></i>
         </button>
     </div >
   )
