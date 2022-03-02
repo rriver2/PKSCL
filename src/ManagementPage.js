@@ -325,7 +325,7 @@ function ManagementPage(props) {
                     </div></div>)
                 : (
                     <div className="ManagementPageContainer">
-                        <div className="mobileVersion"> {
+                        <div className="mobileVersion" style={{marginTop:"10vh"}}> {
                             userLoginPosition ==="student"
                             ? <>학생 관리는 학생회장만 접속할 수 있습니다.</>
                             : <>PKSCL 학생관리는 PC로만 가능합니다.</>

@@ -1,6 +1,6 @@
 .accessContainer {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     z-index: 10;
     /* font-family: 'OTWelcomeRA'; */
@@ -49,6 +49,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 30px;
+    margin-top: 50px;
 }
 
 #nav {
@@ -157,6 +158,10 @@ summary {
     margin: 0 0 15px 0;
     cursor: pointer;
     z-index: 11;
+}
+
+.moveSignPage {
+    margin-bottom: 50px;
 }
 
 .moveSignPage button {

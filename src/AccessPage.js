@@ -259,7 +259,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         setMajorList([...payload.data.majorList]);
       })
       .catch((error) => {
-        alert("학과리스트를 불러올 수 없습니다.");
+        // alert("학과리스트를 불러올 수 없습니다.");
       })
 
   }, []);
@@ -268,7 +268,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
   return (
     <div className="accessContainer">
         {
-            PKSCLInfoButton === true
+            PKSCLInfoButton === false
             ?<PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
             :null
         }

@@ -637,7 +637,7 @@ function MainPage(props) {
                                                     }
                                         {
                                                         quarterDate !== undefined && userLoginPosition === "admin"
-                                                            ? (<div className='adminNav' >
+                                                            ? (<div className='adminNav mobileVersion' >
                                                                     <div className="dateInput">{quarterDate[currentQuarter][0]}~{quarterDate[currentQuarter][1]}</div>
                                                                     {adminButton()}</div>)
                                                                 : null
