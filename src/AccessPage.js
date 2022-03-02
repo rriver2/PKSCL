@@ -268,7 +268,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
   return (
     <div className="accessContainer">
         {
-            PKSCLInfoButton === false
+            PKSCLInfoButton === true
             ?<PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
             :null
         }
@@ -289,8 +289,6 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
               <div className="tracking-in-expand" >PuKyong Student Council Ledger</div>
             </div>
           </button>
-
-
 
         </div>
         <img src={logo} className="image" alt="PKSCL logo" />
@@ -410,6 +408,8 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
                             <br />- 보안, 프라이버시, 안전 측면에서 이용자가 안심하고 이용할 수 있는 서비스 이용환경 구축을 위해 개인정보를 단방향 암호화하여 쿠키로 저장합니다.( 쿠키: 사이트 내 로그인 유지를 위해 서버에서 임의로 생성한 세션 ID 저장 및 전송 )
 
+                            <br />- 추가적으로, 학생들이 장부와 관련하여 학생회장에게 문의를 할 경우 연락을 취할 수 있도록 장부 열람 페이지에 학생회장의 이름, 이메일, 전화번호가 명시됨을 미리 알려드립니다.
+
                             <br />1 - c) 개인정보의 보관기간
 
                             <br />PKSCL은 원칙적으로 이용자의 개인정보를 해당 회원이 탈퇴를 할 시 지체없이 파기하고 있습니다. 예외적으로 PKSCL 이용 약관에 어긋나는 행위를 하였을 경우에는 부정 가입 및 이용을 방지하기 위해 부정 이용자의 가입인증 이메일을 탈퇴일로부터 6개월 보관 합니다.
@@ -419,6 +419,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                             <br />이용자는 개인정보의 수집 및 이용 동의를 거부할 권리가 있습니다. 하지만 회원가입 시 수집하는 최소한의 개인정보, 즉, 필수 항목에 대한 수집 및 이용 동의를 거부하실 경우, 회원가입이 어려울 수 있습니다.
 
                             <p /> 2. 서비스 이용 계약 해지
+
                             <br />2 -a) 사용자가 회원 탈퇴를 신청한 경우
 
                             <br />사용자가 PKSCL 이용을 더 이상 원치 않는 때에는 언제든지 서비스 내 제공되는 메뉴를 이용하여 이용계약의 해지 신청을 할 수 있습니다. 이용계약이 해지되면 법령 및 개인정보 처리방침에 따라 여러분의 정보를 보유하는 경우를 제외하고는 여러분의 PKSCL 계정 정보 및 PKSCL 계정으로 이용하였던 개별 서비스 데이터는 삭제됩니다. 이용계약이 해지된 경우라도 사용자는 언제든 다시 PKSCL에 회원가입을 신청할 수 있습니다.
@@ -607,7 +608,6 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                         </div>
                         : null
                     }
-
 
                     <div className="submitbox" >
                       <button type="button" style={signUpButtonState ? null : { backgroundColor: '#ACACAC' }}

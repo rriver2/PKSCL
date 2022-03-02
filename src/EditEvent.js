@@ -322,7 +322,6 @@ function EditEvent(props) {
                                         <div style={{ width: "230px" }}>
                                             <div className="eventTitle">
                                                 <h4>
-
                                                     <input type="text" style={{ border: "transparent", textAlign: "left", width: "400px" }} maxLength="25"
                                                         placeholder={"행사 제목을 입력하세요"}
                                                         value={eventData["eventTitle"]}
@@ -461,7 +460,7 @@ function EditEvent(props) {
                                                                                                             <td style={{ width: "90px" }}>
 
                                                                                                                 <input type="text" style={{ border: "transparent", textAlign: "center", width: "90px" }}
-                                                                                                                    placeholder={"가격"}
+                                                                                                                    placeholder={"단가"}
                                                                                                                     value={item["price"]}
                                                                                                                     onInput={
                                                                                                                         (e) => {
@@ -472,7 +471,7 @@ function EditEvent(props) {
 
                                                                                                             <td style={{ width: "90px" }}>
                                                                                                                 <input type="text" style={{ border: "transparent", textAlign: "center", width: "90px" }}
-                                                                                                                    placeholder={"단가"}
+                                                                                                                    placeholder={"수량"}
                                                                                                                     value={item["amount"]}
                                                                                                                     onInput={
                                                                                                                         (e) => {
@@ -482,7 +481,9 @@ function EditEvent(props) {
                                                                                                             </td>
 
                                                                                                             <td style={{ width: "90px", textAlign: "center" }}>
-                                                                                                                {item["totalAmount"]}
+                                                                                                                <input  type="text" style={{ border: "transparent", textAlign: "center", width: "90px" }}
+                                                                                                                placeholder={"가격"}
+                                                                                                                value={item["totalAmount"]} readOnly></input>
                                                                                                             </td>
                                                                                                         </tr>)
                                                                                                 })

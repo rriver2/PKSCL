@@ -18,7 +18,7 @@ h2 {
 
 .editProfileBox {
     background-color: white;
-    width: 600px;
+    width: 700px;
     z-index: 20;
     flex-direction: column;
     justify-content: center;
@@ -70,6 +70,7 @@ h2 {
     border-radius: 20px;
     display: flex;
     margin-bottom: 10px;
+    align-items: center;
 }
 
 .inputField i {
@@ -88,7 +89,7 @@ h2 {
 
 .inputField label {
     margin-right: 10px;
-    width: 80px;
+    width: 120px;
     text-align: left;
 }
 

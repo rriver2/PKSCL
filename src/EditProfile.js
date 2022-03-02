@@ -288,23 +288,20 @@ function EditProfile(props) {
                         break;
                     default: break;
                 }
-                axios.get( '/status')
-                    .then((payload) => {
-                       setUserStatus(payload.data["status"]); 
-                    })
-                    .catch((error) => {
-                        switch (error.response.status) {
-                            case 400: alert("사용자의 승인상태를 확인하는데 실패했습니다."); break;
-                            default: alert("error: " + payload.response.status); break;
-                        }
-                    })
+                setUserStatus(props.loginPosition)
             })
             .catch((error) => {
+                //push시 삭제
+                    setUserStatus(props.loginPosition)
+                    setStdID("202013245");
+                    setMajor("컴퓨터공학과");
+                    setName("이가은");
+                    setEmail("cherisher2020@naver.com");
+                    setPhoneNumber("01057925915");
                 switch (error.response.status) {
                     case 400: alert("정보를 로드하는데 실패했습니다."); break;
                     default: alert("error: " + error.response.status); break;
                 }
-
             })
         //get 요청해서 학과리스트 가져오기
         axios.get( '/major-list')
@@ -356,6 +353,11 @@ function EditProfile(props) {
                             </div>
 
                             <div className='editField'>
+                                {
+                                    console.log(props.loginPosition),
+                                    props.loginPosition === "admin"
+                                    ? setBoxState("newPassword")
+                                    :<>
                                 <div className="inputField" style={{justifyContent: "space-between"}}>
                                     <div>
                                     <i className="fas fa-key"></i>
@@ -521,6 +523,8 @@ function EditProfile(props) {
                                         : null
 
                                 }
+                                </>
+                                }
                             </div>
 
                             <div className="editProfileBtns">
@@ -624,6 +628,7 @@ function EditProfile(props) {
                                             <label >비밀번호</label>
                                             <input type="password" onChange={(e) => {
                                                 setInputPassword(e.target.value)
+                                                console.log(e.target.value)
                                                 if (e.target.value === "") {
                                                     changeIsCorrect("inputPassword", false);
                                                 } else {
@@ -635,14 +640,22 @@ function EditProfile(props) {
                                         <div className="inputField">
                                             <i className="fas fa-key"></i>
                                             <label >새 비밀번호</label>
-                                            <input type="password" onChange={(e) => {
+                                            <div style={{width:"70%"}}>
+                                            <input type="password" style={{width:"100%"}} onChange={(e) => {
                                                 setInputNewPassword(e.target.value)
-                                                if (e.target.value === "") {
-                                                    changeIsCorrect("inputNewPassword", false);
+                                                console.log(e.target.value)
+                                                if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
+                                                   changeIsCorrect("inputNewPassword", true);
                                                 } else {
-                                                    changeIsCorrect("inputNewPassword", true);
+                                                    changeIsCorrect("inputNewPassword", false);
                                                 }
                                             }} value={inputNewPassword} placeholder='새 비밀번호를 입력하세요.' />
+                                              {
+                                                    isCorrect["inputNewPassword"]=== false && inputNewPassword !== ""
+                                                    ? <span style={{ fontSize: "1px", color: "red" ,display: "flex", alignItems: "center", justifyContent: "center"}}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
+                                                    : null
+                                                }
+                                            </div>
                                         </div>
 
                                         <div className="inputField">
@@ -650,12 +663,14 @@ function EditProfile(props) {
                                             <label  >새 비밀번호 확인</label>
                                             <input type="password" onChange={(e) => {
                                                 setInputCheckNewPassword(e.target.value)
-                                                if (e.target.value === "") {
-                                                    changeIsCorrect("inputCheckNewPassword", false);
+                                                console.log(e.target.value)
+                                                if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
+                                                   changeIsCorrect("inputCheckNewPassword", true);
                                                 } else {
-                                                    changeIsCorrect("inputCheckNewPassword", true);
+                                                    changeIsCorrect("inputCheckNewPassword", false);
                                                 }
                                             }} value={inputCheckNewPassword} placeholder='비밀번호를 다시 입력하세요.' />
+                                            
                                         </div>
                                     </div>
 
@@ -678,7 +693,13 @@ function EditProfile(props) {
                                         }
 
                                         <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
-                                            onClick={() => { setBoxState("profile"); reset(); }}>취소</button>
+                                            onClick={() => { 
+                                                if(props.loginPosition === "admin"){
+                                                    props.setEditProfileState(false);
+                                                }else{
+                                                    setBoxState("profile");
+                                                }
+                                                 reset(); }}>취소</button>
 
                                     </div>
                                 </>

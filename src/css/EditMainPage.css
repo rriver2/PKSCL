@@ -162,6 +162,7 @@
     display: flex;
     flex-direction: row !important;
     align-items: flex-start;
+    z-index: 0;
 }
 
 .EditMainPageContainer .eventButtons i {
@@ -192,7 +193,7 @@
 
 .EditMainPageContainer .eventTitle {
     display: flex !important;
-    width: 200px;
+    width: 400px !important;
     margin: 10px 0;
     flex-direction: column !important;
     justify-content: space-between;
@@ -214,7 +215,6 @@
     width: 100%;
 }
 
-
 .EditMainPageContainer .eventSource button {
     width: 50px;
     background-color: var(--color-leftPanel);
@@ -231,6 +231,11 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
+    width: 200px;
+}
+
+.EditMainPageContainer td {
+    overflow: hidden;
 }
 
 .EditMainPageContainer .eventCard {

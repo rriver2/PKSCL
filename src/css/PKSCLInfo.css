@@ -90,10 +90,8 @@
 .downVar {
     position: absolute;
     bottom: 40px;
-    animation-delay: 1200ms !important;
+    animation-delay: 750ms !important;
 }
-
-.downVar i {}
 
 .developerInfoTable td,
 .developerInfoTable th {
