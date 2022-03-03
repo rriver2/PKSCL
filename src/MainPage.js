@@ -16,17 +16,17 @@ function MainPage(props) {
 
     const history = useHistory();
 
-    let answer = { "studentPresident": { "major": "국어국문학과", "name": "박경수", "phoneNumber": "010-8967-8093", "email": "test1@pukyong.ac.kr", "majorLogo": "./static/majorLogo/testlogo.jpg" }, "quarter": { "quarter1": { "status": "true", "eventList": [{ "eventNumber": "141", "eventTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "eventContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "receiptList": [{ "receiptNumber": "152", "receiptTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 1", "receiptImg": { "name": "./static/receiptImg/20220211143900134.jpeg" }, "receiptContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 ", "receiptDetailList": [{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" }, { "context": "22", "price": "32123", "amount": "3212", "totalAmount": "103179076" }, { "context": "2312", "price": "1222", "amount": "2313", "totalAmount": "2826486" }, { "context": "1232", "price": "32321", "amount": "32123", "totalAmount": "1038247483" }, { "context": "ㅁㄴㅇㅇㅁㄴ", "price": "1321", "amount": "231321", "totalAmount": "305575041" }] }, { "receiptNumber": "153", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "115", "eventTitle": "1분기 행사 2 입니다.", "eventContext": "1분기 행사 2 비고 입니다.kkk", "receiptList": [{ "receiptNumber": "148", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121428763.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "149", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121500241.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "150", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121501647.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "112", "eventTitle": "1분기 행사1 입니다", "eventContext": "1분기 행사1 비고 입니다", "receiptList": [{ "receiptNumber": "112", "receiptTitle": "행사 1 jnijnnjn 1", "receiptImg": { "name": "./static/receiptImg/20220211115926110.jpeg" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "물품2", "price": "2000", "amount": "2", "totalAmount": "4000" }, { "context": "물품3", "price": "3000", "amount": "4", "totalAmount": "12000" }] }, { "receiptNumber": "113", "receiptTitle": "행사 1 영수증 2", "receiptImg": { "name": "./static/receiptImg/20220211002441793.png" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }] }] }] }, "quarter2": { "status": "true", "eventList": [{ "eventNumber": "58", "eventTitle": "안녕하세요 PKSCL입니다.", "eventContext": "온라인 장부를 이용하세요 ><", "receiptList": [{ "receiptNumber": "99", "receiptTitle": "저는 영수증 입니다", "receiptImg": { "name": "./static/receiptImg/20220210162318283.png" }, "receiptContext": "영수증 비고 입니다.", "receiptDetailList": [{ "context": "품명1", "price": "10001", "amount": "2", "totalAmount": "20002" }, { "context": "품명2", "price": "10000", "amount": "3", "totalAmount": "30000" }] }, { "receiptNumber": "154", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "62", "eventTitle": "1234", "eventContext": "", "receiptList": [] }, { "eventNumber": "63", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "65", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "66", "eventTitle": "", "eventContext": "", "receiptList": [] }] }, "quarter3": { "status": "true", "eventList": [{ "eventNumber": "60", "eventTitle": "", "eventContext": "", "receiptList": [{ "receiptNumber": "89", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220212025356069.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "90", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }] }, "quarter4": { "status": "false", "eventList": [{ "eventNumber": "127", "eventTitle": "기말고사 응원전", "eventContext": "기말고사를 응원하기 위해서 응원전을 진행하였습니다 :) ", "receiptList": [{ "receiptNumber": "127", "receiptTitle": "카카오톡 기프티콘", "receiptImg": { "name": "./static/receiptImg/20220210160642755.png" }, "receiptContext": "신청자를 추첨해 기프티콘 증정", "receiptDetailList": [{ "context": "BBQ치킨", "price": "19900", "amount": "3", "totalAmount": "59700" }, { "context": "도미노 피자", "price": "14000", "amount": "4", "totalAmount": "56000" }, { "context": "베스킨라빈스", "price": "6400", "amount": "5", "totalAmount": "32000" }] }, { "receiptNumber": "138", "receiptTitle": "카카오톡 기프티콘 2", "receiptImg": { "name": "./static/receiptImg/20220210152028949.png" }, "receiptContext": "", "receiptDetailList": [{ "context": "암", "price": "23132", "amount": "2", "totalAmount": "46264" }] }] }] } } }
+    // let answer = { "studentPresident": { "major": "국어국문학과", "name": "박경수", "phoneNumber": "010-8967-8093", "email": "test1@pukyong.ac.kr", "majorLogo": "./static/majorLogo/testlogo.jpg" }, "quarter": { "quarter1": { "status": "true", "eventList": [{ "eventNumber": "141", "eventTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "eventContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도", "receiptList": [{ "receiptNumber": "152", "receiptTitle": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 1", "receiptImg": { "name": "./static/receiptImg/20220211143900134.jpeg" }, "receiptContext": "이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도이헌도 ", "receiptDetailList": [{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" },{ "context": "1ㅇㄴㅁㄴㅇㅁ", "price": "121", "amount": "23123", "totalAmount": "2797883" }, { "context": "22", "price": "32123", "amount": "3212", "totalAmount": "103179076" }, { "context": "2312", "price": "1222", "amount": "2313", "totalAmount": "2826486" }, { "context": "1232", "price": "32321", "amount": "32123", "totalAmount": "1038247483" }, { "context": "ㅁㄴㅇㅇㅁㄴ", "price": "1321", "amount": "231321", "totalAmount": "305575041" }] }, { "receiptNumber": "153", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "115", "eventTitle": "1분기 행사 2 입니다.", "eventContext": "1분기 행사 2 비고 입니다.kkk", "receiptList": [{ "receiptNumber": "148", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121428763.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "149", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121500241.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "150", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220211121501647.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "112", "eventTitle": "1분기 행사1 입니다", "eventContext": "1분기 행사1 비고 입니다", "receiptList": [{ "receiptNumber": "112", "receiptTitle": "행사 1 jnijnnjn 1", "receiptImg": { "name": "./static/receiptImg/20220211115926110.jpeg" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }, { "context": "물품2", "price": "2000", "amount": "2", "totalAmount": "4000" }, { "context": "물품3", "price": "3000", "amount": "4", "totalAmount": "12000" }] }, { "receiptNumber": "113", "receiptTitle": "행사 1 영수증 2", "receiptImg": { "name": "./static/receiptImg/20220211002441793.png" }, "receiptContext": "영수증 비고입니다", "receiptDetailList": [{ "context": "물품1", "price": "1000", "amount": "2", "totalAmount": "2000" }] }] }] }, "quarter2": { "status": "true", "eventList": [{ "eventNumber": "58", "eventTitle": "안녕하세요 PKSCL입니다.", "eventContext": "온라인 장부를 이용하세요 ><", "receiptList": [{ "receiptNumber": "99", "receiptTitle": "저는 영수증 입니다", "receiptImg": { "name": "./static/receiptImg/20220210162318283.png" }, "receiptContext": "영수증 비고 입니다.", "receiptDetailList": [{ "context": "품명1", "price": "10001", "amount": "2", "totalAmount": "20002" }, { "context": "품명2", "price": "10000", "amount": "3", "totalAmount": "30000" }] }, { "receiptNumber": "154", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }, { "eventNumber": "62", "eventTitle": "1234", "eventContext": "", "receiptList": [] }, { "eventNumber": "63", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "65", "eventTitle": "", "eventContext": "", "receiptList": [] }, { "eventNumber": "66", "eventTitle": "", "eventContext": "", "receiptList": [] }] }, "quarter3": { "status": "true", "eventList": [{ "eventNumber": "60", "eventTitle": "", "eventContext": "", "receiptList": [{ "receiptNumber": "89", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/20220212025356069.jpeg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }, { "receiptNumber": "90", "receiptTitle": "", "receiptImg": { "name": "./static/receiptImg/defaultReceiptImg.jpg" }, "receiptContext": "", "receiptDetailList": [{ "context": "", "price": "", "amount": "", "totalAmount": "" }] }] }] }, "quarter4": { "status": "false", "eventList": [{ "eventNumber": "127", "eventTitle": "기말고사 응원전", "eventContext": "기말고사를 응원하기 위해서 응원전을 진행하였습니다 :) ", "receiptList": [{ "receiptNumber": "127", "receiptTitle": "카카오톡 기프티콘", "receiptImg": { "name": "./static/receiptImg/20220210160642755.png" }, "receiptContext": "신청자를 추첨해 기프티콘 증정", "receiptDetailList": [{ "context": "BBQ치킨", "price": "19900", "amount": "3", "totalAmount": "59700" }, { "context": "도미노 피자", "price": "14000", "amount": "4", "totalAmount": "56000" }, { "context": "베스킨라빈스", "price": "6400", "amount": "5", "totalAmount": "32000" }] }, { "receiptNumber": "138", "receiptTitle": "카카오톡 기프티콘 2", "receiptImg": { "name": "./static/receiptImg/20220210152028949.png" }, "receiptContext": "", "receiptDetailList": [{ "context": "암", "price": "23132", "amount": "2", "totalAmount": "46264" }] }] }] } } }
 
 
-    let answerDate = {
-        "quarter1": ["2022-01-01", "2022-01-02"],
-        "quarter2": ["2022-01-03", "2022-01-04"],
-        "quarter3": ["2022-01-05", "2022-01-06"],
-        "quarter4": ["2022-01-07", "2022-01-08"]
-    }
+    // let answerDate = {
+    //     "quarter1": ["2022-01-01", "2022-01-02"],
+    //     "quarter2": ["2022-01-03", "2022-01-04"],
+    //     "quarter3": ["2022-01-05", "2022-01-06"],
+    //     "quarter4": ["2022-01-07", "2022-01-08"]
+    // }
 
-    let answerMajorList = ["기린학과", "국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"] 
+    // let answerMajorList = ["기린학과", "국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"] 
 
     const [studentPresident, setStudentPresident] = useState();
 
@@ -83,21 +83,19 @@ function MainPage(props) {
                 reset(selectedQuarter);
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             } else {
                 reset(selectedQuarter);
                 setCurrentQuarter(selectedQuarter);
                 defineColor(selectedQuarter);
-                setLogoImgPath(`./img/${selectedQuarter}.png`);
                 setShowCurrentQuerter(quarter[selectedQuarter]["status"]);
             }
         } else if (userLoginPosition === "admin") {
             reset(selectedQuarter);
             setCurrentQuarter(selectedQuarter);
-            setLogoImgPath(`./img/${selectedQuarter}.png`);
             defineColor(selectedQuarter);
         }
+        setLogoImgPath(`./img/${selectedQuarter}.png`);
     }
 
     function sumItems(price, amount) {
@@ -262,6 +260,7 @@ function MainPage(props) {
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
                 }
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
 
     }
@@ -299,19 +298,19 @@ function MainPage(props) {
                 setTempQuarter(true);
                 setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
-
             })
             .catch((error) => {
                 setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
                 setWrongApproach(true)
                 setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
+                defineColor(props.todayQuarter);
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
     }
 
     function loginAdmin() {
         let ledgerMajor;
-        axios.get(  '/major-list')
+        axios.get('/major-list')
             .then((payload) => {
                 setMajorList([...payload.data["majorList"]]);
                 if (major === undefined) {
@@ -365,7 +364,8 @@ function MainPage(props) {
                             setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :)");
                             setWrongApproach(true)
                             setEditProfileButton(true);
-                    defineColor(props.todayQuarter);
+                            defineColor(props.todayQuarter);
+                            setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         })
                 }
             })
@@ -374,7 +374,8 @@ function MainPage(props) {
                 setEditProfileButton(false)
                 setWrongApproach(true)
                 setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
+                defineColor(props.todayQuarter);
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
 
 
@@ -410,7 +411,8 @@ function MainPage(props) {
                             setWrongApproachContext("장부를 가져올 수 없습니다.")
                             setWrongApproach(true)
                             setEditProfileButton(true);
-                    defineColor(props.todayQuarter);
+                            defineColor(props.todayQuarter);
+                            setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         })
                 }
             })
@@ -448,7 +450,7 @@ function MainPage(props) {
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
-
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
     }
 
@@ -467,6 +469,7 @@ function MainPage(props) {
                 setWrongApproach(true)
                 setEditProfileButton(false);
                 defineColor(props.todayQuarter);
+                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
 
         // push 할때 주석 넣기
@@ -514,7 +517,7 @@ function MainPage(props) {
                     style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
                          <div className="nav" >
                     <div className="logoNav">
-                        <img  src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
+                        <img src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
                         <div className="PksclNav PCVersion" >PKSCL</div>
                     </div>
                     {
@@ -593,7 +596,7 @@ function MainPage(props) {
 
                                 <div className="nav">
                                     <div className="logoNav" onClick={()=>{history.push('/main')}}>
-                                        <img src={logoImgPath} alt="logo" width={"30px"} height={"30px"} />
+                                         <img src={logoImgPath} alt="logo"  width={"40px"} height={"40px"} />
                                         <div className="PksclNav PCVersion" >PKSCL</div>
                                         <div className="quarterSelecter">
                                             <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1</div><img src={quarter1} alt="quarter1" ></img></div>

@@ -73,20 +73,15 @@ function EditProfile(props) {
                 //axio.탈퇴
                 axios.post( '/withdrawal', payload)
                     .then((payload) => {
-                        switch (payload.status) {
-                            case 200:
                                 alert("회원 탈퇴가 정상적으로 처리 되었습니다.");
                                 history.push('/');
-                                break;
-                            default: break;
-                        }
                     })
                     .catch((error) => {
                         switch (error.response.status) {
                             case 401:
                                 alert("이메일과 패스워드가 올바르지 않습니다.");
                                 break;
-                            default: break;
+                            default: alert("error: " + error.response.status); break;
                         }
                     })
             }
@@ -105,15 +100,8 @@ function EditProfile(props) {
         const payload = { "inputPassword": inputPassword, "inputNewPassword": inputNewPassword, "inputCheckNewPassword": inputCheckNewPassword }
         axios.patch( '/password', payload)
             .then((payload) => {
-                switch (payload.status) {
-                    case 200:
                         alert("비밀번호가 수정되었습니다.");
                         logout();
-                        break;
-                    default:
-                        alert(payload.status);
-                }
-
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -154,13 +142,8 @@ function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((payload) => {
-            switch (payload.status) {
-                case 200:
                     alert("정보가 변경되었습니다.");
                     props.setEditProfileState(false);
-                    break;
-                default: alert("success: " + payload.status); break;
-            }
         })
             .catch((error) => {
                 switch (error.response.status) {
@@ -242,8 +225,6 @@ function EditProfile(props) {
         //get 요청해서 로그인된 정보 가져오기
         axios.get( '/profile')
             .then((payload) => {
-                switch (payload.status) {
-                    case 200:
                         setStdID(payload.data["stdID"]);
                         setMajor(payload.data["major"]);
                         setName(payload.data["name"]);
@@ -285,9 +266,6 @@ function EditProfile(props) {
                                 }
                             );
                         }
-                        break;
-                    default: break;
-                }
                 setUserStatus(props.loginPosition)
             })
             .catch((error) => {
@@ -354,7 +332,6 @@ function EditProfile(props) {
 
                             <div className='editField'>
                                 {
-                                    console.log(props.loginPosition),
                                     props.loginPosition === "admin"
                                     ? setBoxState("newPassword")
                                     :<>
@@ -624,11 +601,10 @@ function EditProfile(props) {
                                     <div className='editField' >
                                         <div className="inputField" >
                                             
-                                            <i className="fas fa-key"></i>
+                                            <i className="fas fa-key" style={isCorrect["inputPassword"] === true ? { color: "var(--color-quarter)" } : null}></i>
                                             <label >비밀번호</label>
                                             <input type="password" onChange={(e) => {
                                                 setInputPassword(e.target.value)
-                                                console.log(e.target.value)
                                                 if (e.target.value === "") {
                                                     changeIsCorrect("inputPassword", false);
                                                 } else {
@@ -638,12 +614,11 @@ function EditProfile(props) {
                                         </div>
 
                                         <div className="inputField">
-                                            <i className="fas fa-key"></i>
+                                            <i className="fas fa-key" style={isCorrect["inputNewPassword"] === true ? { color: "var(--color-quarter)" } : null}></i>
                                             <label >새 비밀번호</label>
                                             <div style={{width:"70%"}}>
                                             <input type="password" style={{width:"100%"}} onChange={(e) => {
                                                 setInputNewPassword(e.target.value)
-                                                console.log(e.target.value)
                                                 if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
                                                    changeIsCorrect("inputNewPassword", true);
                                                 } else {
@@ -659,18 +634,24 @@ function EditProfile(props) {
                                         </div>
 
                                         <div className="inputField">
-                                            <i className="fas fa-key"></i>
+                                            <i className="fas fa-key" style={isCorrect["inputCheckNewPassword"] === true && inputNewPassword === inputCheckNewPassword ? { color: "var(--color-quarter)" } : null}></i>
                                             <label  >새 비밀번호 확인</label>
-                                            <input type="password" onChange={(e) => {
+                                             <div style={{width:"70%"}}>
+                                            <input type="password" style={{width:"100%"}} onChange={(e) => {
                                                 setInputCheckNewPassword(e.target.value)
-                                                console.log(e.target.value)
-                                                if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
+                                                if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/) && inputNewPassword === e.target.value) {
                                                    changeIsCorrect("inputCheckNewPassword", true);
                                                 } else {
                                                     changeIsCorrect("inputCheckNewPassword", false);
                                                 }
                                             }} value={inputCheckNewPassword} placeholder='비밀번호를 다시 입력하세요.' />
                                             
+                                            {
+                                                    isCorrect["inputCheckNewPassword"]=== false && inputCheckNewPassword !== "" 
+                                                    ? <span style={{ fontSize: "1px", color: "red" ,display: "flex", alignItems: "center", justifyContent: "center"}}>비밀번호가 일치하지 않습니다. </span>
+                                                    : null
+                                                }
+                                                </div>
                                         </div>
                                     </div>
 

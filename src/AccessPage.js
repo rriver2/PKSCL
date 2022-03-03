@@ -78,13 +78,9 @@ function AccessPage(props) {
         }
       )
         .then((payload) => {
-          switch (payload.status) {
-            case 200:
               alert("회원가입에 성공하였습니다.")
               history.push('/');
               return;
-            default: alert("success: " + payload.status); history.push('/'); return;
-          }
         })
         .catch((error) => {
           switch (error.response.status) {
@@ -145,46 +141,32 @@ function AccessPage(props) {
       )
     }
     else {
-      if (window.confirm('입력하신 이메일로 임시 비밀번호를 발급하시겠습니까?')) {
-
         let payload = { "email": email, "stdID": stdID, "name": name };
         axios.post('/newpwd/' + position, payload)
           .then((payload) => {
             alert("입력하신 이메일로 임시 비밀번호를 발급하였습니다.");
             history.push('/');
-
           })
           .catch((error) => {
             alert("입력하신 정보를 찾을 수 없습니다.");
-
           });
-      }
-      else {
-        history.push('/newpwd');
-      }
-
-
-
     }
   };
 
   function certEmail() {
-
     if (window.confirm("입력하신 이메일로 인증 메일을 발송하시겠습니까?")) {
       let payload = { "email": email };
       axios.post( '/email/' + position, payload)
         .then((payload) => {
-          // alert("입력하신 이메일로 메일을 발송했습니다.");
+        //   alert("입력하신 이메일로 메일을 발송했습니다.");
         })
         .catch((error) => {
           switch (error.response.status) {
             case 409: alert("이미 존재하는 이메일입니다."); return;
-            // case 403: alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요. "); return;
-            default: alert("error: " + error.response.status); return;
+            default: alert("학교 이메일 형식에 맞지 않습니다"); return;
           }
         });
     }
-
   };
 
   function changeIsCorrect(i, type) {
@@ -259,7 +241,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         setMajorList([...payload.data.majorList]);
       })
       .catch((error) => {
-        // alert("학과리스트를 불러올 수 없습니다.");
+        alert("학과리스트를 불러올 수 없습니다.");
       })
 
   }, []);
@@ -459,28 +441,29 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                       }
                       } name="stdID" value={stdID} maxLength="9" placeholder="학번" type="text" />
                     </div>
-                    <div className="input-field">
+                    <div className="input-field" style={ isCorrect[1] === false && password !=="" ? {marginBottom : "2px"}:null}>
                       <i className="fas fa-key" style={isCorrect[1] === true ? { color: "var(--color-quarter)" } : null}></i>
-                      <input onChange={(e) => {
-                        setPassword(e.target.value);
-                        // if (e.target.value.length !== 0) {
-                        if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
-                          changeIsCorrect(1, true);
-                        } else {
-                          changeIsCorrect(1, false);
+                      <div style={{width: "70%"}}>
+                        <input style={{width: "100%"}}
+                            onChange={(e) => {
+                            setPassword(e.target.value);
+                            // if (e.target.value.length !== 0) {
+                            if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
+                            changeIsCorrect(1, true);
+                            } else {
+                            changeIsCorrect(1, false);
+                            }
+
+                        }} name="password" value={password} type="password" placeholder="비밀번호" />
+                      </div>
+                    </div>
+                     {
+                            isCorrect[1] === false && password !==""
+                            ?<span style={{ fontSize: "1px", color: "red" , marginBottom:"15px"}}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
+                            : null
                         }
 
-                      }} name="password" value={password} type="password" placeholder="비밀번호" />
-                      {
-                        isCorrect[1]
-                          ? null
-                          : <span style={{ fontSize: "1px", color: "red" }}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
-                      }
-
-
-                    </div>
-
-                    <div className="input-field">
+                    <div className="input-field" style={ isCorrect[2] === false && checkPassword !=="" ? {marginBottom : "2px"}:null}>
                       <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <input onChange={(e) => {
                         setCheckPassword(e.target.value)
@@ -492,7 +475,11 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                       }
                       } name="checkPassword" value={checkPassword} type="password" placeholder="비밀번호 재확인" />
                     </div>
-
+                      {
+                            isCorrect[2] === false && checkPassword !==""
+                            ?<span style={{ fontSize: "1px", color: "red" , marginBottom:"15px"}}> 비밀번호가 일치하지 않습니다. </span>
+                            : null
+                        }
 
                     <div className="input-field" style={{ fontSize: "80%" }}>
                       <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--color-quarter)" } : null}></i>
@@ -641,7 +628,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                 </Nav>
               </div>
               <h3 className="accessTitle" style={{marginBottom:"15px"}}>비밀번호 찾기</h3>
-
+            <div style={{marginBottom: "10px"}}>가입 시 등록된 이메일로 임시 비밀번호를 발급 받을 수 있습니다.</div>
 
               <div className="input-field">
                 <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--color-quarter)" } : null}></i>

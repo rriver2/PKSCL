@@ -277,7 +277,6 @@ function EditEvent(props) {
                                 }
                             })
                             ).then(() => { 
-                                console.log('행사 수정을 성공했습니다'); 
                                 props.setEditEventState(false)})
                             .catch(() => alert('행사 수정을 실패했습니다'))
     }
