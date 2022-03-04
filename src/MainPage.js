@@ -675,6 +675,7 @@ function MainPage(props) {
                                                                 <div className="tempAlert PCVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
                                                                 <button className='navButton' type='button' onClick={() => {history.push('/manage') }}>학생 관리</button>
                                                                 <button className='navButton edit'  type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button>
+                                                                <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                             </div>
                                                             {/* <div className="tempAlert mobileVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div> */}
                                                             </>

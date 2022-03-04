@@ -124,6 +124,80 @@ function ManagementPage(props) {
         }
     };
 
+    function reload(){
+        axios.get('/position')
+            .then((payload) => {
+                setUserLoginPosition(payload.data["position"])
+                if (payload.data["position"] === "president") {
+                    axios.get('/status')
+                        .then((payload) => {
+                            if (payload.data["status"] === "refusal") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
+                                setWrongApproach(true)
+                            }
+                            else if (payload.data["status"] === "waiting") {
+                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
+                                setWrongApproach(true)
+                            } else if (payload.data["status"] === "approval") {
+                                getPresidentList();
+                            }
+                        })
+                        .catch((error) => {
+                            switch (error.response.status) {
+                                case 400:  
+                                    setWrongApproachContext("사용자의 승인 상태를 알 수 없습니다.");  
+                                    setWrongApproach(true)
+                                    setLogoImgPath(`./img/managementLogo.png`);
+                                break;
+                                default: 
+                                    setWrongApproachContext("회원 상태 확인 실패/ error: " + error.response.status);  
+                                    setWrongApproach(true) 
+                                    setLogoImgPath(`./img/managementLogo.png`);
+                                break;
+                            }
+                        })
+                } else if (payload.data["position"] === "admin") {
+                    getAdminList();
+                } else {
+                    setWrongApproachContext("잘못된 접근입니다.");
+                    setWrongApproach(true)
+                    setLogoImgPath(`./img/managementLogo.png`);
+                }
+            })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400:  
+                        setWrongApproachContext(`잘못된 접근입니다.`);
+                        setWrongApproach(true)
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                    default: 
+                        setWrongApproachContext("회원 position 로드 실패/ error: " + error.response.status);  
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                }
+            })
+    }
+
+    function logout() {
+        axios.post(  '/logout')
+            .then((payload) => {
+                history.push('/');
+            }).catch((error) => {
+                switch (error.response.status) {
+                    case 400:  
+                        alert("로그아웃에 실패했습니다."); 
+                        reload();
+                    break;
+                    default: 
+                        alert("로그아웃 실패/ error: " + error.response.status); 
+                        reload();
+                    break;
+                }
+            })
+    }
+
     function patchStudent(studentStatus) {
         let payload;
         if (studentStatus === "approval" || studentStatus === "refusal") {
@@ -280,61 +354,11 @@ function ManagementPage(props) {
         }
     }
 
+    
+
 
     useEffect(() => {
-        axios.get('/position')
-            .then((payload) => {
-                setUserLoginPosition(payload.data["position"])
-                if (payload.data["position"] === "president") {
-                    axios.get('/status')
-                        .then((payload) => {
-                            if (payload.data["status"] === "refusal") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.");
-                                setWrongApproach(true)
-                            }
-                            else if (payload.data["status"] === "waiting") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-                                setWrongApproach(true)
-                            } else if (payload.data["status"] === "approval") {
-                                getPresidentList();
-                            }
-                        })
-                        .catch((error) => {
-                            switch (error.response.status) {
-                                case 400:  
-                                    setWrongApproachContext("사용자의 승인 상태를 알 수 없습니다.");  
-                                    setWrongApproach(true)
-                                    setLogoImgPath(`./img/managementLogo.png`);
-                                break;
-                                default: 
-                                    setWrongApproachContext("회원 상태 확인 실패/ error: " + error.response.status);  
-                                    setWrongApproach(true) 
-                                    setLogoImgPath(`./img/managementLogo.png`);
-                                break;
-                            }
-                        })
-                } else if (payload.data["position"] === "admin") {
-                    getAdminList();
-                } else {
-                    setWrongApproachContext("잘못된 접근입니다.");
-                    setWrongApproach(true)
-                    setLogoImgPath(`./img/managementLogo.png`);
-                }
-            })
-            .catch((error) => {
-                switch (error.response.status) {
-                    case 400:  
-                        setWrongApproachContext(`잘못된 접근입니다.`);
-                        setWrongApproach(true)
-                        setLogoImgPath(`./img/managementLogo.png`);
-                    break;
-                    default: 
-                        setWrongApproachContext("회원 position 로드 실패/ error: " + error.response.status);  
-                        setWrongApproach(true) 
-                        setLogoImgPath(`./img/managementLogo.png`);
-                    break;
-                }
-            })
+        reload();
 
         //push 할 때 삭제
         // setWaiting([...임시리스트["waiting"]]);
@@ -392,8 +416,8 @@ function ManagementPage(props) {
                                             ? (<>
                                             <i className="headset fas fa-headset"
                                                     onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
-                                                <button className="navButton  " onClick={() => { history.push('/edit-main') }}>장부 수정</button>
-                                                
+                                                    <button className="navButton  " onClick={() => { history.push('/edit-main') }}>장부 수정</button>
+                                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                 </>)
                                             : null
                                     }
@@ -537,7 +561,7 @@ function ManagementPage(props) {
                                                                                 history.push('/edit-main')
                                                                             }
                                                                         }}>장부 수정</button>
-                                                                   
+                                                                        <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                                 </div>
                                                             </>
                                                             : null
