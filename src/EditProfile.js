@@ -71,17 +71,19 @@ function EditProfile(props) {
             if (window.confirm('정말 탈퇴하시겠습니까?')) {
                 const payload = { "inputEmail": inputEmail, "inputPassword": inputPassword }
                 //axio.탈퇴
-                axios.post( '/withdrawal', payload)
+                axios.post('/withdrawal', payload)
                     .then((payload) => {
-                                alert("회원 탈퇴가 정상적으로 처리 되었습니다.");
-                                history.push('/');
+                        alert("회원 탈퇴가 정상적으로 처리 되었습니다.");
+                        history.push('/');
                     })
                     .catch((error) => {
                         switch (error.response.status) {
                             case 401:
                                 alert("이메일과 패스워드가 올바르지 않습니다.");
-                                break;
-                            default: alert("error: " + error.response.status); break;
+                            break;
+                            default: 
+                                alert("회원 탈퇴 실패/ error: " + error.response.status); 
+                            break;
                         }
                     })
             }
@@ -100,8 +102,8 @@ function EditProfile(props) {
         const payload = { "inputPassword": inputPassword, "inputNewPassword": inputNewPassword, "inputCheckNewPassword": inputCheckNewPassword }
         axios.patch( '/password', payload)
             .then((payload) => {
-                        alert("비밀번호가 수정되었습니다.");
-                        logout();
+                alert("비밀번호가 수정되었습니다.");
+                logout();
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -109,7 +111,7 @@ function EditProfile(props) {
                         alert("비밀번호가 일치하지 않습니다.");
                         break;
                     default:
-                        alert("Error code: " + error.response.status); // 수정필요
+                        alert("비밀번호 변경 실패/ error: " + error.response.status); // 수정필요
                         break;
                 }
 
@@ -151,7 +153,7 @@ function EditProfile(props) {
                         alert(error.response.data.errorMessage);
                         break;
                     default:
-                        alert("error: " + error.status);
+                        alert("프로필 편집 실패/ error: " + error.status);
                         break;
                 }
             })
@@ -171,7 +173,10 @@ function EditProfile(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                alert("로그아웃에 실패하였습니다.")
+                switch (error.response.status) {
+                    case 400:  alert("로그아웃에 실패하였습니다."); break;
+                    default: alert("로그아웃 실패/ error: " + error.response.status); break;
+                }
             })
     }
 
@@ -269,16 +274,16 @@ function EditProfile(props) {
                 setUserStatus(props.loginPosition)
             })
             .catch((error) => {
-                //push시 삭제
-                    setUserStatus(props.loginPosition)
-                    setStdID("202013245");
-                    setMajor("컴퓨터공학과");
-                    setName("이가은");
-                    setEmail("cherisher2020@naver.com");
-                    setPhoneNumber("01057925915");
+                //push 할때 삭제
+                // setUserStatus(props.loginPosition)
+                // setStdID("202013245");
+                // setMajor("컴퓨터공학과");
+                // setName("홍길동");
+                // setEmail("hongildong@naver.com");
+                // setPhoneNumber("01057925915");
                 switch (error.response.status) {
                     case 400: alert("정보를 로드하는데 실패했습니다."); break;
-                    default: alert("error: " + error.response.status); break;
+                    default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
                 }
             })
         //get 요청해서 학과리스트 가져오기
@@ -288,8 +293,8 @@ function EditProfile(props) {
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 400: alert("학과리스트를 불러올 수 없습니다."); return;
-                    default: alert("error: " + error.response.status); return;
+                    case 400: alert("학과리스트를 불러올 수 없습니다."); break;
+                    default: alert("학과 리스트 로드 실패/ error: " + error.response.status); break;
                 }
             })
 

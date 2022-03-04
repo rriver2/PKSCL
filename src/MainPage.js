@@ -167,8 +167,16 @@ function MainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                alert("로그아웃에 실패하였습니다.")
-                reload();
+                switch (error.response.status) {
+                    case 400:  
+                        alert("로그아웃에 실패했습니다."); 
+                        reload();
+                    break;
+                    default: 
+                        alert("로그아웃 실패/ error: " + error.response.status); 
+                        reload();
+                    break;
+                }
             })
     }
 
@@ -250,23 +258,24 @@ function MainPage(props) {
             })
             .catch((error) => {
                 if (major === undefined) {
-                    setWrongApproachContext(`컴퓨터공학과 장부를 불러올 수 없습니다.`);
+                    setWrongApproachContext(`컴퓨터공학과 장부를 불러올 수 없습니다. error :` + error.response.status)
                     setWrongApproach(true)
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 } else {
-                    setWrongApproachContext(`${major} 장부를 불러올 수 없습니다.`);
+                    setWrongApproachContext(`${major} 장부를 불러올 수 없습니다. error :` + error.response.status)
                     setWrongApproach(true)
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 }
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
 
     }
 
     function adminGetDate(findMajorIndex) {
-        axios.get(  `/ledger-date?major-number=${findMajorIndex}`)
+        axios.get(`/ledger-date?major-number=${findMajorIndex}`)
             .then((payload) => {
                 setQuarterDate({ ...payload.data });
                 showQuarter(props.todayQuarter);
@@ -275,21 +284,23 @@ function MainPage(props) {
             })
             .catch((error) => {
                 if (major === undefined) {
-                    setWrongApproachContext(`컴퓨터공학과의 장부 open, close 날짜를 불러올 수 없습니다.`);
+                    setWrongApproachContext(`컴퓨터공학과의 장부 open, close 날짜를 불러올 수 없습니다. error: ` + error.response.status)
                     setWrongApproach(true)
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 } else {
-                    setWrongApproachContext(`${major}의 장부 open, close 날짜를 불러올 수 없습니다.`);
+                    setWrongApproachContext(`${major}의 장부 open, close 날짜를 불러올 수 없습니다. error: `  + error.response.status)
                     setWrongApproach(true)
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 }
             })
     }
 
     function getExPKSCL() {
-        axios.get(  '/temp-major-info')
+        axios.get( '/temp-major-info')
             .then((payload) => {
                 setWrongApproach(false)
                 setEditProfileButton(false);
@@ -300,11 +311,10 @@ function MainPage(props) {
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
-                setWrongApproachContext(`임시 장부를 불러올 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                switch (error.response.status) {
+                    case 400: alert(`임시 장부를 불러올 수 없습니다.`); break;
+                    default: alert("임시 장부 로드 실패/ error: " + error.response.status); break;
+                }
             })
     }
 
@@ -328,9 +338,9 @@ function MainPage(props) {
                 setEditProfileButton(false);
             })
             .catch((error) => {
-                setWrongApproachContext("관리자 ) 학과 리스트를 불러올 수 없습니다.")
+                setWrongApproachContext("학과 리스트를 불러올 수 없습니다. error: " + error.response.status);
                 setWrongApproach(false)
-                setEditProfileButton(false);
+                setEditProfileButton(false); 
             })
     }
 
@@ -351,7 +361,7 @@ function MainPage(props) {
                     defineColor(props.todayQuarter);
                 }
                 else if (payload.data["status"] === "approval") {
-                    axios.get(  '/major-info')
+                    axios.get('/major-info')
                         .then((payload) => {
                             setStudentPresident({ ...payload.data["studentPresident"] });
                             setQuarter({ ...payload.data["quarter"] });
@@ -361,7 +371,7 @@ function MainPage(props) {
                             setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         })
                         .catch((error) => {
-                            setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :)");
+                            setWrongApproachContext("사용자(학생회장)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :) error: " + error.response.status);
                             setWrongApproach(true)
                             setEditProfileButton(true);
                             defineColor(props.todayQuarter);
@@ -370,12 +380,22 @@ function MainPage(props) {
                 }
             })
             .catch((error) => {
-                setWrongApproachContext("학생회장의 승인, 거절, 대기 상태를 확인할 수 없습니다. ");
-                setEditProfileButton(false)
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                switch (error.response.status) {
+                case 400: 
+                    setWrongApproachContext("학생회장의 승인 상태를 알 수 없습니다.");  
+                    setEditProfileButton(false)
+                    setWrongApproach(true)
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`); 
+                break;
+                default: 
+                    setWrongApproachContext("학생회장의 상태 확인 실패/ error: " + error.response.status); 
+                    setEditProfileButton(false)
+                    setWrongApproach(true)
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                break;
+            }  
             })
 
 
@@ -408,7 +428,7 @@ function MainPage(props) {
                             setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         })
                         .catch((error) => {
-                            setWrongApproachContext("장부를 가져올 수 없습니다.")
+                            setWrongApproachContext("사용자(학생)는 현재 승인 상태입니다. PKSCL 챗봇을 통해 문의 해주세요 :) error: " + error.response.status);
                             setWrongApproach(true)
                             setEditProfileButton(true);
                             defineColor(props.todayQuarter);
@@ -417,11 +437,22 @@ function MainPage(props) {
                 }
             })
             .catch((error) => {
-                setWrongApproachContext("학생의 승인, 거절, 대기 상태를 확인할 수 없습니다.")
-                setEditProfileButton(false)
-                setWrongApproach(false)
-                setEditProfileButton(false);
-
+                switch (error.response.status) {
+                case 400: 
+                    setWrongApproachContext("학생의 승인 상태를 알 수 없습니다.");  
+                    setEditProfileButton(false)
+                    setWrongApproach(true)
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`); 
+                break;
+                default: 
+                    setWrongApproachContext("학생의 상태 확인 실패/ error: " + error.response.status); 
+                    setEditProfileButton(false)
+                    setWrongApproach(true)
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                break;
+                }  
             })
         reset(props.todayQuarter);
         defineColor(props.todayQuarter);
@@ -450,7 +481,16 @@ function MainPage(props) {
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
             })
             .catch((error) => {
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                switch (error.response.status) {
+                case 400: 
+                    alert(`잘못된 접근입니다.`);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`); 
+                break;
+                default: 
+                    alert("회원 position 로드 실패/ error: " + error.response.status); 
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                break;
+            }  
             })
     }
 
@@ -465,11 +505,22 @@ function MainPage(props) {
                 defineColor(props.todayQuarter);
             })
             .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                switch (error.response.status) {
+                case 400: 
+                    setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
+                    setWrongApproach(true)
+                    setEditProfileButton(false);
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                break;
+                default:  
+                    setWrongApproachContext("회원 position 로드 실패/ error: " + error.response.status); 
+                    setWrongApproach(true)
+                    setEditProfileButton(false);
+                    defineColor(props.todayQuarter);
+                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                break;
+            }  
             })
 
         // push 할때 주석 넣기

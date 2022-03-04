@@ -93,7 +93,7 @@ function EditMainPage(props) {
                         defineColor(props.todayQuarter);
                         break;
                     default:
-                        setWrongApproachContext("서버 오류가 발생했습니다.");
+                        setWrongApproachContext("장부 로드 실패 / error "+error.response.status);
                         setWrongApproach(true)
                         setLogoImgPath(`./img/${props.todayQuarter}.png`);
                         setEditProfileButton(false)
@@ -216,8 +216,10 @@ function EditMainPage(props) {
             .then((payload) => {
                 history.push('/');
             }).catch((error) => {
-                alert("로그아웃에 실패하였습니다."); 
-                history.push('/');
+                    switch (error.response.status) {
+                    case 400:  alert("로그아웃에 실패하였습니다."); history.push('/'); break;
+                    default: alert("로그아웃 실패/ error: " + error.response.status); history.push('/'); break;
+                }
             })
     }
 
@@ -241,10 +243,21 @@ function EditMainPage(props) {
                 setEditProfileButton(false)
             })
             .catch((error) => {
-                setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
-                setWrongApproach(true)
-                setEditProfileButton(false)
-                defineColor(props.todayQuarter);
+                switch (error.response.status) {
+                    case 400: 
+                        alert("분기별 장부 open, close 날짜를 불러올 수 없습니다.");  
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+
+                    default: 
+                        alert("분기별 장부 날짜 로드 실패/ error: " + error.response.status); 
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+                }
             })
     }
 
@@ -261,10 +274,20 @@ function EditMainPage(props) {
                     setWrongApproach(false);
                     setEditProfileButton(false);
                 }).catch((error) => {
-                    setWrongApproachContext("장부를 삭제하는데 실패했습니다.");
-                    setWrongApproach(true)
-                    setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
+                    switch (error.response.status) {
+                    case 400: 
+                        alert("장부를 삭제하는데 실패했습니다.");  
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+                    default: 
+                        alert("장부 삭제 실패/ error: " + error.response.status); 
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+                }
                 })
         } else {
             alert("삭제가 취소되었습니다.")
@@ -280,7 +303,7 @@ function EditMainPage(props) {
                     resolve("장부를 추가하였습니다.");
                 })
                 .catch((error) => {
-                    reject("장부 추가에 실패했습니다. code: " + error.response.status)
+                    reject("장부 추가에 실패했습니다. " + error.response.status)
                 });
         })
 
@@ -324,7 +347,7 @@ function EditMainPage(props) {
                     resolve("장부 공개일이 변경되었습니다.");
 
                 }).catch((error) => {
-                    reject("장부 공개일 변경 실패");
+                    reject("장부 공개일 변경에 실패하였습니다." + error.response.status)
                 })
         })
 
@@ -365,7 +388,7 @@ function EditMainPage(props) {
                 .then((payload) => {
                     resolve("행사 순서가 수정되었습니다.");
                 }).catch((error) => {
-                    reject("행사 순서가 수정에 실패했습니다. error: "+error.response.data["errorMessage"]);
+                    reject("행사 순서가 수정에 실패했습니다. "+error.response.data["errorMessage"]);
                 })
         })
 
@@ -415,23 +438,45 @@ function EditMainPage(props) {
                             }
                         })
                         .catch((error) => {
-                            setWrongApproachContext("잘못된 접근입니다.");
-                            setWrongApproach(true)
-                            setEditProfileButton(false);
-                            defineColor(props.todayQuarter);
+                            switch (error.response.status) {
+                                case 400: 
+                                    alert("사용자의 승인 상태를 알 수 없습니다.");  
+                                    setWrongApproach(true)
+                                    setEditProfileButton(false)
+                                    defineColor(props.todayQuarter); 
+                                break;
+
+                                default: 
+                                    alert("회원 상태 확인 실패/ error: " + error.response.status); 
+                                    setWrongApproach(true)
+                                    setEditProfileButton(false)
+                                    defineColor(props.todayQuarter); 
+                                break;
+                            }
                         })
                 }
             })
             .catch((error) => {
-                setWrongApproachContext(`사용자의 승인 상태를 알 수 없습니다.`);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
+                switch (error.response.status) {
+                    case 400: 
+                        alert(`잘못된 접근입니다.`);
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+
+                    default: 
+                        alert("회원 position 로드 실패/ error: " + error.response.status); 
+                        setWrongApproach(true)
+                        setEditProfileButton(false)
+                        defineColor(props.todayQuarter); 
+                    break;
+                }
             })
 
     }
     function getExPKSCL() {
-        axios.get(  '/temp-major-info')
+        axios.get( '/temp-major-info')
             .then((payload) => {
                 setWrongApproach(false)
                 setEditProfileButton(false);
@@ -441,9 +486,11 @@ function EditMainPage(props) {
                 defineColor(props.todayQuarter);
             })
             .catch((error) => {
-                alert(`임시 장부를 불러올 수 없습니다.`);
-            })
-
+                switch (error.response.status) {
+                case 400: alert(`임시 장부를 불러올 수 없습니다.`); break;
+                default: alert("임시 장부 로드 실패/ error: " + error.response.status); break;
+            }  
+        })
     }
 
     useEffect(() => {

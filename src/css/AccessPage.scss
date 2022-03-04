@@ -232,6 +232,11 @@ div .checkbox-form {
     font-weight: bold;
 }
 
+.accessContainer .findPasswordContext {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
 
 .box {
     border-radius: 5px;
@@ -358,7 +363,13 @@ div .checkbox-form {
     cursor: pointer;
 }
 
+
+
 @media (hover: none) and (pointer: coarse) {
+
+    .accessContainer .findPasswordContext {
+        width: 60vw;
+    }
 
     .PKSCLInfoButton {
         display: none;

@@ -140,13 +140,21 @@ function ManagementPage(props) {
             alert("error!");
         }
         if (userLoginPosition === "president") {
-            axios.patch( '/student-list', payload)
+            axios.patch('/student-list', payload)
                 .then((payload) => {
                     getPresidentList();
                 })
                 .catch((error) => {
-                    alert("학생 전송에 실패했습니다 :)")
-                    getPresidentList();
+                    switch (error.response.status) {
+                        case 400: 
+                            alert("학생 리스트 변경에 실패했습니다 :)")
+                            getPresidentList();
+                        break;
+                        default: 
+                            alert("학생 리스트 변경 실패/ error: " + error.response.status); 
+                            getPresidentList();
+                        break;
+                    }
                 });
         } else if (userLoginPosition === "admin") {
             axios.patch( '/president-list', payload)
@@ -157,8 +165,16 @@ function ManagementPage(props) {
                     switch (error.response.status) {
                         case 409:
                             alert("이미 학과가 개설된 학생회장을 승인했습니다. 해당 학과를 대기 상태로 이동 후 방금 작업을 진행해주세요:)")
-                            break;
-                        default: alert("학과 전송에 실패했습니다 :)"); break;
+                            getAdminList();
+                        break;
+                        case 400: 
+                            alert("학생회장 리스트 변경에 실패했습니다 :)")
+                             getAdminList();
+                        break;
+                        default: 
+                            alert("학생회장 리스트 변경 실패/ error: " + error.response.status); 
+                            getAdminList();
+                        break;
                     }
                     getAdminList();
                 });
@@ -175,7 +191,10 @@ function ManagementPage(props) {
                 history.push('/');
             })
             .catch((error) => {
-                alert("학생회장 위임에 실패했습니다.")
+                switch (error.response.status) {
+                    case 400:  alert("학생회장 위임에 실패했습니다."); break;
+                    default: alert("학생회장 위임 실패/ error: " + error.response.status); break;
+                }
             });
     }
 
@@ -191,10 +210,19 @@ function ManagementPage(props) {
                 setWrongApproach(false)
             })
             .catch((error) => {
-                setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
-                setWrongApproach(true)
+                switch (error.response.status) {
+                    case 400:  
+                        setWrongApproachContext("학생리스트를 불러올 수 없습니다.");
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                    default: 
+                        setWrongApproachContext("학생리스트 로드 실패/ error: "+ error.response.status); 
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                }
             });
-        setLogoImgPath(`./img/managementLogo.png`);
     }
 
     function getAdminList() {
@@ -208,10 +236,19 @@ function ManagementPage(props) {
                 setWrongApproach(false)
             })
             .catch((error) => {
-                setWrongApproachContext("학과리스트를 불러올 수 없습니다.");
-                setWrongApproach(true)
+                switch (error.response.status) {
+                    case 400:  
+                        setWrongApproachContext("학과리스트를 불러올 수 없습니다.");
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                    default: 
+                        setWrongApproachContext("학과리스트 로드 실패/ error: "+ error.response.status); 
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                }
             });
-            setLogoImgPath(`./img/managementLogo.png`);
         }
 
 
@@ -248,13 +285,6 @@ function ManagementPage(props) {
         axios.get('/position')
             .then((payload) => {
                 setUserLoginPosition(payload.data["position"])
-            })
-            .catch((error) => {
-                setWrongApproachContext(`사용자의 Position을 알 수 없습니다.`);
-                setWrongApproach(true)
-            })
-        axios.get('/position')
-            .then((payload) => {
                 if (payload.data["position"] === "president") {
                     axios.get('/status')
                         .then((payload) => {
@@ -270,19 +300,40 @@ function ManagementPage(props) {
                             }
                         })
                         .catch((error) => {
-                            setWrongApproachContext("잘못된 접근입니다.");
-                            setWrongApproach(true)
+                            switch (error.response.status) {
+                                case 400:  
+                                    setWrongApproachContext("사용자의 승인 상태를 알 수 없습니다.");  
+                                    setWrongApproach(true)
+                                    setLogoImgPath(`./img/managementLogo.png`);
+                                break;
+                                default: 
+                                    setWrongApproachContext("회원 상태 확인 실패/ error: " + error.response.status);  
+                                    setWrongApproach(true) 
+                                    setLogoImgPath(`./img/managementLogo.png`);
+                                break;
+                            }
                         })
                 } else if (payload.data["position"] === "admin") {
                     getAdminList();
                 } else {
                     setWrongApproachContext("잘못된 접근입니다.");
                     setWrongApproach(true)
+                    setLogoImgPath(`./img/managementLogo.png`);
                 }
             })
             .catch((error) => {
-                setWrongApproachContext("잘못된 접근입니다.");
-                setWrongApproach(true)
+                switch (error.response.status) {
+                    case 400:  
+                        setWrongApproachContext(`잘못된 접근입니다.`);
+                        setWrongApproach(true)
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                    default: 
+                        setWrongApproachContext("회원 position 로드 실패/ error: " + error.response.status);  
+                        setWrongApproach(true) 
+                        setLogoImgPath(`./img/managementLogo.png`);
+                    break;
+                }
             })
 
         //push 할 때 삭제

@@ -84,13 +84,13 @@ function AccessPage(props) {
         })
         .catch((error) => {
           switch (error.response.status) {
-            case 409: alert("이미 존재하는 이메일입니다."); return;
+            case 409: alert("이미 존재하는 이메일입니다."); break;
             case 403:
               alert("이메일이 인증되지 않았습니다. 이메일 인증을 완료해주세요. ");
               setResendEmail(0);
               changeIsCorrect(6, false);
-              return;
-            default: alert("error: " + error.response.status); return;
+              break;
+            default: alert("회원가입 실패/ error: " + error.response.status); break;
           }
         })
     }
@@ -121,14 +121,17 @@ function AccessPage(props) {
                 }
               })
               .catch((error) => {
-                alert("error" + error.response.status)
+                alert("회원 상태 확인 실패/ error" + error.response.status)
               })
           } else if (position === "admin" || position === "student") {
             history.push('/main');
           }
         })
         .catch((error) => {
-          alert("로그인에 실패했습니다.")
+            switch (error.response.status) {
+                case 400:  alert("로그인에 실패했습니다."); break;
+                default: alert("로그인 실패/ error: " + error.response.status); break;
+            }
         });
 
     }
@@ -148,7 +151,10 @@ function AccessPage(props) {
             history.push('/');
           })
           .catch((error) => {
-            alert("입력하신 정보를 찾을 수 없습니다.");
+            switch (error.response.status) {
+                case 400: alert("입력하신 정보를 찾을 수 없습니다."); break;
+                default: alert("임시 비밀번호 발급 실패/ error: " + error.response.status); break;
+            }
           });
     }
   };
@@ -162,8 +168,9 @@ function AccessPage(props) {
         })
         .catch((error) => {
           switch (error.response.status) {
-            case 409: alert("이미 존재하는 이메일입니다."); return;
-            default: alert("학교 이메일 형식에 맞지 않습니다"); return;
+            case 409: alert("이미 존재하는 이메일입니다."); break;
+            case 400: alert("학교 이메일 형식에 맞지 않습니다."); break;
+            default: alert("이메일 인증 실패/ error: " + error.response.status); break;
           }
         });
     }
@@ -241,7 +248,10 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         setMajorList([...payload.data.majorList]);
       })
       .catch((error) => {
-        alert("학과리스트를 불러올 수 없습니다.");
+          switch (error.response.status) {
+            case 400: alert("학과리스트를 불러올 수 없습니다."); break;
+            default: alert("학과리스트 로드 실패/ error: " + error.response.status); break;
+          }
       })
 
   }, []);
@@ -628,7 +638,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                 </Nav>
               </div>
               <h3 className="accessTitle" style={{marginBottom:"15px"}}>비밀번호 찾기</h3>
-            <div style={{marginBottom: "10px"}}>가입 시 등록된 이메일로 임시 비밀번호를 발급 받을 수 있습니다.</div>
+            <div className = "findPasswordContext" > 가입 시 등록된 학교 이메일로 임시 비밀번호를 발급 받으실 수 있습니다.</div>
 
               <div className="input-field">
                 <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--color-quarter)" } : null}></i>
@@ -656,7 +666,6 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                   } else {
                     changeIsCorrect(0, false);
                   }
-
                 }
                 } value={stdID} type="text" maxLength="9" placeholder="학번" />
               </div>
