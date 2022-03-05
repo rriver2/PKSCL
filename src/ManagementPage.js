@@ -574,7 +574,7 @@ function ManagementPage(props) {
                                                                 <div className="buttonNav">
                                                                     <i className="headset fas fa-headset"  onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
                                                                
-                                                                    <button className="navButton  " style={{ width: "auto" }}
+                                                                    <button className="navButton" type='button' style={{ width: "auto" }}
                                                                         onClick={() => {
                                                                             if (userLoginPosition === "admin") {
                                                                                 history.push('/main')
@@ -582,6 +582,7 @@ function ManagementPage(props) {
                                                                                 history.push('/edit-main')
                                                                             }
                                                                         }}>학과별 장부 확인 및 수정</button>
+                                                                        <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                                      </div>
                                                             </>
                                                             : null

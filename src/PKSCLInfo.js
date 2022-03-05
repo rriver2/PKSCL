@@ -63,15 +63,15 @@ function PKSCLInfo(props){
                </Fade> 
                <Fade bottom> 
                 <div style={{display:"flex"}}>
-                        <span className="useMethodContext">1. 학생회장으로 회원가입<br/><img src={`./img/PKSCLInfo/studentSignIn.png`} alt="학생회원가입img"  width={"200px"}/>
+                        <span className="useMethodContext">1. 학생회장으로 회원가입<br/><img src={`./img/PKSCLInfo/presidentSignIn.png`} alt="학생회원가입img"  width={"200px"}/>
                             <div className="detailContext">- 회원가입 때 장부 관리 권한을 확인하기 위한 최소한의 개인정보를 요구할 수 있습니다. 이와 관련한 개인정보 동의서를 꼼꼼히 확인해주시길 바랍니다.</div>
                         </span>
 
-                        <span className="useMethodContext">2. 학생회장으로 로그인<br/><img src={`./img/PKSCLInfo/studentLogin.png`} alt="img"  width={"200px"}/>
+                        <span className="useMethodContext">2. 학생회장으로 로그인<br/><img src={`./img/PKSCLInfo/presidentLogin.png`} alt="img"  width={"200px"}/>
                         </span>
 
                         <span className="useMethodContext">3. PKSCL 관리자에게 승인 받기<br/>
-                        <img src={`./img/PKSCLInfo/studentRefusal.png`} alt="img"  width={"200px"}/>
+                        <img src={`./img/PKSCLInfo/presidentWaiting.png`} alt="img"  width={"200px"}/>
                             <div className="detailContext">- 회원가입 이후 학생회장임을 증명하기 위한 서류를 관리자에게 제출해야 합니다. PKSCL 챗봇으로 문의를 해주세요. 
                             <br/>- 본 과정은 처음 PKSCL을 사용하시는 학생회장에게만 해당이 되며, 이후에는 학생회장 권한 위임하기를 통해 차대 학생회장에게 PKSCL 장부 관리 권한을 넘길 수 있습니다.</div>
                         </span>

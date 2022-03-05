@@ -533,7 +533,7 @@ function MainPage(props) {
             // setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
             // setStudentPresident({ ...answer["studentPresident"] });
             // setQuarterDate({ ...answerDate });
-            // setUserLoginPosition("student")
+            // setUserLoginPosition("president")
             // setMajorList([...answerMajorList]);
             // defineColor(props.todayQuarter);
     }, []);
@@ -621,7 +621,7 @@ function MainPage(props) {
                 }
                 {
                     alertContainer === true
-                    ?<div className="alertContainer ">
+                    ?<div className="alertContainer mobileVersion">
                         <div className="alertBox">
                             <div style={{display : "flex", justifyContent: "flex-end", width: "100%"}}>
                                 <button className="alertButton" onClick={()=>{setAlertContainer(false)}}>

@@ -914,7 +914,6 @@ function EditMainPage(props) {
                                                                                                             alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"}
                                                                                                             className="receiptImg"
                                                                                                             onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"])); }} />
-
                                                                                                     </div>
 
                                                                                                 )
