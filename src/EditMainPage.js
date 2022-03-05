@@ -910,10 +910,10 @@ function EditMainPage(props) {
                                                                                                                     </>)}
                                                                                                         </div>
 
-                                                                                                        <img src={processImage(event["receiptList"][j]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                            alt={processImage(event["receiptList"][j]["receiptImg"])} height={"150"} width={"100"}
+                                                                                                        <img src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
+                                                                                                            alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"}
                                                                                                             className="receiptImg"
-                                                                                                            onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
+                                                                                                            onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"])); }} />
 
                                                                                                     </div>
 

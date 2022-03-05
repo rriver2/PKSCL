@@ -697,7 +697,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         <Route exact path="/giraffe-admin">
           <div className="right-panel">
             <form className="userForm">
-              <h3 className="accessTitle" style={{marginBottom: "10px"}} >관리자 로그인</h3>
+              <h3 className="accessTitle" style={{marginBottom: "20px", marginTop: "20px"}} >관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}

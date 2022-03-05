@@ -632,7 +632,7 @@ function MainPage(props) {
                                     userLoginPosition === "president"
                                     ?<div>mobile로는 장부 확인만 하실 수 있습니다.<br/>
                                         장부 수정 및 학생 관리를 하시려면 PC로 접속해주세요.</div>
-                                    :<div>mobile로는 장부 확인만 하실 수 있습니다.<br/>
+                                    :<div>mobile로는 컴퓨터공학과 장부 확인만 하실 수 있습니다.<br/>
                                         컴퓨터공학과 외 타과 장부 열람 및 학과 관리를 하시려면 PC로 접속해주세요.</div>
                                 }
                                
@@ -895,7 +895,7 @@ function MainPage(props) {
                                                                                                                 : <img src={receipt["receiptImg"]["name"]} alt={receipt["receiptImg"]["name"]}
                                                                                                                     style={{ backgroundColor: "var(--color-leftPanel)" }} width="400px"
                                                                                                                     className="receiptImg"
-                                                                                                                    onClick={() => { setShowImg(true); setPreviewImg(event["receiptList"][0]["receiptImg"]["name"]); }} />
+                                                                                                                    onClick={() => { setShowImg(true); setPreviewImg(receipt["receiptImg"]["name"]); }} />
                                                                                                         }
                                                                                                     </div>
 
