@@ -261,7 +261,7 @@ function ManagementPage(props) {
         axios.patch( '/major-president', payload)
             .then((payload) => {
                 alert("성공적으로 학생회장 위임이 되었습니다.")
-                history.push('/');
+                logout();
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -629,8 +629,9 @@ function ManagementPage(props) {
                                                                                                 ? (<><td>{student.stdID}</td>
                                                                                                     <td>{student.name}</td>
                                                                                                     <td><button className="certFileButton" type='button' onClick={() => {
-                                                                                                        setPreviewImg(student.studentImgPath);
                                                                                                         setShowImg(true);
+                                                                                                        setPreviewImg(student.studentImgPath);
+                                                                                                        console.log(student.studentImgPath)
                                                                                                     }}>학생증</button></td>
                                                                                                     <td ><input
                                                                                                         id={student}

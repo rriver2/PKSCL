@@ -47,6 +47,7 @@ function EditProfile(props) {
 
     const [newPasswordButton, setNewPasswordButton] = useState(false);
     const [userStatus, setUserStatus] = useState()
+    const [userApprovalStatus,setUserApprovalStatus] = useState(false);
 
 
     function changeIsCorrect(key, type) {
@@ -74,7 +75,7 @@ function EditProfile(props) {
                 axios.post('/withdrawal', payload)
                     .then((payload) => {
                         alert("회원 탈퇴가 정상적으로 처리 되었습니다.");
-                        history.push('/');
+                        logout();
                     })
                     .catch((error) => {
                         switch (error.response.status) {
@@ -144,8 +145,13 @@ function EditProfile(props) {
                 'Content-Type': 'multipart/form-data'
             }
         }).then((payload) => {
-                    alert("정보가 변경되었습니다.");
-                    props.setEditProfileState(false);
+            alert("정보가 변경되었습니다.");
+            if(props.loginPosition === "student"){
+                logout();
+            }else if (props.loginPosition === "president" && userApprovalStatus === false){
+                logout();
+            }
+            props.setEditProfileState(false);
         })
             .catch((error) => {
                 switch (error.response.status) {
@@ -207,27 +213,7 @@ function EditProfile(props) {
 
     }, [isCorrect])
 
-    useEffect(() => {
-
-        setIsCorrect(
-            {
-                stdID: true,
-                major: true,
-                name: true,
-                phoneNumber: true,
-                email: true,
-                certFile: true,
-                majorLogo: true,
-                inputEmail: false,
-                inputPassword: false,
-                inputNewPassword: false,
-                inputCheckNewPassword: false
-            }
-        );
-
-
-
-        //get 요청해서 로그인된 정보 가져오기
+    function getProfileStudent(){
         axios.get( '/profile')
             .then((payload) => {
                         setStdID(payload.data["stdID"]);
@@ -236,7 +222,40 @@ function EditProfile(props) {
                         setEmail(payload.data["email"]);
                         setUserStatus(props.userstatus)
 
-                        if (props.loginPosition === "president") {
+                            setCertFile(payload.data["certFile"]);
+                            setIsCorrect(
+                                {
+                                    stdID: true,
+                                    major: true,
+                                    name: true,
+                                    phoneNumber: false,
+                                    email: true,
+                                    certFile: true,
+                                    majorLogo: false,
+                                    inputEmail: false,
+                                    inputPassword: false,
+                                    inputNewPassword: false,
+                                    inputCheckNewPassword: false,
+                                }
+                            );
+            })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400: alert("프로필 정보를 로드하는데 실패했습니다."); break;
+                    default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
+                }
+            })
+    }
+
+    function getProfilePresident(){
+         axios.get( '/profile')
+            .then((payload) => {
+                        setStdID(payload.data["stdID"]);
+                        setMajor(payload.data["major"]);
+                        setName(payload.data["name"]);
+                        setEmail(payload.data["email"]);
+                        setUserStatus(props.userstatus)
+
                             setPhoneNumber(payload.data["phoneNumber"]);
                             setMajorLogo(payload.data["majorLogo"]);
                             setIsCorrect(
@@ -254,38 +273,17 @@ function EditProfile(props) {
                                     inputCheckNewPassword: false,
                                 }
                             );
-                        } else if (props.loginPosition === "student") {
-                            setCertFile(payload.data["certFile"]);
-                            setIsCorrect(
-                                {
-                                    stdID: true,
-                                    major: true,
-                                    name: true,
-                                    phoneNumber: false,
-                                    email: true,
-                                    certFile: true,
-                                    majorLogo: false,
-                                    inputEmail: false,
-                                    inputPassword: false,
-                                    inputNewPassword: false,
-                                    inputCheckNewPassword: false,
-                                }
-                            );
-                        }
+                        
             })
             .catch((error) => {
-                //push 할때 삭제
-                // setUserStatus(props.loginPosition)
-                // setStdID("202013245");
-                // setMajor("컴퓨터공학과");
-                // setName("홍길동");
-                // setEmail("hongildong@naver.com");
-                // setPhoneNumber("01057925915");
                 switch (error.response.status) {
                     case 400: alert("프로필 정보를 로드하는데 실패했습니다."); break;
                     default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
                 }
             })
+    }
+
+    function getMajorList(){
         //get 요청해서 학과리스트 가져오기
         axios.get( '/major-list')
             .then((payload) => {
@@ -297,6 +295,63 @@ function EditProfile(props) {
                     default: alert("학과 리스트 로드 실패/ error: " + error.response.status); break;
                 }
             })
+        }
+
+    function getUserApprovalStatus(){
+        axios.get('/status')
+                        .then((payload) => {
+                            if (payload.data["status"] === "approval") {
+                                setUserApprovalStatus(true)
+                            }
+                        })
+                        .catch((error) => {
+                            switch (error.response.status) {
+                                case 400: 
+                                    alert("사용자의 승인 상태를 알 수 없습니다.");  
+                                break;
+
+                                default: 
+                                    alert("회원 상태 확인 실패/ error: " + error.response.status);
+                                break;
+                            }
+                        })
+    }
+
+    useEffect(() => {
+        setIsCorrect(
+            {
+                stdID: true,
+                major: true,
+                name: true,
+                phoneNumber: true,
+                email: true,
+                certFile: true,
+                majorLogo: true,
+                inputEmail: false,
+                inputPassword: false,
+                inputNewPassword: false,
+                inputCheckNewPassword: false
+            }
+        );
+
+                //push 할때 삭제
+                // setUserStatus(props.loginPosition)
+                // setStdID("202013245");
+                // setMajor(0);
+                // setName("홍길동");
+                // setEmail("hongildong@naver.com");
+                // setPhoneNumber("01057925915");
+                // setUserApprovalStatus(true)
+
+        //get 요청해서 로그인된 정보 가져오기
+        if(props.loginPosition === "president"){
+            getProfilePresident()
+            getMajorList()
+            getUserApprovalStatus()
+        }else if(props.loginPosition === "student"){
+            getProfileStudent()
+            getMajorList()
+        }
 
         document.addEventListener('mousedown', clickModalOutside);
 
@@ -399,13 +454,43 @@ function EditProfile(props) {
                                     }
 
                                     {
-                                        props.loginPosition === "president"
+                                        props.loginPosition === "president" && userApprovalStatus === true
                                             ?
                                             <>
                                                 <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
                                                     style={{ textColor: "black" }} readOnly ></input>
                                             </>
                                             : null
+                                    }
+
+                                    {
+                                        props.loginPosition === "president" && userApprovalStatus !== true
+                                        ?<>
+                                                <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                    style={{ textColor: "black" }}
+                                                    onChange={(e) => {
+                                                        setMajor(majorList.indexOf(e.target.value));
+
+                                                        if (majorList.includes(e.target.value)) {
+                                                            changeIsCorrect("major", true);
+                                                        } else {
+                                                            changeIsCorrect("major", false);
+                                                        }
+                                                    }
+                                                    } ></input>
+                                                <datalist id="majorList-options" >
+                                                    {
+                                                        majorList.map((majorName, i) => {
+                                                            if (i !== 0) {
+                                                                return (
+                                                                    <option value={majorName} key={i} ></option>
+                                                                )
+                                                            }
+                                                        })
+                                                    }
+                                                </datalist>
+                                            </>
+                                        : null
                                     }
 
 
