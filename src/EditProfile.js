@@ -234,6 +234,7 @@ function EditProfile(props) {
                         setMajor(payload.data["major"]);
                         setName(payload.data["name"]);
                         setEmail(payload.data["email"]);
+                        setUserStatus(props.userstatus)
 
                         if (props.loginPosition === "president") {
                             setPhoneNumber(payload.data["phoneNumber"]);
@@ -271,7 +272,6 @@ function EditProfile(props) {
                                 }
                             );
                         }
-                setUserStatus(props.loginPosition)
             })
             .catch((error) => {
                 //push 할때 삭제
@@ -282,7 +282,7 @@ function EditProfile(props) {
                 // setEmail("hongildong@naver.com");
                 // setPhoneNumber("01057925915");
                 switch (error.response.status) {
-                    case 400: alert("정보를 로드하는데 실패했습니다."); break;
+                    case 400: alert("프로필 정보를 로드하는데 실패했습니다."); break;
                     default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
                 }
             })

@@ -267,19 +267,82 @@ function EditEvent(props) {
          return Axios;
     }
 
-    function sendReciept() {
-                        Promise.all(
-                            eventData["receiptList"].map(async receipt => {
-                                if (receipt["receiptNumber"] === undefined) {
-                                    return await postReceipt(receipt);
-                                } else {
-                                    return await putReceipt(receipt);
-                                }
-                            })
-                            ).then(() => { 
-                                props.setEditEventState(false)})
-                            .catch(() => alert('행사 수정을 실패했습니다'))
+    function sendReciept2() {
+
+        Promise.all(
+            eventData["receiptList"].map(async receipt => {
+                if (receipt["receiptNumber"] === undefined) {
+                    return await postReceipt(receipt);
+                } else {
+                    return await putReceipt(receipt);
+                }
+            })
+            ).then(() => { 
+                props.setEditEventState(false)})
+            .catch(() => alert('행사 수정을 실패했습니다'))
+
+                        // Promise.all(
+                        //     eventData["receiptList"].map(async receipt => {
+                        //         if (receipt["receiptNumber"] === undefined) {
+                        //             return await postReceipt(receipt);
+                        //         } else {
+                        //             return await putReceipt(receipt);
+                        //         }
+                        //     })
+                        //     ).then(() => { 
+                        //         props.setEditEventState(false)})
+                        //     .catch(() => alert('행사 수정을 실패했습니다'))
+        
     }
+
+
+    async function sendReciept() {
+            // Promise.all(
+            //     eventData["receiptList"].map(async receipt => {
+            //         if (receipt["receiptNumber"] === undefined) {
+            //             return await postReceipt(receipt);
+            //         } else {
+            //             return await putReceipt(receipt);
+            //         }
+            //     })
+            //     ).then(() => { 
+            //         props.setEditEventState(false)})
+            //     .catch(() => alert('행사 수정을 실패했습니다'))
+            for (let i = 0; i < eventData["receiptList"].length; i++) {
+                await getRes(eventData["receiptList"][i],i)
+            }
+    }
+
+    function getRes(receipt,i) {
+            return new Promise((resolve, reject) => {
+                if (receipt["receiptNumber"] === undefined) {
+                    postReceipt(receipt)
+                    .then(()=>{
+
+                    })
+                    .catch(()=>{
+                        alert((i+1)+"번째 영수증부터 에러..")
+                    })
+                } else {
+                    putReceipt(receipt)
+                    .then(()=>{
+
+                    })
+                    .catch(()=>{
+                        alert((i+1)+"번째 영수증부터 에러..")
+                    })
+                }
+                // this.axios.post("api주소",{ num })  // api주소, body에 보낼 값 위에서 받은 num[i]값
+                // .then(() => {
+                //     // (1) 정상적인 응답이 왔을때 
+                //     resolve("compleate")
+                // })
+                // .catch(() => {
+                //     // (2) 정상적인 응답을 받지 못했을때 
+                //     reject("network err")
+                // })
+            })
+        }
 
     function CalculateCurrentQuarterReceiptSumList(eventList) {
         let amountReceipt = 0;

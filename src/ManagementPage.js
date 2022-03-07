@@ -250,7 +250,6 @@ function ManagementPage(props) {
                             getAdminList();
                         break;
                     }
-                    getAdminList();
                 });
         }
     }
@@ -359,14 +358,13 @@ function ManagementPage(props) {
 
     useEffect(() => {
         reload();
-
         //push 할 때 삭제
         // setWaiting([...임시리스트["waiting"]]);
         // setRefusal([...임시리스트["refusal"]]);
         // setApproval([...임시리스트["approval"]]);
         // setLeftTable([...임시리스트["waiting"]]);
         // setRightTable([...임시리스트["approval"]]);
-        // setUserLoginPosition("admin")
+        // setUserLoginPosition("president")
 
     }, []);
 
@@ -651,10 +649,6 @@ function ManagementPage(props) {
                                                                                                         <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.phoneNumber}</td>
                                                                                                         <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>{student.email}</td>
                                                                                                         <td style={{ borderBottom: "1px solid var(--color-quarterCircle)" }}>
-                                                                                                            {/* <button className="certFileButton" type='button' onClick={() => {
-                                                                                                        setPreviewImg(student.studentImgPath);
-                                                                                                        setShowImg(true);
-                                                                                                    }}>학생증</button> */}
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                     <td style={{ width: "100px", backgroundColor: "var(--color-tableEven)", borderBottom: "1px solid var(--color-quarterCircle)" }}><

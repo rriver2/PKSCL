@@ -36,7 +36,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
 function defineColor(quarter) {
   if (quarter === "quarter1") {
-    setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
+    setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#FDEDF0", "#fbf6f6");
   } else if (quarter === "quarter2") {
     setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
   } else if (quarter === "quarter3") {

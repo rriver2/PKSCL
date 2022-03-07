@@ -59,6 +59,7 @@ function MainPage(props) {
 
     const [userLoginPosition, setUserLoginPosition] = useState();
     const [alertContainer,setAlertContainer] = useState(false);
+    const [userstatus,setUserstatus] = useState();
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -153,7 +154,7 @@ function MainPage(props) {
 
     function defineColor(quarter) {
         if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#fff5ed", "#fbf6f6");
+            setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#FDEDF0", "#fbf6f6");
         } else if (quarter === "quarter2") {
             setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
         } else if (quarter === "quarter3") {
@@ -349,6 +350,7 @@ function MainPage(props) {
 
         axios.get('/status')
             .then((payload) => {
+                setUserstatus(payload.data["status"])
                 if (payload.data["status"] === "refusal") {
                     setWrongApproachContext("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                     setWrongApproach(true)
@@ -565,7 +567,7 @@ function MainPage(props) {
                 {
                     editProfileState
                         ?
-                        <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                        <EditProfile userstatus={userstatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
                
@@ -700,8 +702,8 @@ function MainPage(props) {
                                                             :<>
                                                             <div className='buttonNav' >
                                                                 <div className="tempAlert PCVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div>
-                                                                {/* <button className='navButton' type='button' onClick={() => {history.push('/manage') }}>학생 관리</button>
-                                                                <button className='navButton edit'  type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button> */}
+                                                                {/* <button className='navButton' type='button' onClick={() => {history.push('/manage') }}>학생 관리</button>*/}
+                                                                <button className='navButton edit'  type='button' onClick={() => { history.push('/edit-main') }}>장부 수정 페이지</button> 
                                                                 <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                             </div>
                                                             {/* <div className="tempAlert mobileVersion" >현재 {studentPresident["major"]} 학생들에게 공개된 장부 입니다. </div> */}
