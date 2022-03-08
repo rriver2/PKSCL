@@ -531,10 +531,22 @@
     background-color: none;
 }
 
+.alertContainermobileVersion {
+    display: none;
+}
+
+.navButtonProfile {
+    display: none;
+}
+
 @media (hover: none) and (pointer: coarse) {
 
     .MainPageContainer .PCVersion {
         display: none;
+    }
+
+    .navButtonProfile {
+        display: block;
     }
 
     .MainPageContainer .mobileVersion {
@@ -544,6 +556,14 @@
         margin-right: 0;
         display: flex;
         justify-content: center;
+    }
+
+    .alertContainer .alertContainermobileVersion {
+        display: flex;
+    }
+
+    .navButtonEdit {
+        display: none;
     }
 
     .MainPageContainer {
@@ -698,6 +718,7 @@
         padding-right: 10px;
         padding-left: 10px;
     }
+
 
     .alertContainer {
         display: flex;

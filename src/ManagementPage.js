@@ -438,7 +438,7 @@ function ManagementPage(props) {
                                     ? <div className="alertEmailContainer">
                                         <div className="alertEmailbox">
                                             <div className='boxTitle' style={{ justifyContent: "center" }}  >
-                                                <h2 ><i className="fas fa-user boxUser"  />학생회장 위임 절차</h2>
+                                                <h2 ><i className="fas fa-user boxUser"  />학생회장 위임</h2>
                                             </div>
                                             <div className="alertEmailField" style={{ borderColor: "#dc3545" }}>
                                                 <div style={{ width: "80%" ,display:"flex",flexDirection: "column",alignItems: "center"}}>
