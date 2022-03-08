@@ -52,6 +52,7 @@ function EditMainPage(props) {
 
     const [tempQuarter, setTempQuarter] = useState(false);
     const [showCurrentQuerter, setShowCurrentQuerter] = useState();
+    const [userStatus,setUserStatus] = useState();
 
     function getLedger() {
         let resetArray = [];
@@ -409,6 +410,7 @@ function EditMainPage(props) {
                 }
                 else if (payload.data["position"] === "president") {
                     axios.get('/status')
+                            setUserStatus(payload.data["status"])
                         .then((payload) => {
                             if (payload.data["status"] === "refusal") {
                                 setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
@@ -563,7 +565,7 @@ function EditMainPage(props) {
                     {
                         editProfileState
                             ?
-                            <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                            <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
                     <div className="nav" >
@@ -602,7 +604,7 @@ function EditMainPage(props) {
                         {
                             editProfileState
                                 ?
-                                <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                                <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                                 : null
                         }
                         {
@@ -659,7 +661,6 @@ function EditMainPage(props) {
                                                                     onChange={(e) => {
                                                                         let tempDateArray = { ...quarterDate }
                                                                         tempDateArray[currentQuarter][1] = e.target.value;
-
                                                                         putLedgerDate();
 
                                                                     }}
@@ -848,10 +849,8 @@ function EditMainPage(props) {
                                                                                                                                         {j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
                                                                                                                                     </div>)
                                                                                                                             }
-
-
                                                                                                                         </div>
-                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
+                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][j]["receiptContext"]}</div>
 
                                                                                                                         {
                                                                                                                             receipt["receiptDetailList"].length === 0

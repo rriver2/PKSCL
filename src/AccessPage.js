@@ -129,6 +129,7 @@ function AccessPage(props) {
         })
         .catch((error) => {
             switch (error.response.status) {
+                case 401:  alert("비밀번호가 틀렸습니다."); break;
                 case 400:  alert("로그인에 실패했습니다."); break;
                 default: alert("로그인 실패/ error: " + error.response.status); break;
             }

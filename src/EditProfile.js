@@ -609,9 +609,7 @@ function EditProfile(props) {
                                                         : alert("정보수정이 취소되었습니다. ")}</>)
                                                     : (<>{
                                                         props.loginPosition === "president"
-                                                            ? (<>{window.confirm('프로필을 편집하시겠습니까?')
-                                                                ? putProfile()
-                                                                : alert("정보수정이 취소되었습니다.")}</>)
+                                                            ? putProfile()
                                                             : null
                                                     }</>)
                                             }}>저장하기</button>

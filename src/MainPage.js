@@ -47,7 +47,7 @@ function MainPage(props) {
 
     const [userLoginPosition, setUserLoginPosition] = useState();
     const [alertContainer,setAlertContainer] = useState(false);
-    const [userstatus,setUserstatus] = useState();
+    const [userStatus,setUserStatus] = useState();
 
     function resetShowAllReceiptButton() {
         let resetArray = [];
@@ -339,7 +339,7 @@ function MainPage(props) {
 
         axios.get('/status')
             .then((payload) => {
-                setUserstatus(payload.data["status"])
+                setUserStatus(payload.data["status"])
                 if (payload.data["status"] === "refusal") {
                     setWrongApproachContext("사용자(학생회장)는 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                     setWrongApproach(true)
@@ -565,7 +565,7 @@ function MainPage(props) {
                 {
                     editProfileState
                         ?
-                        <EditProfile userstatus={userstatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                        <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
                
@@ -616,7 +616,7 @@ function MainPage(props) {
                 {
                     editProfileState
                         ?
-                        <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                        <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
                 {
@@ -630,9 +630,9 @@ function MainPage(props) {
                             <div className="alertContext">
                                 {
                                     userLoginPosition === "president"
-                                    ?<div>mobile로는 장부 확인만 하실 수 있습니다.<br/>
+                                    ?<div>mobile로는 학생 입장으로 장부 열람만 하실 수 있습니다.<br/>
                                         장부 수정, 학생 관리 등 더 많은 서비스를 이용하시려면 PC로 접속해주세요.</div>
-                                    :<div>mobile로는 컴퓨터공학과 장부 확인만 하실 수 있습니다.<br/>
+                                    :<div>mobile로는 컴퓨터공학과 장부 열람만 하실 수 있습니다.<br/>
                                         컴퓨터공학과 외 타과 장부 열람 및 학과 관리를 하시려면 PC로 접속해주세요.</div>
                                 }
                             </div>
