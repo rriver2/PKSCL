@@ -516,7 +516,7 @@ function MainPage(props) {
             })
 
         // push 할때 주석 넣기
-    // let answer = {"studentPresident":{"major":"기린학과","name":"\b김기린","phoneNumber":"010-1234-5678","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/TempLogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"171","eventTitle":"빛축제 (일시 : 10/27~10/29)","eventContext":"[공과대]의 청춘을 비추다","receiptList":[{"receiptNumber":"181","receiptTitle":"추억의 뽑기판","receiptImg":{"name":"./static/receiptImg/20220228092500209.png"},"receiptContext":"공과대생 선착순 300명","receiptDetailList":[{"context":"LED 풍선","price":"500","amount":"100","totalAmount":"50000"},{"context":"LED 삔","price":"300","amount":"100","totalAmount":"30000"},{"context":"LED 반지","price":"450","amount":"100","totalAmount":"45000"}]}]},{"eventNumber":"164","eventTitle":"기린학과 임시 장부임~~~~","eventContext":"우헤헤 기린학과엔 기린이 몇마리일기린?","receiptList":[{"receiptNumber":"177","receiptTitle":"기린기린기린","receiptImg":{"name":"./static/receiptImg/20220216122414973.png"},"receiptContext":"기린 퀴즈","receiptDetailList":[{"context":"다리","price":"4","amount":"3","totalAmount":"12"},{"context":"심장","price":"1","amount":"3","totalAmount":"3"},{"context":"꼬리","price":"1","amount":"3","totalAmount":"3"}]}]}]},"quarter2":{"status":"true"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"ww","price":"11","amount":"22","totalAmount":"242"}]}]}]},"quarter4":{"status":"true"}}}
+    // let answer = {"studentPresident":{"major":"기린학과","name":"\b김기린","phoneNumber":"010-1234-5678","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/tempLogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"171","eventTitle":"빛축제 (일시 : 10/27~10/29)","eventContext":"[공과대]의 청춘을 비추다","receiptList":[{"receiptNumber":"181","receiptTitle":"추억의 뽑기판","receiptImg":{"name":"./static/receiptImg/20220228092500209.png"},"receiptContext":"공과대생 선착순 300명","receiptDetailList":[{"context":"LED 풍선","price":"500","amount":"100","totalAmount":"50000"},{"context":"LED 삔","price":"300","amount":"100","totalAmount":"30000"},{"context":"LED 반지","price":"450","amount":"100","totalAmount":"45000"}]}]},{"eventNumber":"164","eventTitle":"기린학과 임시 장부임~~~~","eventContext":"우헤헤 기린학과엔 기린이 몇마리일기린?","receiptList":[{"receiptNumber":"177","receiptTitle":"기린기린기린","receiptImg":{"name":"./static/receiptImg/20220216122414973.png"},"receiptContext":"기린 퀴즈","receiptDetailList":[{"context":"다리","price":"4","amount":"3","totalAmount":"12"},{"context":"심장","price":"1","amount":"3","totalAmount":"3"},{"context":"꼬리","price":"1","amount":"3","totalAmount":"3"}]}]}]},"quarter2":{"status":"true"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"ww","price":"11","amount":"22","totalAmount":"242"}]}]}]},"quarter4":{"status":"true"}}}
     // let answerDate = {
     //     "quarter1": ["2022-01-01", "2022-01-02"],
     //     "quarter2": ["2022-01-03", "2022-01-04"],
@@ -652,7 +652,7 @@ function MainPage(props) {
                                         <h2>{studentPresident["major"]}</h2>
                                         <img src={studentPresident["majorLogo"]} alt="majorLogo" height={"150"} width={"10"} />
                                         {
-                                            userLoginPosition === "president" && studentPresident["majorLogo"] === "./static/majorLogo/TempLogo.jpg"
+                                            userLoginPosition === "president" && studentPresident["majorLogo"] === "./static/majorLogo/tempLogo.jpg"
                                             ? <p style={{color:"#d32c2c"}}>로고 사진은 프로필 편집에서 변경 가능합니다 :)</p>
                                             : null
                                         }
@@ -696,6 +696,7 @@ function MainPage(props) {
                                                             <div className='buttonNav' >
                                                                     <div className="tempAlert PCVersion" >회원님은 장부 열람 권한이 없어 임시 장부를 확인 중입니다.</div>
                                                                     <i class="fas fa-user" onClick={() => { setEditProfileState(true); }}></i>
+                                                                    <i class="fas fa-headset navButtonProfile" onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
                                                                     <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button >
                                                                     
                                                             </div>
