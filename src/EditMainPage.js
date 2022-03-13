@@ -411,25 +411,23 @@ function EditMainPage(props) {
                 else if (payload.data["position"] === "president") {
                     axios.get('/status')
                         .then((payload) => {
+                            setUserStatus(payload.data["status"])
                             if (payload.data["status"] === "refusal") {
                                 setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
                                 defineColor(props.todayQuarter);
-                                setUserStatus(payload.data["status"])
                             }
                             else if (payload.data["status"] === "waiting") {
                                 setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
                                 setWrongApproach(true)
                                 setEditProfileButton(true);
                                 defineColor(props.todayQuarter);
-                                setUserStatus(payload.data["status"])
                             } else if (payload.data["status"] === "approval") {
                                 getLedger();
                                 GetDate();
                                 setWrongApproach(false)
                                 setEditProfileButton(false);
-                                setUserStatus(payload.data["status"])
                             }
                         })
                         .catch((error) => {
@@ -567,7 +565,7 @@ function EditMainPage(props) {
                     {
                         editProfileState
                             ?
-                            <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                            <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                             : null
                     }
                     <div className="nav" >
@@ -606,7 +604,7 @@ function EditMainPage(props) {
                         {
                             editProfileState
                                 ?
-                                <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                                <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                                 : null
                         }
                         {

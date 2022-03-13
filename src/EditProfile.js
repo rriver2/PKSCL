@@ -46,7 +46,6 @@ function EditProfile(props) {
     const [inputCheckNewPassword, setInputCheckNewPassword] = useState("");
 
     const [newPasswordButton, setNewPasswordButton] = useState(false);
-    const [userStatus, setUserStatus] = useState()
     const [userApprovalStatus,setUserApprovalStatus] = useState(false);
 
 
@@ -218,7 +217,6 @@ function EditProfile(props) {
                         setMajor(payload.data["major"]);
                         setName(payload.data["name"]);
                         setEmail(payload.data["email"]);
-                        setUserStatus(props.userstatus)
 
                             setCertFile(payload.data["certFile"]);
                             setIsCorrect(
@@ -252,7 +250,6 @@ function EditProfile(props) {
                         setMajor(payload.data["major"]);
                         setName(payload.data["name"]);
                         setEmail(payload.data["email"]);
-                        setUserStatus(props.userstatus)
 
                             setPhoneNumber(payload.data["phoneNumber"]);
                             setMajorLogo(payload.data["majorLogo"]);
@@ -344,7 +341,6 @@ function EditProfile(props) {
 
 
                 //push 할때 삭제
-                // setUserStatus(props.loginPosition)
                 // setStdID("202013245");
                 // setMajor(0);
                 // setName("홍길동");
@@ -541,10 +537,7 @@ function EditProfile(props) {
                                 </div>
 
                                 {
-                                    props.loginPosition === "president"
-                                        ?
-                                        <>
-                                            {userStatus === "approval"
+                                    props.loginPosition === "president" && userApprovalStatus === true
                                                 ? <div className="inputField">
                                                     <i className="fas fa-user-graduate" style={{ fontSize: "1.25rem" }}></i>
                                                     <label>학과로고</label>
@@ -562,11 +555,6 @@ function EditProfile(props) {
                                                         }}></input>
                                                 </div>
                                                 : null
-                                            }
-                                        </>
-                                        : null
-
-
                                 }
 
                                 {

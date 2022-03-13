@@ -565,7 +565,7 @@ function MainPage(props) {
                 {
                     editProfileState
                         ?
-                        <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                        <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
                
@@ -616,7 +616,7 @@ function MainPage(props) {
                 {
                     editProfileState
                         ?
-                        <EditProfile userStatus={userStatus} loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
+                        <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
                         : null
                 }
                 {
