@@ -275,7 +275,7 @@ function AccessPage(props) {
 
 
         <div className="content">
-          <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
+          <button type="button" style={{ boxShadow: "0 0 0 0 white" }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
             <div>
               <div className="PKSCLMainLogo" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <img src={logoImgPath} alt="logo" />

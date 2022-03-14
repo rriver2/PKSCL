@@ -7,88 +7,6 @@ import PreviewImg from './PreviewImg';
 
 function ManagementPage(props) {
 
-    // let 임시리스트 = {
-    //     waiting:
-    //         [{
-    //             "major": "학과1",
-    //             "email": "srge@naver.com",
-    //             "stdID": "3123",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "fdssf@naver.com",
-    //             "stdID": "312231",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "aaaasdasaa@naver.com",
-    //             "stdID": "321313",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "asas@naver.com",
-    //             "stdID": "23322",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "aaasadadaa@naver.com",
-    //             "stdID": "111111111",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과2",
-    //             "email": "bbbbb@naver.com",
-    //             "stdID": "22222222",
-    //             "name": "이름2",
-    //             "phoneNumber": "01022222222",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과3",
-    //             "email": "ccccc@naver.com",
-    //             "stdID": "333333",
-    //             "name": "이름3",
-    //             "phoneNumber": "010333333",
-    //             "studentImgPath": "/img/time.png",
-    //         }],
-    //     refusal: [],
-    //     approval: [{
-    //         "major": "학과4",
-    //         "email": "dddd@naver.com",
-    //         "stdID": "444444",
-    //         "name": "이름4",
-    //         "phoneNumber": "010444444",
-    //         "studentImgPath": "/img/time.png",
-    //     }, {
-    //         "major": "학과5",
-    //         "email": "eeee@naver.com",
-    //         "stdID": "555555",
-    //         "name": "이름5",
-    //         "phoneNumber": "010555555",
-    //         "studentImgPath": "/img/time.png",
-    //     }, {
-    //         "major": "학과6",
-    //         "email": "ffff@naver.com",
-    //         "stdID": "666666",
-    //         "name": "이름6",
-    //         "phoneNumber": "010666666",
-    //         "studentImgPath": "/img/time.png",
-    //     }],
-    // }
 
     const history = useHistory();
     const [waiting, setWaiting] = useState([]);
@@ -359,6 +277,89 @@ function ManagementPage(props) {
     useEffect(() => {
         reload();
         //push 할 때 삭제
+
+    // let 임시리스트 = {
+    //     waiting:
+    //         [{
+    //             "major": "학과1",
+    //             "email": "srge@naver.com",
+    //             "stdID": "3123",
+    //             "name": "이름1",
+    //             "phoneNumber": "01011111111",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과1",
+    //             "email": "fdssf@naver.com",
+    //             "stdID": "312231",
+    //             "name": "이름1",
+    //             "phoneNumber": "01011111111",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과1",
+    //             "email": "aaaasdasaa@naver.com",
+    //             "stdID": "321313",
+    //             "name": "이름1",
+    //             "phoneNumber": "01011111111",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과1",
+    //             "email": "asas@naver.com",
+    //             "stdID": "23322",
+    //             "name": "이름1",
+    //             "phoneNumber": "01011111111",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과1",
+    //             "email": "aaasadadaa@naver.com",
+    //             "stdID": "111111111",
+    //             "name": "이름1",
+    //             "phoneNumber": "01011111111",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과2",
+    //             "email": "bbbbb@naver.com",
+    //             "stdID": "22222222",
+    //             "name": "이름2",
+    //             "phoneNumber": "01022222222",
+    //             "studentImgPath": "/img/time.png",
+    //         },
+    //         {
+    //             "major": "학과3",
+    //             "email": "ccccc@naver.com",
+    //             "stdID": "333333",
+    //             "name": "이름3",
+    //             "phoneNumber": "010333333",
+    //             "studentImgPath": "/img/time.png",
+    //         }],
+    //     refusal: [],
+    //     approval: [{
+    //         "major": "학과4",
+    //         "email": "dddd@naver.com",
+    //         "stdID": "444444",
+    //         "name": "이름4",
+    //         "phoneNumber": "010444444",
+    //         "studentImgPath": "/img/time.png",
+    //     }, {
+    //         "major": "학과5",
+    //         "email": "eeee@naver.com",
+    //         "stdID": "555555",
+    //         "name": "이름5",
+    //         "phoneNumber": "010555555",
+    //         "studentImgPath": "/img/time.png",
+    //     }, {
+    //         "major": "학과6",
+    //         "email": "ffff@naver.com",
+    //         "stdID": "666666",
+    //         "name": "이름6",
+    //         "phoneNumber": "010666666",
+    //         "studentImgPath": "/img/time.png",
+    //     }],
+    // }
         // setWaiting([...임시리스트["waiting"]]);
         // setRefusal([...임시리스트["refusal"]]);
         // setApproval([...임시리스트["approval"]]);

@@ -4,6 +4,7 @@ h2 {
 
 .editProfileContainer {
     /* position: absolute; */
+    font-family: 'Work Sans';
     display: flex;
     height: 100%;
     width: 100%;

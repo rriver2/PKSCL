@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import ManagementPage from './ManagementPage';
 import EditMainPage from './EditMainPage';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import "@fontsource/work-sans";
 
 function loadmonth() {
   let now = new Date();
