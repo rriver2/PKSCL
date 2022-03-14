@@ -120,9 +120,18 @@ i:hover {
         min-width: 20vw !important;
     }
 
+    .quarterDateNav {
+        display: none !important;
+    }
+
     .EditMainPageContainer .leftPanel {
         display: none !important;
     }
+
+    .MainPageContainer .mainSearchBar {
+        display: none !important;
+    }
+
 }
 
 @media (hover: hover) and (pointer: fine) and (max-width: 800px) {
@@ -138,9 +147,12 @@ i:hover {
     .quarterData {
         margin-right: 0 !important;
     }
+
+    .MainPageContainer .dateInput {
+        display: none !important;
+    }
 }
 
-@media (hover: hover) and (pointer: fine) and (max-width: 710px) {}
 
 @media (hover: none) and (pointer: coarse) {
     .mobileVersion {

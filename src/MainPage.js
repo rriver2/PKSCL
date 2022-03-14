@@ -533,7 +533,7 @@ function MainPage(props) {
     //         setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
     //         setStudentPresident({ ...answer["studentPresident"] });
     //         setQuarterDate({ ...answerDate });
-    //         setUserLoginPosition("student")
+    //         setUserLoginPosition("admin")
     //         setMajorList([...answerMajorList]);
     //         defineColor(props.todayQuarter);
     }, []);

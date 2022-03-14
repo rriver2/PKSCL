@@ -26,7 +26,7 @@ function AccessPage(props) {
 
   const [personalInformationButton, setPersonalInformationButton] = useState(false);
   const [personalInformation, setPersonalInformation] = useState([false, false, false]);
-  const [PKSCLInfoButton,setPKSCLInfoButton] = useState(false);
+  const [PKSCLInfoButton, setPKSCLInfoButton] = useState(false);
 
   let logoImgPath = `./img/managementLogo.png`
 
@@ -72,15 +72,15 @@ function AccessPage(props) {
       else if (position === "president")
         payload.append("phoneNumber", phoneNumber);
 
-      axios.post( "/signup/" + position, payload,
+      axios.post("/signup/" + position, payload,
         {
           headers: { 'Content-Type': 'multipart/form-data' }
         }
       )
         .then((payload) => {
-              alert("회원가입에 성공하였습니다.")
-              history.push('/');
-              return;
+          alert("회원가입에 성공하였습니다.")
+          history.push('/');
+          return;
         })
         .catch((error) => {
           switch (error.response.status) {
@@ -90,6 +90,8 @@ function AccessPage(props) {
               setResendEmail(0);
               changeIsCorrect(6, false);
               break;
+            case 502:
+                alert("학생증 첨부 파일의 용량이 초과되었습니다. 원활한 PKSCL 사용을 위해 이미지 용량을 10MB 이하로 변경해주세요."); break;
             default: alert("회원가입 실패/ error: " + error.response.status); break;
           }
         })
@@ -128,11 +130,11 @@ function AccessPage(props) {
           }
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 401:  alert("비밀번호가 틀렸습니다."); break;
-                case 400:  alert("로그인에 실패했습니다."); break;
-                default: alert("로그인 실패/ error: " + error.response.status); break;
-            }
+          switch (error.response.status) {
+            case 401: alert("비밀번호가 틀렸습니다."); break;
+            case 400: alert("로그인에 실패했습니다."); break;
+            default: alert("로그인 실패/ error: " + error.response.status); break;
+          }
         });
 
     }
@@ -145,27 +147,27 @@ function AccessPage(props) {
       )
     }
     else {
-        let payload = { "email": email, "stdID": stdID, "name": name };
-        axios.post('/newpwd/' + position, payload)
-          .then((payload) => {
-            alert("입력하신 이메일로 임시 비밀번호를 발급하였습니다.");
-            history.push('/');
-          })
-          .catch((error) => {
-            switch (error.response.status) {
-                case 400: alert("입력하신 정보를 찾을 수 없습니다."); break;
-                default: alert("임시 비밀번호 발급 실패/ error: " + error.response.status); break;
-            }
-          });
+      let payload = { "email": email, "stdID": stdID, "name": name };
+      axios.post('/newpwd/' + position, payload)
+        .then((payload) => {
+          alert("입력하신 이메일로 임시 비밀번호를 발급하였습니다.");
+          history.push('/');
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 400: alert("입력하신 정보를 찾을 수 없습니다."); break;
+            default: alert("임시 비밀번호 발급 실패/ error: " + error.response.status); break;
+          }
+        });
     }
   };
 
   function certEmail() {
     if (window.confirm("입력하신 이메일로 인증 메일을 발송하시겠습니까?")) {
       let payload = { "email": email };
-      axios.post( '/email/' + position, payload)
+      axios.post('/email/' + position, payload)
         .then((payload) => {
-        //   alert("입력하신 이메일로 메일을 발송했습니다.");
+          //   alert("입력하신 이메일로 메일을 발송했습니다.");
         })
         .catch((error) => {
           switch (error.response.status) {
@@ -234,25 +236,25 @@ function AccessPage(props) {
     }
   }, [isCorrect]);
 
-function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
-  document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-  document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-  document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-  document.documentElement.style.setProperty("--color-card", colorCard);
-  document.documentElement.style.setProperty("--color-background", colorBackground);
-}
+  function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
+    document.documentElement.style.setProperty("--color-quarter", colorQuarter);
+    document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
+    document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
+    document.documentElement.style.setProperty("--color-card", colorCard);
+    document.documentElement.style.setProperty("--color-background", colorBackground);
+  }
 
   useEffect(() => {
-   setColorProperty("#59577b", "#7c7a9a", "#cdc9e6", "#ebeaee", "#f8f6fb");
+    setColorProperty("#59577b", "#7c7a9a", "#cdc9e6", "#ebeaee", "#f8f6fb");
     axios.get('/major-list')
       .then((payload) => {
         setMajorList([...payload.data.majorList]);
       })
       .catch((error) => {
-          switch (error.response.status) {
-            case 400: alert("학과리스트를 불러올 수 없습니다."); break;
-            default: alert("학과리스트 로드 실패/ error: " + error.response.status); break;
-          }
+        switch (error.response.status) {
+          case 400: alert("학과리스트를 불러올 수 없습니다."); break;
+          default: alert("학과리스트 로드 실패/ error: " + error.response.status); break;
+        }
       })
 
   }, []);
@@ -260,23 +262,23 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
 
   return (
     <div className="accessContainer">
-        {
-            PKSCLInfoButton === true
-            ?<PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
-            :null
-        }
+      {
+        PKSCLInfoButton === true
+          ? <PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
+          : null
+      }
 
       <div className="left-panel">
         <div class='wave -one'></div>
         <div class='wave -two'></div>
         <div class='wave -three'></div>
 
-        
+
         <div className="content">
           <button type="button" style={{ boxShadow: "0 0 0 0 white", fontFamily: 'YUniverse-B' }} onClick={() => { setPosition("student"); reset(); history.push('/') }}>
             <div>
               <div className="PKSCLMainLogo" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <img src={logoImgPath} alt="logo"  />
+                <img src={logoImgPath} alt="logo" />
                 <span className="tracking-in-expand" >PKSCL</span>
               </div>
               <div className="tracking-in-expand" >PuKyong Student Council Ledger</div>
@@ -452,29 +454,29 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                       }
                       } name="stdID" value={stdID} maxLength="9" placeholder="학번" type="text" />
                     </div>
-                    <div className="input-field" style={ isCorrect[1] === false && password !=="" ? {marginBottom : "2px"}:null}>
+                    <div className="input-field" style={isCorrect[1] === false && password !== "" ? { marginBottom: "2px" } : null}>
                       <i className="fas fa-key" style={isCorrect[1] === true ? { color: "var(--color-quarter)" } : null}></i>
-                      <div style={{width: "70%"}}>
-                        <input style={{width: "100%"}}
-                            onChange={(e) => {
+                      <div style={{ width: "70%" }}>
+                        <input style={{ width: "100%" }}
+                          onChange={(e) => {
                             setPassword(e.target.value);
                             // if (e.target.value.length !== 0) {
                             if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
-                            changeIsCorrect(1, true);
+                              changeIsCorrect(1, true);
                             } else {
-                            changeIsCorrect(1, false);
+                              changeIsCorrect(1, false);
                             }
 
-                        }} name="password" value={password} type="password" placeholder="비밀번호" />
+                          }} name="password" value={password} type="password" placeholder="비밀번호" />
                       </div>
                     </div>
-                     {
-                            isCorrect[1] === false && password !==""
-                            ?<span style={{ fontSize: "1px", color: "red" , marginBottom:"15px"}}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
-                            : null
-                        }
+                    {
+                      isCorrect[1] === false && password !== ""
+                        ? <span style={{ fontSize: "1px", color: "red", marginBottom: "15px" }}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
+                        : null
+                    }
 
-                    <div className="input-field" style={ isCorrect[2] === false && checkPassword !=="" ? {marginBottom : "2px"}:null}>
+                    <div className="input-field" style={isCorrect[2] === false && checkPassword !== "" ? { marginBottom: "2px" } : null}>
                       <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <input onChange={(e) => {
                         setCheckPassword(e.target.value)
@@ -486,11 +488,11 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                       }
                       } name="checkPassword" value={checkPassword} type="password" placeholder="비밀번호 재확인" />
                     </div>
-                      {
-                            isCorrect[2] === false && checkPassword !==""
-                            ?<span style={{ fontSize: "1px", color: "red" , marginBottom:"15px"}}> 비밀번호가 일치하지 않습니다. </span>
-                            : null
-                        }
+                    {
+                      isCorrect[2] === false && checkPassword !== ""
+                        ? <span style={{ fontSize: "1px", color: "red", marginBottom: "15px" }}> 비밀번호가 일치하지 않습니다. </span>
+                        : null
+                    }
 
                     <div className="input-field" style={{ fontSize: "80%" }}>
                       <i className="fas fa-book-open" style={isCorrect[3] === true ? { color: "var(--color-quarter)" } : null}></i>
@@ -638,8 +640,8 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
                   </Nav.Item>
                 </Nav>
               </div>
-              <h3 className="accessTitle" style={{marginBottom:"15px"}}>비밀번호 찾기</h3>
-            <div className = "findPasswordContext" > 가입 시 등록된 학교 이메일로 임시 비밀번호를 발급 받으실 수 있습니다.</div>
+              <h3 className="accessTitle" style={{ marginBottom: "15px" }}>비밀번호 찾기</h3>
+              <div className="findPasswordContext" > 가입 시 등록된 학교 이메일로 임시 비밀번호를 발급 받으실 수 있습니다.</div>
 
               <div className="input-field">
                 <i className="fas fa-envelope" style={isCorrect[5] === true ? { color: "var(--color-quarter)" } : null}></i>
@@ -698,7 +700,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         <Route exact path="/giraffe-admin">
           <div className="right-panel">
             <form className="userForm">
-              <h3 className="accessTitle" style={{marginBottom: "20px", marginTop: "20px"}} >관리자 로그인</h3>
+              <h3 className="accessTitle" style={{ marginBottom: "20px", marginTop: "20px" }} >관리자 로그인</h3>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>
                 <input id="inputEmail" onChange={(e) => { setEmail(e.target.value) }}
@@ -742,7 +744,7 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
               <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
                 <h3 className="accessTitle">
                   환영합니다</h3>
-                <div style={{marginBottom: "10px"}}>우리 학과의 장부를 분기 별로 확인할 수 있습니다.</div>
+                <div style={{ marginBottom: "10px" }}>우리 학과의 장부를 분기 별로 확인할 수 있습니다.</div>
               </div>
 
 
@@ -774,12 +776,12 @@ function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colo
         </Route>
       </Switch >
 
-          <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
-          style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
-        </button>
-        <button className="PKSCLInfoButton" type="button" onClick={() => { setPKSCLInfoButton(true) }}>
-            <i className="fas fa-question" ></i>
-        </button>
+      <button className="adminbutton mobileVersion" type="button" onClick={() => { setPosition("admin"); reset(); history.push('/giraffe-admin') }}
+        style={{ height: "10px", width: "20px", backgroundColor: "ffffff00", boxShadow: "0px 0px 0px 0px grey" }}>
+      </button>
+      <button className="PKSCLInfoButton" type="button" onClick={() => { setPKSCLInfoButton(true) }}>
+        <i className="fas fa-question" ></i>
+      </button>
     </div >
   )
 }

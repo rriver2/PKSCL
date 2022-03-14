@@ -13,9 +13,6 @@ function PreviewImg(props){
                 style={{ backgroundColor: "var(--color-leftPanel)" , maxHeight:"80%", maxWidth:"80%"}}
                 alt={props.previewImg}  title={props.previewImg}
             />
-            {
-                console.log(props.previewImg)
-            }
         </div>
       </div>
     </div>

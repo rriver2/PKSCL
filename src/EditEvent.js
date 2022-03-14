@@ -278,19 +278,52 @@ function EditEvent(props) {
     // }
 
     async function sendReciept() {
-
-        const unresolved = eventData["receiptList"].map(async(receipt) => {
+        let failedReceiptArray =[];
+        let failedImgReceiptArray =[];
+        let success = true;
+        const unresolved = eventData["receiptList"].map(async(receipt,i) => {
             if (receipt["receiptNumber"] === undefined) {
-                return await postReceipt(receipt);
+                return await postReceipt(receipt).catch((error)=>{
+                    success = false;
+                    switch (error.response.status) {
+                    case 502:
+                        failedImgReceiptArray.push(i+1);
+                        break;
+                    default:
+                        failedReceiptArray.push(i+1+ "(error: "+error.response.status+")");
+                        break;
+                }
+                });
             } else {
-                return await putReceipt(receipt);
+                return await putReceipt(receipt).catch((error)=>{
+                    success = false;
+                    switch (error.response.status) {
+                    case 502:
+                        failedImgReceiptArray.push(i+1);
+                        break;
+                    default:
+                        failedReceiptArray.push(i+1 + "(error: "+error.response.status+")");
+                        break;
+                    }
+                });
             }
         })
 
+       
         await Promise.all(unresolved)
         .then(() => { 
-            props.setEditEventState(false)})
-        .catch(() => alert('행사 수정을 실패했습니다'))
+            if(success === true){
+                props.setEditEventState(false)
+            }else{
+                if(failedImgReceiptArray.length !== 0){
+                    failedImgReceiptArray.sort();
+                    alert(failedImgReceiptArray+"번째 영수증 이미지의 용량이 초과되었습니다. 원활한 장부 업로드를 위해 용량이 10MB 이하인 이미지로 다시 시도하여주십시오.");
+                }
+                if(failedReceiptArray.length !== 0){
+                    failedReceiptArray.sort();
+                    alert(failedReceiptArray+"번째 영수증 업로드에 실패하셨습니다. 오류가 반복적으로 발생할 시에 PKSCL 챗봇으로 문의해주세요. ");
+                }
+            }})
     }
 
 
