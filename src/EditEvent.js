@@ -47,8 +47,6 @@ function EditEvent(props) {
     }
 
     function receiptDeleteButton(j) {
-        let answer = window.confirm("영수증을 삭제하면 되돌릴 수 없습니다.");
-        if (answer) {
             if (eventData["receiptList"][j]["receiptNumber"] !== undefined) {
                 SetDeleteReceiptList([...deleteReceiptList, eventData["receiptList"][j]["receiptNumber"]])
             }
@@ -64,7 +62,6 @@ function EditEvent(props) {
             }
             setEventData(tempEditEventData);
             // alert("영수증이 삭제되었습니다.");
-        }
     }
 
     function receiptDetailDeleteButton(j, k) {
@@ -387,7 +384,10 @@ function EditEvent(props) {
                                             {/* <button onClick={() => { eventDeleteButton(); }} style={{ marginRight: "15px" }}>
                                                 <i class="far fa-trash-alt"></i> </button> */}
                                             <button onClick={() => {
-                                                editEventButton();
+                                                if (window.confirm("행사 수정을 완료하시겠습니까? 수정 및 삭제하신 영수증은 이후 복원하실 수 없습니다.")) {
+                                                    editEventButton();
+                                                    // alert("취소되었습니다.")
+                                                }
                                             }} style={{ marginRight: "15px" }}> <i class="fas fa-check"></i> </button>
                                             <button onClick={() => {
                                                 if (window.confirm("행사 수정을 취소하시겠습니까?")) {
