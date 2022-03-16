@@ -135,8 +135,8 @@ function PKSCLInfo(props){
                <table className="developerInfoTable">
                    <thead>
                        <tr>
-                           <td>이름</td>
-                            <td style={{display: "flex", justifyContent: "center"}}>역할</td>
+                            <td><p style={{ display: "flex", justifyContent: "center", marginBottom: "0" }}>이름</p></td>
+                            <td ><p style={{ display: "flex", justifyContent: "center", marginBottom: "0" }} >역할</p></td>
                             <td></td>
                        </tr>
                    </thead>

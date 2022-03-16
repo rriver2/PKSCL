@@ -167,7 +167,7 @@ function AccessPage(props) {
       let payload = { "email": email };
       axios.post('/email/' + position, payload)
         .then((payload) => {
-          //   alert("입력하신 이메일로 메일을 발송했습니다.");
+            alert("입력하신 이메일로 메일을 발송했습니다.");
         })
         .catch((error) => {
           switch (error.response.status) {

@@ -652,7 +652,7 @@ function MainPage(props) {
                                         <h2>{studentPresident["major"]}</h2>
                                         <img src={studentPresident["majorLogo"]} alt="majorLogo" height={"150"} width={"10"} />
                                         {
-                                            userLoginPosition === "president" && studentPresident["majorLogo"] === "./static/majorLogo/tempLogo.jpg"
+                                            userLoginPosition === "president" && studentPresident["majorLogo"] === "./static/majorLogo/templogo.jpg"
                                             ? <p style={{color:"#d32c2c"}}>로고 사진은 프로필 편집에서 변경 가능합니다 :)</p>
                                             : null
                                         }
