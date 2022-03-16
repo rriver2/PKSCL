@@ -632,7 +632,6 @@ function ManagementPage(props) {
                                                                                                     <td><button className="certFileButton" type='button' onClick={() => {
                                                                                                         setShowImg(true);
                                                                                                         setPreviewImg(student.studentImgPath);
-                                                                                                        console.log(student.studentImgPath)
                                                                                                     }}>학생증</button></td>
                                                                                                     <td ><input
                                                                                                         id={student}
