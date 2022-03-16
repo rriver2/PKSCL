@@ -1,229 +1,174 @@
-/* eslint-disable */
-
-import quarter1 from './img/quarter1.png';
-import quarter2 from './img/quarter2.png';
-import quarter3 from './img/quarter3.png';
-import quarter4 from './img/quarter4.png';
-import EditProfile from './EditProfile';
-import './css/EditMainPage.css';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import './css/EditProfile.css'
 import { useHistory } from 'react-router-dom';
-import { useRef } from 'react';
-import { upload } from '@testing-library/user-event/dist/upload';
-import { ReactSortable } from "react-sortablejs";
-import EditEvent from './EditEvent';
-import giraffe from './img/giraffe.png';
-import PreviewImg from './PreviewImg';
 
-
-
-function EditMainPage(props) {
-    const [list, setList] = useState([]);
+function EditProfile(props) {
 
     const history = useHistory();
-    const el = useRef();
+    const modalRef = useRef();
 
-    const [studentPresident, setStudentPresident] = useState();
+    const [boxState, setBoxState] = useState("profile");
+    const [stdID, setStdID] = useState("");
+    const [major, setMajor] = useState("");
+    const [name, setName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [certFile, setCertFile] = useState({ name: "" });
+    const [majorLogo, setMajorLogo] = useState({ name: "" });
+    const [isCorrect, setIsCorrect] = useState(
+        {
+            stdID: false,
+            major: false,
+            name: false,
+            phoneNumber: false,
+            email: false,
+            certFile: false,
+            majorLogo: false,
+            inputEmail: false,
+            inputPassword: false,
+            inputNewPassword: false,
+            inputCheckNewPassword: false,
+        }
+    );
 
-    const [quarter, setQuarter] = useState();
-    const [quarterDate, setQuarterDate] = useState();
+    const [editButtonState, setEditButtonState] = useState(false);
 
-    const [eventAmount, setEventAmount] = useState([]);
-    const [quarterAmount, setQuarterAmount] = useState(0);
-    const [currentQuarter, setCurrentQuarter] = useState(props.todayQuarter);
-    const [showAllReceiptButton, setShowAllReceiptButton] = useState([]);
-    const [editProfileState, setEditProfileState] = useState(false);
+    const [majorList, setMajorList] = useState(
+        [
+            "기린학과", "국어국문학과", "영어영문학부", "일어일문학부", "사학과", "경제학부", "법학과", "행정학과", "국제지역학부", "중국학과", "신문방송학과", "정치외교학과", "유아교육과", "시각디자인학과", "공업디자인학과", "패션디자인학과", "경영학부", "국제통상학부", "응용수학과", "통계학과", "물리학과", "화학과", "미생물학과", "해양스포츠학과", "간호학과", "과학시스템시뮬레이션학과", "건축공학과", "건축학과", "소방공학과", "시스템경영공학부", "IT융합응용공학과", "안전공학과", "융합디스플레이공학과", "의공학과", "전기공학과", "전자공학과", "정보통신공학과", "제어계측공학과", "조선해양시스템공학과", "컴퓨터공학과", "토목공학과", "고분자공학과", "공업화학과", "금속공학과", "기계공학과", "기계설계공학과", "기계시스템공학과", "냉동공조공학과", "신소재시스템공학과", "인쇄정보공학과", "재료공학과", "화학공학과", "지속가능공학부", "식품공학과", "해양바이오신소재학과", "해양생산시스템관리학부", "해양수산경영학과", "수해양산업교육과", "자원생물학과", "식품영양학과", "생물공학과", "수산생명의학과", "환경공학과", "해양공학과", "해양학과", "지구환경과학과", "환경대기과학과", "에너지자원공학과", "공간정보시스템공학과", "생태공학과", "데이터정보과학부(빅데이터융합전공)", "데이터정보과학부(통계·데이터사이언스전공)", "미디어커뮤니케이션학부(언론정보전공)", "미디어커뮤니케이션학부(휴먼ICT융합전공)", "스마트헬스케어학부(의공학전공)", "스마트헬스케어학부(해양스포츠전공)", "스마트헬스케어학부(휴먼바이오융합전공)", "전자정보통신공학부(전자공학전공)", "전자정보통신공학부(정보통신공학전공)", "조형학부(건축학전공)", "조형학부(공업디자인전공)", "조형학부(시각디자인전공)", "컴퓨터공학부(소프트웨어·인공지능전공)", "컴퓨터공학부(컴퓨터공학전공)", "평생교육·상담학과", "기계조선융합공학과", "전기전자소프트웨어공학과", "공공안전경찰학과"
+        ]);
 
-    const [editEventState, setEditEventState] = useState(false);
-    const [editEventData, setEditEventData] = useState({});
-    const [editEventAmount, setEditEventAmount] = useState({});
+    const [inputEmail, setInputEmail] = useState("");
+    const [inputPassword, setInputPassword] = useState("");
 
-    const [showImg, setShowImg] = useState(false);
-    const [previewImg, setPreviewImg] = useState();
+    const [inputNewPassword, setInputNewPassword] = useState("");
+    const [inputCheckNewPassword, setInputCheckNewPassword] = useState("");
 
-    const [logoImgPath, setLogoImgPath] = useState();
+    const [newPasswordButton, setNewPasswordButton] = useState(false);
+    const [userApprovalStatus, setUserApprovalStatus] = useState(false);
 
-    const [wrongApproach, setWrongApproach] = useState(false);
-    const [wrongApproachContext, setWrongApproachContext] = useState();
-    const [editProfileButton, setEditProfileButton] = useState(true);
 
-    const [userLoginPosition, setUserLoginPosition] = useState();
+    function changeIsCorrect(key, type) {
+        var temp = { ...isCorrect };
+        if (key === "stdID") temp.stdID = type;
+        else if (key === "major") temp.major = type;
+        else if (key === "name") temp.name = type;
+        else if (key === "phoneNumber") temp.phoneNumber = type;
+        else if (key === "email") temp.email = type;
+        else if (key === "certFile") temp.certFile = type;
+        else if (key === "majorLogo") temp.majorLogo = type;
+        else if (key === "inputEmail") temp.inputEmail = type;
+        else if (key === "inputPassword") temp.inputPassword = type;
+        else if (key === "inputNewPassword") temp.inputNewPassword = type;
+        else if (key === "inputCheckNewPassword") temp.inputCheckNewPassword = type;
 
-    const [tempQuarter, setTempQuarter] = useState(false);
-    const [showCurrentQuerter, setShowCurrentQuerter] = useState();
-    const [userStatus, setUserStatus] = useState();
+        setIsCorrect(temp);
+    };
 
-    function getLedger() {
-        let resetArray = [];
-        axios.get('/major-info')
+    function withdrawal() {
+        if (isCorrect.inputEmail && isCorrect.inputPassword) {
+            if (window.confirm('정말 탈퇴하시겠습니까?')) {
+                const payload = { "inputEmail": inputEmail, "inputPassword": inputPassword }
+                //axio.탈퇴
+                axios.post('/withdrawal', payload)
+                    .then((payload) => {
+                        alert("회원 탈퇴가 정상적으로 처리 되었습니다.");
+                        logout();
+                    })
+                    .catch((error) => {
+                        switch (error.response.status) {
+                            case 401:
+                                alert("이메일과 패스워드가 올바르지 않습니다.");
+                                break;
+                            default:
+                                alert("회원 탈퇴 실패/ error: " + error.response.status);
+                                break;
+                        }
+                    })
+            }
+            else {
+                setBoxState("profile");
+                reset();
+            }
+        } else {
+            alert("이메일과 패스워드를 모두 입력해주세요.");
+        }
+    }
+
+    function newPassword() {
+
+
+        const payload = { "inputPassword": inputPassword, "inputNewPassword": inputNewPassword, "inputCheckNewPassword": inputCheckNewPassword }
+        axios.patch('/password', payload)
             .then((payload) => {
-                setStudentPresident({ ...payload.data["studentPresident"] });
-                console.log('setStudentPresident({ ...payload.data["studentPresident"] });');
-
-                setQuarter({ ...payload.data["quarter"] });
-                console.log('');
-
-                if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined) {
-                    for (let i = 0; i < payload.data["quarter"][currentQuarter]["eventList"].length; i++) {
-                        resetArray.push(false)
-                    }
-                }
-                console.log(' if (payload.data["quarter"][currentQuarter]["eventList"] !== undefined)');
-
-                setShowAllReceiptButton(resetArray);
-                console.log(' setShowAllReceiptButton(resetArray);');
-
-                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-                console.log(' setList([...payload.data["quarter"][currentQuarter]["eventList"]]);');
-
-                setWrongApproach(false)
-                console.log('setWrongApproach(false)');
-
-                setEditProfileButton(false)
-                console.log('setEditProfileButton(false)');
-
-                setLogoImgPath(`./img/${currentQuarter}.png`);
-                console.log(' setLogoImgPath(`./img/${currentQuarter}.png`);');
-
-                CalculateCurrentQuarterReceiptSumList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-                console.log(' CalculateCurrentQuarterReceiptSumList([...payload.data["quarter"][currentQuarter]["eventList"]]);');
-
-                setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
-                console.log('setList([...payload.data["quarter"][currentQuarter]["eventList"]]);');
-
-                // resetShowAllReceiptButton();
-                // console.log('resetShowAllReceiptButton();'); 진짜 필요없는지 확인필요
-
-                defineColor(currentQuarter);
-                console.log('defineColor(currentQuarter);');
+                alert("비밀번호가 수정되었습니다.");
+                logout();
             })
             .catch((error) => {
                 switch (error.response.status) {
-                    case 403:
-                        setWrongApproachContext("장부를 열람할 권한이 없습니다.");
-                        setWrongApproach(true)
-                        setEditProfileButton(false)
-                        setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                        defineColor(props.todayQuarter);
+                    case 401:
+                        alert("비밀번호가 일치하지 않습니다.");
                         break;
                     default:
-                        setWrongApproachContext("장부 로드 실패 / error " + error.response.status);
-                        setWrongApproach(true)
-                        setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                        setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
+                        alert("비밀번호 변경 실패/ error: " + error.response.status); // 수정필요
                         break;
                 }
+
             })
     }
 
-    function resetShowAllReceiptButton() {
-        let resetArray = [];
-        if (quarter[currentQuarter]["eventList"] !== undefined) {
-            for (let i = 0; i < quarter[currentQuarter]["eventList"].length; i++) {
-                resetArray.push(false)
+    function putProfile() {
+        let payload = new FormData();
+        payload.append("stdID", stdID);
+        payload.append("name", name);
+        payload.append("majorNumber", major);
+
+        if (props.loginPosition === "student") { //학생
+            if (!certFile["name"].includes("./static/studentCertFile/")) {
+                payload.append("certFile", certFile);
             }
         }
-        setShowAllReceiptButton(resetArray)
-    }
+        else if (props.loginPosition === "president") { //학생회장
+            payload.append("phoneNumber", phoneNumber);
 
-    function reset(quarterData) {
-        if (quarter !== undefined) {
-            if (quarter[quarterData]["eventList"] !== undefined) {
-                CalculateCurrentQuarterReceiptSumList(quarter[quarterData]["eventList"]);
-                setList(quarter[quarterData]["eventList"]);
-                resetShowAllReceiptButton();
+            if (!majorLogo["name"].includes("./static/majorLogo/")) {
+                payload.append("majorLogo", majorLogo);
             }
         }
-    }
 
-    function showQuarter(selectedQuarter) {
-        if (userLoginPosition === "student" || userLoginPosition === "president") {
-            if (quarter[selectedQuarter]["status"] === "true") {
-                setQuarterAmount(0)
-                reset(selectedQuarter);
-                setCurrentQuarter(selectedQuarter);
-                defineColor(selectedQuarter);
-                setLogoImgPath(`./img/${selectedQuarter}.png`);
-            } else {
-                setQuarterAmount(0)
-                reset(selectedQuarter);
-                setCurrentQuarter(selectedQuarter);
-                defineColor(selectedQuarter);
-                setLogoImgPath(`./img/${selectedQuarter}.png`);
+        axios.put("/profile/" + props.loginPosition, payload, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
             }
-        } else {
-            setQuarterAmount(0)
-            reset(selectedQuarter);
-            setCurrentQuarter(selectedQuarter);
-            setLogoImgPath(`./img/${selectedQuarter}.png`);
-            defineColor(selectedQuarter);
-        }
-    }
-
-    function sumItems(price, amount) {
-        return price * amount;
-    }
-
-    function sumReceipt(receiptDetailList) {
-        let sumReceiptValue = 0;
-        if (receiptDetailList !== undefined) {
-            for (let i = 0; i < receiptDetailList.length; i++) {
-                let item = receiptDetailList[i];
-                sumReceiptValue = sumReceiptValue + sumItems(item["price"], item["amount"]);
+        }).then((payload) => {
+            alert("정보가 변경되었습니다.");
+            if (props.loginPosition === "student") {
+                logout();
+            } else if (props.loginPosition === "president" && userApprovalStatus === false) {
+                logout();
             }
-        }
-        return sumReceiptValue;
+            props.setEditProfileState(false);
+        })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400:
+                        alert(error.response.data.errorMessage);
+                        break;
+                    default:
+                        alert("프로필 편집 실패/ error: " + error.status);
+                        break;
+                }
+            })
+
+
     }
 
-    function sumEvent(receiptList) {
-        let sumEventValue = 0;
-        for (let i = 0; i < receiptList.length; i++) {
-            let receipt = receiptList[i]["receiptDetailList"];
-            sumEventValue = sumEventValue + sumReceipt(receipt);
-        }
-        return sumEventValue
-    }
-
-    function CalculateCurrentQuarterReceiptSumList(eventList) {
-        if (eventList === undefined) {
-            setQuarterAmount(0);
-        } else {
-            let eventSum = [];
-            for (let i = 0; i < eventList.length; i++) {
-                eventSum.push(sumEvent(eventList[i]["receiptList"]));
-            }
-            setEventAmount([...eventSum]);
-
-            let quarterSum = 0;
-            for (let i = 0; i < eventSum.length; i++) {
-                quarterSum = quarterSum + eventSum[i];
-            }
-            setQuarterAmount(quarterSum);
-        }
-    }
-
-    function setColorProperty(colorQuarter, colorQuarterCircle, colorLeftPanel, colorCard, colorBackground) {
-        document.documentElement.style.setProperty("--color-quarter", colorQuarter);
-        document.documentElement.style.setProperty("--color-quarterCircle", colorQuarterCircle);
-        document.documentElement.style.setProperty("--color-leftPanel", colorLeftPanel);
-        document.documentElement.style.setProperty("--color-card", colorCard);
-        document.documentElement.style.setProperty("--color-background", colorBackground);
-        document.documentElement.style.setProperty("--color-clickedButton", colorQuarter);
-    }
-
-    function defineColor(quarter) {
-        // alert("quarter : "+quarter)
-        if (quarter === "quarter1") {
-            setColorProperty("#db8f8e", "#fdeded", "#f5dede", "#FDEDF0", "#fbf6f6");
-        } else if (quarter === "quarter2") {
-            setColorProperty("#649d67", "#e9ede9", "#cedbcf", "#dee7df", "#f6f7f6");
-        } else if (quarter === "quarter3") {
-            setColorProperty("#c18356", "#f9eee5", "#e9d8cd", "#fff5ed", "#fbf7f4");
-        } else if (quarter === "quarter4") {
-            setColorProperty("#6b8396", "#e0eaf3", "#d0dbe5", "#e6f1fb", "#f8fcff");
-        }
+    function reset() {
+        setInputEmail("");
+        setInputPassword("");
+        setInputNewPassword("");
+        setInputCheckNewPassword("");
     }
 
     function logout() {
@@ -238,765 +183,597 @@ function EditMainPage(props) {
             })
     }
 
-    function GetDate() {
-        axios.get("/ledger-date")
-            .then((payload) => {
-                setQuarterDate({ ...payload.data });
-
-                let tempDate = { ...payload.data }
-                let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-                quarter.map((quarterName) => {
-                    tempDate[quarterName].map((date, i) => {
-                        if (date.substr(0, 4) === "9999") {
-                            let tempTempDate = { ...tempDate };
-                            tempTempDate[quarterName][i] = "";
-                            setQuarterDate({ ...tempTempDate });
-                        }
-                    })
-                })
-                setWrongApproach(false)
-                setEditProfileButton(false)
-            })
-            .catch((error) => {
-                switch (error.response.status) {
-                    case 400:
-                        setWrongApproachContext("분기별 장부 open, close 날짜를 불러올 수 없습니다.");
-                        setWrongApproach(true)
-                        setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
-                        break;
-
-                    default:
-                        setWrongApproachContext("분기별 장부 날짜 로드 실패/ error: " + error.response.status);
-                        setWrongApproach(true)
-                        setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
-                        break;
-                }
-            })
-    }
-
-    function eventDeleteButton(eventNumber, index) {
-        if (window.confirm("행사를 삭제하면 되돌릴 수 없습니다.")) {
-            var tempQuarter = { ...quarter };
-            tempQuarter[currentQuarter]["eventList"].splice(index, 1);
-
-            const payload = { "eventNumber": eventNumber };
-            axios.delete('/event?event-number=' + eventNumber)
-                .then((payload) => {
-                    getLedger();
-                    GetDate();
-                    setWrongApproach(false);
-                    setEditProfileButton(false);
-                }).catch((error) => {
-                    switch (error.response.status) {
-                        case 400:
-                            setWrongApproachContext("장부를 삭제하는데 실패했습니다.");
-                            setWrongApproach(true)
-                            setEditProfileButton(false)
-                            defineColor(props.todayQuarter);
-                            break;
-                        default:
-                            setWrongApproachContext("장부 삭제 실패/ error: " + error.response.status);
-                            setWrongApproach(true)
-                            setEditProfileButton(false)
-                            defineColor(props.todayQuarter);
-                            break;
-                    }
-                })
-        } else {
-            alert("삭제가 취소되었습니다.")
-        }
-    }
-
-    function eventAddButton(currentQuarter) {
-        let payload = { "quarter": currentQuarter }
-
-        let promise = new Promise((resolve, reject) => {
-            axios.post("/event", payload)
-                .then((payload) => {
-                    resolve("장부를 추가하였습니다.");
-                })
-                .catch((error) => {
-                    reject("장부 추가에 실패했습니다. " + error.response.status)
-                });
-        })
-        promise
-            .then(value => {
-                getLedger();
-                GetDate();
-                setWrongApproach(false)
-                setEditProfileButton(false);
-            })
-            .catch((value => {
-                setWrongApproachContext(value);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-            }))
-    }
-
-
-    function putLedgerDate() {
-
-        let open = quarterDate[currentQuarter][0];
-        let close = quarterDate[currentQuarter][1];
-        quarterDate[currentQuarter].map(() => {
-            if (quarterDate[currentQuarter][0] === "") {
-                open = "9999-12-9";
+    useEffect(() => {
+        if (props.loginPosition === "president") {
+            if (isCorrect.stdID && isCorrect.name && isCorrect.phoneNumber && isCorrect.majorLogo) {
+                setEditButtonState(true);
+            } else {
+                setEditButtonState(false);
             }
-            if (quarterDate[currentQuarter][1] === "") {
-                close = "9999-12-9";
+        } else if (props.loginPosition === "student") {
+            if (isCorrect.stdID && isCorrect.name && isCorrect.major && isCorrect.certFile) {
+                setEditButtonState(true);
+            } else {
+                setEditButtonState(false);
             }
-        })
-
-        const payload = {
-            quarter: currentQuarter,
-            openDate: open,
-            closeDate: close
         }
 
-        let promise = new Promise((resolve, reject) => {
-            axios.put('/ledger-date', payload)
-                .then((payload) => {
-                    resolve("장부 공개일이 변경되었습니다.");
-
-                }).catch((error) => {
-                    reject("장부 공개일 변경에 실패하였습니다." + error.response.status)
-                })
-        })
-
-        promise
-            .then(value => {
-                GetDate();
-            })
-            .catch((value => {
-                setWrongApproachContext(value);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-            }))
-    }
-
-    function processImage(file) {
-        if (file != null) {
-            const imageFile = file;
-
-            if (file["name"] === "" || file["name"].includes('/')) return file.name;
+        if (isCorrect.inputPassword && isCorrect.inputNewPassword && isCorrect.inputCheckNewPassword) {
+            if (inputNewPassword === inputCheckNewPassword)
+                setNewPasswordButton(true);
             else {
-                const imageUrl = URL.createObjectURL(imageFile);
-                return imageUrl;
+                setNewPasswordButton(false);
             }
+        } else {
+            setNewPasswordButton(false);
         }
-    }
 
-    function eventSequenceButton() {
-        let eventNumberList = [];
-        list.map((event) => {
-            if (event["eventNumber"] !== undefined)
-                eventNumberList.push(event["eventNumber"])
-        })
-        let payload = { "eventNumberList": [...eventNumberList] };
+    }, [isCorrect])
 
-        let promise = new Promise((resolve, reject) => {
-            axios.patch('/event-sequence', payload)
-                .then((payload) => {
-                    resolve("행사 순서가 수정되었습니다.");
-                }).catch((error) => {
-                    reject("행사 순서가 수정에 실패했습니다. " + error.response.data["errorMessage"]);
-                })
-        })
-
-        promise
-            .then(value => {
-                getLedger();
-                GetDate();
-            })
-            .catch((value => {
-                setWrongApproachContext(value);
-                setWrongApproach(true)
-                setEditProfileButton(false);
-                defineColor(props.todayQuarter);
-            }))
-
-    }
-
-    function getUserStatus() {
-        axios.get('/position')
+    function getProfileStudent() {
+        axios.get('/profile')
             .then((payload) => {
-                setUserLoginPosition(payload.data["position"])
-                if (payload.data["position"] === "student" || payload.data["position"] === "admin") {
-                    setWrongApproachContext("잘못된 접근입니다.");
-                    setWrongApproach(true)
-                    setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
-                }
-                else if (payload.data["position"] === "president") {
-                    axios.get('/status')
-                        .then((payload) => {
-                            setUserStatus(payload.data["status"])
-                            if (payload.data["status"] === "refusal") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 거절 상태입니다. PKSCL 챗봇을 통해 회장 신청을 다시 진행해 주십시오.")
-                                setWrongApproach(true)
-                                setEditProfileButton(true);
-                                defineColor(props.todayQuarter);
-                            }
-                            else if (payload.data["status"] === "waiting") {
-                                setWrongApproachContext("사용자(학생회장)은 현재 대기 상태입니다. PKSCL 챗봇을 통해 회장 인증을 해주세요 :)");
-                                setWrongApproach(true)
-                                setEditProfileButton(true);
-                                defineColor(props.todayQuarter);
-                            } else if (payload.data["status"] === "approval") {
-                                getLedger();
-                                GetDate();
-                                setWrongApproach(false)
-                                setEditProfileButton(false);
-                            }
-                        })
-                        .catch((error) => {
-                            switch (error.response.status) {
-                                case 400:
-                                    setWrongApproachContext("사용자의 승인 상태를 알 수 없습니다.");
-                                    setWrongApproach(true)
-                                    setEditProfileButton(false)
-                                    defineColor(props.todayQuarter);
-                                    break;
+                setStdID(payload.data["stdID"]);
+                setMajor(payload.data["major"]);
+                setName(payload.data["name"]);
+                setEmail(payload.data["email"]);
 
-                                default:
-                                    setWrongApproachContext("회원 상태 확인 실패/ error: " + error.response.status);
-                                    setWrongApproach(true)
-                                    setEditProfileButton(false)
-                                    defineColor(props.todayQuarter);
-                                    break;
-                            }
-                        })
+                setCertFile(payload.data["certFile"]);
+                setIsCorrect(
+                    {
+                        stdID: true,
+                        major: true,
+                        name: true,
+                        phoneNumber: false,
+                        email: true,
+                        certFile: true,
+                        majorLogo: false,
+                        inputEmail: false,
+                        inputPassword: false,
+                        inputNewPassword: false,
+                        inputCheckNewPassword: false,
+                    }
+                );
+            })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400: alert("프로필 정보를 로드하는데 실패했습니다."); break;
+                    default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
+                }
+            })
+    }
+
+    function getProfilePresident() {
+        axios.get('/profile')
+            .then((payload) => {
+                setStdID(payload.data["stdID"]);
+                setMajor(payload.data["major"]);
+                setName(payload.data["name"]);
+                setEmail(payload.data["email"]);
+
+                setPhoneNumber(payload.data["phoneNumber"]);
+                setMajorLogo(payload.data["majorLogo"]);
+                setIsCorrect(
+                    {
+                        stdID: true,
+                        major: true,
+                        name: true,
+                        phoneNumber: true,
+                        email: true,
+                        certFile: false,
+                        majorLogo: true,
+                        inputEmail: false,
+                        inputPassword: false,
+                        inputNewPassword: false,
+                        inputCheckNewPassword: false,
+                    }
+                );
+
+            })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400: alert("프로필 정보를 로드하는데 실패했습니다."); break;
+                    default: alert("프로필 정보 로드 실패/ error" + error.response.status); break;
+                }
+            })
+    }
+
+    function getMajorList() {
+        //get 요청해서 학과리스트 가져오기
+        axios.get('/major-list')
+            .then((payload) => {
+                setMajorList([...payload.data.majorList]);
+            })
+            .catch((error) => {
+                switch (error.response.status) {
+                    case 400: alert("학과리스트를 불러올 수 없습니다."); break;
+                    default: alert("학과 리스트 로드 실패/ error: " + error.response.status); break;
+                }
+            })
+    }
+
+    function getUserApprovalStatus() {
+        axios.get('/status')
+            .then((payload) => {
+                if (payload.data["status"] === "approval") {
+                    setUserApprovalStatus(true)
                 }
             })
             .catch((error) => {
                 switch (error.response.status) {
                     case 400:
-                        setWrongApproachContext(`잘못된 접근입니다.`);
-                        setWrongApproach(true)
-                        setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
+                        alert("사용자의 승인 상태를 알 수 없습니다.");
                         break;
 
                     default:
-                        setWrongApproachContext("회원 position 로드 실패/ error: " + error.response.status);
-                        setWrongApproach(true)
-                        setEditProfileButton(false)
-                        defineColor(props.todayQuarter);
+                        alert("회원 상태 확인 실패/ error: " + error.response.status);
                         break;
                 }
             })
-
-    }
-    function getExPKSCL() {
-        axios.get('/temp-major-info')
-            .then((payload) => {
-                setWrongApproach(false)
-                setEditProfileButton(false);
-                setStudentPresident({ ...payload.data["studentPresident"] });
-                setQuarter({ ...payload.data["quarter"] });
-                setLogoImgPath(`./img/${props.todayQuarter}.png`);
-                defineColor(props.todayQuarter);
-            })
-            .catch((error) => {
-                switch (error.response.status) {
-                    case 400: alert(`임시 장부를 불러올 수 없습니다.`); break;
-                    default: alert("임시 장부 로드 실패/ error: " + error.response.status); break;
-                }
-            })
     }
 
     useEffect(() => {
-
-        // push 할때 주석 하기
-        // let answer = {"studentPresident":{"major":"국어국문학과","name":"박경수","phoneNumber":"010-8967-8093","email":"test1@pukyong.ac.kr","majorLogo":"./static/majorLogo/20220301023752428.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"195","eventTitle":"안녕","eventContext":"클레오파트라","receiptList":[{"receiptNumber":"208","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220227162028257.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]},{"eventNumber":"175","eventTitle":"개강","eventContext":"개강이라니 !","receiptList":[{"receiptNumber":"189","receiptTitle":"진심이야?","receiptImg":{"name":"./static/receiptImg/20220301023634519.png"},"receiptContext":"","receiptDetailList":[{"context":"진짜 개강이야?","price":"21312","amount":"2","totalAmount":"42624"}]},{"receiptNumber":"191","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220301023634494.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"192","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220301023634516.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"193","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220301023634494.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"194","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220301023634500.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"195","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113814817.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"196","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113815368.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"197","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113815453.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"198","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816022.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"199","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816022.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"200","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816023.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"201","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816041.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"202","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816127.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]},{"receiptNumber":"203","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220217113816507.png"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]},{"eventNumber":"196","eventTitle":"","eventContext":"","receiptList":[]},{"eventNumber":"198","eventTitle":"","eventContext":"","receiptList":[]}]},"quarter2":{"status":"true","eventList":[{"eventNumber":"58","eventTitle":"안녕하세요 PKSCL입니다.","eventContext":"온라인 장부를 이용하세요 ><","receiptList":[{"receiptNumber":"99","receiptTitle":"저는 영수증 입니다","receiptImg":{"name":"./static/receiptImg/20220210162318283.png"},"receiptContext":"영수증 비고 입니다.","receiptDetailList":[{"context":"품명1","price":"22111","amount":"2","totalAmount":"44222"}]},{"receiptNumber":"173","receiptTitle":"ww","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"ww","price":"112","amount":"22","totalAmount":"2464"}]}]}]},"quarter3":{"status":"true","eventList":[{"eventNumber":"158","eventTitle":"3-1분기기","eventContext":"","receiptList":[]},{"eventNumber":"60","eventTitle":"3분기기","eventContext":"","receiptList":[{"receiptNumber":"89","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/20220212025356069.jpeg"},"receiptContext":"","receiptDetailList":[{"context":"ㅇㅇ","price":"2","amount":"11","totalAmount":"22"}]},{"receiptNumber":"90","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"","price":"","amount":"","totalAmount":""}]}]}]},"quarter4":{"status":"true"}}}
-
-        // let answerDate = {
-        //     "quarter1": ["1111-01-01", "1111-01-02"],
-        //     "quarter2": ["1111-01-03", "1111-01-04"],
-        //     "quarter3": ["1111-01-05", "1111-01-06"],
-        //     "quarter4": ["1111-01-07", "1111-01-08"]
-        // }
-        //             setUserLoginPosition("president")
-        //             setStudentPresident({ ...answer["studentPresident"] });
-        //             setQuarter({ ...answer["quarter"] });
-        //             let resetArray=[]
-        //             for (let i = 0; i < answer["quarter"][currentQuarter]["eventList"].length; i++) {
-        //                 resetArray.push(false)
-        //             }
-        //             setShowAllReceiptButton(resetArray);
-        //             setList([...answer["quarter"][currentQuarter]["eventList"]]);
-        //             setLogoImgPath(`./img/${currentQuarter}.png`);
-        //             setWrongApproach(false)
-        //             setEditProfileButton(false)
-        //             setQuarterDate({ ...answerDate });
-        //             let quarter = ["quarter1", "quarter2", "quarter3", "quarter4"]
-        //             quarter.map((quarterName) => {
-        //                 answerDate[quarterName].map((date, i) => {
-        //                     if (date.substr(0, 4) === "9999") {
-        //                         let tempAnswerDate = { ...answerDate };
-        //                         tempAnswerDate[quarterName][i] = "";
-        //                         setQuarterDate({ ...tempAnswerDate });
-        //                     }
-        //                 })
-        //             })
-        //             setWrongApproach(false)
-        //             setEditProfileButton(false)
-    }, []);
-
-    useEffect(() => {
-        // push 할때 주석 삭제
-        if (editEventState === false) {
-            getUserStatus();
-            reset(currentQuarter);
-            defineColor(currentQuarter);
-            setLogoImgPath(`./img/${currentQuarter}.png`);
-        }
-    }, [editEventState]);
-
-    useEffect(() => {
-        if (quarter !== undefined) {
-            reset(currentQuarter);
-            if (quarter[currentQuarter]["eventList"] !== undefined) {
-                setList(quarter[currentQuarter]["eventList"]);
+        setIsCorrect(
+            {
+                stdID: true,
+                major: true,
+                name: true,
+                phoneNumber: true,
+                email: true,
+                certFile: true,
+                majorLogo: true,
+                inputEmail: false,
+                inputPassword: false,
+                inputNewPassword: false,
+                inputCheckNewPassword: false
             }
+        );
+
+        //get 요청해서 로그인된 정보 가져오기
+        if (props.loginPosition === "president") {
+            getProfilePresident()
+            getMajorList()
+            getUserApprovalStatus()
+        } else if (props.loginPosition === "student") {
+            getProfileStudent()
+            getMajorList()
         }
 
-    }, [currentQuarter])
+
+        //push 할때 삭제
+        // setStdID("202013245");
+        // setMajor(0);
+        // setName("홍길동");
+        // setEmail("hongildong@naver.com");
+        // setPhoneNumber("01057925915");
+        // setUserApprovalStatus(false)
+
+        document.addEventListener('mousedown', clickModalOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', clickModalOutside);
+        };
+
+
+    }, [])
+
+    const clickModalOutside = event => {
+        if (props.editProfileState && (event.target === modalRef.current)) {
+            props.setEditProfileState(false);
+        }
+    };
+
 
     useEffect(() => {
-        if (quarter !== undefined) {
-            reset(currentQuarter);
-            if (quarter[currentQuarter]["eventList"] !== undefined) {
-                setList(quarter[currentQuarter]["eventList"]);
-            }
+        if (phoneNumber.length === 10) {
+            setPhoneNumber(phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
         }
-
-    }, [quarter])
-
+        if (phoneNumber.length === 13) {
+            setPhoneNumber(phoneNumber.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
+        }
+    }, [phoneNumber]);
 
     return (
-        <>
-            {
-                defineColor(currentQuarter)
-            }
-            {wrongApproach === true
-                ? (<div className="MainPageContainer">
-                    {
-                        editProfileState
-                            ?
-                            <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
-                            : null
-                    }
-                    <div className="nav" >
-                        <div className="logoNav" onClick={() => { history.push('/main') }}>
-                            <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
-                            <div className="PksclNav">PKSCL</div>
-                        </div>
-                        {
-                            editProfileButton === true
-                                ? (<div className="buttonNav">
-                                    <i className="fas fa-user" onClick={() => { setEditProfileState(true); }} style={{ fontSize: "20px", marginRight: "10px" }}></i>
-                                    <i className="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
-                                    <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
-                                </div>)
-                                : (<div className="buttonNav">
-                                    <button className='navButton' type='button' onClick={() => { history.push('/'); }}>로그인</button>
-                                </div>)
-                        }
-                    </div>
-                    <div className="MainPageContainer"
-                        style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-                        <div className="errorGiraffe">
-                            {wrongApproachContext}<br />
-                            장부의 예시를 보고싶다면 기린을 눌러주세요 :)
-                            <img onClick={() => { getExPKSCL() }} src={giraffe} className="giraffe" alt="기린"
-                                style={{ width: "70px", height: "70px", marginLeft: "20px" }} />
-                            <a href="http://pf.kakao.com/_tRxcJb " target="_blank" rel="noreferrer" title="챗봇으로 연결됩니다." style={{ color: "black" }}>PKSCL 문의하기</a>
-                        </div></div></div>)
-                : (
-                    <div className="EditMainPageContainer">
-                        {
-                            showImg
-                                ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>
-                                : null
-                        }
-                        {
-                            editProfileState
-                                ?
-                                <EditProfile loginPosition={userLoginPosition} setEditProfileState={setEditProfileState}></EditProfile>
-                                : null
-                        }
-                        {
-                            editEventState
-                                ? (
-                                    <>
-                                        <EditEvent setEditEventState={setEditEventState} editEventData={editEventData} editEventAmount={editEventAmount}></EditEvent>
-                                    </>)
-                                : null
-                        }
+        <div className="editProfileContainer" ref={modalRef}>
+            <div className="editProfileBox">
+                {
+                    boxState === "profile"
+                        ? <>
+                            <div className='boxTitle'>
+                                {/* <i className="fas fa-user" /> */}
+                                <div className="profileEditTitle">프로필 편집</div>
+                                <button className="btn btn-danger dangerButton" onClick={() => { setBoxState("withdrawal") }}>회원탈퇴</button>
+                            </div>
 
-                        {
-                            quarter === undefined
-                                ? null
-                                : (<>
-                                    <div className="leftPanel" id='leftPanel'>
-                                        <div className="quarter">
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter1") }}><div>1분기</div><img src={quarter1} alt="quarter1" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter2") }}><div>2분기</div><img src={quarter2} alt="quarter2" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter3") }}><div>3분기</div><img src={quarter3} alt="quarter3" ></img></div>
-                                            <div className="quarterButton" onClick={() => { showQuarter("quarter4") }}><div>4분기</div><img src={quarter4} alt="quarter4" ></img></div>
-
-                                        </div>
-
-                                    </div>
-                                    <div className="rightPanel">
-                                        <div className="nav">
-
-                                            <div className="logoNav" onClick={() => { history.push('/main') }}>
-                                                <img src={logoImgPath} alt="logo" width={"40px"} height={"40px"} />
-                                                <div className="PksclNav">PKSCL</div>
+                            <div className='editField'>
+                                {
+                                    props.loginPosition === "admin"
+                                        ? setBoxState("newPassword")
+                                        : <>
+                                            <div className="inputField" style={{ justifyContent: "space-between" }}>
+                                                <div>
+                                                    <i className="fas fa-key"></i>
+                                                    <label>비밀번호</label></div>
+                                                <button type='button' style={{ fontWeight: "bold" }} onClick={() => { setBoxState("newPassword") }}>변경</button>
                                             </div>
-                                            <div className="PCVersion buttonNav">
-                                                <button className='navButton' type='button' onClick={() => { defineColor(props.todayQuarter); history.push('/manage') }}>학생 관리</button>
-                                                <button className='navButton' type='button'
-                                                    onClick={() => { history.push('/main') }}>학생 공개용 장부</button>
+
+                                            <div className="inputField">
+                                                <i className="fas fa-lock"></i>
+                                                <label>학번</label>
+                                                {
+                                                    props.loginPosition === "president" && userApprovalStatus === true
+                                                        ?
+                                                        <>
+                                                            <input name="stdID" value={stdID} maxLength="9" placeholder="내용을 입력해주세요" type="text" readOnly />
+                                                        </>
+                                                        : <input onChange={(e) => {
+                                                            setStdID(e.target.value.replace(/[^0-9]/g, ''));
+                                                            if (e.target.value.length === 9) {
+                                                                changeIsCorrect("stdID", true);
+                                                            } else {
+                                                                changeIsCorrect("stdID", false);
+                                                            }
+                                                        }
+                                                        } name="stdID" value={stdID} maxLength="9" placeholder="내용을 입력해주세요" type="text" />
+                                                }
+                                            </div>
+
+                                            <div className="inputField">
+                                                <i className="fas fa-book-open" style={{ fontSize: "0.85rem" }}></i>
+                                                <label >학과</label>
+
+                                                {
+                                                    props.loginPosition === "student"
+                                                        ?
+                                                        <>
+                                                            <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                                style={{ textColor: "black" }}
+                                                                onChange={(e) => {
+                                                                    setMajor(majorList.indexOf(e.target.value));
+
+                                                                    if (majorList.includes(e.target.value)) {
+                                                                        changeIsCorrect("major", true);
+                                                                    } else {
+                                                                        changeIsCorrect("major", false);
+                                                                    }
+                                                                }
+                                                                } ></input>
+                                                            <datalist id="majorList-options" >
+                                                                {
+                                                                    majorList.map((majorName, i) => {
+                                                                        if (i !== 0) {
+                                                                            return (
+                                                                                <option value={majorName} key={i} ></option>
+                                                                            )
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </datalist>
+                                                        </>
+                                                        : null
+                                                }
+
+                                                {
+                                                    props.loginPosition === "president" && userApprovalStatus === true
+                                                        ?
+                                                        <>
+                                                            <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                                style={{ textColor: "black" }} readOnly ></input>
+                                                        </>
+                                                        : null
+                                                }
+                                                {
+                                                    props.loginPosition === "president" && userApprovalStatus === false
+                                                        ? <>
+                                                            <input type="text" list="majorList-options" id='major' name="major" placeholder={majorList[major]}
+                                                                style={{ textColor: "black" }}
+                                                                onChange={(e) => {
+                                                                    setMajor(majorList.indexOf(e.target.value));
+
+                                                                    if (majorList.includes(e.target.value)) {
+                                                                        changeIsCorrect("major", true);
+                                                                    } else {
+                                                                        changeIsCorrect("major", false);
+                                                                    }
+                                                                }
+                                                                } ></input>
+                                                            <datalist id="majorList-options" >
+                                                                {
+                                                                    majorList.map((majorName, i) => {
+                                                                        if (i !== 0) {
+                                                                            return (
+                                                                                <option value={majorName} key={i} ></option>
+                                                                            )
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </datalist>
+                                                        </>
+                                                        : null
+                                                }
+
+
+                                            </div>
+
+                                            <div className="inputField">
+                                                <i className="fas fa-user"></i>
+                                                <label>이름</label>
+                                                <input onChange={(e) => {
+                                                    setName(e.target.value)
+                                                    if (e.target.value === "") {
+                                                        changeIsCorrect("name", false);
+                                                    } else {
+                                                        changeIsCorrect("name", true);
+                                                    }
+                                                }
+                                                } name="name" value={name} type="text" placeholder="이름을 입력해주세요" />
                                             </div>
 
                                             {
-                                                quarterDate !== undefined
-                                                    ? (
-                                                        <div className="quarterDateNav" style={{ display: "flex", alignItems: "center" }}>
-                                                            {currentQuarter[currentQuarter.length - 1]}분기 장부 공개일 :
-                                                            <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][0]}
-                                                                onChange={(e) => {
-                                                                    let tempDateArray = { ...quarterDate }
-                                                                    tempDateArray[currentQuarter][0] = e.target.value;
-
-                                                                    putLedgerDate();
-                                                                }}
-                                                            ></input>~
-                                                            <input className="dateInput" type={"date"} value={quarterDate[currentQuarter][1]}
-                                                                style={{ marginLeft: "10px" }}
-                                                                onChange={(e) => {
-                                                                    let tempDateArray = { ...quarterDate }
-                                                                    tempDateArray[currentQuarter][1] = e.target.value;
-                                                                    putLedgerDate();
-
-                                                                }}
-                                                            ></input></div>
-                                                    )
+                                                props.loginPosition === "president"
+                                                    ?
+                                                    <div className="inputField">
+                                                        <i className="fas fa-user"></i>
+                                                        <label>전화번호</label>
+                                                        <input onChange={(e) => {
+                                                            setPhoneNumber(e.target.value)
+                                                            if (e.target.value === "") {
+                                                                changeIsCorrect("phoneNum", false);
+                                                            } else {
+                                                                changeIsCorrect("phoneNum", true);
+                                                            }
+                                                        }
+                                                        } maxLength="13" name="phoneNum" value={phoneNumber} type="text" placeholder="내용을 입력하세요" />
+                                                    </div>
                                                     : null
                                             }
-                                            <div style={{ display: "flex", alignItems: "center" }}>
-                                                <i className="fas fa-user" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { setEditProfileState(true); }}></i>
-                                                <i className="fas fa-headset" style={{ fontSize: "20px", marginRight: "10px" }} onClick={() => { window.open("http://pf.kakao.com/_tRxcJb ") }}></i>
-                                                <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
+
+
+
+                                            <div className="inputField">
+                                                <i className="fas fa-envelope"></i>
+                                                <label>이메일</label>
+                                                <input id="inputEmail" name="email" value={email} type="text" readOnly />
                                             </div>
-                                        </div>
-                                        <div className="mobileVersion"> PKSCL 장부 수정은 PC로만 가능합니다.
-                                            <div style={{ display: "flex" }}>
-                                                <button className='submitButton' style={{ width: "25vw" }} type='button'
-                                                    onClick={() => { history.push('/main') }}>학생 공개용 장부</button>
-                                            </div>
-                                        </div>
 
-                                        <div className="PCVersion">
-                                            <div style={{ display: "flex" }}>
-                                                <div className="quarterData">
-                                                    <h2 className="quarterTotalAmount" style={{ fontWeight: "bold" }}>
-                                                        {currentQuarter[currentQuarter.length - 1]}분기 총 금액 : {quarterAmount}원
-                                                    </h2>
-                                                    {
-                                                        quarter[currentQuarter]["eventList"] === undefined
-                                                            ? <div>입력된 행사가 없습니다.</div>
-                                                            : (quarter[currentQuarter]["eventList"].map((event, i) => {
-                                                                return (
-                                                                    <div className="eventCard" key={i} >
-                                                                        <div className="cardContent">
-                                                                            <div className="eventSource">
-                                                                                <div style={{ width: "230px" }}>
-                                                                                    <div className="eventTitle">
-                                                                                        <h4 style={{ width: "400px" }}>{event["eventTitle"]}
-                                                                                        </h4>
-                                                                                        <div style={{ width: "500px" }}> 행사 총 금액 : {eventAmount[i]}원</div>
-                                                                                    </div>
+                                            {
+                                                props.loginPosition === "president" && userApprovalStatus === true
+                                                    ? <div className="inputField">
+                                                        <i className="fas fa-user-graduate" style={{ fontSize: "1.25rem" }}></i>
+                                                        <label>학과로고</label>
+                                                        <input placeholder="학과로고를 첨부해주세요."
+                                                            value={majorLogo["name"].replace(/^.*\//, '')} readOnly></input>
+                                                        <label className='fileButton' htmlFor="file">찾기</label>
+                                                        <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
+                                                            onChange={(e) => {
+                                                                setMajorLogo(e.target.files[0]);
+                                                                if (e.target.value === "") {
+                                                                    changeIsCorrect("majorLogo", false);
+                                                                } else {
+                                                                    changeIsCorrect("majorLogo", true);
+                                                                }
 
-                                                                                </div>
-
-
-                                                                                <div className="eventButtons">
-                                                                                    <button onClick={() => {
-                                                                                        eventDeleteButton(event["eventNumber"], i);
-                                                                                    }} style={{ marginRight: "15px" }}>
-                                                                                        <i className="far fa-trash-alt"></i></button>
-                                                                                    <button onClick={() => {
-                                                                                        setEditEventState(true)
-                                                                                        setEditEventData(quarter[currentQuarter]["eventList"][i]);
-                                                                                        setEditEventAmount(eventAmount[i]);
-                                                                                    }} style={{ marginRight: "15px" }}><i className="fas fa-wrench"></i></button>
-
-                                                                                    {
-                                                                                        event.receiptList.length <= 1
-                                                                                            ? null
-                                                                                            : (
-                                                                                                showAllReceiptButton[i] === true
-                                                                                                    ? (
-                                                                                                        <button onClick={() => {
-                                                                                                            let array = [...showAllReceiptButton];
-                                                                                                            array[i] = !showAllReceiptButton[i];
-                                                                                                            setShowAllReceiptButton(array);
-                                                                                                        }}><i className="fas fa-angle-double-up"></i></button>
-                                                                                                    )
-                                                                                                    : (
-                                                                                                        <button onClick={() => {
-                                                                                                            let array = [...showAllReceiptButton];
-                                                                                                            array[i] = !showAllReceiptButton[i];
-                                                                                                            setShowAllReceiptButton(array);
-                                                                                                        }}><i className="fas fa-angle-double-down"></i></button>
-                                                                                                    )
-                                                                                            )
-
-                                                                                    }
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div>{event["eventContext"]}</div>
-
-                                                                            {
-                                                                                showAllReceiptButton[i] === false
-                                                                                    ? (<div id="receiptContent" style={{ height: "380px", overflowY: "hidden" }}>
-
-                                                                                        <div className="receiptCard">
-
-                                                                                            <div className="receiptResource">
-                                                                                                {
-                                                                                                    event["receiptList"].length === 0
-                                                                                                        ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                        : (<>
-
-                                                                                                            <div className="receiptTitle">
-                                                                                                                <h5>{event["receiptList"][0]["receiptTitle"]}</h5>
-                                                                                                                {
-                                                                                                                    event["receiptList"][0]["receiptDetailList"].length === 0
-                                                                                                                        ? null
-                                                                                                                        : (<div>
-                                                                                                                            1번째 영수증 금액 : {sumReceipt(event["receiptList"][0]["receiptDetailList"])}원
-                                                                                                                        </div>)
-                                                                                                                }
-
-
-                                                                                                            </div>
-                                                                                                            <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][0]["receiptContext"]}</div>
-
-                                                                                                            {
-                                                                                                                event["receiptList"][0]["receiptDetailList"].length === 0
-                                                                                                                    ? <div className="noneContext"> 입력된 영수증 내역이 없습니다.</div>
-                                                                                                                    : (<><table className="receiptTable"><thead>
-                                                                                                                        <tr>
-                                                                                                                            <th>품명</th>
-                                                                                                                            <th>단가</th>
-                                                                                                                            <th>수량</th>
-                                                                                                                            <th>가격</th>
-                                                                                                                        </tr>
-                                                                                                                    </thead>
-                                                                                                                        <tbody>
-                                                                                                                            {event["receiptList"][0]["receiptDetailList"].map((item, k) => {
-                                                                                                                                return (
-                                                                                                                                    <tr key={k}>
-                                                                                                                                        <td>
-                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
-                                                                                                                                        </td>
-
-                                                                                                                                        <td>
-                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-                                                                                                                                        </td>
-
-                                                                                                                                        <td>
-                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-                                                                                                                                        </td>
-
-                                                                                                                                        <td>
-                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["totalAmount"]}</span>
-                                                                                                                                        </td>
-                                                                                                                                    </tr>
-                                                                                                                                )
-                                                                                                                            }
-                                                                                                                            )}
-                                                                                                                        </tbody>
-
-
-                                                                                                                    </table>
-
-
-                                                                                                                    </>)
-                                                                                                            }
-                                                                                                        </>
-                                                                                                        )
-                                                                                                }
-
-                                                                                            </div>
-                                                                                            {
-                                                                                                event["receiptList"].length === 0
-                                                                                                    ? null
-                                                                                                    :
-                                                                                                    <img className="receiptImg" src={processImage(event["receiptList"][0]["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                        alt={processImage(event["receiptList"][0]["receiptImg"])} height={"150"} width={"100"}
-                                                                                                        onClick={() => { setShowImg(true); setPreviewImg(processImage(event["receiptList"][0]["receiptImg"])); }} />
-                                                                                            }
-
-                                                                                        </div>
-
-
-                                                                                    </div>
-                                                                                    )
-                                                                                    : (<div id="receiptContent" >
-                                                                                        {
-                                                                                            event["receiptList"].map((receipt, j) => {
-                                                                                                return (
-                                                                                                    <div className="receiptCard" key={j}>
-                                                                                                        <div className="receiptResource">
-                                                                                                            {
-                                                                                                                event["receiptList"].length === 0
-                                                                                                                    ? <div>입력된 영수증이 없습니다.</div>
-                                                                                                                    : (<>
-                                                                                                                        <div className="receiptTitle">
-                                                                                                                            <h5>{receipt["receiptTitle"]}</h5>
-                                                                                                                            {
-                                                                                                                                receipt["receiptDetailList"].length === 0
-                                                                                                                                    ? null
-                                                                                                                                    : (<div>
-                                                                                                                                        {j + 1}번째 영수증 금액 : {sumReceipt(receipt["receiptDetailList"])}원
-                                                                                                                                    </div>)
-                                                                                                                            }
-                                                                                                                        </div>
-                                                                                                                        <div style={{ width: "400px", textAlign: "right" }}>{event["receiptList"][j]["receiptContext"]}</div>
-
-                                                                                                                        {
-                                                                                                                            receipt["receiptDetailList"].length === 0
-                                                                                                                                ? <div>입력된 영수증 내역이 없습니다.</div>
-                                                                                                                                : (<>
-                                                                                                                                    <table className="receiptTable">
-                                                                                                                                        <thead>
-                                                                                                                                            <tr>
-                                                                                                                                                <th>품명</th>
-                                                                                                                                                <th>단가</th>
-                                                                                                                                                <th>수량</th>
-                                                                                                                                                <th>가격</th>
-                                                                                                                                            </tr>
-                                                                                                                                        </thead>
-                                                                                                                                        <tbody>
-                                                                                                                                            {receipt["receiptDetailList"].map((item, k) => {
-                                                                                                                                                return (
-                                                                                                                                                    <tr key={k}>
-                                                                                                                                                        <td>
-                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["context"]}</span>
-
-                                                                                                                                                        </td>
-
-                                                                                                                                                        <td>
-
-                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["price"]}</span>
-
-                                                                                                                                                        </td>
-
-                                                                                                                                                        <td>
-
-                                                                                                                                                            <span type="text" style={{ border: "transparent", textAlign: "center" }} >{item["amount"]}</span>
-
-                                                                                                                                                        </td>
-
-                                                                                                                                                        <td>
-                                                                                                                                                            {item["totalAmount"]}
-                                                                                                                                                        </td>
-                                                                                                                                                    </tr>)
-                                                                                                                                            })
-                                                                                                                                            }
-                                                                                                                                        </tbody>
-
-                                                                                                                                    </table>
-
-                                                                                                                                </>
-                                                                                                                                )
-                                                                                                                        }
-
-
-                                                                                                                    </>)}
-                                                                                                        </div>
-
-                                                                                                        <img src={processImage(receipt["receiptImg"])} style={{ backgroundColor: "var(--color-leftPanel)" }}
-                                                                                                            alt={processImage(receipt["receiptImg"])} height={"150"} width={"100"}
-                                                                                                            className="receiptImg"
-                                                                                                            onClick={() => { setShowImg(true); setPreviewImg(processImage(receipt["receiptImg"])); }} />
-                                                                                                    </div>
-
-                                                                                                )
-                                                                                            })
-                                                                                        }
-                                                                                    </div>)
-                                                                            }
-
-                                                                        </div>
-                                                                        <div className="cardImg"></div>
-
-                                                                    </div>
-                                                                )
-                                                            })
-                                                            )
-                                                    }
-                                                    <div style={{ marginBottom: "40px", display: "flex", justifyContent: "center" }}>
-                                                        <button className="editButton" onClick={() => {
-                                                            eventAddButton(currentQuarter);
-                                                        }} > <i className="fas fa-plus"></i> </button>
+                                                            }}></input>
                                                     </div>
+                                                    : null
+                                            }
 
+                                            {
+                                                props.loginPosition === "student"
+                                                    ?
+                                                    <>
+                                                        <div className="inputField" style={{ justifyContent: "space-between" }}>
+                                                            <i className="fas fa-user-graduate"></i>
+                                                            <label>학생증</label>
+                                                            <input placeholder="학생증을 첨부해주세요."
+                                                                value={certFile["name"].replace(/^.*\//, '')}
+                                                                readOnly></input>
+                                                            <label className='fileButton' htmlFor="file">찾기</label>
+                                                            <input type="file" id="file" name="file" style={{ display: "none" }} accept='image/*'
+                                                                onChange={(e) => {
+                                                                    setCertFile(e.target.files[0]);
+                                                                    if (e.target.value === "") {
+                                                                        changeIsCorrect("certFile", false);
+                                                                    } else {
+                                                                        changeIsCorrect("certFile", true);
+                                                                    }
 
-                                                </div>
-                                                <div className="remotePanel">
-                                                    <div className="remotePanelBox" style={{ display: "flex" }}>
-                                                        <div>
-                                                            <h5 style={{ textAlign: "center", marginBottom: "5px", fontWeight: "bold" }}>📚 행사 목록 📚</h5>
-                                                            <p style={{ textAlign: "center", fontSize: "12px" }}>드래그로 순서를 바꾸고 <br />순서 변경 버튼을 눌러주세요 !</p>
-
-                                                            {
-                                                                list !== undefined
-                                                                    ? <>
-                                                                        <ReactSortable className="sortTable" tag="div" list={list} setList={setList}>
-
-                                                                            {list.map((item, i) => (
-                                                                                <div className="eventListBox" key={item.eventNumber}>{item.eventTitle}</div>
-                                                                            ))}
-
-                                                                        </ReactSortable>
-                                                                        {
-                                                                            <div style={{ justifyContent: "center", width: "100%", display: "flex" }} >
-                                                                                <button className='submitButton' type='button' onClick={() => {
-                                                                                    eventSequenceButton();
-                                                                                }}> 순서 변경 </button>
-                                                                            </div>
-                                                                        }
-                                                                    </>
-                                                                    : <span style={{ marginBottom: "5px" }}>등록된 행사가 없습니다.</span>
-                                                            }
-
-                                                            <div style={{ color: "#d32c2c" }}>
-                                                                ※ 장부를 잘못 기입해서 문제가 발생할 경우의 책임은 학생회장 본인에게 있습니다.
-                                                            </div>
+                                                                }}></input>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                    </>
+                                                    : null
+
+                                            }
+                                        </>
+                                }
+                            </div>
+
+                            <div className="editProfileBtns">
+                                {
+                                    editButtonState
+                                        ?
+                                        <>
+                                            <button className="editProfileBtn" type="button" onClick={() => {
+                                                props.loginPosition === "student"
+                                                    ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
+                                                        ? putProfile()
+                                                        : alert("정보수정이 취소되었습니다. ")}</>)
+                                                    : (<>{
+                                                        props.loginPosition === "president"
+                                                            ? putProfile()
+                                                            : null
+                                                    }</>)
+                                            }}>저장하기</button>
+                                        </>
+                                        :
+                                        <>
+                                            <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                                onClick={() => { alert('정보를 모두 입력해주세요.'); }}>저장하기</button>
+                                        </>
+                                }
+
+                                {/* 
+                                <button className="editProfileBtn" type="button" onClick={() => {
+                                    editButtonState ? putProfile() : alert('정보를 모두 입력해주세요.');
+                                    props.loginPosition === "student"
+                                        ? (<>{window.confirm('프로필 편집을 하실 경우 학생회장의 학과 장부 열람 승인을 다시 받아야 합니다. 프로필을 편집하시겠습니까?')
+                                            ? putProfile()
+                                            : alert("정보수정이 취소되었습니다. ")}</>)
+                                        : (<>{
+                                            props.loginPosition === "president"
+                                                ? (<>{window.confirm('프로필 편집을 변경하실 경우 챗봇을 통하여 관리자에게 회장인증을 해야 합니다. 프로필을 편집하시겠습니까?')
+                                                    ? putProfile()
+                                                    : alert("정보수정이 취소되었습니다. ")}</>)
+                                                : null
+                                        }</>)
+                                }}>저장하기</button> */}
+
+                                <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { props.setEditProfileState(false); reset(); }}>취소</button>
+
+                            </div>
+                        </>
+                        : boxState === "withdrawal"
+                            ? <>
+                                <div className='boxTitle' style={{ justifyContent: "center" }}  >
+                                    <h2 ><i className="fas fa-user" style={{ color: "#dc3545" }} />회원탈퇴</h2>
+                                </div>
+
+                                <div className='editField' style={{ borderColor: "#dc3545" }}>
+
+                                    <div className="inputField">
+                                        <i className="fas fa-envelope"></i>
+                                        <label>이메일</label>
+                                        <input id="inputEmail" onChange={(e) => {
+                                            setInputEmail(e.target.value)
+                                            if (e.target.value === "") {
+                                                changeIsCorrect("inputEmail", false);
+                                            } else {
+                                                changeIsCorrect("inputEmail", true);
+                                            }
+                                        }} value={inputEmail} type="text" placeholder='이메일을 입력하세요.' />
+                                    </div>
+
+                                    <div className="inputField">
+                                        <i className="fas fa-key"></i>
+                                        <label>비밀번호</label>
+                                        <input type="password" onChange={(e) => {
+                                            setInputPassword(e.target.value)
+                                            if (e.target.value === "") {
+                                                changeIsCorrect("inputPassword", false);
+                                            } else {
+                                                changeIsCorrect("inputPassword", true);
+                                            }
+                                        }} value={inputPassword} placeholder='비밀번호를 입력하세요.' />
+
+                                    </div>
+                                </div>
+
+                                <div className="editProfileBtns">
+                                    <button className="editProfileBtn" type="button" style={{ backgroundColor: "#dc3545" }} onClick={() => { withdrawal(); }}>탈퇴</button>
+                                    <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }} onClick={() => { setBoxState("profile") }}>취소</button>
+
+                                </div>
+                            </>
+                            : boxState === "newPassword"
+                                ? <>
+                                    <div className='boxTitle'  >
+                                        <h2 ><i className="fas fa-user" />비밀번호 변경</h2>
+                                    </div>
+
+                                    <div className='editField' >
+                                        <div className="inputField" >
+
+                                            <i className="fas fa-key" style={isCorrect["inputPassword"] === true ? { color: "var(--color-quarter)" } : null}></i>
+                                            <label >비밀번호</label>
+                                            <input type="password" onChange={(e) => {
+                                                setInputPassword(e.target.value)
+                                                if (e.target.value === "") {
+                                                    changeIsCorrect("inputPassword", false);
+                                                } else {
+                                                    changeIsCorrect("inputPassword", true);
+                                                }
+                                            }} value={inputPassword} placeholder='현재 비밀번호를 입력하세요.' />
+                                        </div>
+
+                                        <div className="inputField">
+                                            <i className="fas fa-key" style={isCorrect["inputNewPassword"] === true ? { color: "var(--color-quarter)" } : null}></i>
+                                            <label >새 비밀번호</label>
+                                            <div style={{ width: "70%" }}>
+                                                <input type="password" style={{ width: "100%" }} onChange={(e) => {
+                                                    setInputNewPassword(e.target.value)
+                                                    if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/)) {
+                                                        changeIsCorrect("inputNewPassword", true);
+                                                    } else {
+                                                        changeIsCorrect("inputNewPassword", false);
+                                                    }
+                                                }} value={inputNewPassword} placeholder='새 비밀번호를 입력하세요.' />
+                                                {
+                                                    isCorrect["inputNewPassword"] === false && inputNewPassword !== ""
+                                                        ? <span style={{ fontSize: "1px", color: "red", display: "flex", alignItems: "center", justifyContent: "center" }}>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요. </span>
+                                                        : null
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div className="inputField">
+                                            <i className="fas fa-key" style={isCorrect["inputCheckNewPassword"] === true && inputNewPassword === inputCheckNewPassword ? { color: "var(--color-quarter)" } : null}></i>
+                                            <label  >새 비밀번호 확인</label>
+                                            <div style={{ width: "70%" }}>
+                                                <input type="password" style={{ width: "100%" }} onChange={(e) => {
+                                                    setInputCheckNewPassword(e.target.value)
+                                                    if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/) && inputNewPassword === e.target.value) {
+                                                        changeIsCorrect("inputCheckNewPassword", true);
+                                                    } else {
+                                                        changeIsCorrect("inputCheckNewPassword", false);
+                                                    }
+                                                }} value={inputCheckNewPassword} placeholder='새 비밀번호를 다시 입력하세요.' />
+
+                                                {
+                                                    isCorrect["inputCheckNewPassword"] === false && inputCheckNewPassword !== ""
+                                                        ? <span style={{ fontSize: "1px", color: "red", display: "flex", alignItems: "center", justifyContent: "center" }}>비밀번호가 일치하지 않습니다. </span>
+                                                        : null
+                                                }
                                             </div>
                                         </div>
                                     </div>
-                                </>
-                                )
-                        }
 
-                    </div >)}</>
-    )
+                                    <div className="editProfileBtns">
+                                        {
+                                            newPasswordButton
+                                                ?
+                                                <button className="editProfileBtn" type="button" onClick={() => { newPassword(); }}>변경</button>
+                                                :
+                                                <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                                    onClick={() => {
+                                                        if (inputNewPassword !== inputPassword) {
+                                                            alert("새 비밀번호 값이 일치하지 않습니다.")
+                                                        } else {
+                                                            alert("빈칸을 모두 입력해주세요")
+                                                        }
+
+                                                    }}>변경</button>
+
+                                        }
+
+                                        <button className="editProfileBtn" type="button" style={{ backgroundColor: "white", color: "black" }}
+                                            onClick={() => {
+                                                if (props.loginPosition === "admin") {
+                                                    props.setEditProfileState(false);
+                                                } else {
+                                                    setBoxState("profile");
+                                                }
+                                                reset();
+                                            }}>취소</button>
+
+                                    </div>
+                                </>
+                                : null
+                }
+
+            </div>
+        </div >
+
+    );
 }
 
-export default EditMainPage;
+export default EditProfile;
