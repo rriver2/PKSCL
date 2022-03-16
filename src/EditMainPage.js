@@ -82,11 +82,7 @@ function EditMainPage(props) {
 
                 setList([...payload.data["quarter"][currentQuarter]["eventList"]]);
 
-                // resetShowAllReceiptButton();
-                // console.log('resetShowAllReceiptButton();'); 진짜 필요없는지 확인필요
-
                 defineColor(currentQuarter);
-                console.log('defineColor(currentQuarter);');
             })
             .catch((error) => {
                 switch (error.response.status) {
