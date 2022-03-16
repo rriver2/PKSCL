@@ -35,14 +35,14 @@ function PKSCLInfo(props){
                </Fade> 
                     <Fade bottom> 
                     <div className="useMethod" style={{display:"flex"}}>
-                        <span className="useMethodContext">1. 학생으로 회원가입<br/><img src={`./img/PKSCLInfo/student/studentSignIn.png`} alt="학생회원가입img"  width={"250px"}/>
+                        <span className="useMethodContext">1. 학생으로 회원가입<br/><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/student/studentSignIn.png`} alt="학생회원가입img"  width={"250px"}/>
                             <div className="detailContext"> 
                             - 회원가입 시 동의해야 하는 개인정보 및 PKSCL 이용 약관 동의서를 꼼꼼히 확인해주시길 바랍니다. 본 동의서 내용을 준수하지 않아 발생하는 문제는 본인에게 있습니다.</div>
                         </span>
-                        <span className="useMethodContext">2. 학생으로 로그인<br/><img src={`./img/PKSCLInfo/student/studentLogin.png`} alt="img"  width={"250px"}/>
+                        <span className="useMethodContext">2. 학생으로 로그인<br/><img className="PKSCLInfoImg"src={`./img/PKSCLInfo/student/studentLogin.png`} alt="img"  width={"250px"}/>
                          <div className="detailContext">- PKSCL의 모바일 서비스는 일부 제한되기 때문에 PC로 접속하시는 것을 권장합니다.</div>
                         </span>
-                        <span className="useMethodContext">3. 학생회장에게 승인 받기<br/><img src={`./img/PKSCLInfo/student/studentRefusal.png`} alt="img"  width={"250px"}/>
+                        <span className="useMethodContext">3. 학생회장에게 승인 받기<br/><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/student/studentRefusal.png`} alt="img"  width={"250px"}/>
                             <div className="detailContext"> 
                             - 학생회장의 승인을 받은 학생만이 학과의 장부를 확인할 수 있습니다. 다만, 회원가입을 완료한 부경대 학생의 경우엔 기린학과의 임시장부를 확인하실 수 있습니다 :)
                             </div>
@@ -51,13 +51,13 @@ function PKSCLInfo(props){
                     <div style={{margin:"20px 0"}}></div>
                     <div className="useMethod" style={{display:"flex"}}>
                         
-                        <span className="useMethodContext LedgerContext">4. 장부 열람<img src={`./img/PKSCLInfo/student/studentLedger.png`} alt="학생장부열람img"  width={"450px"}/>
+                        <span className="useMethodContext LedgerContext">4. 장부 열람<img className="PKSCLInfoImg" src={`./img/PKSCLInfo/student/studentLedger.png`} alt="학생장부열람img"  width={"450px"}/>
                             <div className="detailContext LedgerContext"> 
                                 - 학생회장의 승인을 받으셨다면 신청하신 학과의 장부를 분기별로, 행사별로 확인하실 수 있습니다.
                                 <br/>- 장부에 관련된 문의가 있을 시에는 PC 화면 좌측 학생회장 이메일로 문의주시길 바랍니다.
                             </div>
                         </span>
-                        <span className="useMethodContext" style={{width:"300px"}}>5. 프로필 편집 및 회원 탈퇴<img src={`./img/PKSCLInfo/student/studentProfile.png`} alt="학생회원가입img"  width={"300px"}/>
+                        <span className="useMethodContext" style={{width:"300px"}}>5. 프로필 편집 및 회원 탈퇴<img className="PKSCLInfoImg" src={`./img/PKSCLInfo/student/studentProfile.png`} alt="학생회원가입img"  width={"300px"}/>
                             <div className="detailContext" style={{width:"300px"}}>- 전과, 개명 등의 이유로 수정이 필요할 때 사용하실 수 있습니다. 만약 장부 권한 확인 여부(이름, 학과, 학생증 등)와 관련된 정보를 수정하시면 다시 학생회장의 승인을 받아야 장부 열람이 가능합니다.
                             </div>
                         </span>
@@ -72,17 +72,17 @@ function PKSCLInfo(props){
                </Fade> 
                <Fade bottom> 
                 <div style={{display:"flex"}}>
-                        <span className="useMethodContext">1. 학생회장으로 회원가입<br/><img src={`./img/PKSCLInfo/president/presidentSignIn.png`} alt="학생회원가입img"  width={"250px"}/>
+                        <span className="useMethodContext">1. 학생회장으로 회원가입<br/><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentSignIn.png`} alt="학생회원가입img"  width={"250px"}/>
                             <div className="detailContext">
                             - 회원가입 시 동의해야 하는 개인정보 및 PKSCL 이용 약관 동의서를 꼼꼼히 확인해주시길 바랍니다. 본 동의서 내용을 준수하지 않아 발생하는 문제는 본인에게 있습니다.</div>
                         </span>
 
-                        <span className="useMethodContext">2. 학생회장으로 로그인<br/><img src={`./img/PKSCLInfo/president/presidentLogin.png`} alt="img"  width={"250px"}/>
+                        <span className="useMethodContext">2. 학생회장으로 로그인<br/><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentLogin.png`} alt="img"  width={"250px"}/>
                             <div className="detailContext">- PKSCL의 모바일 서비스는 일부 제한되기 때문에 PC로 접속하시는 것을 권장합니다.</div>
                         </span>
 
                         <span className="useMethodContext">3. PKSCL 관리자에게 승인 받기<br/>
-                        <img src={`./img/PKSCLInfo/president/presidentWaiting.png`} alt="img"  width={"250px"}/>
+                        <img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentWaiting.png`} alt="img"  width={"250px"}/>
                             <div className="detailContext">- 회원가입 이후 학생회장임을 증명하기 위한 서류를 관리자에게 제출해야 합니다. PKSCL 챗봇으로 문의를 해주세요. 
                             <br/>- 본 과정은 처음 PKSCL을 사용하시는 학생회장에게만 해당이 되며, 이후에는 학생회장 권한 위임하기를 통해 차대 학생회장에게 PKSCL 장부 관리 권한을 넘길 수 있습니다.</div>
                         </span>
@@ -92,12 +92,12 @@ function PKSCLInfo(props){
                 <div style={{display:"flex"}}>
 
             {/* <div className="detailContext"> </div> */}
-                        <span className="useMethodContext" style={{width:"300px"}}><img src={`./img/PKSCLInfo/president/presidentProfile.png`} alt="학생회원가입img" width={"300px"}/>
+                        <span className="useMethodContext" style={{width:"300px"}}><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentProfile.png`} alt="학생회원가입img" width={"300px"}/>
                             <div className="detailContext" style={{width:"300px"}}>
                                 - 개명, 전화번호 변경 등의 이유로 수정이 필요할 때 사용하실 수 있습니다.
                             </div>
                         </span>
-                        <span className="useMethodContext" style={{width:"300px"}}><img src={`./img/PKSCLInfo/president/presidentMandate.png`} alt="학생회원가입img"  width={"300px"}/>
+                        <span className="useMethodContext" style={{width:"300px"}}><img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentMandate.png`} alt="학생회원가입img"  width={"300px"}/>
                             <div className="detailContext" style={{width:"300px"}}>
                                 - 차기 학생회장에게 PKSCL 장부 관리 권한을 양도하실 수 있습니다.
                             </div>
@@ -111,14 +111,14 @@ function PKSCLInfo(props){
 
             {/* <div className="detailContext"> </div> */}
                     <div>
-                        <span className="useMethodContext" style={{width:"450px"}}>분기별 영수증 관리 및 장부 공개일 설정<img src={`./img/PKSCLInfo/president/presidentLedger.png`} alt="학생회원가입img" width={"450px"}/>
+                        <span className="useMethodContext" style={{width:"450px"}}>분기별 영수증 관리 및 장부 공개일 설정<img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentLedger.png`} alt="학생회원가입img" width={"450px"}/>
                             <div className="detailContext" style={{width:"450px"}}>
                                 - 해당 분기의 행사별로 영수증을 업로드 하실 수 있습니다. 업로드 후에는 학생의 입장에서 장부를 확인하실 수도 있습니다.
                                 <br/>- 분기마다 장부 공개일을 설정하실 수 있습니다.
                                <br/>- 본과 학생의 입장에서 공개된 장부를 확인하실 수 있습니다.
                             </div>
                         </span>
-                        <span className="useMethodContext" style={{marginTop:"20px", width:"450px"}}>장부 열람 학생 관리<img src={`./img/PKSCLInfo/president/presidentManagement.png`} alt="학생회원가입img"  width={"450px"}/>
+                        <span className="useMethodContext" style={{marginTop:"20px", width:"450px"}}>장부 열람 학생 관리<img className="PKSCLInfoImg" src={`./img/PKSCLInfo/president/presidentManagement.png`} alt="학생회원가입img"  width={"450px"}/>
                             <div className="detailContext" style={{width:"450px"}}>
                                 - 학생들의 장부 열람 권한을 관리하실 수 있습니다. 학생증과 입력된 정보를 대조해서 본과 학생임을 확인한 경우에만 승인을 해주세요.
                             </div>

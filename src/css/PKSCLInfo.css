@@ -13,6 +13,11 @@
     background: var(--color-card);
 }
 
+.PKSCLInfoImg {
+    border-radius: 20px;
+    -webkit-box-shadow: 5px 10px 24px -6px #968faf;
+    box-shadow: 5px 10px 24px -6px #968faf
+}
 
 .PKSCLInfoBackButton {
     position: fixed;
@@ -135,7 +140,7 @@
 }
 
 .detailContext {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 0.5rem;
     width: 250px;
 }
@@ -149,7 +154,7 @@
 }
 
 .useMethodContext img {
-    padding-top: 5px;
+    margin-top: 5px;
 }
 
 
