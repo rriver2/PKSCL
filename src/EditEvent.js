@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import './css/EditEvent.css'
 import PreviewImg from './PreviewImg';
+import Loading from './Loading';
 
 function EditEvent(props) {
 
@@ -9,6 +10,7 @@ function EditEvent(props) {
     const [deleteReceiptList, SetDeleteReceiptList] = useState([]);
     const [showImg, setShowImg] = useState(false);
     const [editState, setEditState] = useState(true);
+    const [showLoadingPage, setShowLoadingPage] = useState(false);
 
     const [previewImg, setPreviewImg] = useState();
     const [eventAmount, setEventAmount] = useState();
@@ -144,6 +146,7 @@ function EditEvent(props) {
     }
 
     function editEventButton() {
+        setShowLoadingPage(true)
         let payload = {
             "eventNumber": eventData["eventNumber"],
             "eventTitle": eventData["eventTitle"],
@@ -309,6 +312,7 @@ function EditEvent(props) {
        
         await Promise.all(unresolved)
         .then(() => { 
+            setShowLoadingPage(false)
             if(success === true){
                 props.setEditEventState(false)
             }else{
@@ -349,6 +353,11 @@ function EditEvent(props) {
     return (
         // <div className="editEventContainer">
         <div className="editEventBox">
+            {
+                showLoadingPage === true
+                ? <Loading></Loading>
+                : null                        
+            }
             {
                 showImg
                     ? <PreviewImg setShowImg={setShowImg} previewImg={previewImg}></PreviewImg>

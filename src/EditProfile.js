@@ -721,13 +721,12 @@ function EditProfile(props) {
                                             <div style={{ width: "70%" }}>
                                                 <input type="password" style={{ width: "100%" }} onChange={(e) => {
                                                     setInputCheckNewPassword(e.target.value)
-                                                    if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/) && inputNewPassword === e.target.value) {
+                                                    if (inputNewPassword === e.target.value) {
                                                         changeIsCorrect("inputCheckNewPassword", true);
                                                     } else {
                                                         changeIsCorrect("inputCheckNewPassword", false);
                                                     }
                                                 }} value={inputCheckNewPassword} placeholder='새 비밀번호를 다시 입력하세요.' />
-
                                                 {
                                                     isCorrect["inputCheckNewPassword"] === false && inputCheckNewPassword !== ""
                                                         ? <span style={{ fontSize: "1px", color: "red", display: "flex", alignItems: "center", justifyContent: "center" }}>비밀번호가 일치하지 않습니다. </span>

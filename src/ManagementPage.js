@@ -278,94 +278,13 @@ function ManagementPage(props) {
         reload();
         //push 할 때 삭제
 
-    // let 임시리스트 = {
-    //     waiting:
-    //         [{
-    //             "major": "학과1",
-    //             "email": "srge@naver.com",
-    //             "stdID": "3123",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "fdssf@naver.com",
-    //             "stdID": "312231",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "aaaasdasaa@naver.com",
-    //             "stdID": "321313",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "asas@naver.com",
-    //             "stdID": "23322",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과1",
-    //             "email": "aaasadadaa@naver.com",
-    //             "stdID": "111111111",
-    //             "name": "이름1",
-    //             "phoneNumber": "01011111111",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과2",
-    //             "email": "bbbbb@naver.com",
-    //             "stdID": "22222222",
-    //             "name": "이름2",
-    //             "phoneNumber": "01022222222",
-    //             "studentImgPath": "/img/time.png",
-    //         },
-    //         {
-    //             "major": "학과3",
-    //             "email": "ccccc@naver.com",
-    //             "stdID": "333333",
-    //             "name": "이름3",
-    //             "phoneNumber": "010333333",
-    //             "studentImgPath": "/img/time.png",
-    //         }],
-    //     refusal: [],
-    //     approval: [{
-    //         "major": "학과4",
-    //         "email": "dddd@naver.com",
-    //         "stdID": "444444",
-    //         "name": "이름4",
-    //         "phoneNumber": "010444444",
-    //         "studentImgPath": "/img/time.png",
-    //     }, {
-    //         "major": "학과5",
-    //         "email": "eeee@naver.com",
-    //         "stdID": "555555",
-    //         "name": "이름5",
-    //         "phoneNumber": "010555555",
-    //         "studentImgPath": "/img/time.png",
-    //     }, {
-    //         "major": "학과6",
-    //         "email": "ffff@naver.com",
-    //         "stdID": "666666",
-    //         "name": "이름6",
-    //         "phoneNumber": "010666666",
-    //         "studentImgPath": "/img/time.png",
-    //     }],
-    // }
-        // setWaiting([...임시리스트["waiting"]]);
-        // setRefusal([...임시리스트["refusal"]]);
-        // setApproval([...임시리스트["approval"]]);
-        // setLeftTable([...임시리스트["waiting"]]);
-        // setRightTable([...임시리스트["approval"]]);
-        // setUserLoginPosition("president")
+    // let 임시리스트 = {"waiting":[{"stdID":"201135021","name":"최수성","email":"arasU2mhlx@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"백준호","email":"wcFNotogw@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"최상현","email":"wch9832@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"이지연","email":"YhiYcZbKs@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "}],"refusal":[{"stdID":"201135021","name":"김미영","email":"PXNcDYLnu@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"강우진","email":"QAjcnEccF@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"류정웅","email":"rWAcogFxaV@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"강정숙","email":"tKzAcWVqzA@pukyong.ac.k","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"강도현","email":"zxtKzAcWzVqA@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "}],"approval":[{"stdID":"201135021","name":"박경수","email":"arEU2mhlx@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"김미정","email":"cuGWyAmXT@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"손윤서","email":"hpZqjxWXP@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"황석민","email":"IPiKTzyWZ@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"최철병","email":"JDxjNFczEo@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "},{"stdID":"201135021","name":"박원채","email":"KHMsbtdcmN@pukyong.ac.kr","studentImgPath":"./static/studentCertFile/testimg.png "}]}
+    //     setWaiting([...임시리스트["waiting"]]);
+    //     setRefusal([...임시리스트["refusal"]]);
+    //     setApproval([...임시리스트["approval"]]);
+    //     setLeftTable([...임시리스트["waiting"]]);
+    //     setRightTable([...임시리스트["approval"]]);
+    //     setUserLoginPosition("president")
 
     }, []);
 
@@ -580,7 +499,7 @@ function ManagementPage(props) {
                                                                             } else if (userLoginPosition === "president") {
                                                                                 history.push('/edit-main')
                                                                             }
-                                                                        }}>학과별 장부 확인 및 수정</button>
+                                                                        }}>학과별 장부 확인</button>
                                                                         <button className='navButton' type='button' onClick={() => { logout(); }}>로그아웃</button>
                                                                      </div>
                                                             </>

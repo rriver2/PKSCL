@@ -49,7 +49,7 @@ function defineColor(quarter) {
 
 function App() {
   const [loginPosition, setLoginPosition] = useState("");
-  const [todayQuarter, setTodayQuarter] = useState(selectseason());
+  const [todayQuarter, setTodayQuarter] = useState("quarter1");
 
   useEffect(() => {
     setColorProperty("#59577b", "#7c7a9a", "#cdc9e6", "#ebeaee", "#f8f6fb");

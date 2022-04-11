@@ -5,10 +5,13 @@ import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './css/AccessPage.scss';
 import PKSCLInfo from './PKSCLInfo';
+import Loading from './Loading';
+
 
 function AccessPage(props) {
 
   const [position, setPosition] = useState("student");
+const [showLoadingPage, setShowLoadingPage] = useState(false);
 
   const [stdID, setStdID] = useState("");
   const [name, setName] = useState("");
@@ -163,20 +166,22 @@ function AccessPage(props) {
   };
 
   function certEmail() {
-    if (window.confirm("입력하신 이메일로 인증 메일을 발송하시겠습니까?")) {
+        setShowLoadingPage(true)
       let payload = { "email": email };
       axios.post('/email/' + position, payload)
         .then((payload) => {
-            alert("입력하신 이메일로 메일을 발송했습니다.");
+            setShowLoadingPage(false)
+            alert("입력하신 학교 이메일로 메일을 발송했습니다.");
         })
         .catch((error) => {
-          switch (error.response.status) {
+            setShowLoadingPage(false)
+            switch (error.response.status) {
             case 409: alert("이미 존재하는 이메일입니다."); break;
             case 400: alert("학교 이메일 형식에 맞지 않습니다."); break;
             default: alert("이메일 인증 실패/ error: " + error.response.status); break;
+            
           }
         });
-    }
   };
 
   function changeIsCorrect(i, type) {
@@ -262,6 +267,11 @@ function AccessPage(props) {
 
   return (
     <div className="accessContainer">
+        {
+                showLoadingPage === true
+                ? <Loading></Loading>
+                : null                        
+            }
       {
         PKSCLInfoButton === true
           ? <PKSCLInfo setPKSCLInfoButton={setPKSCLInfoButton}></PKSCLInfo>
@@ -479,7 +489,7 @@ function AccessPage(props) {
                       <i className="fas fa-key" style={isCorrect[2] === true ? { color: "var(--color-quarter)" } : null}></i>
                       <input onChange={(e) => {
                         setCheckPassword(e.target.value)
-                        if (e.target.value.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/) && password === e.target.value) {
+                        if (password === e.target.value) {
                           changeIsCorrect(2, true);
                         } else {
                           changeIsCorrect(2, false);

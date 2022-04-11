@@ -293,13 +293,14 @@ function MainPage(props) {
     function getExPKSCL() {
         axios.get( '/temp-major-info')
             .then((payload) => {
+                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 setWrongApproach(false)
                 setEditProfileButton(false);
                 setStudentPresident({ ...payload.data["studentPresident"] });
                 setQuarter({ ...payload.data["quarter"] });
                 setTempQuarter(true);
-                setShowCurrentQuerter(payload.data["quarter"][props.todayQuarter]["status"])
                 setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                showQuarter("quarter1")
             })
             .catch((error) => {
                 switch (error.response.status) {
@@ -516,7 +517,7 @@ function MainPage(props) {
             })
 
         // push 할때 주석 넣기
-    // let answer = {"studentPresident":{"major":"기린학과","name":"\b김기린","phoneNumber":"010-1234-5678","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/tempLogo.jpg"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"171","eventTitle":"빛축제 (일시 : 10/27~10/29)","eventContext":"[공과대]의 청춘을 비추다","receiptList":[{"receiptNumber":"181","receiptTitle":"추억의 뽑기판","receiptImg":{"name":"./static/receiptImg/20220228092500209.png"},"receiptContext":"공과대생 선착순 300명","receiptDetailList":[{"context":"LED 풍선","price":"500","amount":"100","totalAmount":"50000"},{"context":"LED 삔","price":"300","amount":"100","totalAmount":"30000"},{"context":"LED 반지","price":"450","amount":"100","totalAmount":"45000"}]}]},{"eventNumber":"164","eventTitle":"기린학과 임시 장부임~~~~","eventContext":"우헤헤 기린학과엔 기린이 몇마리일기린?","receiptList":[{"receiptNumber":"177","receiptTitle":"기린기린기린","receiptImg":{"name":"./static/receiptImg/20220216122414973.png"},"receiptContext":"기린 퀴즈","receiptDetailList":[{"context":"다리","price":"4","amount":"3","totalAmount":"12"},{"context":"심장","price":"1","amount":"3","totalAmount":"3"},{"context":"꼬리","price":"1","amount":"3","totalAmount":"3"}]}]}]},"quarter2":{"status":"true"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"ww","price":"11","amount":"22","totalAmount":"242"}]}]}]},"quarter4":{"status":"true"}}}
+    // let answer = {"studentPresident":{"major":"기린학과","name":"김기린","phoneNumber":"010-1234-5678","email":"cherisher20@pukyong.ac.kr","majorLogo":"./static/majorLogo/20220317084609677.png"},"quarter":{"quarter1":{"status":"true","eventList":[{"eventNumber":"171","eventTitle":"핑크캠퍼스 (일시 : 3/27~3/32)","eventContext":"[공과대]의 청춘을 비추다","receiptList":[{"receiptNumber":"181","receiptTitle":"추억의 뽑기판","receiptImg":{"name":"./static/receiptImg/20220317084939636.JPEG"},"receiptContext":"공과대생 선착순 300명","receiptDetailList":[{"context":"LED 풍선","price":"600","amount":"100","totalAmount":"60000"},{"context":"LED 삔","price":"500","amount":"100","totalAmount":"50000"},{"context":"LED 반지","price":"400","amount":"100","totalAmount":"40000"}]},{"receiptNumber":"228","receiptTitle":"포토 이벤트","receiptImg":{"name":"./static/receiptImg/20220317084939630.JPEG"},"receiptContext":"","receiptDetailList":[{"context":"\b미니스탁 구매","price":"100000","amount":"1","totalAmount":"100000"},{"context":"필름 4팩","price":"39800","amount":"3","totalAmount":"119400"}]}]},{"eventNumber":"228","eventTitle":"핑크캠퍼스 2","eventContext":"","receiptList":[]},{"eventNumber":"164","eventTitle":"중간고사 응원전 ( 4/20 추첨 )","eventContext":"여러분의 중간고사를 응원합니다 ~","receiptList":[{"receiptNumber":"177","receiptTitle":"추첨을 통한 기프티콘 제공","receiptImg":{"name":"./static/receiptImg/20220317085128606.JPEG"},"receiptContext":"1등, 2등, 3등 순","receiptDetailList":[{"context":"\b목공공예","price":"50000","amount":"1","totalAmount":"50000"},{"context":"BBQ","price":"12900","amount":"5","totalAmount":"64500"},{"context":"베스킨라빈스","price":"5900","amount":"10","totalAmount":"59000"}]}]},{"eventNumber":"229","eventTitle":"새내기 배움터","eventContext":"","receiptList":[]}]},"quarter2":{"status":"false"},"quarter3":{"status":"true","eventList":[{"eventNumber":"170","eventTitle":"기린의 목덜미","eventContext":"","receiptList":[{"receiptNumber":"180","receiptTitle":"","receiptImg":{"name":"./static/receiptImg/defaultReceiptImg.jpg"},"receiptContext":"","receiptDetailList":[{"context":"ww","price":"11","amount":"22","totalAmount":"242"}]}]}]},"quarter4":{"status":"true"}}}
     // let answerDate = {
     //     "quarter1": ["2022-01-01", "2022-01-02"],
     //     "quarter2": ["2022-01-03", "2022-01-04"],
@@ -533,7 +534,7 @@ function MainPage(props) {
     //         setShowCurrentQuerter(answer["quarter"][props.todayQuarter]["status"])
     //         setStudentPresident({ ...answer["studentPresident"] });
     //         setQuarterDate({ ...answerDate });
-    //         setUserLoginPosition("admin")
+    //         setUserLoginPosition("president")
     //         setMajorList([...answerMajorList]);
     //         defineColor(props.todayQuarter);
     }, []);

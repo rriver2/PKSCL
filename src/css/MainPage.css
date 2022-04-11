@@ -539,6 +539,10 @@
     display: none;
 }
 
+.MainPageContainer .eventCardBox {
+    display: flex;
+}
+
 @media (hover: none) and (pointer: coarse) {
 
     .MainPageContainer .PCVersion {
@@ -667,8 +671,8 @@
         margin-left: 0;
     }
 
-    .MainPageContainer .eventCardBox {
-        align-items: center !important;
+    .MainPageContainer .eventCardBox .giraffe {
+        display: none;
     }
 
     .MainPageContainer .edit {
