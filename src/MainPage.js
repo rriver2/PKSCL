@@ -317,7 +317,7 @@ function MainPage(props) {
                 setMajorList([...payload.data["majorList"]]);
                 if (major === undefined) {
                     let ledgerMajorList = [...payload.data["majorList"]];
-                    ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학과"));
+                    ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학부"));
                     getAdminLedger(ledgerMajor);
                     adminGetDate(ledgerMajor);
                     defineColor(props.todayQuarter);
