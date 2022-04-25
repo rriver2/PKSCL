@@ -1,70 +1,58 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href="https://pkscl.kro.kr/"><h1>PKSCL</h1></a>
 
-## Available Scripts
+<h2> Team Information <a href="https://github.com/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse"></a></h2>
 
-In the project directory, you can run:
+<!--  아래는 Team INFORMATION 표-->
 
-### `npm start`
+ <table>
+<thead>
+<tr>
+<th style="text-align:left">Team</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Position</th>
+<th style="text-align:left">E-Mail</th>
+<th style="text-align:left">Github</th>
+</tr> 
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Leader</td>
+<td style="text-align:left">한준규</td>
+<td style="text-align:left">Project Manager, System, BackEnd developer</td>
+<td style="text-align:left">must1080@naver.com</td>
+<td style="text-align:left"><a href="https://github.com/doongu">
+<img src="http://img.shields.io/badge/doongu-655ced?style=social&logo=github" style="height : auto; margin-left : 10px; margin-right : 10px;"/>
+</a></td> 
+</tr>
+<tr>
+<td style="text-align:left">Team</td>
+<td style="text-align:left">이가은</td>
+<td style="text-align:left">Project Manager, Frontend developer</td>
+<td style="text-align:left">rriver2@naver.com</td>
+<td style="text-align:left"><a href="https://github.com/rriver2">
+<img src="http://img.shields.io/badge/rriver2-655ced?style=social&logo=github&color=informational" style="height : auto; margin-left : 10px; margin-right : 10px;"/>
+</a></td>
+</tr>
+    <tr>
+<td style="text-align:left">Team</td>
+<td style="text-align:left">김준서</td>
+<td style="text-align:left">Frontend developer</td>
+<td style="text-align:left">jykim9868@gmail.com </td>
+<td style="text-align:left"><a href="https://github.com/Narcoker">
+<img src="http://img.shields.io/badge/Narcoker-655ced?style=social&logo=github&color=informational" style="height : auto; margin-left : 10px; margin-right : 10px;"/>
+</a></td>
+</tr>
+ <tr>
+<td style="text-align:left">Team</td>
+<td style="text-align:left">조현석</td>
+<td style="text-align:left">BackEnd developer</td>
+<td style="text-align:left">wh9832@naver.com</td>
+<td style="text-align:left"><a href="https://github.com/coke98">
+<img src="http://img.shields.io/badge/coke98-655ced?style=social&logo=github&color=informational" style="height : auto; margin-left : 10px; margin-right : 10px;"/>
+</a></td>
+</tr>
+</tbody>
+</table>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
