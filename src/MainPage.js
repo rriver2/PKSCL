@@ -249,17 +249,19 @@ function MainPage(props) {
             })
             .catch((error) => {
                 if (major === undefined) {
-                    setWrongApproachContext(`컴퓨터공학과 장부를 불러올 수 없습니다. error :` + error.response.status)
-                    setWrongApproach(true)
-                    setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
-                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                    alert(`컴퓨터공학과 장부를 불러올 수 없습니다. error :` + error.response.status)
+                    // setWrongApproachContext(`컴퓨터공학과 장부를 불러올 수 없습니다. error :` + error.response.status)
+                    // setWrongApproach(true)
+                    // setEditProfileButton(false);
+                    // defineColor(props.todayQuarter);
+                    // setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 } else {
-                    setWrongApproachContext(`${major} 장부를 불러올 수 없습니다. error :` + error.response.status)
-                    setWrongApproach(true)
-                    setEditProfileButton(false);
-                    defineColor(props.todayQuarter);
-                    setLogoImgPath(`./img/${props.todayQuarter}.png`);
+                    alert(`${major} 장부를 불러올 수 없습니다. error :` + error.response.status)
+                    // setWrongApproachContext(`${major} 장부를 불러올 수 없습니다. error :` + error.response.status)
+                    // setWrongApproach(true)
+                    // setEditProfileButton(false);
+                    // defineColor(props.todayQuarter);
+                    // setLogoImgPath(`./img/${props.todayQuarter}.png`);
                 }
             })
 
@@ -275,7 +277,7 @@ function MainPage(props) {
             })
             .catch((error) => {
                 if (major === undefined) {
-                    setWrongApproachContext(`컴퓨터공학과의 장부 open, close 날짜를 불러올 수 없습니다. error: ` + error.response.status)
+                    setWrongApproachContext(`컴퓨터공부의 장부 open, close 날짜를 불러올 수 없습니다. error: ` + error.response.status)
                     setWrongApproach(true)
                     setEditProfileButton(false);
                     defineColor(props.todayQuarter);
@@ -317,6 +319,8 @@ function MainPage(props) {
                 setMajorList([...payload.data["majorList"]]);
                 if (major === undefined) {
                     let ledgerMajorList = [...payload.data["majorList"]];
+                    console.log(ledgerMajorList)
+                    console.log(ledgerMajorList.indexOf("컴퓨터공학부"));
                     ledgerMajor = (ledgerMajorList.indexOf("컴퓨터공학부"));
                     getAdminLedger(ledgerMajor);
                     adminGetDate(ledgerMajor);
@@ -633,8 +637,8 @@ function MainPage(props) {
                                     userLoginPosition === "president"
                                     ?<div>mobile로는 학생 입장으로 장부 열람만 하실 수 있습니다.<br/>
                                         장부 수정, 학생 관리 등 더 많은 서비스를 이용하시려면 PC로 접속해주세요.</div>
-                                    :<div>mobile로는 컴퓨터공학과 장부 열람만 하실 수 있습니다.<br/>
-                                        컴퓨터공학과 외 타과 장부 열람 및 학과 관리를 하시려면 PC로 접속해주세요.</div>
+                                    :<div>mobile로는  장부 열람만 하실 수 있습니다.<br/>
+                                        컴퓨터공학부 외 타과 장부 열람 및 학과 관리를 하시려면 PC로 접속해주세요.</div>
                                 }
                             </div>
                         </div>
