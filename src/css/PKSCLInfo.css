@@ -75,7 +75,7 @@
 .PKSCLInfomationBox {
     width: 100%;
     margin-bottom: 70px;
-    margin-top: 200px;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,12 +114,12 @@
     padding: 0 10px;
     border-radius: 10px;
     position: relative;
-    background: rgba(255, 255, 255, 0.646);
+    background: rgba(220, 220, 220, 0.646);
     margin-left: 13px;
 }
 
 .linkButton div:after {
-    border-top: 10px solid white;
+    border-top: 10px solid rgba(220, 220, 220, 0.646);
     border-left: 10px solid transparent;
     border-right: 0px solid transparent;
     border-bottom: 0px solid transparent;
@@ -143,14 +143,33 @@
     margin-top: 20px;
     font-size: 0.5rem;
     width: 250px;
+    opacity: 0.5;
+}
+
+.profileBox {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: var(--color-white);
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 0px gray;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30px;
 }
 
 .useMethodContext {
-    margin: 0 5px;
+    margin: 0 15px;
     width: 270px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.useMethodContextTitle {
+    padding-bottom: 10px;
+    font-size: large;
 }
 
 .useMethodContext img {
