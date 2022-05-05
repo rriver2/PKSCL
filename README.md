@@ -1,5 +1,60 @@
 
+
+
+
+![Logo](https://user-images.githubusercontent.com/82457928/166881639-12f43431-3d41-4e3f-bd92-13aa86f23f30.png)
+
+<br></br>
+
 <a href="https://pkscl.kro.kr/"><h1>PKSCL</h1></a>
+
+### "Pukyong Student Council Ledger"
+PKSCL은 부경대학교 재학생들이 이전보다 편리하고 신뢰도 있게
+학과 장부를 온라인으로 관리 및 열람하는 서비스를 제공합니다.
+
+<br></br>
+
+
+## :pushpin: Features
+
+- Light/dark mode toggle
+- Live previews
+- Fullscreen mode
+- Cross platform
+
+
+## :people_hugging: Authors
+
+- [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/)
+
+
+## :framed_picture: Demo
+
+Insert gif or link to demo
+
+
+## :fireworks: Screenshots
+
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
+
+
+## :sparkles: Skills & Tech Stack
+swiftUI ...
+
+## :books: Documentation
+
+[Documentation](https://linktodocumentation)
+
+
+## :lock_with_ink_pen: License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
 
 <h2> Team Information <a href="https://github.com/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse"></a></h2>
 
