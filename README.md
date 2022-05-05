@@ -13,52 +13,43 @@ PKSCL은 부경대학교 재학생들이 이전보다 편리하고 신뢰도 있
 학과 장부를 온라인으로 관리 및 열람하는 서비스를 제공합니다.
 
 <br></br>
+<br></br>
+## :sparkles: 본인 인증
+### 1차 ) 
+학교 이메일로 본교 학생임을 인증
+### 2차 ) 
+1기 학생회장은 PKSCL 챗봇으로 학생회장 증명 서류 제출
+학생은 학생증으로 본과 학생임을 인증
+
+<br></br>
+<br></br>
+## :pushpin: 학생회장
+### - 학과 장부를 온라인으로 관리하세요 :)
+<img width="700" alt="presidentLedger" src="https://user-images.githubusercontent.com/82457928/166882416-326be5ee-7e06-447d-82a4-3f1f5d5c1a15.png">
+
+### - 우리 학과의 장부를 열람할 수 있는 학생을 관리할 수 있어요
+<img width="700" alt="presidentManagement" src="https://user-images.githubusercontent.com/82457928/166882442-6badc262-2397-4d05-a429-9f021f6e4fb5.png">
+
+### - 1기 회장 인증 이후에는 다음 학생회장에게 장부 관리 권한을 위임할 수 있어요 
+<img width="500" alt="presidentMandate" src="https://user-images.githubusercontent.com/82457928/166882662-71b05366-2d9b-4eae-a4af-058434ee09b8.png">
 
 
-## :pushpin: Features
 
-- Light/dark mode toggle
-- Live previews
-- Fullscreen mode
-- Cross platform
+<br></br>
+<br></br>
+## :pushpin: 학생
+### - 학생회장이 업로드한 장부를 온라인으로 열람할 수 있어요
+<img width="700" alt="studentLedger" src="https://user-images.githubusercontent.com/82457928/166882769-bb2ceca0-fccb-431e-bcf5-27a873e6be2c.png">
 
-
-## :people_hugging: Authors
-
-- [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/) | [@YourName](https://www.github.com/)
-
-
-## :framed_picture: Demo
-
-Insert gif or link to demo
-
-
-## :fireworks: Screenshots
-
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-![App Screenshot](https://dummyimage.com/250x500/000/fff.png)
-
-
-## :sparkles: Skills & Tech Stack
-swiftUI ...
-
+<br></br>
 ## :books: Documentation
 
-[Documentation](https://linktodocumentation)
+[GitBook](https://doongu.gitbook.io/pkcog/)
 
+[Notion](https://voracious-lamp-0b4.notion.site/PKCog-Home-2ec6d63bba724ee29da28323f270907f)
 
-## :lock_with_ink_pen: License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-
-<h2> Team Information <a href="https://github.com/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/osamhack2020/Web_Drawing-chat-consulation_Stones-in-greenhouse"></a></h2>
-
-<!--  아래는 Team INFORMATION 표-->
+<br></br>
+## :people_hugging: Team Informations
 
  <table>
 <thead>
